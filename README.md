@@ -2,7 +2,7 @@
 
 Minecraft mods for haruhi server.
 
-![Minecraft version](https://img.shields.io/static/v1?label=Minecraft&message=1.16&color=gray&labelColor=00aa00&style=flat-square)&nbsp;![Forge version](https://img.shields.io/static/v1?label=Forge&message=36.1.0%2B&color=gray&labelColor=e04e14&style=flat-square)&emsp;[![GitHub license](https://img.shields.io/github/license/WakelessSloth56/haruhimod?style=flat-square)](https://github.com/WakelessSloth56/haruhimod/blob/1.16-forge/LICENSE)&nbsp;[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/WakelessSloth56/haruhimod/gradle-ci/1.16-forge?style=flat-square)](https://github.com/WakelessSloth56/haruhimod/actions)
+![Minecraft version](https://img.shields.io/static/v1?label=Minecraft&message=1.16&color=gray&labelColor=00aa00&style=flat-square)&nbsp;![Forge version](https://img.shields.io/static/v1?label=Forge&message=36.1.65&color=gray&labelColor=e04e14&style=flat-square)&emsp;[![GitHub license](https://img.shields.io/github/license/WakelessSloth56/haruhimod?style=flat-square)](https://github.com/WakelessSloth56/haruhimod/blob/1.16-forge/LICENSE)&nbsp;[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/WakelessSloth56/haruhimod/gradle-ci/1.16-forge?style=flat-square)](https://github.com/WakelessSloth56/haruhimod/actions)
 
 ## Maintainers
 
