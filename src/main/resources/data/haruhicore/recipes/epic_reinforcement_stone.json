@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": ["###", "#@#", "###"],
+    "key": {
+        "#": {
+            "item": "minecraft:dragon_breath"
+        },
+        "@": {
+            "item": "haruhicore:reinforcement_stone"
+        }
+    },
+    "result": {
+        "item": "haruhicore:epic_reinforcement_stone",
+        "count": 1
+    }
+}

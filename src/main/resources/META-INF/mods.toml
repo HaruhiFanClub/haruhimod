@@ -1,0 +1,34 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="GNU GPLv3"
+
+[[mods]]
+modId="haruhicore"
+version="${haruhicore_version}"
+displayName="Haruhi Core"
+credits="Haruhifanclub"
+authors="WakelssSloth56"
+description='''
+'''
+
+[[mods]]
+modId="addrlimiter"
+version="${addrlimiter_version}"
+displayName="Address Limiter"
+credits="AUIOC"
+authors="WakelssSloth56"
+description='''
+'''
+
+[[dependencies.haruhicore]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.haruhicore]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"

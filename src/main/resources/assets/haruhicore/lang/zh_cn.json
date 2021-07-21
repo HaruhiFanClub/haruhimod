@@ -1,0 +1,20 @@
+{
+    "haruhicore.title": "春日核心",
+    "itemGroup.haruhicore_group": "春日核心",
+
+    "item.haruhicore.testitem": "测试物品",
+
+    "item.haruhicore.physics_excalibur": "物理学圣剑",
+    "haruhicore.physics_excalibur.attack.1": "§3§l实体信息",
+    "haruhicore.physics_excalibur.attack.2": "\n§3┣ 名称: §r",
+    "haruhicore.physics_excalibur.attack.3": "\n§3┣ 类型: §r",
+    "haruhicore.physics_excalibur.attack.4": "\n§3┣ UUID: §r",
+    "haruhicore.physics_excalibur.attack.5": "\n§3┣ 位置: §r",
+
+    "item.haruhicore.reinforcement_stone": "强化石",
+    "item.haruhicore.epic_reinforcement_stone": "春日酱的眷顾",
+    "item.haruhicore.reinforcement_stone.xp_not_enough": "§c经验不足",
+    "item.haruhicore.reinforcement_stone.blacklist": "§c无法强化此物品",
+    "item.haruhicore.reinforcement_stone.empty_item": "§c目标物品为空",
+    "item.haruhicore.reinforcement_stone.empty_enchantments": "§c目标物品上不存在附魔"
+}
