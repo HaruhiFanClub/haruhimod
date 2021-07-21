@@ -17,7 +17,7 @@ public class EpicReinforcementStoneItem extends Item implements IReinforcementSt
             new Item.Properties()
                 .tab(ItemGroupManager.itemGroup)
                 .rarity(Rarity.EPIC)
-                .stacksTo(64)
+                .stacksTo(16)
         );
     }
 

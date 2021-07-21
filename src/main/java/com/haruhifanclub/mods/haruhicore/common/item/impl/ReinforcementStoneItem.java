@@ -18,7 +18,7 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
             new Item.Properties()
                 .tab(ItemGroupManager.itemGroup)
                 .rarity(Rarity.UNCOMMON)
-                .stacksTo(64)
+                .stacksTo(16)
         );
     }
 
