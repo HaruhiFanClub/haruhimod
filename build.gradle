@@ -1,20 +1,22 @@
 buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = "https://plugins.gradle.org/m2/" }
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
+        classpath "org.ajoberstar.grgit:grgit-gradle:4.1.0"
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
 
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: "org.ajoberstar.grgit"
 
-version = "${minecraft_version}-${mod_version}"
+version = "${minecraft_version}-${mod_version}+${getBuildNumber()}"
 group = 'com.haruhifanclub.mods.haruhimod'
 archivesBaseName = 'haruhimod'
 
@@ -97,4 +99,28 @@ publishing {
             artifact jar
         }
     }
+}
+
+def getBuildNumber() {
+    def build_id = System.getenv("GITHUB_RUN_NUMBER")
+
+    // CI builds only
+    if (build_id != null) {
+        return "build.${build_id}"
+    }
+
+    if (grgit != null) {
+        def head = grgit.head()
+        def id = head.abbreviatedId
+
+        // Flag the build if the build tree is not clean
+        if (!grgit.status().clean) {
+            id += "-dirty"
+        }
+
+        return "rev.${id}"
+    }
+
+    // No tracking information could be found about the build
+    return "unknown"
 }
