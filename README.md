@@ -2,7 +2,13 @@
 
 Minecraft mods for haruhi server.
 
-![Minecraft version](https://img.shields.io/static/v1?label=Minecraft&message=1.16&color=gray&labelColor=00aa00&style=flat-square)&nbsp;![Forge version](https://img.shields.io/static/v1?label=Forge&message=36.1.65&color=gray&labelColor=e04e14&style=flat-square)&emsp;[![GitHub license](https://img.shields.io/github/license/WakelessSloth56/haruhimod?style=flat-square)](https://github.com/WakelessSloth56/haruhimod/blob/1.16-forge/LICENSE)&nbsp;[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/WakelessSloth56/haruhimod/gradle-ci/1.16-forge?style=flat-square)](https://github.com/WakelessSloth56/haruhimod/actions)
+[![GitHub license](https://img.shields.io/github/license/WakelessSloth56/haruhimod?style=flat-square)](https://github.com/WakelessSloth56/haruhimod/blob/1.16-forge/LICENSE)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/WakelessSloth56/haruhimod/gradle-ci/1.16-forge?style=flat-square)](https://github.com/WakelessSloth56/haruhimod/actions)
+&nbsp;
+![Minecraft](https://img.shields.io/static/v1?label=Minecraft&message=1.16&color=00aa00&style=flat-square)
+[![Forge](https://img.shields.io/static/v1?label=Forge&message=36.1.65&color=e04e14&logo=Conda-Forge&style=flat-square)]((http://files.minecraftforge.net/net/minecraftforge/forge/index_1.16.5.html))
+[![AdoptOpenJDK](https://img.shields.io/static/v1?label=AdoptOpenJDK&message=15.0.2%2B7&color=brightgreen&logo=java&style=flat-square)](https://adoptopenjdk.net/?variant=openjdk15&jvmVariant=hotspot)
+[![Gradle](https://img.shields.io/static/v1?label=Gradle&message=6.9&color=brightgreen&logo=gradle&style=flat-square)](https://docs.gradle.org/6.9/release-notes.html)
 
 ## Maintainers
 
