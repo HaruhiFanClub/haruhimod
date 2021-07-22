@@ -21,6 +21,7 @@ public class HaruhiCore {
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         com.haruhifanclub.mods.haruhicore.common.item.ItemManager.ITEMS.register(modEventBus);
+        com.haruhifanclub.mods.haruhicore.common.block.BlockManager.BLOCKS.register(modEventBus);
     }
 
     // private void setup(final FMLCommonSetupEvent event) {
