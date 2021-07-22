@@ -31,9 +31,9 @@ public final class ItemManager {
         ITEMS.register("epic_reinforcement_stone", EpicReinforcementStoneItem::new);
 
 
-    public static RegistryObject<Item> SOS_BADGE_CUSHION_BLOCK = ITEMS.register(
-        "sos_badge_cushion", () -> new BlockItem(
-            BlockManager.SOS_BADGE_CUSHION_BLOCK.get(), new Item.Properties().tab(ItemGroupManager.itemGroup)
+    public static RegistryObject<Item> SOS_BADGE_SLAB_BLOCK = ITEMS.register(
+        "sos_badge_slab", () -> new BlockItem(
+            BlockManager.SOS_BADGE_SLAB_BLOCK.get(), new Item.Properties().tab(ItemGroupManager.itemGroup)
         )
     );
 }

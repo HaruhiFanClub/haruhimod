@@ -9,9 +9,9 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 
-public class SosBadgeCushionBlock extends Block {
+public class SosBadgeSlabBlock extends Block {
 
-    public SosBadgeCushionBlock() {
+    public SosBadgeSlabBlock() {
         super(AbstractBlock.Properties.of(Material.STONE));
     }
 
