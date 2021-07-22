@@ -7,12 +7,10 @@ on:
     push:
         branches: [1.16-forge]
         paths-ignore:
-            - "**.md"
             - "docs/**"
     pull_request:
         branches: [1.16-forge]
         paths-ignore:
-            - "**.md"
             - "docs/**"
 
 jobs:
