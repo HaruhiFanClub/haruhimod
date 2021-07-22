@@ -18,5 +18,7 @@
     "item.haruhicore.reinforcement_stone.empty_item": "§c目标物品为空",
     "item.haruhicore.reinforcement_stone.empty_enchantments": "§c目标物品上不存在附魔",
 
-    "block.haruhicore.testblock": "测试方块"
+    "block.haruhicore.testblock": "测试方块",
+
+    "block.haruhicore.sos_badge_slab": "SOS团徽台阶"
 }
