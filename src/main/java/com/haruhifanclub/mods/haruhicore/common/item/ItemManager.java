@@ -33,9 +33,5 @@ public final class ItemManager {
         )
     );
 
-    public static RegistryObject<Item> DANCHOU_CONE_BLOCK = ITEMS.register(
-        "danchou_cone", () -> new BlockItem(
-            BlockManager.DANCHOU_CONE_BLOCK.get(), new Item.Properties().tab(ItemGroupManager.itemGroup)
-        )
-    );
+    public static RegistryObject<Item> DANCHOU_CONE_BLOCK = ITEMS.register("danchou_cone", DanchouConeBlockItem::new);
 }
