@@ -1,0 +1,7 @@
+{
+    "parent": "haruhicore:block/block",
+    "textures": {
+        "0": "haruhicore:block/sos_badge_slab_double",
+        "particle": "haruhicore:block/sos_badge_slab_double"
+    }
+}
