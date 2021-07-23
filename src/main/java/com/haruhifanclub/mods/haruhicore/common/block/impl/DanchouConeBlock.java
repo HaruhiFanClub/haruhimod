@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
@@ -31,6 +32,10 @@ public class DanchouConeBlock extends Block {
 
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(FACING);
+    }
+
+    public BlockState getStateForPlacement(BlockItemUseContext ctx) {
+        return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getClockWise());
     }
 
     @Override

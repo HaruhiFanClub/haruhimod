@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
@@ -39,6 +40,11 @@ public class SosBadgeSlabBlock extends Block {
 
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(TYPE, FACING);
+    }
+
+
+    public BlockState getStateForPlacement(BlockItemUseContext ctx) {
+        return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getClockWise());
     }
 
     @Override
