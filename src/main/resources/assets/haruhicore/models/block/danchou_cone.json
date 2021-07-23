@@ -1,0 +1,5 @@
+{
+    "loader": "forge:obj",
+    "model": "haruhicore:models/obj/danchou_cone.obj",
+    "flip-v": true
+}
