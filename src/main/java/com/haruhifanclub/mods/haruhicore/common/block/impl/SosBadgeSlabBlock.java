@@ -12,7 +12,7 @@ import net.minecraft.world.IBlockReader;
 public class SosBadgeSlabBlock extends Block {
 
     public SosBadgeSlabBlock() {
-        super(AbstractBlock.Properties.of(Material.STONE));
+        super(AbstractBlock.Properties.of(Material.HEAVY_METAL));
     }
 
     private static VoxelShape shape = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
