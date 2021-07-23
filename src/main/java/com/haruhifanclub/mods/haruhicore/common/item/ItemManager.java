@@ -2,11 +2,7 @@ package com.haruhifanclub.mods.haruhicore.common.item;
 
 import com.haruhifanclub.mods.haruhicore.HaruhiCore;
 import com.haruhifanclub.mods.haruhicore.common.block.BlockManager;
-import com.haruhifanclub.mods.haruhicore.common.item.impl.EpicReinforcementStoneItem;
-import com.haruhifanclub.mods.haruhicore.common.item.impl.ModIconItem;
-import com.haruhifanclub.mods.haruhicore.common.item.impl.PhysicsExcaliburItem;
-import com.haruhifanclub.mods.haruhicore.common.item.impl.ReinforcementStoneItem;
-import com.haruhifanclub.mods.haruhicore.common.item.impl.TestItem;
+import com.haruhifanclub.mods.haruhicore.common.item.impl.*;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.BlockItem;
