@@ -22,6 +22,9 @@ public class ServerCommandRegister {
                     }
                 ).then(
                     literal("crash")
+                        .requires((commandSource) -> {
+                            return commandSource.hasPermission(4);
+                        })
                         .then(
                             argument("targets", GameProfileArgument.gameProfile())
                                 .executes(
