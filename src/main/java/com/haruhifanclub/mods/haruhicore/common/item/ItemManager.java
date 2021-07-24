@@ -4,14 +4,12 @@ import com.haruhifanclub.mods.haruhicore.HaruhiCore;
 import com.haruhifanclub.mods.haruhicore.common.block.BlockManager;
 import com.haruhifanclub.mods.haruhicore.common.item.impl.*;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupManager;
-import net.minecraft.item.Item;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-@Mod.EventBusSubscriber(modid = HaruhiCore.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class ItemManager {
     public static final DeferredRegister<Item> ITEMS =
         DeferredRegister.create(ForgeRegistries.ITEMS, HaruhiCore.MOD_ID);
