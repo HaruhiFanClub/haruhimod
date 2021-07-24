@@ -17,6 +17,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import net.minecraftforge.common.ToolType;
 
 public class SosBadgeSlabBlock extends Block {
 
@@ -30,6 +31,10 @@ public class SosBadgeSlabBlock extends Block {
         super(
             AbstractBlock.Properties
                 .of(Material.HEAVY_METAL)
+                .strength(50, 1200)
+                .requiresCorrectToolForDrops()
+                .harvestTool(ToolType.PICKAXE)
+                .harvestLevel(3)
         );
         this.registerDefaultState(
             this.defaultBlockState()
