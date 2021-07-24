@@ -1,5 +1,6 @@
 package com.haruhifanclub.mods.haruhicore.common.block.impl;
 
+import javax.annotation.Nullable;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -47,9 +48,39 @@ public class SosBadgeSlabBlock extends Block {
         builder.add(TYPE, FACING);
     }
 
-
+    @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext ctx) {
-        return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getClockWise());
+        BlockPos blockpos = ctx.getClickedPos();
+        BlockState blockstate = ctx.getLevel().getBlockState(blockpos);
+        Direction facing = ctx.getHorizontalDirection().getClockWise();
+        if (blockstate.is(this)) {
+            return blockstate.setValue(TYPE, SlabType.DOUBLE);
+        } else {
+            BlockState blockstate1 = this.defaultBlockState().setValue(FACING, facing);
+            Direction clickedFace = ctx.getClickedFace();
+            return (clickedFace != Direction.UP && (clickedFace == Direction.DOWN || (ctx.getClickLocation().y - (double) blockpos.getY() > 0.5D)))
+                ? blockstate1.setValue(TYPE, SlabType.TOP)
+                : blockstate1.setValue(TYPE, SlabType.BOTTOM);
+        }
+    }
+
+    public boolean canBeReplaced(BlockState blockstate, BlockItemUseContext ctx) {
+        SlabType slabtype = blockstate.getValue(TYPE);
+        if (slabtype != SlabType.DOUBLE && ctx.getItemInHand().getItem() == this.asItem()) {
+            if (ctx.replacingClickedOnBlock()) {
+                boolean flag = ctx.getClickLocation().y - (double) ctx.getClickedPos().getY() > 0.5D;
+                Direction clickedFace = ctx.getClickedFace();
+                if (slabtype == SlabType.BOTTOM) {
+                    return (clickedFace == Direction.UP || flag && clickedFace.getAxis().isHorizontal());
+                } else {
+                    return (clickedFace == Direction.DOWN || !flag && clickedFace.getAxis().isHorizontal());
+                }
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
     }
 
     @Override
