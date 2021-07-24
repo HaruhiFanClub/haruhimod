@@ -7,7 +7,6 @@ import org.auioc.mods.utils.Loggers;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.item.Rarity;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ActionResultType;
 
@@ -17,7 +16,6 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
         super(
             new Item.Properties()
                 .tab(ItemGroupManager.itemGroup)
-                .rarity(Rarity.UNCOMMON)
                 .stacksTo(16)
         );
     }
