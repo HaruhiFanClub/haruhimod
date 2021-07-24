@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -23,6 +24,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 
 public class DanchouConeBlock extends Block {
     public static final DirectionProperty FACING = HorizontalBlock.FACING;
@@ -32,7 +34,11 @@ public class DanchouConeBlock extends Block {
     public DanchouConeBlock() {
         super(
             AbstractBlock.Properties
-                .of(Material.HEAVY_METAL)
+                .of(Material.HEAVY_METAL, MaterialColor.COLOR_BLACK)
+                .strength(50, 1200)
+                .requiresCorrectToolForDrops()
+                .harvestTool(ToolType.AXE)
+                .harvestLevel(3)
         );
         this.registerDefaultState(
             this.defaultBlockState()
