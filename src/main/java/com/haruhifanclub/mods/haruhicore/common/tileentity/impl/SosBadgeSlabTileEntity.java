@@ -8,10 +8,14 @@ import java.util.Random;
 import com.haruhifanclub.mods.haruhicore.common.block.impl.SosBadgeSlabBlock;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.tileentity.TileEntityManager;
+import com.mojang.brigadier.StringReader;
 import org.auioc.mods.utils.EffectUtils;
 import org.auioc.mods.utils.Loggers;
+import org.auioc.mods.utils.PlayerUtils;
+import net.minecraft.command.arguments.ItemParser;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.state.properties.SlabType;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -56,10 +60,13 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
                             boolean flag = (slabtype == SlabType.DOUBLE ? true : false);
 
                             int effectCooldown;
+                            int giveColldown;
                             if (flag) {
                                 effectCooldown = CommonConfig.DoubleSosBadgeSlabEffectCooldown.get();
+                                giveColldown = CommonConfig.DoubleSosBadgeSlabGiveCooldown.get();
                             } else {
                                 effectCooldown = CommonConfig.SingleSosBadgeSlabEffectCooldown.get();
+                                giveColldown = CommonConfig.SingleSosBadgeSlabGiveCooldown.get();
                             }
 
                             if (value % effectCooldown == 0) {
@@ -67,6 +74,18 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
                                 EffectUtils.addEffect(player, (new Random()).nextInt((32 - 1) + 1) + 1, effectCooldown * 20, 0);
                             } else {
                                 // Loggers.debug("pass 1");
+                            }
+
+                            if (value % giveColldown == 0) {
+                                Loggers.debug("hit 2");
+                                try {
+                                    ItemParser itemParser = new ItemParser(new StringReader(CommonConfig.SosBadgeSlabGiveItemInput.get()), false).parse();
+                                    PlayerUtils.giveItem(((ServerPlayerEntity) player), itemParser.getItem(), itemParser.getNbt(), CommonConfig.SosBadgeSlabGiveItemCount.get());
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                // Loggers.debug("pass 2");
                             }
 
                             entry.setValue(entry.getValue() + 1);
