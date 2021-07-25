@@ -1,6 +1,7 @@
 package com.haruhifanclub.mods.haruhicore.common.block.impl;
 
 import javax.annotation.Nullable;
+import com.haruhifanclub.mods.haruhicore.common.tileentity.impl.SosBadgeSlabTileEntity;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,6 +13,7 @@ import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.SlabType;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -94,5 +96,16 @@ public class SosBadgeSlabBlock extends Block {
             default:
                 return BOTTOM_AABB;
         }
+    }
+
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return new SosBadgeSlabTileEntity();
     }
 }
