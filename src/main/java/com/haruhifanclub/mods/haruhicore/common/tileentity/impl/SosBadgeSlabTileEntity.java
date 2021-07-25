@@ -4,14 +4,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Random;
 import com.haruhifanclub.mods.haruhicore.common.block.impl.SosBadgeSlabBlock;
-import com.haruhifanclub.mods.haruhicore.common.item.ItemManager;
 import com.haruhifanclub.mods.haruhicore.common.tileentity.TileEntityManager;
 import org.auioc.mods.utils.EffectUtils;
 import org.auioc.mods.utils.Loggers;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.state.properties.SlabType;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -19,7 +18,7 @@ import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.math.AxisAlignedBB;
 
 public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileEntity {
-    private static final int MAX_TIME = 4;
+    private static final int MAX_TIME = 20;
     private int timer = 0;
 
     private HashMap<PlayerEntity, Integer> map = new HashMap<PlayerEntity, Integer>();
@@ -45,19 +44,22 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
                     while (it.hasNext()) {
                         Entry<PlayerEntity, Integer> entry = it.next();
                         PlayerEntity player = entry.getKey();
-                        if (playerList.contains(player)) {
+                        counter: if (playerList.contains(player)) {
                             int value = entry.getValue();
-                            if (value >= 30) {
-                                Loggers.debug("hit");
-                                EffectUtils.addEffect(player, 24, 62, 0);
-                                if (!player.inventory.add(new ItemStack(ItemManager.REINFORCEMENT_STONE_ITEM.get()))) {
-                                    Loggers.debug("give failed");
-                                }
-                                entry.setValue(0);
-                            } else {
-                                Loggers.debug("pass");
+
+                            if (value == 0) {
                                 entry.setValue(entry.getValue() + 1);
+                                break counter;
                             }
+
+                            if (value % (slabtype == SlabType.DOUBLE ? 3 : 6) == 0) {
+                                Loggers.debug("hit 1");
+                                EffectUtils.addEffect(player, (new Random()).nextInt((32 - 1) + 1) + 1, (slabtype == SlabType.DOUBLE ? 60 : 120), 0);
+                            } else {
+                                // Loggers.debug("pass 1");
+                            }
+
+                            entry.setValue(entry.getValue() + 1);
                         } else {
                             Loggers.debug("remove");
                             it.remove();
