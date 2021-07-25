@@ -25,6 +25,10 @@ public class CommonConfig {
 
     public static IntValue SingleSosBadgeSlabEffectCooldown;
     public static IntValue DoubleSosBadgeSlabEffectCooldown;
+    public static IntValue SingleSosBadgeSlabGiveCooldown;
+    public static IntValue DoubleSosBadgeSlabGiveCooldown;
+    public static ConfigValue<String> SosBadgeSlabGiveItemInput;
+    public static IntValue SosBadgeSlabGiveItemCount;
 
     static {
         ForgeConfigSpec.Builder b = new ForgeConfigSpec.Builder();
@@ -74,15 +78,20 @@ public class CommonConfig {
             {
                 b.push("sos_badge_slab");
 
+                SosBadgeSlabGiveItemInput = b.define("give_item_input", "minecraft:stone");
+                SosBadgeSlabGiveItemCount = b.defineInRange("give_item_count", 1, 1, Integer.MAX_VALUE);
+
                 {
                     b.push("single");
                     SingleSosBadgeSlabEffectCooldown = b.defineInRange("effect_cooldown", 6, 1, Integer.MAX_VALUE);
+                    SingleSosBadgeSlabGiveCooldown = b.defineInRange("give_cooldown", 6, 1, Integer.MAX_VALUE);
                     b.pop();
                 }
 
                 {
                     b.push("double");
                     DoubleSosBadgeSlabEffectCooldown = b.defineInRange("effect_cooldown", 3, 1, Integer.MAX_VALUE);
+                    DoubleSosBadgeSlabGiveCooldown = b.defineInRange("give_cooldown", 3, 1, Integer.MAX_VALUE);
                     b.pop();
                 }
 
