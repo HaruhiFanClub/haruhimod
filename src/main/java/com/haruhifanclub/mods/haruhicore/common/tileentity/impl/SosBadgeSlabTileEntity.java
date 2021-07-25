@@ -40,36 +40,41 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
 
                 List<PlayerEntity> playerList = level.getEntities(EntityType.PLAYER, boundsAbove, EntityPredicates.LIVING_ENTITY_STILL_ALIVE);
 
-                Iterator<Entry<PlayerEntity, Integer>> it = map.entrySet().iterator();
-                while (it.hasNext()) {
-                    Entry<PlayerEntity, Integer> entry = it.next();
-                    PlayerEntity player = entry.getKey();
-                    if (playerList.contains(player)) {
-                        int value = entry.getValue();
-                        if (value >= 30) {
-                            Loggers.debug("hit");
-                            EffectUtils.addEffect(player, 24, 62, 0);
-                            if (!player.inventory.add(new ItemStack(ItemManager.REINFORCEMENT_STONE_ITEM.get()))) {
-                                Loggers.debug("give failed");
+                if (!playerList.isEmpty()) {
+                    Iterator<Entry<PlayerEntity, Integer>> it = map.entrySet().iterator();
+                    while (it.hasNext()) {
+                        Entry<PlayerEntity, Integer> entry = it.next();
+                        PlayerEntity player = entry.getKey();
+                        if (playerList.contains(player)) {
+                            int value = entry.getValue();
+                            if (value >= 30) {
+                                Loggers.debug("hit");
+                                EffectUtils.addEffect(player, 24, 62, 0);
+                                if (!player.inventory.add(new ItemStack(ItemManager.REINFORCEMENT_STONE_ITEM.get()))) {
+                                    Loggers.debug("give failed");
+                                }
+                                entry.setValue(0);
+                            } else {
+                                Loggers.debug("pass");
+                                entry.setValue(entry.getValue() + 1);
                             }
-                            entry.setValue(0);
                         } else {
-                            Loggers.debug("pass");
-                            entry.setValue(entry.getValue() + 1);
+                            Loggers.debug("remove");
+                            it.remove();
                         }
-                    } else {
-                        Loggers.debug("remove");
-                        it.remove();
                     }
-                }
 
-                Iterator<PlayerEntity> iterator = playerList.iterator();
-                while (iterator.hasNext()) {
-                    PlayerEntity player = iterator.next();
-                    if (!map.containsKey(player)) {
-                        Loggers.debug("new");
-                        map.put(player, 0);
+                    Iterator<PlayerEntity> iterator = playerList.iterator();
+                    while (iterator.hasNext()) {
+                        PlayerEntity player = iterator.next();
+                        if (!map.containsKey(player)) {
+                            Loggers.debug("new");
+                            map.put(player, 0);
+                        }
                     }
+                } else if (map.size() > 0) {
+                    Loggers.debug("clear");
+                    map.clear();
                 }
 
                 timer = 0;
