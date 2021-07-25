@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Random;
 import com.haruhifanclub.mods.haruhicore.common.block.impl.SosBadgeSlabBlock;
+import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.tileentity.TileEntityManager;
 import org.auioc.mods.utils.EffectUtils;
 import org.auioc.mods.utils.Loggers;
@@ -52,9 +53,18 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
                                 break counter;
                             }
 
-                            if (value % (slabtype == SlabType.DOUBLE ? 3 : 6) == 0) {
+                            boolean flag = (slabtype == SlabType.DOUBLE ? true : false);
+
+                            int effectCooldown;
+                            if (flag) {
+                                effectCooldown = CommonConfig.DoubleSosBadgeSlabEffectCooldown.get();
+                            } else {
+                                effectCooldown = CommonConfig.SingleSosBadgeSlabEffectCooldown.get();
+                            }
+
+                            if (value % effectCooldown == 0) {
                                 Loggers.debug("hit 1");
-                                EffectUtils.addEffect(player, (new Random()).nextInt((32 - 1) + 1) + 1, (slabtype == SlabType.DOUBLE ? 60 : 120), 0);
+                                EffectUtils.addEffect(player, (new Random()).nextInt((32 - 1) + 1) + 1, effectCooldown * 20, 0);
                             } else {
                                 // Loggers.debug("pass 1");
                             }

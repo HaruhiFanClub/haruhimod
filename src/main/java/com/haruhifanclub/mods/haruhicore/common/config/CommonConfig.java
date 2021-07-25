@@ -11,6 +11,7 @@ import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 public class CommonConfig {
     public static ForgeConfigSpec CONFIG;
 
+
     public static BooleanValue EnablePhysicsExcalibur;
 
     public static BooleanValue EnableCommonReinforcementStone;
@@ -22,48 +23,43 @@ public class CommonConfig {
     public static ConfigValue<List<? extends String>> ReinforcementStoneItemBlacklist;
     public static ConfigValue<List<? extends String>> ReinforcementStoneUseOnBlock;
 
+    public static IntValue SingleSosBadgeSlabEffectCooldown;
+    public static IntValue DoubleSosBadgeSlabEffectCooldown;
+
     static {
         ForgeConfigSpec.Builder b = new ForgeConfigSpec.Builder();
-        b.push("item");
 
         {
-            b.push("physics_excalibur");
-            EnablePhysicsExcalibur = b
-                .define("enable", false);
-            b.pop();
-        }
-
-        {
-            b.push("reinforcement_stone");
-
-            ReinforcementStoneItemBlacklist = b
-                .define("item_blacklist", new ArrayList<String>());
-            ReinforcementStoneUseOnBlock = b
-                .define("use_on_block", new ArrayList<String>(Arrays.asList("minecraft:anvil")));
-
-            ReinforcingSuccessSound = b
-                .define("success_sound", "");
-            ReinforcingFailedSound = b
-                .define("failed_sound", "");
+            b.push("item");
 
             {
-                b.push("common");
-
-                EnableCommonReinforcementStone = b
-                    .define("enable", false);
-                CommonReinforcingExperienceCost = b
-                    .defineInRange("experience_cost", 0, 0, Integer.MAX_VALUE);
-
+                b.push("physics_excalibur");
+                EnablePhysicsExcalibur = b.define("enable", false);
                 b.pop();
             }
 
             {
-                b.push("epic");
+                b.push("reinforcement_stone");
 
-                EnableEpicReinforcementStone = b
-                    .define("enable", false);
-                EpicReinforcingExperienceCost = b
-                    .defineInRange("experience_cost", 0, 0, Integer.MAX_VALUE);
+                ReinforcementStoneItemBlacklist = b.define("item_blacklist", new ArrayList<String>());
+                ReinforcementStoneUseOnBlock = b.define("use_on_block", new ArrayList<String>(Arrays.asList("minecraft:anvil")));
+
+                ReinforcingSuccessSound = b.define("success_sound", "");
+                ReinforcingFailedSound = b.define("failed_sound", "");
+
+                {
+                    b.push("common");
+                    EnableCommonReinforcementStone = b.define("enable", false);
+                    CommonReinforcingExperienceCost = b.defineInRange("experience_cost", 0, 0, Integer.MAX_VALUE);
+                    b.pop();
+                }
+
+                {
+                    b.push("epic");
+                    EnableEpicReinforcementStone = b.define("enable", false);
+                    EpicReinforcingExperienceCost = b.defineInRange("experience_cost", 0, 0, Integer.MAX_VALUE);
+                    b.pop();
+                }
 
                 b.pop();
             }
@@ -72,7 +68,30 @@ public class CommonConfig {
         }
 
 
-        b.pop();
+        {
+            b.push("block");
+
+            {
+                b.push("sos_badge_slab");
+
+                {
+                    b.push("single");
+                    SingleSosBadgeSlabEffectCooldown = b.defineInRange("effect_cooldown", 6, 1, Integer.MAX_VALUE);
+                    b.pop();
+                }
+
+                {
+                    b.push("double");
+                    DoubleSosBadgeSlabEffectCooldown = b.defineInRange("effect_cooldown", 3, 1, Integer.MAX_VALUE);
+                    b.pop();
+                }
+
+                b.pop();
+            }
+
+            b.pop();
+        }
+
         CONFIG = b.build();
     }
 }
