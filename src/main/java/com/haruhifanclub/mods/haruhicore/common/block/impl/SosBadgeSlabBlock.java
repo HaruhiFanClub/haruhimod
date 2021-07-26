@@ -2,11 +2,12 @@ package com.haruhifanclub.mods.haruhicore.common.block.impl;
 
 import javax.annotation.Nullable;
 import com.haruhifanclub.mods.haruhicore.common.tileentity.impl.SosBadgeSlabTileEntity;
+import org.auioc.mods.utils.MaterialUtils;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
@@ -33,7 +34,13 @@ public class SosBadgeSlabBlock extends Block {
     public SosBadgeSlabBlock() {
         super(
             AbstractBlock.Properties
-                .of(Material.HEAVY_METAL)
+                .of(
+                    (new MaterialUtils.Builder())
+                        .color(MaterialColor.SNOW)
+                        .notPushable()
+                        .flammable()
+                        .build()
+                )
                 .strength(50, 1200)
                 .requiresCorrectToolForDrops()
                 .harvestTool(ToolType.PICKAXE)

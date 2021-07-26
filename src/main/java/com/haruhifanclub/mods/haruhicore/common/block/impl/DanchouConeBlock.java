@@ -1,11 +1,11 @@
 package com.haruhifanclub.mods.haruhicore.common.block.impl;
 
+import org.auioc.mods.utils.MaterialUtils;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -34,7 +34,13 @@ public class DanchouConeBlock extends Block {
     public DanchouConeBlock() {
         super(
             AbstractBlock.Properties
-                .of(Material.HEAVY_METAL, MaterialColor.COLOR_BLACK)
+                .of(
+                    (new MaterialUtils.Builder())
+                        .color(MaterialColor.COLOR_BLACK)
+                        .notPushable()
+                        .flammable()
+                        .build()
+                )
                 .strength(50, 1200)
                 .requiresCorrectToolForDrops()
                 .harvestTool(ToolType.AXE)
