@@ -21,4 +21,6 @@ public final class BlockManager {
 
     public final static RegistryObject<Block> SOS_BADGE_SLAB_BLOCK = register("sos_badge_slab", SosBadgeSlabBlock::new);
     public final static RegistryObject<Block> DANCHOU_CONE_BLOCK = register("danchou_cone", DanchouConeBlock::new);
+
+    public final static RegistryObject<Block> LIGHT_BLOCK = register("light", LightBlock::new);
 }
