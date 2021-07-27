@@ -20,7 +20,7 @@ public final class PacketHandler {
 
     private static final String PROTOCOL_VERSION = Integer.toString(1);
     private static final SimpleChannel HANDLER = NetworkRegistry.newSimpleChannel(
-        new ResourceLocation("haruhicore", "networking"),
+        new ResourceLocation("ahutils", "networking"),
         () -> PROTOCOL_VERSION,
         PROTOCOL_VERSION::equals,
         PROTOCOL_VERSION::equals
