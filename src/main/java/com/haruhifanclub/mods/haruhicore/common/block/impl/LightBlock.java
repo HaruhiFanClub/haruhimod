@@ -1,14 +1,19 @@
 package com.haruhifanclub.mods.haruhicore.common.block.impl;
 
+import com.haruhifanclub.mods.haruhicore.common.item.ItemManager;
 import org.auioc.mods.utils.MaterialUtils;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
+import net.minecraft.item.Items;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 
 public class LightBlock extends Block {
@@ -48,5 +53,12 @@ public class LightBlock extends Block {
 
     public BlockRenderType getRenderShape(BlockState state) {
         return BlockRenderType.INVISIBLE;
+    }
+
+    public VoxelShape getShape(BlockState state, IBlockReader render, BlockPos pos, ISelectionContext ctx) {
+        if (ctx.isHoldingItem(ItemManager.LIGHT_BLOCK.get()) || ctx.isHoldingItem(Items.DEBUG_STICK)) {
+            return VoxelShapes.block();
+        }
+        return VoxelShapes.empty();
     }
 }
