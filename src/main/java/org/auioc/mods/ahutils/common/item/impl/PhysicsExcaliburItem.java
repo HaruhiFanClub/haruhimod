@@ -70,7 +70,7 @@ public class PhysicsExcaliburItem extends Item {
 
 
     private static String getKey(String type, int number) {
-        return String.format("haruhicore.physics_excalibur.%s.%d", type, number);
+        return String.format("ahutils.physics_excalibur.%s.%d", type, number);
     }
 
     private static ITextComponent attackedEntityInfoText(int keyNumber, String info) {
