@@ -37,16 +37,12 @@ public class LightBlock extends Block {
                 )
                 .noDrops()
                 .noOcclusion()
-                .isValidSpawn(LightBlock::never)
+                .isValidSpawn((s, r, p, e) -> false)
         );
         this.registerDefaultState(
             this.defaultBlockState()
                 .setValue(LIGHT, Integer.valueOf(0))
         );
-    }
-
-    private static Boolean never(BlockState p_235427_0_, IBlockReader p_235427_1_, BlockPos p_235427_2_, EntityType<?> p_235427_3_) {
-        return (boolean) false;
     }
 
     @Override
