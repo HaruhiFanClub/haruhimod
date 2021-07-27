@@ -22,6 +22,8 @@ public class TriggerCrashPacket implements IHCPacket {
 
     @OnlyIn(Dist.CLIENT)
     private static void crash() {
+        // TODO: Use minecraft CrashReport
+        System.out.println("Crashes triggered by server-side commands");
         System.exit(-1);
 
         // Object[] o = null;
