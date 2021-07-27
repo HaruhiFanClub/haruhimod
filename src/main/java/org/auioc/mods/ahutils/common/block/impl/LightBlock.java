@@ -49,6 +49,7 @@ public class LightBlock extends Block {
         return (boolean) false;
     }
 
+    @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(LIGHT);
     }
@@ -58,10 +59,12 @@ public class LightBlock extends Block {
         return state.getValue(LIGHT);
     }
 
+    @Override
     public BlockRenderType getRenderShape(BlockState state) {
         return BlockRenderType.INVISIBLE;
     }
 
+    @Override
     public VoxelShape getShape(BlockState state, IBlockReader render, BlockPos pos, ISelectionContext ctx) {
         if (ctx.isHoldingItem(ItemManager.LIGHT_BLOCK.get()) || ctx.isHoldingItem(Items.DEBUG_STICK)) {
             return VoxelShapes.block();

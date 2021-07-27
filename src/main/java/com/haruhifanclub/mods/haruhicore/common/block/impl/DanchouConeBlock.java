@@ -52,10 +52,12 @@ public class DanchouConeBlock extends Block {
         );
     }
 
+    @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
 
+    @Override
     public BlockState getStateForPlacement(BlockItemUseContext ctx) {
         return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getClockWise());
     }

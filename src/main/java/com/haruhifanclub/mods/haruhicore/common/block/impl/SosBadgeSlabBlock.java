@@ -53,11 +53,13 @@ public class SosBadgeSlabBlock extends Block {
         );
     }
 
+    @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(TYPE, FACING);
     }
 
     @Nullable
+    @Override
     public BlockState getStateForPlacement(BlockItemUseContext ctx) {
         BlockPos blockpos = ctx.getClickedPos();
         BlockState blockstate = ctx.getLevel().getBlockState(blockpos);
@@ -73,6 +75,7 @@ public class SosBadgeSlabBlock extends Block {
         }
     }
 
+    @Override
     public boolean canBeReplaced(BlockState blockstate, BlockItemUseContext ctx) {
         SlabType slabtype = blockstate.getValue(TYPE);
         if (slabtype != SlabType.DOUBLE && ctx.getItemInHand().getItem() == this.asItem()) {
