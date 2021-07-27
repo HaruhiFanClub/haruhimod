@@ -1,7 +1,7 @@
 package org.auioc.mods.addrlimiter;
 
 import org.auioc.mods.addrlimiter.config.Config;
-import org.auioc.mods.utils.Loggers;
+import org.auioc.mods.ahutils.utils.Loggers;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;

@@ -1,8 +1,8 @@
-package com.haruhifanclub.mods.haruhicore.common.block.impl;
+package org.auioc.mods.ahutils.common.block.impl;
 
 import java.util.Random;
-import com.haruhifanclub.mods.haruhicore.common.item.ItemManager;
-import org.auioc.mods.utils.MaterialUtils;
+import org.auioc.mods.ahutils.common.item.ItemManager;
+import org.auioc.mods.ahutils.utils.MaterialUtils;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;

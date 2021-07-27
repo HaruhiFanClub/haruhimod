@@ -1,6 +1,7 @@
-package com.haruhifanclub.mods.haruhicore.common.item.impl;
+package org.auioc.mods.ahutils.common.item.impl;
 
-import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
+import org.auioc.mods.ahutils.common.config.CommonConfig;
+import org.auioc.mods.ahutils.common.itemgroup.ItemGroupManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -15,9 +16,10 @@ public class PhysicsExcaliburItem extends Item {
     public PhysicsExcaliburItem() {
         super(
             new Item.Properties()
+                .tab(ItemGroupManager.itemGroup)
                 .rarity(Rarity.EPIC)
                 .fireResistant()
-                .stacksTo(1) // maxStackSize
+                .stacksTo(1)
         );
     }
 
@@ -27,7 +29,6 @@ public class PhysicsExcaliburItem extends Item {
     }
 
     @Override
-    // return True to cancel the rest of the interaction.
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity target) {
         if (!CommonConfig.EnablePhysicsExcalibur.get()) {
             return false;
@@ -69,7 +70,7 @@ public class PhysicsExcaliburItem extends Item {
 
 
     private static String getKey(String type, int number) {
-        return String.format("haruhicore.physics_excalibur.%s.%d", type, number);
+        return String.format("ahutils.physics_excalibur.%s.%d", type, number);
     }
 
     private static ITextComponent attackedEntityInfoText(int keyNumber, String info) {

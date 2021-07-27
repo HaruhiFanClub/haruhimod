@@ -1,6 +1,6 @@
 package com.haruhifanclub.mods.haruhicore.common.block.impl;
 
-import org.auioc.mods.utils.MaterialUtils;
+import org.auioc.mods.ahutils.utils.MaterialUtils;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

@@ -1,4 +1,4 @@
-package org.auioc.mods.utils;
+package org.auioc.mods.ahutils.utils;
 
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;

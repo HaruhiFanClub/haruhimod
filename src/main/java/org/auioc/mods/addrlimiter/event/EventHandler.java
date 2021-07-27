@@ -3,7 +3,7 @@ package org.auioc.mods.addrlimiter.event;
 import org.auioc.mods.addrlimiter.AddrLimiter;
 import org.auioc.mods.addrlimiter.command.CommandRegister;
 import org.auioc.mods.addrlimiter.player.PlayerManager;
-import org.auioc.mods.utils.Loggers;
+import org.auioc.mods.ahutils.utils.Loggers;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

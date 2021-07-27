@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import com.haruhifanclub.mods.haruhicore.common.block.BlockManager;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupManager;
-import org.auioc.mods.utils.EffectUtils;
+import org.auioc.mods.ahutils.utils.EffectUtils;
 
 public class DanchouConeBlockItem extends BlockItem {
     public DanchouConeBlockItem() {

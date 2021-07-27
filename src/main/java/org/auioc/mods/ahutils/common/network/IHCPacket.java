@@ -1,4 +1,4 @@
-package com.haruhifanclub.mods.haruhicore.common.network;
+package org.auioc.mods.ahutils.common.network;
 
 import java.util.function.Supplier;
 import net.minecraft.network.PacketBuffer;

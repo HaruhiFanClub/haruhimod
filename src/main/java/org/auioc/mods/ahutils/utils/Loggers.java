@@ -1,4 +1,4 @@
-package org.auioc.mods.utils;
+package org.auioc.mods.ahutils.utils;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

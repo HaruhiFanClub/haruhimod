@@ -22,7 +22,6 @@ public final class ItemManager {
     // Technical items
     public static RegistryObject<Item> ICON_ITEM = register("icon", ModIconItem::new);
     public static RegistryObject<Item> TEST_ITEM = register("testitem", TestItem::new);
-    public static RegistryObject<Item> PHYSICS_EXCALIBUR_ITEM = register("physics_excalibur", PhysicsExcaliburItem::new);
 
     // Common items
     public static RegistryObject<Item> REINFORCEMENT_STONE_ITEM = register("reinforcement_stone", ReinforcementStoneItem::new);
@@ -31,5 +30,4 @@ public final class ItemManager {
     // Block items
     public static RegistryObject<Item> SOS_BADGE_SLAB_BLOCK = register("sos_badge_slab", () -> new BlockItem(BlockManager.SOS_BADGE_SLAB_BLOCK.get(), new Item.Properties().tab(ItemGroupManager.itemGroup)));
     public static RegistryObject<Item> DANCHOU_CONE_BLOCK = register("danchou_cone", DanchouConeBlockItem::new);
-    public static RegistryObject<Item> LIGHT_BLOCK = register("light", () -> new BlockItem(BlockManager.LIGHT_BLOCK.get(), new Item.Properties().tab(ItemGroupManager.itemGroup)));
 }

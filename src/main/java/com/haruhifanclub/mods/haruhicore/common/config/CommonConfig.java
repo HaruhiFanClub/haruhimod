@@ -12,8 +12,6 @@ public class CommonConfig {
     public static ForgeConfigSpec CONFIG;
 
 
-    public static BooleanValue EnablePhysicsExcalibur;
-
     public static BooleanValue EnableCommonReinforcementStone;
     public static BooleanValue EnableEpicReinforcementStone;
     public static IntValue CommonReinforcingExperienceCost;
@@ -35,12 +33,6 @@ public class CommonConfig {
 
         {
             b.push("item");
-
-            {
-                b.push("physics_excalibur");
-                EnablePhysicsExcalibur = b.define("enable", false);
-                b.pop();
-            }
 
             {
                 b.push("reinforcement_stone");
