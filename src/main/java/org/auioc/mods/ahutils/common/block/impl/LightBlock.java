@@ -35,6 +35,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class LightBlock extends Block {
     public static final IntegerProperty LIGHT = IntegerProperty.create("light", 0, 15);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final BooleanProperty VISIBLE = BooleanProperty.create("visible");
 
     public LightBlock() {
         super(
@@ -53,12 +54,13 @@ public class LightBlock extends Block {
             this.defaultBlockState()
                 .setValue(LIGHT, Integer.valueOf(0))
                 .setValue(WATERLOGGED, Boolean.valueOf(false))
+                .setValue(VISIBLE, Boolean.valueOf(false))
         );
     }
 
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(LIGHT, WATERLOGGED);
+        builder.add(LIGHT, WATERLOGGED, VISIBLE);
     }
 
     @Override
@@ -68,6 +70,9 @@ public class LightBlock extends Block {
 
     @Override
     public BlockRenderType getRenderShape(BlockState state) {
+        if (state.getValue(VISIBLE)) {
+            return BlockRenderType.MODEL;
+        }
         return BlockRenderType.INVISIBLE;
     }
 
@@ -86,6 +91,9 @@ public class LightBlock extends Block {
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader render, BlockPos pos, ISelectionContext ctx) {
+        if (state.getValue(VISIBLE)) {
+            return VoxelShapes.block();
+        }
         if (ctx.isHoldingItem(ItemManager.LIGHT_BLOCK.get()) || ctx.isHoldingItem(Items.DEBUG_STICK)) {
             return VoxelShapes.block();
         }
@@ -107,6 +115,10 @@ public class LightBlock extends Block {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState state, World world, BlockPos pos, Random random) {
+        if (state.getValue(VISIBLE)) {
+            return;
+        }
+
         super.animateTick(state, world, pos, random);
 
         Minecraft minecraft = Minecraft.getInstance();
