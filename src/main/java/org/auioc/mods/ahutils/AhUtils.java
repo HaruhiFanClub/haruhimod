@@ -1,6 +1,6 @@
-package com.haruhifanclub.mods.haruhicore;
+package org.auioc.mods.ahutils;
 
-import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
+import org.auioc.mods.ahutils.common.config.CommonConfig;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -8,11 +8,11 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod(HaruhiCore.MOD_ID)
-public class HaruhiCore {
-    public static final String MOD_ID = "haruhicore";
+@Mod(AhUtils.MOD_ID)
+public class AhUtils {
+    public static final String MOD_ID = "ahutils";
 
-    public HaruhiCore() {
+    public AhUtils() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.CONFIG);
 
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -23,10 +23,12 @@ public class HaruhiCore {
     }
 
     private void modSetup(final IEventBus modEventBus) {
-        com.haruhifanclub.mods.haruhicore.common.item.ItemManager.ITEMS.register(modEventBus);
-        com.haruhifanclub.mods.haruhicore.common.block.BlockManager.BLOCKS.register(modEventBus);
-        com.haruhifanclub.mods.haruhicore.common.tileentity.TileEntityManager.TILE_ENTITIES.register(modEventBus);
+        org.auioc.mods.ahutils.common.item.ItemManager.ITEMS.register(modEventBus);
+        org.auioc.mods.ahutils.common.block.BlockManager.BLOCKS.register(modEventBus);
+        modEventBus.register(org.auioc.mods.ahutils.common.network.PacketHandler.class);
     }
 
-    private void forgeSetup(final IEventBus forgeEventBus) {}
+    private void forgeSetup(final IEventBus forgeEventBus) {
+        forgeEventBus.register(org.auioc.mods.ahutils.server.event.ServerEventHandler.class);
+    }
 }

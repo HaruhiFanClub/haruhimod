@@ -6,12 +6,8 @@ name: gradle-ci
 on:
     push:
         branches: [1.16-forge]
-        paths-ignore:
-            - "docs/**"
     pull_request:
         branches: [1.16-forge]
-        paths-ignore:
-            - "docs/**"
 
 jobs:
     build:
@@ -29,6 +25,9 @@ jobs:
 
             - name: Grant execute permission for gradlew
               run: chmod +x gradlew
+
+            - name: Clear build directory
+              run: ./gradlew clear
 
             - name: Build with Gradle
               run: ./gradlew build

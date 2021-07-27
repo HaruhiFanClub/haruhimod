@@ -20,6 +20,15 @@ authors="WakelssSloth56"
 description='''
 '''
 
+[[mods]]
+modId="ahutils"
+version="${ahutils_version}"
+displayName="AHUtils"
+credits="AUIOC"
+authors="WakelssSloth56"
+description='''
+'''
+
 [[dependencies.haruhicore]]
     modId="forge"
     mandatory=true

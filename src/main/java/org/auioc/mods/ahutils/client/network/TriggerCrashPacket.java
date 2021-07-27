@@ -1,6 +1,6 @@
-package com.haruhifanclub.mods.haruhicore.client.network;
+package org.auioc.mods.ahutils.client.network;
 
-import com.haruhifanclub.mods.haruhicore.common.network.IHCPacket;
+import org.auioc.mods.ahutils.common.network.IHCPacket;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

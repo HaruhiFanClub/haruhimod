@@ -1,8 +1,7 @@
-package com.haruhifanclub.mods.haruhicore.common.network;
+package org.auioc.mods.ahutils.common.network;
 
 import java.util.Optional;
 import java.util.function.Function;
-import com.haruhifanclub.mods.haruhicore.client.network.TriggerCrashPacket;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
@@ -42,7 +41,7 @@ public final class PacketHandler {
 
     public static void register() {
         // registerClientToServer(TestPacket.class, TestPacket::decode);
-        registerServerToClient(TriggerCrashPacket.class, TriggerCrashPacket::decode);
+        registerServerToClient(org.auioc.mods.ahutils.client.network.TriggerCrashPacket.class, org.auioc.mods.ahutils.client.network.TriggerCrashPacket::decode);
     }
 
     public static <MSG extends IHCPacket> void sendToServer(MSG msg) {
