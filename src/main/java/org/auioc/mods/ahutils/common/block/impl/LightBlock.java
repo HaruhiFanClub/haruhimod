@@ -1,6 +1,7 @@
 package org.auioc.mods.ahutils.common.block.impl;
 
 import java.util.Random;
+import javax.annotation.Nullable;
 import org.auioc.mods.ahutils.common.item.ItemManager;
 import org.auioc.mods.ahutils.utils.MaterialUtils;
 import net.minecraft.block.AbstractBlock;
@@ -8,23 +9,31 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.EntityType;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class LightBlock extends Block {
     public static final IntegerProperty LIGHT = IntegerProperty.create("light", 0, 15);
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public LightBlock() {
         super(
@@ -42,12 +51,13 @@ public class LightBlock extends Block {
         this.registerDefaultState(
             this.defaultBlockState()
                 .setValue(LIGHT, Integer.valueOf(0))
+                .setValue(WATERLOGGED, Boolean.valueOf(false))
         );
     }
 
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(LIGHT);
+        builder.add(LIGHT, WATERLOGGED);
     }
 
     @Override
@@ -61,11 +71,31 @@ public class LightBlock extends Block {
     }
 
     @Override
+    public FluidState getFluidState(BlockState state) {
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+    }
+
+    @Override
+    public BlockState updateShape(BlockState state1, Direction direction, BlockState state2, IWorld world, BlockPos pos1, BlockPos pos2) {
+        if (state1.getValue(WATERLOGGED)) {
+            world.getLiquidTicks().scheduleTick(pos1, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+        }
+        return super.updateShape(state1, direction, state2, world, pos1, pos2);
+    }
+
+    @Override
     public VoxelShape getShape(BlockState state, IBlockReader render, BlockPos pos, ISelectionContext ctx) {
         if (ctx.isHoldingItem(ItemManager.LIGHT_BLOCK.get()) || ctx.isHoldingItem(Items.DEBUG_STICK)) {
             return VoxelShapes.block();
         }
         return VoxelShapes.empty();
+    }
+
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockItemUseContext ctx) {
+        FluidState fluidstate = ctx.getLevel().getFluidState(ctx.getClickedPos());
+        return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(fluidstate.is(FluidTags.WATER) && fluidstate.getAmount() == 8));
     }
 
     @Override
