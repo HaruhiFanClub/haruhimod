@@ -26,10 +26,7 @@ public class HaruhiCore {
         com.haruhifanclub.mods.haruhicore.common.item.ItemManager.ITEMS.register(modEventBus);
         com.haruhifanclub.mods.haruhicore.common.block.BlockManager.BLOCKS.register(modEventBus);
         com.haruhifanclub.mods.haruhicore.common.tileentity.TileEntityManager.TILE_ENTITIES.register(modEventBus);
-        modEventBus.register(com.haruhifanclub.mods.haruhicore.common.network.PacketHandler.class);
     }
 
-    private void forgeSetup(final IEventBus forgeEventBus) {
-        forgeEventBus.register(com.haruhifanclub.mods.haruhicore.server.event.ServerEventHandler.class);
-    }
+    private void forgeSetup(final IEventBus forgeEventBus) {}
 }
