@@ -3,7 +3,7 @@ package org.auioc.mods.addrlimiter.player;
 import java.util.UUID;
 import org.auioc.mods.addrlimiter.config.Config;
 import org.auioc.mods.addrlimiter.data.AddrManager;
-import org.auioc.mods.utils.Loggers;
+import org.auioc.mods.ahutils.utils.Loggers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.text.ITextComponent;

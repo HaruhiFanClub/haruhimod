@@ -2,9 +2,9 @@ package com.haruhifanclub.mods.haruhicore.common.item.base;
 
 import java.util.List;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
-import org.auioc.mods.utils.I18nUtils;
-import org.auioc.mods.utils.MessageUtils;
-import org.auioc.mods.utils.SoundUtils;
+import org.auioc.mods.ahutils.utils.I18nUtils;
+import org.auioc.mods.ahutils.utils.MessageUtils;
+import org.auioc.mods.ahutils.utils.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;

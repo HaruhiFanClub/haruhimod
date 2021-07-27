@@ -1,4 +1,4 @@
-package org.auioc.mods.utils;
+package org.auioc.mods.ahutils.utils;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;

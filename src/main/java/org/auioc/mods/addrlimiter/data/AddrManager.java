@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import org.auioc.mods.addrlimiter.config.Config;
-import org.auioc.mods.utils.Loggers;
+import org.auioc.mods.ahutils.utils.Loggers;
 
 public class AddrManager {
     private static AddrManager instance;
