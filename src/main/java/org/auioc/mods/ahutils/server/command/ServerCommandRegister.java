@@ -4,6 +4,7 @@ import static net.minecraft.command.Commands.argument;
 import static net.minecraft.command.Commands.literal;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.arguments.GameProfileArgument;
 
@@ -22,7 +23,11 @@ public class ServerCommandRegister {
                         })
                         .then(
                             argument("targets", GameProfileArgument.gameProfile())
-                                .executes(ServerCommandHandlers::triggerClientCrash)
+                                .executes((ctx) -> ServerCommandHandlers.triggerClientCrash(ctx, 0))
+                                .then(
+                                    argument("mode", IntegerArgumentType.integer(0))
+                                        .executes((ctx) -> ServerCommandHandlers.triggerClientCrash(ctx, ctx.getArgument("mode", Integer.class)))
+                                )
                         )
                 )
         );
