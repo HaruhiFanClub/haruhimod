@@ -22,11 +22,14 @@ public class ServerCommandRegister {
                             return commandSource.hasPermission(4);
                         })
                         .then(
-                            argument("targets", GameProfileArgument.gameProfile())
-                                .executes((ctx) -> ServerCommandHandlers.triggerClientCrash(ctx, 0))
+                            literal("client")
                                 .then(
-                                    argument("mode", IntegerArgumentType.integer(0))
-                                        .executes((ctx) -> ServerCommandHandlers.triggerClientCrash(ctx, ctx.getArgument("mode", Integer.class)))
+                                    argument("targets", GameProfileArgument.gameProfile())
+                                        .executes((ctx) -> ServerCommandHandlers.triggerClientCrash(ctx, 0))
+                                        .then(
+                                            argument("mode", IntegerArgumentType.integer(0))
+                                                .executes((ctx) -> ServerCommandHandlers.triggerClientCrash(ctx, ctx.getArgument("mode", Integer.class)))
+                                        )
                                 )
                         )
                 )
