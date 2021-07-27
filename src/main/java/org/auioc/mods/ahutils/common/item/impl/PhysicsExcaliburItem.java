@@ -1,6 +1,6 @@
 package org.auioc.mods.ahutils.common.item.impl;
 
-import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
+import org.auioc.mods.ahutils.common.config.CommonConfig;
 import org.auioc.mods.ahutils.common.itemgroup.ItemGroupManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
