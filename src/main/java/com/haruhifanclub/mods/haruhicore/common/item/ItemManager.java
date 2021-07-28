@@ -21,7 +21,6 @@ public final class ItemManager {
 
     // Technical items
     public static RegistryObject<Item> ICON_ITEM = register("icon", ModIconItem::new);
-    public static RegistryObject<Item> TEST_ITEM = register("testitem", TestItem::new);
 
     // Common items
     public static RegistryObject<Item> REINFORCEMENT_STONE_ITEM = register("reinforcement_stone", ReinforcementStoneItem::new);

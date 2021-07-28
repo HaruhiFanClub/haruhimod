@@ -16,8 +16,6 @@ public final class BlockManager {
         return BLOCKS.register(id, sup);
     }
 
-    // Technical blocks
-    public final static RegistryObject<Block> TEST_BLOCK = register("testblock", TestBlock::new);
 
     public final static RegistryObject<Block> SOS_BADGE_SLAB_BLOCK = register("sos_badge_slab", SosBadgeSlabBlock::new);
     public final static RegistryObject<Block> DANCHOU_CONE_BLOCK = register("danchou_cone", DanchouConeBlock::new);
