@@ -16,5 +16,6 @@
     "item.ahutils.reinforcement_stone.empty_item": "§c目标物品为空",
     "item.ahutils.reinforcement_stone.empty_enchantments": "§c目标物品上不存在附魔",
 
-    "block.ahutils.light": "光源方块"
+    "block.ahutils.light": "光源方块",
+    "ahutils.light.item.name.level": " (亮度:%d)"
 }
