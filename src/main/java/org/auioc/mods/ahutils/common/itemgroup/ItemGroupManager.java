@@ -1,8 +1,8 @@
 package org.auioc.mods.ahutils.common.itemgroup;
 
+import org.auioc.mods.ahutils.common.item.ItemManager;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 
 public class ItemGroupManager {
     public static ItemGroup itemGroup = new MainItemGroup();
@@ -14,7 +14,7 @@ public class ItemGroupManager {
 
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(Items.DEBUG_STICK);
+            return new ItemStack(ItemManager.PHYSICS_EXCALIBUR_ITEM.get());
         }
     }
 }
