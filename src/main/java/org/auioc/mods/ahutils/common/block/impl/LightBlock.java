@@ -2,6 +2,7 @@ package org.auioc.mods.ahutils.common.block.impl;
 
 import java.util.Random;
 import javax.annotation.Nullable;
+import org.auioc.mods.ahutils.common.config.CommonConfig;
 import org.auioc.mods.ahutils.common.item.ItemManager;
 import org.auioc.mods.ahutils.utils.MaterialUtils;
 import net.minecraft.block.AbstractBlock;
@@ -33,7 +34,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class LightBlock extends Block {
-    public static final IntegerProperty LIGHT = IntegerProperty.create("light", 0, 15);
+    public static final IntegerProperty LEVEL = BlockStateProperties.LEVEL;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty VISIBLE = BooleanProperty.create("visible");
 
@@ -52,20 +53,20 @@ public class LightBlock extends Block {
         );
         this.registerDefaultState(
             this.defaultBlockState()
-                .setValue(LIGHT, Integer.valueOf(0))
+                .setValue(LEVEL, Integer.valueOf(CommonConfig.LightBlockDefaultStateLevel.get()))
                 .setValue(WATERLOGGED, Boolean.valueOf(false))
-                .setValue(VISIBLE, Boolean.valueOf(false))
+                .setValue(VISIBLE, Boolean.valueOf(CommonConfig.LightBlockDefaultStateVisible.get()))
         );
     }
 
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(LIGHT, WATERLOGGED, VISIBLE);
+        builder.add(LEVEL, WATERLOGGED, VISIBLE);
     }
 
     @Override
     public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
-        return state.getValue(LIGHT);
+        return state.getValue(LEVEL);
     }
 
     @Override
