@@ -1,6 +1,7 @@
 package org.auioc.mods.addrlimiter;
 
 import org.auioc.mods.addrlimiter.config.Config;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -11,5 +12,7 @@ public class AddrLimiter {
 
     public AddrLimiter() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.SERVER_CONFIG);
+
+        MinecraftForge.EVENT_BUS.register(org.auioc.mods.addrlimiter.event.EventHandler.class);
     }
 }
