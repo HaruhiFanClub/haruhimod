@@ -3,7 +3,7 @@ package org.auioc.mods.addrlimiter.player;
 import java.util.UUID;
 import org.auioc.mods.addrlimiter.config.Config;
 import org.auioc.mods.addrlimiter.data.AddrManager;
-import org.auioc.mods.ahutils.utils.Loggers;
+import org.auioc.mods.ahutils.utils.LogUtil;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.text.ITextComponent;
@@ -30,7 +30,7 @@ public class PlayerManager {
 
         String ipAddress = ((ServerPlayerEntity) player).getIpAddress();
 
-        Loggers.info("[Login] " + player.getName().getString() + " " + uuid.toString() + " " + ipAddress);
+        LogUtil.info("[Login] " + player.getName().getString() + " " + uuid.toString() + " " + ipAddress);
 
         limiter.add(ipAddress, uuid);
         boolean result = limiter.check(ipAddress, uuid);
@@ -58,7 +58,7 @@ public class PlayerManager {
 
         UUID uuid = player.getUUID();
 
-        Loggers.info("[Logout] " + player.getName().getString() + " " + uuid + " " + ipAddress);
+        LogUtil.info("[Logout] " + player.getName().getString() + " " + uuid + " " + ipAddress);
 
         limiter.remove(ipAddress, uuid);
     }

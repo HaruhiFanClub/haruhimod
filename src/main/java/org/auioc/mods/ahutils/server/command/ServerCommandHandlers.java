@@ -6,7 +6,7 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import org.auioc.mods.ahutils.common.network.PacketHandler;
-import org.auioc.mods.ahutils.utils.Loggers;
+import org.auioc.mods.ahutils.utils.LogUtil;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.arguments.GameProfileArgument;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -17,7 +17,7 @@ public abstract class ServerCommandHandlers {
         for (GameProfile gameprofile : targets) {
             ServerPlayerEntity player = ctx.getSource().getServer().getPlayerList().getPlayer(gameprofile.getId());
             PacketHandler.sendTo(player, new org.auioc.mods.ahutils.client.network.TriggerCrashPacket(mode));
-            Loggers.info(String.format("Send TriggerCrashPacket with mode %d to player %s (%s)", mode, player.getName().getString(), player.getStringUUID()));
+            LogUtil.info(String.format("Send TriggerCrashPacket with mode %d to player %s (%s)", mode, player.getName().getString(), player.getStringUUID()));
         }
         return Command.SINGLE_SUCCESS;
     }

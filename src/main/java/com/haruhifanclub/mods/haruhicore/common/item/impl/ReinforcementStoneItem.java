@@ -3,7 +3,6 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 import com.haruhifanclub.mods.haruhicore.common.item.base.IReinforcementStoneItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupManager;
 import org.auioc.mods.ahutils.utils.EnchUtils;
-import org.auioc.mods.ahutils.utils.Loggers;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
@@ -44,26 +43,26 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
 
         if (N >= X) {
             if (Math.random() < (1.0 / X)) {
-                Loggers.debug("2 - 1"); // all+1
+                // all+1
                 EnchUtils.enchantAll(enchantments);
             } else {
-                Loggers.debug("2 - 2"); // random+1
+                // random+1
                 EnchUtils.enchantRandom(enchantments);
             }
         } else if (N < X) {
             if (Math.random() < (1.0 / X)) {
                 if (Math.random() < 0.5) {
-                    Loggers.debug("1 - 1"); // all+1
+                    // all+1
                     EnchUtils.enchantAll(enchantments);
                 } else {
-                    Loggers.debug("1 - 2");// max+1
+                    // max+1
                     EnchUtils.enchantOne(enchantments, highestIndex);
                 }
             } else if (Math.random() < (N / X)) {
-                Loggers.debug("1 - 3");// random+1
+                // random+1
                 EnchUtils.enchantRandom(enchantments);
             } else {
-                Loggers.debug("1 - 4");// break
+                // break
                 return ItemStack.EMPTY;
             }
         }

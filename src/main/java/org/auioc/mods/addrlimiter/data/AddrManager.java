@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import org.auioc.mods.addrlimiter.config.Config;
-import org.auioc.mods.ahutils.utils.Loggers;
+import org.auioc.mods.ahutils.utils.LogUtil;
 
 public class AddrManager {
     private static AddrManager instance;
@@ -33,7 +33,7 @@ public class AddrManager {
     }
 
     public final void add(String address, UUID uuid) {
-        Loggers.debug(String.format("Adding player %s to address: %s", uuid.toString(), address));
+        LogUtil.debug(String.format("Adding player %s to address: %s", uuid.toString(), address));
 
         if (!addrMap.containsKey(address)) {
             AddrMap map = new AddrMap();
@@ -51,7 +51,7 @@ public class AddrManager {
     public final void remove(String address, UUID uuid) {
         if (addrMap.containsKey(address)) {
 
-            Loggers.debug(String.format("Removing player %s from address: %s", uuid.toString(), address));
+            LogUtil.debug(String.format("Removing player %s from address: %s", uuid.toString(), address));
             AddrMap map = addrMap.get(address);
 
             map.removeOnlineUser(uuid);
@@ -69,13 +69,13 @@ public class AddrManager {
             AddrMap map = addrMap.get(address);
 
             if ((Config.EnableAddrWhitelist.get()) && (Config.AddrWhitelist.get().contains(address))) {
-                Loggers.info(String.format("Address %s is in the whitelist", address));
+                LogUtil.info(String.format("Address %s is in the whitelist", address));
                 return true;
             }
 
             // if (map.getOnlineUserCount() > 0) {
             if ((map.getOnlineUserCount()) > (Config.MaxPlayerPreAddr.get())) {
-                Loggers.warn("Reached the limit on the maximum number of player at same address");
+                LogUtil.warn("Reached the limit on the maximum number of player at same address");
                 return false;
             }
 

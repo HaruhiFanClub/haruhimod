@@ -17,7 +17,7 @@ import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import org.auioc.mods.addrlimiter.AddrLimiter;
 import org.auioc.mods.addrlimiter.data.AddrManager;
 import org.auioc.mods.addrlimiter.data.AddrMap;
-import org.auioc.mods.ahutils.utils.Loggers;
+import org.auioc.mods.ahutils.utils.LogUtil;
 import net.minecraft.command.CommandSource;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -38,9 +38,9 @@ public class CommandRegister {
                             if (!directory.toFile().exists()) {
                                 try {
                                     Files.createDirectory(directory);
-                                    Loggers.warn("Folder dumps does not exist, created automatically");
+                                    LogUtil.warn("Folder dumps does not exist, created automatically");
                                 } catch (final IOException e) {
-                                    Loggers.error("Could not create dump directory", e);
+                                    LogUtil.error("Could not create dump directory", e);
                                     throw new CommandSyntaxException(
                                         new SimpleCommandExceptionType(() -> {
                                             return "";
@@ -61,7 +61,7 @@ public class CommandRegister {
                                 writer.write(new StringBuffer().append(dataString).toString());
                                 writer.close();
                             } catch (final Exception e) {
-                                Loggers.error("[AddrLimiter] Cannot dump data to file: ", e);
+                                LogUtil.error("[AddrLimiter] Cannot dump data to file: ", e);
                                 throw new CommandSyntaxException(
                                     new SimpleCommandExceptionType(() -> {
                                         return "";
@@ -72,7 +72,7 @@ public class CommandRegister {
                                 );
                             }
 
-                            Loggers.info("[AddrLimiter] Successful dump data to file: " + file.toPath().toString());
+                            LogUtil.info("[AddrLimiter] Successful dump data to file: " + file.toPath().toString());
                             ctx.getSource().sendSuccess(new StringTextComponent("[AddrLimiter] Successful dump data to file: " + file.toPath().toString()), true);
 
                             return Command.SINGLE_SUCCESS;
