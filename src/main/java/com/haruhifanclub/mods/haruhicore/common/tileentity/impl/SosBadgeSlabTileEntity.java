@@ -10,7 +10,7 @@ import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.tileentity.TileEntityManager;
 import com.mojang.brigadier.StringReader;
 import org.auioc.mods.ahutils.utils.EffectUtils;
-import org.auioc.mods.ahutils.utils.Loggers;
+import org.auioc.mods.ahutils.utils.LogUtil;
 import org.auioc.mods.ahutils.utils.PlayerUtils;
 import net.minecraft.command.arguments.ItemParser;
 import net.minecraft.entity.EntityType;
@@ -70,14 +70,14 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
                             }
 
                             if (value % effectCooldown == 0) {
-                                Loggers.debug("hit 1");
+                                LogUtil.debug("hit 1");
                                 EffectUtils.addEffect(player, (new Random()).nextInt((32 - 1) + 1) + 1, effectCooldown * 20, 0);
                             } else {
-                                // Loggers.debug("pass 1");
+                                // LogUtil.debug("pass 1");
                             }
 
                             if (value % giveColldown == 0) {
-                                Loggers.debug("hit 2");
+                                LogUtil.debug("hit 2");
                                 try {
                                     ItemParser itemParser = new ItemParser(new StringReader(CommonConfig.SosBadgeSlabGiveItemInput.get()), false).parse();
                                     PlayerUtils.giveItem(((ServerPlayerEntity) player), itemParser.getItem(), itemParser.getNbt(), CommonConfig.SosBadgeSlabGiveItemCount.get());
@@ -85,12 +85,12 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
                                     e.printStackTrace();
                                 }
                             } else {
-                                // Loggers.debug("pass 2");
+                                // LogUtil.debug("pass 2");
                             }
 
                             entry.setValue(entry.getValue() + 1);
                         } else {
-                            Loggers.debug("remove");
+                            LogUtil.debug("remove");
                             it.remove();
                         }
                     }
@@ -99,12 +99,12 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
                     while (iterator.hasNext()) {
                         PlayerEntity player = iterator.next();
                         if (!map.containsKey(player)) {
-                            Loggers.debug("new");
+                            LogUtil.debug("new");
                             map.put(player, 0);
                         }
                     }
                 } else if (map.size() > 0) {
-                    Loggers.debug("clear");
+                    LogUtil.debug("clear");
                     map.clear();
                 }
 

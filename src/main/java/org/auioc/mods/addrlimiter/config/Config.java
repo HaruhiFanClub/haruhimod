@@ -7,6 +7,8 @@ import net.minecraftforge.common.ForgeConfigSpec;
 public class Config {
     public static ForgeConfigSpec SERVER_CONFIG;
 
+    public static ForgeConfigSpec.BooleanValue EnableAddrLimiter;
+
     public static ForgeConfigSpec.IntValue MaxPlayerPreAddr;
     public static ForgeConfigSpec.BooleanValue EnableAddrWhitelist;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> AddrWhitelist;
@@ -14,6 +16,8 @@ public class Config {
     static {
         ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
         BUILDER.push("general");
+
+        EnableAddrLimiter = BUILDER.comment("Restart required").define("enable", true);
 
         MaxPlayerPreAddr = BUILDER
             .comment("Maximum number of player at same IP address")
