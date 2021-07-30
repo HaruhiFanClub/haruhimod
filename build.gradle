@@ -5,7 +5,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath "org.ajoberstar.grgit:grgit-gradle:4.1.0"
     }
 }
@@ -20,9 +20,7 @@ version = "${minecraft_version}-${mod_version}+${getBuildNumber()}"
 group = 'org.auioc.mods.haruhimod'
 archivesBaseName = 'haruhimod'
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(15)
-// sourceCompatibility = JavaVersion.VERSION_15
-// targetCompatibility = JavaVersion.VERSION_15
+java.toolchain.languageVersion = JavaLanguageVersion.of(16)
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
 minecraft {
@@ -69,6 +67,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 processResources {
     from (sourceSets.main.resources.srcDirs) {
         include 'META-INF/mods.toml'
+        duplicatesStrategy 'include'
         expand 'haruhicore_version': "${minecraft_version}-${haruhicore_version}", 'addrlimiter_version': "${minecraft_version}-${addrlimiter_version}", 'ahutils_version': "${minecraft_version}-${ahutils_version}"
     }
 }
