@@ -3,6 +3,7 @@
     "parent": "block/block",
     "ambientocclusion": false,
     "textures": {
+        "particle": "minecraft:block/glass",
         "shell": "ahutils:block/light_shell",
         "core": "ahutils:block/light_core"
     },
