@@ -32,6 +32,10 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
         super(TileEntityManager.SOS_BADGE_SLAB_BLOCK_TILE_ENTITY.get());
     }
 
+    private void log(String prefix, PlayerEntity player) {
+        LogUtil.debug(String.format("[%s] (%s) %s", prefix, worldPosition.toShortString(), player.getName().getString()));
+    }
+
     @Override
     public void tick() {
         if (!level.isClientSide) {
@@ -70,14 +74,14 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
                             }
 
                             if (value % effectCooldown == 0) {
-                                LogUtil.debug("hit 1");
+                                log("hit 1", player);
                                 EffectUtils.addEffect(player, (new Random()).nextInt((32 - 1) + 1) + 1, effectCooldown * 20, 0);
                             } else {
                                 // LogUtil.debug("pass 1");
                             }
 
                             if (value % giveColldown == 0) {
-                                LogUtil.debug("hit 2");
+                                log("hit 2", player);
                                 try {
                                     ItemParser itemParser = new ItemParser(new StringReader(CommonConfig.SosBadgeSlabGiveItemInput.get()), false).parse();
                                     PlayerUtils.giveItem(((ServerPlayerEntity) player), itemParser.getItem(), itemParser.getNbt(), CommonConfig.SosBadgeSlabGiveItemCount.get());
@@ -90,7 +94,7 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
 
                             entry.setValue(entry.getValue() + 1);
                         } else {
-                            LogUtil.debug("remove");
+                            log("remove", player);
                             it.remove();
                         }
                     }
@@ -99,12 +103,12 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
                     while (iterator.hasNext()) {
                         PlayerEntity player = iterator.next();
                         if (!map.containsKey(player)) {
-                            LogUtil.debug("new");
+                            log("add", player);
                             map.put(player, 0);
                         }
                     }
                 } else if (map.size() > 0) {
-                    LogUtil.debug("clear");
+                    LogUtil.debug("[clear] (" + worldPosition.toShortString() + ")");
                     map.clear();
                 }
 
