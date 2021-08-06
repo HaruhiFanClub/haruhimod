@@ -14,9 +14,7 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -30,8 +28,6 @@ import net.minecraftforge.common.ToolType;
 
 public class DanchouConeBlock extends Block {
     public static final DirectionProperty FACING = HorizontalBlock.FACING;
-    public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
-
 
     private static final VoxelShape SHAPE = Block.box(6, 0, 6, 10, 8, 10);
 
@@ -53,13 +49,12 @@ public class DanchouConeBlock extends Block {
         this.registerDefaultState(
             this.defaultBlockState()
                 .setValue(FACING, Direction.NORTH)
-                .setValue(ROTATION, Integer.valueOf(0))
         );
     }
 
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(FACING, ROTATION);
+        builder.add(FACING);
     }
 
     @Override
