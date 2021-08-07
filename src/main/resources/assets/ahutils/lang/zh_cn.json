@@ -9,13 +9,6 @@
     "ahutils.physics_excalibur.attack.4": "\n§3┣ UUID: §r",
     "ahutils.physics_excalibur.attack.5": "\n§3┣ 位置: §r",
 
-    "item.ahutils.reinforcement_stone": "强化石",
-    "item.ahutils.epic_reinforcement_stone": "春日酱的眷顾",
-    "item.ahutils.reinforcement_stone.xp_not_enough": "§c经验不足",
-    "item.ahutils.reinforcement_stone.blacklist": "§c无法强化此物品",
-    "item.ahutils.reinforcement_stone.empty_item": "§c目标物品为空",
-    "item.ahutils.reinforcement_stone.empty_enchantments": "§c目标物品上不存在附魔",
-
     "block.ahutils.light": "光源方块",
     "ahutils.light.item.name.level": " (亮度:%d)"
 }
