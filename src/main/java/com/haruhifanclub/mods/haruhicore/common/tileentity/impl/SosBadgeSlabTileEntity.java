@@ -33,7 +33,7 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
     }
 
     private void log(String prefix, PlayerEntity player) {
-        LogUtil.debug(String.format("[%s] (%s) %s", prefix, worldPosition.toShortString(), player.getName().getString()));
+        LogUtil.debug(String.format("[%s] (%s) %s", prefix, worldPosition.toString(), player.getName().getString()));
     }
 
     @Override
