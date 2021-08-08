@@ -108,7 +108,7 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
                         }
                     }
                 } else if (map.size() > 0) {
-                    LogUtil.debug("[clear] (" + worldPosition.toShortString() + ")");
+                    LogUtil.debug("[clear] (" + worldPosition.toString() + ")");
                     map.clear();
                 }
 
