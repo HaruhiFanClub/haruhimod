@@ -33,7 +33,7 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
     }
 
     private void log(String prefix, PlayerEntity player) {
-        LogUtil.debug(String.format("[%s] (%s) %s", prefix, worldPosition.toShortString(), player.getName().getString()));
+        LogUtil.debug(String.format("[%s] (%s) %s", prefix, worldPosition.toString(), player.getName().getString()));
     }
 
     @Override
@@ -108,7 +108,7 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
                         }
                     }
                 } else if (map.size() > 0) {
-                    LogUtil.debug("[clear] (" + worldPosition.toShortString() + ")");
+                    LogUtil.debug("[clear] (" + worldPosition.toString() + ")");
                     map.clear();
                 }
 

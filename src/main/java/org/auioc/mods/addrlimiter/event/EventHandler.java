@@ -23,7 +23,7 @@ public class EventHandler {
     @SubscribeEvent
     public static void playerLoggedOut(final PlayerEvent.PlayerLoggedOutEvent event) {
         if (Config.EnableAddrLimiter.get()) {
-            PlayerManager.getInstance().playerLogin(event.getPlayer());
+            PlayerManager.getInstance().playerLogout(event.getPlayer());
         }
     }
 }
