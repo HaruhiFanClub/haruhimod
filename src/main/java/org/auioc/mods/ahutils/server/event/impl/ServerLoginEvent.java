@@ -18,7 +18,12 @@ public class ServerLoginEvent extends Event {
         return this.packet;
     }
 
+    @Deprecated
     public NetworkManager getManager() {
+        return this.manager;
+    }
+
+    public NetworkManager getNetworkManager() {
         return this.manager;
     }
 }
