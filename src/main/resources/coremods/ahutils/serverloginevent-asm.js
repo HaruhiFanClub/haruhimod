@@ -18,7 +18,43 @@ function initializeCoreMod() {
                     "(Lnet/minecraft/network/handshake/client/CHandshakePacket;Lnet/minecraft/network/NetworkManager;)Z",
             },
             transformer: function (methodNode) {
-                // TODO
+                instructions = methodNode.instructions;
+
+                var arrayLength = instructions.size();
+                var firstLabel;
+
+                for (var i = 0; i < arrayLength; ++i) {
+                    var instruction = instructions.get(i);
+                    if (instruction.getType() == AbstractInsnNode.LABEL) {
+                        firstLabel = instruction;
+                        print("Found injection point at label: " + instruction);
+                        break;
+                    }
+                }
+
+                if (!firstLabel) {
+                    throw (
+                        "Error: Couldn't find injection point! " + instructions
+                    );
+                }
+
+                var toInject = new InsnList();
+
+                toInject.add(new VarInsnNode(Opcodes.ALOAD, 0)); // CHandshakePacket packet
+                toInject.add(new VarInsnNode(Opcodes.ALOAD, 1)); // NetworkManager manager
+                toInject.add(
+                    new MethodInsnNode(
+                        Opcodes.INVOKESTATIC,
+                        "org/auioc/mods/ahutils/server/event/ServerEventRegister",
+                        "registerServerLoginEvent",
+                        "(Lnet/minecraft/network/handshake/client/CHandshakePacket;Lnet/minecraft/network/NetworkManager;)V",
+                        //boolean isInterface
+                        false
+                    )
+                );
+
+                instructions.insert(firstLabel, toInject);
+
                 return methodNode;
             },
         },
@@ -39,7 +75,7 @@ public static boolean handleServerLogin(final CHandshakePacket packet, final Net
 /* net.minecraftforge.fml.server.ServerLifecycleHooks.handleServerLogin
 public static boolean handleServerLogin(final CHandshakePacket packet, final NetworkManager manager) {
     // ~ INSERT BEGIN ~ //
-    org.auioc.mods.ahutils.server.event.ServerEventRegister.registerServerLoginEvent(packet, manager); // TODO
+    org.auioc.mods.ahutils.server.event.ServerEventRegister.registerServerLoginEvent(packet, manager);
     // ~ INSERT END ~ //
 
     if (!allowLogins.get())
