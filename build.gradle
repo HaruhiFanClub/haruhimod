@@ -72,22 +72,22 @@ processResources {
     }
 }
 
+repositories {
+    maven {
+        name "JEI"
+        url "https://dvs1.progwml6.com/files/maven/"
+    }
+}
+
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
 }
 
 jar {
-    // manifest {
-    //     attributes([
-    //         "Specification-Title": "haruhicore",
-    //         "Specification-Vendor": "haruhifunclub",
-    //         "Specification-Version": "${version}",
-    //         "Implementation-Title": project.name,
-    //         "Implementation-Version": "${version}",
-    //         "Implementation-Vendor" :"haruhifunclub",
-    //         "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-    //     ])
-    // }
+
 }
 
 jar.finalizedBy('reobfJar') 
