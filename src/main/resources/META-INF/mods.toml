@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[36.2,)"
 license="GNU GPLv3"
 
 [[mods]]
@@ -32,10 +32,36 @@ description='''
 [[dependencies.haruhicore]]
     modId="forge"
     mandatory=true
-    versionRange="[36,)"
+    versionRange="[36.2,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.haruhicore]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.addrlimiter]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36.2,)"
+    ordering="NONE"
+    side="SERVER"
+[[dependencies.addrlimiter]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="SERVER"
+
+[[dependencies.ahutils]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36.2,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.ahutils]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.16.5,1.17)"
