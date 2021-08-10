@@ -45,8 +45,8 @@ function initializeCoreMod() {
                 toInject.add(
                     new MethodInsnNode(
                         Opcodes.INVOKESTATIC,
-                        "org/auioc/mods/ahutils/server/event/ServerEventRegister",
-                        "registerServerLoginEvent",
+                        "org/auioc/mods/ahutils/server/event/ServerEventManager",
+                        "postServerLoginEvent",
                         "(Lnet/minecraft/network/handshake/client/CHandshakePacket;Lnet/minecraft/network/NetworkManager;)V",
                         //boolean isInterface
                         false

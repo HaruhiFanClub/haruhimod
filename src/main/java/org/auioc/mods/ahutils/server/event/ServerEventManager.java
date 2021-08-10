@@ -5,8 +5,8 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.handshake.client.CHandshakePacket;
 import net.minecraftforge.common.MinecraftForge;
 
-public class ServerEventRegister {
-    public static void registerServerLoginEvent(final CHandshakePacket packet, final NetworkManager manager) {
+public class ServerEventManager {
+    public static void postServerLoginEvent(final CHandshakePacket packet, final NetworkManager manager) {
         MinecraftForge.EVENT_BUS.post(new ServerLoginEvent(packet, manager));
     }
 }
