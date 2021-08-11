@@ -16,10 +16,6 @@ public class CommonConfig {
     public static BooleanValue LightBlockDefaultStateVisible;
     public static IntValue LightBlockDefaultStateLevel;
 
-    public static BooleanValue DeloggerFilterJavaOut;
-    public static BooleanValue DeloggerFilterJavaLogger;
-    public static BooleanValue DeloggerFilterLog4JRoot;
-    public static BooleanValue DeloggerFilterLog4JMisc;
     public static ConfigValue<List<? extends String>> DeloggerBasicFilter;
     public static ConfigValue<List<? extends String>> DeloggerRegexFilter;
 
@@ -62,11 +58,6 @@ public class CommonConfig {
 
             {
                 b.push("delogger");
-
-                DeloggerFilterJavaOut = b.define("filter_java_out", false);
-                DeloggerFilterJavaLogger = b.define("filter_ava_logger", false);
-                DeloggerFilterLog4JRoot = b.define("filter_log4j_root", false);
-                DeloggerFilterLog4JMisc = b.define("filter_log4j_misc", false);
 
                 {
                     b.push("filter");
