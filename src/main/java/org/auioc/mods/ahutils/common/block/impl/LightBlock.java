@@ -4,7 +4,7 @@ import java.util.Random;
 import javax.annotation.Nullable;
 import org.auioc.mods.ahutils.common.config.CommonConfig;
 import org.auioc.mods.ahutils.common.item.ItemManager;
-import org.auioc.mods.ahutils.utils.MaterialUtils;
+import org.auioc.mods.ahutils.utils.game.MaterialUtils;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;

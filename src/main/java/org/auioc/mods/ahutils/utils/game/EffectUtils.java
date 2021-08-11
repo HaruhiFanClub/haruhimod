@@ -1,4 +1,4 @@
-package org.auioc.mods.ahutils.utils;
+package org.auioc.mods.ahutils.utils.game;
 
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.entity.LivingEntity;

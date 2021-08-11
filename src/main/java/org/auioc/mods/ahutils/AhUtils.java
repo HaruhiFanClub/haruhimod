@@ -17,6 +17,8 @@ public class AhUtils {
     public AhUtils() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.CONFIG);
 
+        org.auioc.mods.ahutils.utils.delogger.Delogger.init();
+
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         final IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 

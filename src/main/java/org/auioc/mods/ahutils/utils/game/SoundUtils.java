@@ -1,4 +1,4 @@
-package org.auioc.mods.ahutils.utils;
+package org.auioc.mods.ahutils.utils.game;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;

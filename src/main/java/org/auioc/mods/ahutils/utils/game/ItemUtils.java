@@ -1,4 +1,4 @@
-package org.auioc.mods.ahutils.utils;
+package org.auioc.mods.ahutils.utils.game;
 
 import javax.annotation.Nullable;
 import net.minecraft.item.Item;

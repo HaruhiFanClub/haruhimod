@@ -1,4 +1,4 @@
-package org.auioc.mods.ahutils.utils;
+package org.auioc.mods.ahutils.utils.game;
 
 import java.util.Random;
 import net.minecraft.nbt.CompoundNBT;
