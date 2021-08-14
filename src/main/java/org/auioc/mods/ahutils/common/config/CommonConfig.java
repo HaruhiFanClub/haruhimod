@@ -12,6 +12,8 @@ public class CommonConfig {
 
 
     public static BooleanValue EnablePhysicsExcalibur;
+    public static BooleanValue PhysicsExcaliburCreativeOnly;
+
 
     public static BooleanValue LightBlockDefaultStateVisible;
     public static IntValue LightBlockDefaultStateLevel;
@@ -28,6 +30,7 @@ public class CommonConfig {
             {
                 b.push("physics_excalibur");
                 EnablePhysicsExcalibur = b.define("enable", false);
+                PhysicsExcaliburCreativeOnly = b.define("creative_only", true);
                 b.pop();
             }
 

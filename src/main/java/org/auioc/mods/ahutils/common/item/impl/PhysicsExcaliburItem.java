@@ -2,6 +2,8 @@ package org.auioc.mods.ahutils.common.item.impl;
 
 import org.auioc.mods.ahutils.common.config.CommonConfig;
 import org.auioc.mods.ahutils.common.itemgroup.ItemGroupManager;
+import org.auioc.mods.ahutils.utils.game.I18nUtils;
+import org.auioc.mods.ahutils.utils.game.MessageUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -28,13 +30,19 @@ public class PhysicsExcaliburItem extends Item {
         return true;
     }
 
+    // Return true to cancel the rest of the interaction.
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity target) {
         if (!CommonConfig.EnablePhysicsExcalibur.get()) {
-            return false;
+            return true;
         }
 
         if (player.level.isClientSide) {
+            return true;
+        }
+
+        if (CommonConfig.PhysicsExcaliburCreativeOnly.get() && !player.isCreative()) {
+            MessageUtils.chat(player, I18nUtils.getTranslatedText(getKey("creative_only", 0)));
             return true;
         }
 
@@ -70,6 +78,9 @@ public class PhysicsExcaliburItem extends Item {
 
 
     private static String getKey(String type, int number) {
+        if (number == 0) {
+            return String.format("ahutils.physics_excalibur.%s", type);
+        }
         return String.format("ahutils.physics_excalibur.%s.%d", type, number);
     }
 
