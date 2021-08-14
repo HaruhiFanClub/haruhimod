@@ -12,5 +12,7 @@
     "ahutils.physics_excalibur.entity_info.5": "\n§3┣ 位置: §r",
 
     "block.ahutils.light": "光源方块",
-    "ahutils.light.item.name.level": " (亮度:%d)"
+    "ahutils.light.item.name.level": " (亮度:%d)",
+
+    "ahutils.argument.damage_source.invalid": "无效的伤害类型%s"
 }
