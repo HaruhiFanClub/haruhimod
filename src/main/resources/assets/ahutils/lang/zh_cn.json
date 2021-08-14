@@ -1,6 +1,7 @@
 {
     "ahutils.title": "AhUtils",
     "itemGroup.ahutils_group": "AhUtils",
+    "itemGroup.mc_hidden_items_group": "原版隐藏物品",
 
     "item.ahutils.physics_excalibur": "物理学圣剑",
     "ahutils.physics_excalibur.creative_only": "§c仅创造模式玩家可使用此物品",
