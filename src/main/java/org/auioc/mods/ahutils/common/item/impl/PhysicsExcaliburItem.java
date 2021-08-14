@@ -18,7 +18,7 @@ public class PhysicsExcaliburItem extends Item {
     public PhysicsExcaliburItem() {
         super(
             new Item.Properties()
-                .tab(ItemGroupManager.itemGroup)
+                .tab(ItemGroupManager.ahuItemGroup)
                 .rarity(Rarity.EPIC)
                 .fireResistant()
                 .stacksTo(1)
