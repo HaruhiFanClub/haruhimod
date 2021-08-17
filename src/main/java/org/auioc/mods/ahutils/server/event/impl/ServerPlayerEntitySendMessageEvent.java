@@ -8,7 +8,26 @@ import net.minecraftforge.eventbus.api.Event;
 
 @Cancelable
 public class ServerPlayerEntitySendMessageEvent extends Event {
-    public ServerPlayerEntitySendMessageEvent(ITextComponent message, ChatType type, UUID uuid) {
+    private final ITextComponent message;
+    private final ChatType chatType;
+    private final UUID uuid;
+
+    public ServerPlayerEntitySendMessageEvent(ITextComponent message, ChatType chatType, UUID uuid) {
         super();
+        this.message = message;
+        this.chatType = chatType;
+        this.uuid = uuid;
+    }
+
+    public ITextComponent getMessage() {
+        return this.message;
+    }
+
+    public ChatType getChatType() {
+        return this.chatType;
+    }
+
+    public UUID getUuid() {
+        return this.uuid;
     }
 }
