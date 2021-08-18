@@ -23,7 +23,7 @@ public class LightBlockItem extends BlockItem {
         super(
             BlockManager.LIGHT_BLOCK.get(),
             new Item.Properties()
-                .tab(ItemGroupManager.itemGroup)
+                .tab(ItemGroupManager.ahuItemGroup)
                 .rarity(Rarity.UNCOMMON)
                 .stacksTo(1)
         );

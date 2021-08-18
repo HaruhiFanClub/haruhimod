@@ -1,3 +1,4 @@
 {
-    "ahutils-serverloginevent-asm": "coremods/ahutils/serverloginevent-asm.js"
+    "ahutils-serverloginevent-asm": "coremods/ahutils/serverloginevent-asm.js",
+    "ahutils-spesendmessageevent-asm-asm": "coremods/ahutils/spesendmessageevent-asm.js"
 }
