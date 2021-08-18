@@ -1,6 +1,9 @@
 package org.auioc.mods.ahutils;
 
 import org.auioc.mods.ahutils.common.config.CommonConfig;
+import org.auioc.mods.ahutils.server.command.arguments.DamageSourceArgument;
+import net.minecraft.command.arguments.ArgumentSerializer;
+import net.minecraft.command.arguments.ArgumentTypes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -34,6 +37,7 @@ public class AhUtils {
         org.auioc.mods.ahutils.common.item.ItemManager.ITEMS.register(modEventBus);
         org.auioc.mods.ahutils.common.block.BlockManager.BLOCKS.register(modEventBus);
         modEventBus.register(org.auioc.mods.ahutils.common.network.PacketHandler.class);
+        ArgumentTypes.register("ahutils:damage_source", DamageSourceArgument.class, new ArgumentSerializer<>(DamageSourceArgument::damageSource));
     }
 
     private void forgeSetup(final IEventBus forgeEventBus) {
