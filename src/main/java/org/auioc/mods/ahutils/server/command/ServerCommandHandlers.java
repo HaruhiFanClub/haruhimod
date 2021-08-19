@@ -43,7 +43,7 @@ public abstract class ServerCommandHandlers {
         for (Entity entity : targets) {
             LogUtil.info(
                 String.format(
-                    "Entity %s has been hurt by the hurt command, damageSource: %s, damage: %f",
+                    "Entity %s has been hurt by the hurt command, %s, damage: %f",
                     entity.toString(), source.toString(), damage
                 )
             );
