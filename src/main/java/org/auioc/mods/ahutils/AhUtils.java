@@ -1,7 +1,7 @@
 package org.auioc.mods.ahutils;
 
 import org.auioc.mods.ahutils.common.config.CommonConfig;
-import org.auioc.mods.ahutils.server.command.arguments.DamageSourceArgument;
+import org.auioc.mods.ahutils.common.command.arguments.DamageSourceArgument;
 import net.minecraft.command.arguments.ArgumentSerializer;
 import net.minecraft.command.arguments.ArgumentTypes;
 import net.minecraftforge.api.distmarker.Dist;

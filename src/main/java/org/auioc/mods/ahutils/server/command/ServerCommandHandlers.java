@@ -6,8 +6,8 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import org.auioc.mods.ahutils.common.command.arguments.DamageSourceArgument;
 import org.auioc.mods.ahutils.common.network.PacketHandler;
-import org.auioc.mods.ahutils.server.command.arguments.DamageSourceArgument;
 import org.auioc.mods.ahutils.utils.LogUtil;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.arguments.EntityArgument;
@@ -43,7 +43,7 @@ public abstract class ServerCommandHandlers {
         for (Entity entity : targets) {
             LogUtil.info(
                 String.format(
-                    "Entity %s has been hurt by the hurt command, damageSource: %s, damage: %f",
+                    "Entity %s has been hurt by the hurt command, %s, damage: %f",
                     entity.toString(), source.toString(), damage
                 )
             );

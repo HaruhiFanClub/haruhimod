@@ -75,6 +75,6 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
 
     @Override
     public ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext context) {
-        return reinforce(context, false);
+        return reinforce(this, context, false);
     }
 }
