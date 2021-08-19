@@ -6,10 +6,12 @@ import org.auioc.mods.ahutils.utils.game.I18nUtils;
 import org.auioc.mods.ahutils.utils.game.MessageUtils;
 import org.auioc.mods.ahutils.utils.game.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.CooldownTracker;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -58,7 +60,7 @@ public interface IReinforcementStoneItem {
 
     public ItemStack processEnchantment(ItemStack stack);
 
-    default ActionResultType reinforce(ItemUseContext context, boolean isEpic) {
+    default ActionResultType reinforce(Item item, ItemUseContext context, boolean isEpic) {
         if (!isEnabled(isEpic)) {
             return ActionResultType.PASS;
         }
@@ -100,6 +102,14 @@ public interface IReinforcementStoneItem {
             MessageUtils.chat(player, I18nUtils.getTranslatedText(messageKey + ".xp_not_enough"));
             return ActionResultType.FAIL;
         }
+
+        CooldownTracker cooldownTracker = player.getCooldowns();
+
+        if (cooldownTracker.isOnCooldown(item)) {
+            return ActionResultType.PASS;
+        }
+        cooldownTracker.addCooldown(item, 40);
+
         player.giveExperiencePoints(-1 * experienceCost);
 
         ItemStack reinforcedItem = processEnchantment(targetItem);
