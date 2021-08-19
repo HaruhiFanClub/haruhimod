@@ -9,6 +9,7 @@ import net.minecraft.item.ItemUseContext;
 import net.minecraft.item.Rarity;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.CooldownTracker;
 
 public class EpicReinforcementStoneItem extends Item implements IReinforcementStoneItem {
 
@@ -40,6 +41,13 @@ public class EpicReinforcementStoneItem extends Item implements IReinforcementSt
 
     @Override
     public ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext context) {
+        CooldownTracker cooldownTracker = context.getPlayer().getCooldowns();
+
+        if (cooldownTracker.isOnCooldown(this)) {
+            return ActionResultType.PASS;
+        }
+        cooldownTracker.addCooldown(this, 40);
+
         return reinforce(context, true);
     }
 }

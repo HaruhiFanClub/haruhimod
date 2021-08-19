@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.CooldownTracker;
 
 public class ReinforcementStoneItem extends Item implements IReinforcementStoneItem {
 
@@ -75,6 +76,13 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
 
     @Override
     public ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext context) {
+        CooldownTracker cooldownTracker = context.getPlayer().getCooldowns();
+
+        if (cooldownTracker.isOnCooldown(this)) {
+            return ActionResultType.PASS;
+        }
+        cooldownTracker.addCooldown(this, 40);
+
         return reinforce(context, false);
     }
 }
