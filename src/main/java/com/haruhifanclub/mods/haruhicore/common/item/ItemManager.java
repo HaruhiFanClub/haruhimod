@@ -29,4 +29,7 @@ public final class ItemManager {
     // Block items
     public static RegistryObject<Item> SOS_BADGE_SLAB_BLOCK = register("sos_badge_slab", () -> new BlockItem(BlockManager.SOS_BADGE_SLAB_BLOCK.get(), new Item.Properties().tab(ItemGroupManager.itemGroup)));
     public static RegistryObject<Item> DANCHOU_CONE_BLOCK = register("danchou_cone", DanchouConeBlockItem::new);
+
+    // HaruhiCore V2
+    public static RegistryObject<Item> WIZARD_HAT_ITEM = register("wizard_hat", WizardHatItem::new);
 }
