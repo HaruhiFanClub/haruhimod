@@ -1,6 +1,6 @@
 package com.haruhifanclub.mods.haruhicore.common.block.impl;
 
-import org.auioc.mods.ahutils.utils.game.MaterialUtils;
+import org.auioc.mods.ahutils.utils.game.HBlockMaterial;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -35,7 +35,7 @@ public class DanchouConeBlock extends Block {
         super(
             AbstractBlock.Properties
                 .of(
-                    (new MaterialUtils.Builder())
+                    (new HBlockMaterial.Builder())
                         .color(MaterialColor.COLOR_BLACK)
                         .notPushable()
                         .flammable()

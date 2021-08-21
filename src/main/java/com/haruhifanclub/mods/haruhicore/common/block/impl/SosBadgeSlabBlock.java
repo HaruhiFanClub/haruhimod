@@ -2,7 +2,7 @@ package com.haruhifanclub.mods.haruhicore.common.block.impl;
 
 import javax.annotation.Nullable;
 import com.haruhifanclub.mods.haruhicore.common.tileentity.impl.SosBadgeSlabTileEntity;
-import org.auioc.mods.ahutils.utils.game.MaterialUtils;
+import org.auioc.mods.ahutils.utils.game.HBlockMaterial;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -35,7 +35,7 @@ public class SosBadgeSlabBlock extends Block {
         super(
             AbstractBlock.Properties
                 .of(
-                    (new MaterialUtils.Builder())
+                    (new HBlockMaterial.Builder())
                         .color(MaterialColor.SNOW)
                         .notPushable()
                         .flammable()

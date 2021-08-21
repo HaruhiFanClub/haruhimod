@@ -4,7 +4,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.material.PushReaction;
 
-public class MaterialUtils {
+public class HBlockMaterial {
     public static class Builder {
         private PushReaction pushReaction = PushReaction.NORMAL;
         private boolean blocksMotion = true;
@@ -17,47 +17,47 @@ public class MaterialUtils {
 
         public Builder() {}
 
-        public MaterialUtils.Builder color(MaterialColor color) {
+        public HBlockMaterial.Builder color(MaterialColor color) {
             this.color = color;
             return this;
         }
 
-        public MaterialUtils.Builder liquid() {
+        public HBlockMaterial.Builder liquid() {
             this.liquid = true;
             return this;
         }
 
-        public MaterialUtils.Builder nonSolid() {
+        public HBlockMaterial.Builder nonSolid() {
             this.solid = false;
             return this;
         }
 
-        public MaterialUtils.Builder noCollider() {
+        public HBlockMaterial.Builder noCollider() {
             this.blocksMotion = false;
             return this;
         }
 
-        public MaterialUtils.Builder notSolidBlocking() {
+        public HBlockMaterial.Builder notSolidBlocking() {
             this.solidBlocking = false;
             return this;
         }
 
-        public MaterialUtils.Builder flammable() {
+        public HBlockMaterial.Builder flammable() {
             this.flammable = true;
             return this;
         }
 
-        public MaterialUtils.Builder replaceable() {
+        public HBlockMaterial.Builder replaceable() {
             this.replaceable = true;
             return this;
         }
 
-        public MaterialUtils.Builder destroyOnPush() {
+        public HBlockMaterial.Builder destroyOnPush() {
             this.pushReaction = PushReaction.DESTROY;
             return this;
         }
 
-        public MaterialUtils.Builder notPushable() {
+        public HBlockMaterial.Builder notPushable() {
             this.pushReaction = PushReaction.BLOCK;
             return this;
         }
