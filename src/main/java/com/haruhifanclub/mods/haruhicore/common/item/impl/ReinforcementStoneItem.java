@@ -1,5 +1,6 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
+import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemManager;
 import com.haruhifanclub.mods.haruhicore.common.item.base.IReinforcementStoneItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupManager;
@@ -58,11 +59,11 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
 
             EffectInstance luckEffect = player.getEffect(EffectUtils.getEffect(26));
             if (luckEffect != null) {
-                N += (luckEffect.getAmplifier() + 1);
+                N += (luckEffect.getAmplifier() + 1) * CommonConfig.CommonReinforcingLuckEffectMultiplier.get();
             }
 
             if ((player.getItemBySlot(EquipmentSlotType.HEAD).getItem()).equals(ItemManager.DANCHOU_CONE_BLOCK.get())) {
-                N += 1;
+                N += 1 * CommonConfig.CommonReinforcingDanchouConeMultiplier.get();
             }
 
             if (N >= X) {
