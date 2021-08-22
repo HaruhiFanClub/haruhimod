@@ -1,6 +1,7 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import java.util.List;
+import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupManager;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.HArmorMaterial;
@@ -46,13 +47,21 @@ public class MikurusMaidOutfitItem extends ArmorItem {
 
         EffectUtils.addEffect(player, 10, 4, 1); // regeneration
 
-        AxisAlignedBB aabb = (new AxisAlignedBB(player.blockPosition())).inflate(10).expandTowards(0.0D, 10, 0.0D);
+        int effectRange = CommonConfig.MikurusMaidOutfitEffectRange.get();
+
+        AxisAlignedBB aabb = (new AxisAlignedBB(player.blockPosition())).inflate(effectRange).expandTowards(0.0D, effectRange, 0.0D);
+
         List<LivingEntity> list = player.level.getEntitiesOfClass(LivingEntity.class, aabb);
         for (LivingEntity entity2 : list) {
             if (entity2.equals(player)) {
                 continue;
             }
-            if ((entity2 instanceof PlayerEntity) || (entity2.getType().getCategory().isFriendly())) {
+
+            if (entity2 instanceof PlayerEntity) {
+                if (CommonConfig.MikurusMaidOutfitForOtherPlayers.get()) {
+                    EffectUtils.addEffect(entity2, 10, 4, 1);
+                }
+            } else if ((CommonConfig.MikurusMaidOutfitForFriendlyEntities.get()) && (entity2.getType().getCategory().isFriendly())) {
                 EffectUtils.addEffect(entity2, 10, 4, 1);
             }
         }

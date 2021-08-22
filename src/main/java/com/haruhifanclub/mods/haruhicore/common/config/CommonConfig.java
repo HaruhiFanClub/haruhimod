@@ -21,6 +21,10 @@ public class CommonConfig {
     public static ConfigValue<List<? extends String>> ReinforcementStoneItemBlacklist;
     public static ConfigValue<List<? extends String>> ReinforcementStoneUseOnBlock;
 
+    public static IntValue MikurusMaidOutfitEffectRange;
+    public static BooleanValue MikurusMaidOutfitForOtherPlayers;
+    public static BooleanValue MikurusMaidOutfitForFriendlyEntities;
+
     public static IntValue SingleSosBadgeSlabEffectCooldown;
     public static IntValue DoubleSosBadgeSlabEffectCooldown;
     public static IntValue SingleSosBadgeSlabGiveCooldown;
@@ -56,6 +60,16 @@ public class CommonConfig {
                     EpicReinforcingExperienceCost = b.defineInRange("experience_cost", 0, 0, Integer.MAX_VALUE);
                     b.pop();
                 }
+
+                b.pop();
+            }
+
+            {
+                b.push("mikurus_maid_outfit");
+
+                MikurusMaidOutfitEffectRange = b.defineInRange("effect_range", 10, 1, 64);
+                MikurusMaidOutfitForOtherPlayers = b.define("is_effective_for_other_players", true);
+                MikurusMaidOutfitForFriendlyEntities = b.define("is_effective_for_friendly_entities", true);
 
                 b.pop();
             }
