@@ -16,7 +16,7 @@ public class YukisWizardCloakItem extends ArmorItem {
                 .setDurability(708)
                 .setDefense(10)
                 .setToughness(4)
-                .setEnchantmentValue(65)
+                .setEnchantmentValue(66)
                 .setRepairIngredient(() -> {
                     return Ingredient.of(ItemManager.REINFORCEMENT_STONE_ITEM.get());
                 }),

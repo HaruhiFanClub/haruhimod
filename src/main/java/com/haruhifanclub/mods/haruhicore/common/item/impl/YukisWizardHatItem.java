@@ -21,7 +21,7 @@ public class YukisWizardHatItem extends ArmorItem {
                 .setDurability(708)
                 .setDefense(4)
                 .setToughness(4)
-                .setEnchantmentValue(65)
+                .setEnchantmentValue(66)
                 .setRepairIngredient(() -> {
                     return Ingredient.of(ItemManager.REINFORCEMENT_STONE_ITEM.get());
                 }),
