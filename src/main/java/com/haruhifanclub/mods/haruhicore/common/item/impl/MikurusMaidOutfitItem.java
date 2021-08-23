@@ -2,6 +2,7 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import java.util.List;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
+import com.haruhifanclub.mods.haruhicore.common.item.ItemManager;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupManager;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.HArmorMaterial;
@@ -12,6 +13,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
@@ -23,7 +25,10 @@ public class MikurusMaidOutfitItem extends ArmorItem {
                 .setDurability(1096)
                 .setDefense(8)
                 .setToughness(2)
-                .setEnchantmentValue(15),
+                .setEnchantmentValue(15)
+                .setRepairIngredient(() -> {
+                    return Ingredient.of(ItemManager.REINFORCEMENT_STONE_ITEM.get());
+                }),
             EquipmentSlotType.CHEST,
             new Item.Properties()
                 .tab(ItemGroupManager.itemGroup)
