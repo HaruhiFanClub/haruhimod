@@ -130,7 +130,9 @@ public interface IReinforcementStoneItem {
         }
 
         player.setItemInHand(Hand.OFF_HAND, reinforcedItem);
-        player.getMainHandItem().shrink(1);
+        if (!player.isCreative()) {
+            player.getMainHandItem().shrink(1);
+        }
 
 
         return ActionResultType.SUCCESS;
