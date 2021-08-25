@@ -1,5 +1,6 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
+import com.haruhifanclub.mods.haruhicore.client.model.WizardHatArmorModel;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemManager;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
@@ -24,11 +25,9 @@ public class YukisWizardHatItem extends HCArmorItem {
                     return Ingredient.of(ItemManager.REINFORCEMENT_STONE_ITEM.get());
                 }),
             EquipmentSlotType.HEAD,
-            null
+            new WizardHatArmorModel()
         );
     }
-
-    // TODO Custom armor model
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int index, boolean selected) {
