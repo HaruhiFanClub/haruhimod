@@ -27,6 +27,8 @@ public class CommonConfig {
     public static BooleanValue MikurusMaidOutfitForOtherPlayers;
     public static BooleanValue MikurusMaidOutfitForFriendlyEntities;
 
+    public static IntValue YukisWizardCloakEffectDuration;
+
     public static IntValue SingleSosBadgeSlabEffectCooldown;
     public static IntValue DoubleSosBadgeSlabEffectCooldown;
     public static IntValue SingleSosBadgeSlabGiveCooldown;
@@ -70,11 +72,15 @@ public class CommonConfig {
 
             {
                 b.push("mikurus_maid_outfit");
-
                 MikurusMaidOutfitEffectRange = b.defineInRange("effect_range", 10, 1, 64);
                 MikurusMaidOutfitForOtherPlayers = b.define("is_effective_for_other_players", true);
                 MikurusMaidOutfitForFriendlyEntities = b.define("is_effective_for_friendly_entities", true);
+                b.pop();
+            }
 
+            {
+                b.push("yukis_wizard_cloak");
+                YukisWizardCloakEffectDuration = b.defineInRange("effect_duration", 840, 20, Integer.MAX_VALUE);
                 b.pop();
             }
 

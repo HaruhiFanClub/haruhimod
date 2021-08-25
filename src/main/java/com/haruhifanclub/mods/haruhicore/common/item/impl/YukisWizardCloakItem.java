@@ -1,5 +1,6 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
+import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemManager;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupManager;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
@@ -48,7 +49,7 @@ public class YukisWizardCloakItem extends ArmorItem {
         }
 
         if (!player.hasEffect(Effects.ABSORPTION)) {
-            EffectUtils.addEffect(player, 22, 840, 2);
+            EffectUtils.addEffect(player, 22, CommonConfig.YukisWizardCloakEffectDuration.get(), 2);
         }
 
     }
