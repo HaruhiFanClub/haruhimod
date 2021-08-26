@@ -1,6 +1,5 @@
 {
     "music_disc.vox_in_box": {
-        "subtitle": "subtitles.music_disc.vox_in_box",
         "sounds": [
             {
                 "stream": true,
@@ -9,7 +8,6 @@
         ]
     },
     "music_disc.someday_in_the_rain": {
-        "subtitle": "subtitles.music_disc.someday_in_the_rain",
         "sounds": [
             {
                 "stream": true,
@@ -18,7 +16,6 @@
         ]
     },
     "music_disc.in_the_summer_time": {
-        "subtitle": "subtitles.music_disc.in_the_summer_time",
         "sounds": [
             {
                 "stream": true,
@@ -27,7 +24,6 @@
         ]
     },
     "music_disc.halo": {
-        "subtitle": "subtitles.music_disc.halo",
         "sounds": [
             {
                 "stream": true,
