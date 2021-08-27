@@ -1,0 +1,6 @@
+{
+    "parent": "haruhicore:item/music_disc",
+    "loader": "forge:obj",
+    "model": "haruhicore:models/obj/music_disc_someday_in_the_rain.obj",
+    "flip-v": true
+}

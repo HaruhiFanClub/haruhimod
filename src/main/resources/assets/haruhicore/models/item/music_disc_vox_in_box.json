@@ -1,0 +1,6 @@
+{
+    "parent": "haruhicore:item/music_disc",
+    "loader": "forge:obj",
+    "model": "haruhicore:models/obj/music_disc_vox_in_box.obj",
+    "flip-v": true
+}
