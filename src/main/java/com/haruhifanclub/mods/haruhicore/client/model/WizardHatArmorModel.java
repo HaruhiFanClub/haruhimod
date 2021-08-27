@@ -84,13 +84,13 @@ public class WizardHatArmorModel extends BipedModel<LivingEntity> {
         f5 = new ModelRenderer(this);
         f6 = new ModelRenderer(this);
 
-        f0.setPos(0.0F, -5.0F, 0.0F);
-        f1.setPos(0.0F, -5.0F, 0.0F);
-        f2.setPos(0.0F, -5.0F, 0.0F);
-        f3.setPos(0.0F, -6.0F, 0.0F);
-        f4.setPos(0.0F, -7.0F, 0.0F);
-        f5.setPos(0.0F, -7.0F, 0.0F);
-        f6.setPos(0.0F, -5.0F, 0.0F);
+        f0.setPos(0.0F, -5.0F - 4.62F, 0.0F);
+        f1.setPos(0.0F, -5.0F - 4.62F, 0.0F);
+        f2.setPos(0.0F, -5.0F - 4.62F, 0.0F);
+        f3.setPos(0.0F, -6.0F - 4.62F, 0.0F);
+        f4.setPos(0.0F, -7.0F - 4.62F, 0.0F);
+        f5.setPos(0.0F, -7.0F - 4.62F, 0.0F);
+        f6.setPos(0.0F, -5.0F - 4.62F, 0.0F);
 
         bb_hat.addChild(f0);
         bb_hat.addChild(f1);
@@ -507,6 +507,7 @@ public class WizardHatArmorModel extends BipedModel<LivingEntity> {
     public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         bb_hat.copyFrom(head);
         matrixStack.pushPose();
+        matrixStack.scale(0.66F, 0.66F, 0.66F);
         bb_hat.render(matrixStack, buffer, packedLight, packedOverlay);
         matrixStack.popPose();
     }
