@@ -15,11 +15,11 @@
             }
         ]
     },
-    "music_disc.in_the_summer_time": {
+    "music_disc.in_the_summertime": {
         "sounds": [
             {
                 "stream": true,
-                "name": "haruhicore:records/in_the_summer_time"
+                "name": "haruhicore:records/in_the_summertime"
             }
         ]
     },

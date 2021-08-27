@@ -44,7 +44,7 @@ public final class ItemManager {
     public static RegistryObject<Item> MIKURUS_MAID_OUTFIT_ITEM = register("mikurus_maid_outfit", MikurusMaidOutfitItem::new);
 
     // Music Discs
-    public static RegistryObject<Item> MUSIC_DISC_ITEM_IN_THE_SUMMER_TIME = register("music_disc_in_the_summer_time", () -> new HCMusicDiscItem(SoundEventManager.MUSIC_DISC_IN_THE_SUMMER_TIME));
+    public static RegistryObject<Item> MUSIC_DISC_ITEM_IN_THE_SUMMERTIME = register("music_disc_in_the_summertime", () -> new HCMusicDiscItem(SoundEventManager.MUSIC_DISC_IN_THE_SUMMERTIME));
     public static RegistryObject<Item> MUSIC_DISC_ITEM_SOMEDAY_IN_THE_RAIN = register("music_disc_someday_in_the_rain", () -> new HCMusicDiscItem(SoundEventManager.MUSIC_DISC_SOMEDAY_IN_THE_RAIN));
     public static RegistryObject<Item> MUSIC_DISC_ITEM_VOX_IN_BOX = register("music_disc_vox_in_box", () -> new HCMusicDiscItem(SoundEventManager.MUSIC_DISC_VOX_IN_BOX));
     public static RegistryObject<Item> MUSIC_DISC_ITEM_HALO = register("music_disc_halo", () -> new HCMusicDiscItem(SoundEventManager.MUSIC_DISC_HALO));
