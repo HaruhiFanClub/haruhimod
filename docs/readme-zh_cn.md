@@ -4,13 +4,13 @@
 
 <div align="center">
 
-用于凉宫春日的世界 Minecraft 服务器的模组。
+用于凉宫春日的世界 Minecraft 服务器 [HaruhiServer](https://github.com/HaruhiFanClub/MCHaruhiServer) 的模组。
 
 [![GitHub license](https://img.shields.io/github/license/WakelessSloth56/haruhimod?style=flat-square)](/LICENSE)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/WakelessSloth56/haruhimod/gradle-ci/1.16-forge?style=flat-square)](https://github.com/WakelessSloth56/haruhimod/actions)
 &nbsp;
 ![Minecraft](https://img.shields.io/static/v1?label=Minecraft&message=1.16.5&color=00aa00&style=flat-square)
-[![Forge](https://img.shields.io/static/v1?label=Forge&message=36.2.2&color=e04e14&logo=Conda-Forge&style=flat-square)]((http://files.minecraftforge.net/net/minecraftforge/forge/index_1.16.5.html))
+[![Forge](https://img.shields.io/static/v1?label=Forge&message=36.2.2&color=e04e14&logo=Conda-Forge&style=flat-square)](http://files.minecraftforge.net/net/minecraftforge/forge/index_1.16.5.html)
 [![AdoptOpenJDK](https://img.shields.io/static/v1?label=AdoptOpenJDK&message=16.0.2%2B7&color=brightgreen&logo=java&style=flat-square)](https://adoptopenjdk.net/?variant=openjdk16&jvmVariant=hotspot)
 [![Gradle](https://img.shields.io/static/v1?label=Gradle&message=7.1.1&color=brightgreen&logo=gradle&style=flat-square)](https://docs.gradle.org/7.1.1/release-notes.html)
 
