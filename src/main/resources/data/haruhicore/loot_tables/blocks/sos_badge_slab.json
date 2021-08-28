@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:block",
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "haruhicore:sos_badge_slab",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": 2,
+                            "conditions": [
+                                {
+                                    "condition": "minecraft:block_state_property",
+                                    "block": "haruhicore:sos_badge_slab",
+                                    "properties": {
+                                        "type": "double"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
