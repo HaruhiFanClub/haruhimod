@@ -17,8 +17,7 @@ public class WizardCloakItem extends HCArmorItem {
                 .setRepairIngredient(() -> {
                     return Ingredient.of(ItemManager.REINFORCEMENT_STONE_ITEM.get());
                 }),
-            EquipmentSlotType.CHEST,
-            null
+            EquipmentSlotType.CHEST
         );
     }
 

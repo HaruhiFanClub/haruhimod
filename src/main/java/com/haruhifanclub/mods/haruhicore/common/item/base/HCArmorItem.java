@@ -15,15 +15,18 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class HCArmorItem extends ArmorItem {
 
-    private final BipedModel<?> model;
-
-    public HCArmorItem(IArmorMaterial material, EquipmentSlotType slotType, @Nullable BipedModel<?> model) {
+    public HCArmorItem(IArmorMaterial material, EquipmentSlotType slotType) {
         super(
             material,
             slotType,
             new Item.Properties().tab(ItemGroupManager.itemGroup)
         );
-        this.model = model;
+    }
+
+    @Nullable
+    @OnlyIn(Dist.CLIENT)
+    public <A extends BipedModel<?>> A getArmorModel() {
+        return null;
     }
 
     @Override
@@ -31,7 +34,7 @@ public class HCArmorItem extends ArmorItem {
     @OnlyIn(Dist.CLIENT)
     @SuppressWarnings("unchecked")
     public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-        return (A) this.model;
+        return (A) getArmorModel();
     }
 
     @Override

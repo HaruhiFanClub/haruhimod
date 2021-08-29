@@ -5,12 +5,15 @@ import com.haruhifanclub.mods.haruhicore.common.item.ItemManager;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.HArmorMaterial;
+import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class YukisWizardHatItem extends HCArmorItem {
 
@@ -24,9 +27,15 @@ public class YukisWizardHatItem extends HCArmorItem {
                 .setRepairIngredient(() -> {
                     return Ingredient.of(ItemManager.REINFORCEMENT_STONE_ITEM.get());
                 }),
-            EquipmentSlotType.HEAD,
-            new WizardHatArmorModel()
+            EquipmentSlotType.HEAD
         );
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    @SuppressWarnings("unchecked")
+    public <A extends BipedModel<?>> A getArmorModel() {
+        return (A) new WizardHatArmorModel();
     }
 
     @Override
