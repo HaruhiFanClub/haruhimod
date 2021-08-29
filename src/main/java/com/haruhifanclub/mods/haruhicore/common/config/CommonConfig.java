@@ -33,6 +33,7 @@ public class CommonConfig {
     public static IntValue DoubleSosBadgeSlabEffectCooldown;
     public static IntValue SingleSosBadgeSlabLootCooldown;
     public static IntValue DoubleSosBadgeSlabLootCooldown;
+    public static ConfigValue<List<? extends Integer>> DoubleSosBadgeSlabEffectLevelRange;
     public static ConfigValue<String> SosBadgeSlabGiveItemInput;
     public static IntValue SosBadgeSlabGiveItemCount;
 
@@ -108,6 +109,13 @@ public class CommonConfig {
                     b.push("double");
                     DoubleSosBadgeSlabEffectCooldown = b.defineInRange("effect_cooldown", 3, 1, Integer.MAX_VALUE);
                     DoubleSosBadgeSlabLootCooldown = b.defineInRange("loot_cooldown", 3, 1, Integer.MAX_VALUE);
+                    DoubleSosBadgeSlabEffectLevelRange = b
+                        .comment("Array: [min, max]", "Range: 0 ~ 255")
+                        .define(
+                            "effect_level_range",
+                            new ArrayList<Integer>(Arrays.asList(0, 2)),
+                            (x) -> checkIntArray(x, 2)
+                        );
                     b.pop();
                 }
 
@@ -119,4 +127,21 @@ public class CommonConfig {
 
         CONFIG = b.build();
     }
+
+    @SuppressWarnings("unchecked")
+    private static boolean checkIntArray(Object x, int size) {
+        if (!(x instanceof ArrayList)) {
+            return false;
+        }
+        if (((ArrayList<Object>) x).size() != 2) {
+            return false;
+        }
+        for (Object o : (ArrayList<Object>) x) {
+            if (!(o instanceof Integer)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

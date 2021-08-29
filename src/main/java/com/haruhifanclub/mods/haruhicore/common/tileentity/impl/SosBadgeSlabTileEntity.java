@@ -113,11 +113,17 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
 
 
     private static void addEffect(PlayerEntity player, int duration, boolean isDouble) {
+        int level = 0;
+        if (isDouble) {
+            List<? extends Integer> levelRange = CommonConfig.DoubleSosBadgeSlabEffectLevelRange.get();
+            level = MathHelper.nextInt(player.getRandom(), levelRange.get(0), levelRange.get(1));
+        }
+
         EffectUtils.addEffect(
             player,
             MathHelper.nextInt(player.getRandom(), 1, 32),
             duration * 20,
-            (isDouble) ? MathHelper.nextInt(player.getRandom(), 0, 2) : 0
+            level
         );
     }
 
