@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Random;
 import com.haruhifanclub.mods.haruhicore.common.block.impl.SosBadgeSlabBlock;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.tileentity.TileEntityManager;
@@ -21,6 +20,7 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.MathHelper;
 
 public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileEntity {
     private static final int MAX_TIME = 20;
@@ -73,7 +73,7 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
 
                             if (count % effectCooldown == 0) {
                                 // log("hit 1", player);
-                                addEffect(player, effectCooldown);
+                                addEffect(player, effectCooldown, isDouble);
                             } else {
                                 // log("pass 1");
                             }
@@ -112,8 +112,13 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
     }
 
 
-    private static void addEffect(PlayerEntity player, int duration) {
-        EffectUtils.addEffect(player, (new Random()).nextInt((32 - 1) + 1) + 1, duration * 20, 0);
+    private static void addEffect(PlayerEntity player, int duration, boolean isDouble) {
+        EffectUtils.addEffect(
+            player,
+            MathHelper.nextInt(player.getRandom(), 1, 32),
+            duration * 20,
+            (isDouble) ? MathHelper.nextInt(player.getRandom(), 0, 2) : 0
+        );
     }
 
     private static void lootItem(PlayerEntity player) {
