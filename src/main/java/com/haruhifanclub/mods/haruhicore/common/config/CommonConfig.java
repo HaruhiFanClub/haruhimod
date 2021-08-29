@@ -31,8 +31,8 @@ public class CommonConfig {
 
     public static IntValue SingleSosBadgeSlabEffectCooldown;
     public static IntValue DoubleSosBadgeSlabEffectCooldown;
-    public static IntValue SingleSosBadgeSlabGiveCooldown;
-    public static IntValue DoubleSosBadgeSlabGiveCooldown;
+    public static IntValue SingleSosBadgeSlabLootCooldown;
+    public static IntValue DoubleSosBadgeSlabLootCooldown;
     public static ConfigValue<String> SosBadgeSlabGiveItemInput;
     public static IntValue SosBadgeSlabGiveItemCount;
 
@@ -100,14 +100,14 @@ public class CommonConfig {
                 {
                     b.push("single");
                     SingleSosBadgeSlabEffectCooldown = b.defineInRange("effect_cooldown", 6, 1, Integer.MAX_VALUE);
-                    SingleSosBadgeSlabGiveCooldown = b.defineInRange("give_cooldown", 6, 1, Integer.MAX_VALUE);
+                    SingleSosBadgeSlabLootCooldown = b.defineInRange("loot_cooldown", 6, 1, Integer.MAX_VALUE);
                     b.pop();
                 }
 
                 {
                     b.push("double");
                     DoubleSosBadgeSlabEffectCooldown = b.defineInRange("effect_cooldown", 3, 1, Integer.MAX_VALUE);
-                    DoubleSosBadgeSlabGiveCooldown = b.defineInRange("give_cooldown", 3, 1, Integer.MAX_VALUE);
+                    DoubleSosBadgeSlabLootCooldown = b.defineInRange("loot_cooldown", 3, 1, Integer.MAX_VALUE);
                     b.pop();
                 }
 

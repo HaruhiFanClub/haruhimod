@@ -26,14 +26,10 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
     private static final int MAX_TIME = 20;
     private int timer = 0;
 
-    private HashMap<PlayerEntity, Integer> map = new HashMap<PlayerEntity, Integer>();
+    private HashMap<PlayerEntity, Integer> storagedPlayerMap = new HashMap<PlayerEntity, Integer>();
 
     public SosBadgeSlabTileEntity() {
         super(TileEntityManager.SOS_BADGE_SLAB_BLOCK_TILE_ENTITY.get());
-    }
-
-    private void log(String prefix, PlayerEntity player) {
-        LogUtil.debug(String.format("[%s] (%s) %s", prefix, worldPosition.toString(), player.getName().getString()));
     }
 
     @Override
@@ -41,75 +37,72 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
         if (!level.isClientSide) {
             if (timer >= MAX_TIME) {
                 SlabType slabtype = this.getBlockState().getValue(SosBadgeSlabBlock.TYPE);
+
                 AxisAlignedBB boundsAbove = new AxisAlignedBB(
                     worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(),
                     worldPosition.getX() + 1, worldPosition.getY() + (slabtype == SlabType.BOTTOM ? 1 : 2), worldPosition.getZ() + 1
                 );
 
-                List<PlayerEntity> playerList = level.getEntities(EntityType.PLAYER, boundsAbove, EntityPredicates.LIVING_ENTITY_STILL_ALIVE);
+                List<PlayerEntity> playerList = level.getEntities(EntityType.PLAYER, boundsAbove, EntityPredicates.NO_SPECTATORS);
 
                 if (!playerList.isEmpty()) {
-                    Iterator<Entry<PlayerEntity, Integer>> it = map.entrySet().iterator();
-                    while (it.hasNext()) {
-                        Entry<PlayerEntity, Integer> entry = it.next();
+                    Iterator<Entry<PlayerEntity, Integer>> sit = storagedPlayerMap.entrySet().iterator();
+                    while (sit.hasNext()) {
+                        Entry<PlayerEntity, Integer> entry = sit.next();
                         PlayerEntity player = entry.getKey();
-                        counter: if (playerList.contains(player)) {
-                            int value = entry.getValue();
 
-                            if (value == 0) {
+                        counter: if (playerList.contains(player)) {
+                            int count = entry.getValue();
+
+                            if (count == 0) {
                                 entry.setValue(entry.getValue() + 1);
                                 break counter;
                             }
 
-                            boolean flag = (slabtype == SlabType.DOUBLE ? true : false);
+                            boolean isDouble = (slabtype == SlabType.DOUBLE ? true : false);
 
                             int effectCooldown;
-                            int giveColldown;
-                            if (flag) {
+                            int lootColldown;
+                            if (isDouble) {
                                 effectCooldown = CommonConfig.DoubleSosBadgeSlabEffectCooldown.get();
-                                giveColldown = CommonConfig.DoubleSosBadgeSlabGiveCooldown.get();
+                                lootColldown = CommonConfig.DoubleSosBadgeSlabLootCooldown.get();
                             } else {
                                 effectCooldown = CommonConfig.SingleSosBadgeSlabEffectCooldown.get();
-                                giveColldown = CommonConfig.SingleSosBadgeSlabGiveCooldown.get();
+                                lootColldown = CommonConfig.SingleSosBadgeSlabLootCooldown.get();
                             }
 
-                            if (value % effectCooldown == 0) {
-                                log("hit 1", player);
-                                EffectUtils.addEffect(player, (new Random()).nextInt((32 - 1) + 1) + 1, effectCooldown * 20, 0);
+                            if (count % effectCooldown == 0) {
+                                // log("hit 1", player);
+                                addEffect(player, effectCooldown);
                             } else {
-                                // LogUtil.debug("pass 1");
+                                // log("pass 1");
                             }
 
-                            if (value % giveColldown == 0) {
-                                log("hit 2", player);
-                                try {
-                                    ItemParser itemParser = new ItemParser(new StringReader(CommonConfig.SosBadgeSlabGiveItemInput.get()), false).parse();
-                                    PlayerUtils.giveItem(((ServerPlayerEntity) player), itemParser.getItem(), itemParser.getNbt(), CommonConfig.SosBadgeSlabGiveItemCount.get());
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                            if (count % lootColldown == 0) {
+                                // log("hit 2", player);
+                                lootItem(player);
                             } else {
-                                // LogUtil.debug("pass 2");
+                                // log("pass 2");
                             }
 
-                            entry.setValue(entry.getValue() + 1);
+                            entry.setValue(count + 1);
                         } else {
-                            log("remove", player);
-                            it.remove();
+                            // log("remove", player);
+                            sit.remove();
                         }
                     }
 
-                    Iterator<PlayerEntity> iterator = playerList.iterator();
-                    while (iterator.hasNext()) {
-                        PlayerEntity player = iterator.next();
-                        if (!map.containsKey(player)) {
-                            log("add", player);
-                            map.put(player, 0);
+                    Iterator<PlayerEntity> cit = playerList.iterator();
+                    while (cit.hasNext()) {
+                        PlayerEntity player = cit.next();
+                        if (!storagedPlayerMap.containsKey(player)) {
+                            // log("add", player);
+                            storagedPlayerMap.put(player, 0);
                         }
                     }
-                } else if (map.size() > 0) {
-                    LogUtil.debug("[clear] (" + worldPosition.toString() + ")");
-                    map.clear();
+                } else if (storagedPlayerMap.size() > 0) {
+                    // log("[clear] (" + worldPosition.toString() + ")");
+                    storagedPlayerMap.clear();
                 }
 
                 timer = 0;
@@ -117,4 +110,28 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
             timer++;
         }
     }
+
+
+    private static void addEffect(PlayerEntity player, int duration) {
+        EffectUtils.addEffect(player, (new Random()).nextInt((32 - 1) + 1) + 1, duration * 20, 0);
+    }
+
+    private static void lootItem(PlayerEntity player) {
+        try {
+            ItemParser itemParser = new ItemParser(new StringReader(CommonConfig.SosBadgeSlabGiveItemInput.get()), false).parse();
+            PlayerUtils.giveItem(((ServerPlayerEntity) player), itemParser.getItem(), itemParser.getNbt(), CommonConfig.SosBadgeSlabGiveItemCount.get());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void log(String prefix, PlayerEntity player) {
+        LogUtil.debug(String.format("[%s] (%s) %s", prefix, worldPosition.toString(), player.getName().getString()));
+    }
+
+    private void log(String text) {
+        LogUtil.debug(text);
+    }
+
 }
