@@ -2,12 +2,14 @@ package org.auioc.mods.ahutils.utils.game;
 
 import javax.annotation.Nullable;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 
 public interface PlayerUtils {
+
     @SuppressWarnings("deprecatedJava")
     static void giveItem(ServerPlayerEntity player, Item item, @Nullable CompoundNBT nbt, int count) {
         int i = count;
@@ -30,6 +32,20 @@ public interface PlayerUtils {
                 }
             }
         }
+    }
+
+    static void giveItem(ServerPlayerEntity player, ItemStack itemStack) {
+        giveItem(player, itemStack.getItem(), itemStack.getTag(), itemStack.getCount());
+    }
+
+    static String toString(PlayerEntity player) {
+        return String.format(
+            "%s(%s) at %s in %s",
+            player.getName().getString(),
+            player.getStringUUID(),
+            player.position().toString(),
+            (player.level == null) ? "~NULL~" : player.level.toString()
+        );
     }
 
 }
