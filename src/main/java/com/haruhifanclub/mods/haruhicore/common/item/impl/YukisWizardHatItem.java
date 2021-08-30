@@ -1,7 +1,7 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import com.haruhifanclub.mods.haruhicore.client.model.WizardHatArmorModel;
-import com.haruhifanclub.mods.haruhicore.common.item.ItemManager;
+import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.HArmorMaterial;
@@ -25,7 +25,7 @@ public class YukisWizardHatItem extends HCArmorItem {
                 .setToughness(4)
                 .setEnchantmentValue(66)
                 .setRepairIngredient(() -> {
-                    return Ingredient.of(ItemManager.REINFORCEMENT_STONE_ITEM.get());
+                    return Ingredient.of(ItemRegistry.REINFORCEMENT_STONE_ITEM.get());
                 }),
             EquipmentSlotType.HEAD
         );

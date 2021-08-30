@@ -1,7 +1,7 @@
 package com.haruhifanclub.mods.haruhicore.common.item.base;
 
 import java.util.function.Supplier;
-import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupManager;
+import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.MusicDiscItem;
 import net.minecraft.item.Rarity;
@@ -14,7 +14,7 @@ public class HCMusicDiscItem extends MusicDiscItem {
             15,
             soundSupplier,
             new Item.Properties()
-                .tab(ItemGroupManager.itemGroup)
+                .tab(ItemGroupRegistry.itemGroup)
                 .rarity(Rarity.RARE)
                 .stacksTo(1)
         );

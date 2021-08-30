@@ -1,6 +1,6 @@
 package com.haruhifanclub.mods.haruhicore.common.itemgroup.impl;
 
-import com.haruhifanclub.mods.haruhicore.common.item.ItemManager;
+import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
@@ -11,6 +11,6 @@ public class MainItemGroup extends ItemGroup {
 
     @Override
     public ItemStack makeIcon() {
-        return new ItemStack(ItemManager.ICON_ITEM.get());
+        return new ItemStack(ItemRegistry.ICON_ITEM.get());
     }
 }

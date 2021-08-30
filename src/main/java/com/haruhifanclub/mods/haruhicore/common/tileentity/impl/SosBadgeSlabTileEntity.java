@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import com.haruhifanclub.mods.haruhicore.common.block.impl.SosBadgeSlabBlock;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
-import com.haruhifanclub.mods.haruhicore.common.tileentity.TileEntityManager;
+import com.haruhifanclub.mods.haruhicore.common.tileentity.TileEntityRegistry;
 import org.auioc.mods.ahutils.utils.LogUtil;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.ItemUtils;
@@ -35,7 +35,7 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
     private HashMap<PlayerEntity, Integer> storagedPlayerMap = new HashMap<PlayerEntity, Integer>();
 
     public SosBadgeSlabTileEntity() {
-        super(TileEntityManager.SOS_BADGE_SLAB_BLOCK_TILE_ENTITY.get());
+        super(TileEntityRegistry.SOS_BADGE_SLAB_BLOCK_TILE_ENTITY.get());
     }
 
     @Override

@@ -1,9 +1,9 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
-import com.haruhifanclub.mods.haruhicore.common.item.ItemManager;
+import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.IReinforcementStoneItem;
-import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupManager;
+import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.EnchUtils;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,7 +20,7 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
     public ReinforcementStoneItem() {
         super(
             new Item.Properties()
-                .tab(ItemGroupManager.itemGroup)
+                .tab(ItemGroupRegistry.itemGroup)
                 .stacksTo(16)
         );
     }
@@ -62,7 +62,7 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
                 N += (luckEffect.getAmplifier() + 1) * CommonConfig.CommonReinforcingLuckEffectMultiplier.get();
             }
 
-            if ((player.getItemBySlot(EquipmentSlotType.HEAD).getItem()).equals(ItemManager.DANCHOU_CONE_BLOCK.get())) {
+            if ((player.getItemBySlot(EquipmentSlotType.HEAD).getItem()).equals(ItemRegistry.DANCHOU_CONE_BLOCK.get())) {
                 N += 1 * CommonConfig.CommonReinforcingDanchouConeMultiplier.get();
             }
 

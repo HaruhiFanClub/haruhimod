@@ -1,7 +1,7 @@
 package com.haruhifanclub.mods.haruhicore.common.item.base;
 
 import javax.annotation.Nullable;
-import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupManager;
+import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -19,7 +19,7 @@ public class HCArmorItem extends ArmorItem {
         super(
             material,
             slotType,
-            new Item.Properties().tab(ItemGroupManager.itemGroup)
+            new Item.Properties().tab(ItemGroupRegistry.itemGroup)
         );
     }
 
