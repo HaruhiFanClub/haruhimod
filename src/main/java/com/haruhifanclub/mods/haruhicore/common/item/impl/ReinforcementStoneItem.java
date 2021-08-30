@@ -1,12 +1,18 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
+import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
+import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.IReinforcementStoneItem;
-import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupManager;
+import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
+import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.EnchUtils;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResultType;
 
 public class ReinforcementStoneItem extends Item implements IReinforcementStoneItem {
@@ -14,58 +20,74 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
     public ReinforcementStoneItem() {
         super(
             new Item.Properties()
-                .tab(ItemGroupManager.itemGroup)
+                .tab(ItemGroupRegistry.itemGroup)
                 .stacksTo(16)
         );
     }
 
     @Override
-    public ItemStack processEnchantment(ItemStack stack) {
+    public ItemStack processEnchantment(ItemStack stack, PlayerEntity player) {
         ListNBT enchantments = stack.getEnchantmentTags();
 
         int enchCount = enchantments.size();
 
         int highestIndex = 0;
         int highestLevel = 0;
+        boolean overlimit = false;
+
         for (int i = 0; i < enchCount; i++) {
             short lvl = enchantments.getCompound(i).getShort("lvl");
+            String id = enchantments.getCompound(i).getString("id");
+
+            if (!overlimit) {
+                if (lvl > (EnchUtils.getEnchantment(id)).getMaxLevel()) {
+                    overlimit = true;
+                }
+            }
+
             if (lvl > highestLevel) {
                 highestIndex = i;
                 highestLevel = lvl;
             }
         }
 
-        int X = highestLevel;
-        int N = enchCount;
-        if (N > 7) {
-            N = 7;
-        }
+        if (!overlimit) {
+            EnchUtils.enchantAll(enchantments);
+        } else {
+            int X = highestLevel;
+            int N = enchCount;
 
-        if (N >= X) {
-            if (Math.random() < (1.0 / X)) {
-                // all+1
-                EnchUtils.enchantAll(enchantments);
-            } else {
-                // random+1
-                EnchUtils.enchantRandom(enchantments);
+            EffectInstance luckEffect = player.getEffect(EffectUtils.getEffect(26));
+            if (luckEffect != null) {
+                N += (luckEffect.getAmplifier() + 1) * CommonConfig.CommonReinforcingLuckEffectMultiplier.get();
             }
-        } else if (N < X) {
-            if (Math.random() < (1.0 / X)) {
-                if (Math.random() < 0.5) {
+
+            if ((player.getItemBySlot(EquipmentSlotType.HEAD).getItem()).equals(ItemRegistry.DANCHOU_CONE_BLOCK.get())) {
+                N += 1 * CommonConfig.CommonReinforcingDanchouConeMultiplier.get();
+            }
+
+            if (N >= X) {
+                if (Math.random() < (1.0 / X)) {
                     // all+1
                     EnchUtils.enchantAll(enchantments);
                 } else {
                     // max+1
                     EnchUtils.enchantOne(enchantments, highestIndex);
                 }
-            } else if (Math.random() < (N / X)) {
-                // random+1
-                EnchUtils.enchantRandom(enchantments);
-            } else {
-                // break
-                return ItemStack.EMPTY;
+            } else if (N < X) {
+                if (Math.random() < (1.0 / X)) {
+                    // all+1
+                    EnchUtils.enchantAll(enchantments);
+                } else if (Math.random() < (N / X)) {
+                    // max+1
+                    EnchUtils.enchantOne(enchantments, highestIndex);
+                } else {
+                    // break
+                    return ItemStack.EMPTY;
+                }
             }
         }
+
 
         stack.getTag().remove("Enchantments");
         stack.getTag().put("Enchantments", enchantments);

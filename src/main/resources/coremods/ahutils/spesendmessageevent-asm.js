@@ -31,7 +31,7 @@ function initializeCoreMod() {
                 toInject.add(
                     new MethodInsnNode(
                         Opcodes.INVOKESTATIC,
-                        "org/auioc/mods/ahutils/server/event/ServerEventManager",
+                        "org/auioc/mods/ahutils/server/event/ServerEventRegistry",
                         "postServerPlayerEntitySendMessageEvent",
                         "(Lnet/minecraft/util/text/ITextComponent;Lnet/minecraft/util/text/ChatType;Ljava/util/UUID;)Z",
                         false
@@ -59,7 +59,7 @@ public void sendMessage(ITextComponent p_241151_1_, ChatType p_241151_2_, UUID p
 /* net.minecraft.entity.player.ServerPlayerEntity.sendMessage
 public void sendMessage(ITextComponent p_241151_1_, ChatType p_241151_2_, UUID p_241151_3_) {
     // ~ INSERT BEGIN ~ //
-    if (org.auioc.mods.ahutils.server.event.ServerEventManager.postServerPlayerEntitySendMessageEvent(p_241151_1_, p_241151_2_, p_241151_3_)){
+    if (org.auioc.mods.ahutils.server.event.ServerEventRegistry.postServerPlayerEntitySendMessageEvent(p_241151_1_, p_241151_2_, p_241151_3_)){
         return;
     }
     // ~ INSERT END ~ //

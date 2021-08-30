@@ -74,8 +74,10 @@ processResources {
 
 repositories {
     maven {
-        name "JEI"
         url "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        url "https://maven.blamejared.com"
     }
 }
 
@@ -84,6 +86,7 @@ dependencies {
 
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
+    runtimeOnly fg.deobf("net.darkhax.openloader:OpenLoader-${minecraft_version}:${openloader_version}")
 }
 
 jar {

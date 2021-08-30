@@ -6,12 +6,12 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
-import org.auioc.mods.ahutils.common.command.arguments.DamageSourceArgument;
+import org.auioc.mods.ahutils.server.command.arguments.DamageSourceArgument;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.command.arguments.GameProfileArgument;
 
-public class ServerCommandRegister {
+public class ServerCommandRegistry {
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
         dispatcher.register(
             literal("ahutils")

@@ -60,7 +60,7 @@ public interface IReinforcementStoneItem {
     }
 
 
-    public ItemStack processEnchantment(ItemStack stack);
+    public ItemStack processEnchantment(ItemStack stack, PlayerEntity player);
 
     default ActionResultType reinforce(Item item, ItemUseContext context, boolean isEpic) {
         if (!isEnabled(isEpic)) {
@@ -121,7 +121,7 @@ public interface IReinforcementStoneItem {
         player.giveExperiencePoints(-1 * experienceCost);
 
 
-        ItemStack reinforcedItem = processEnchantment(targetItemStack);
+        ItemStack reinforcedItem = processEnchantment(targetItemStack, player);
 
         if (reinforcedItem.equals(ItemStack.EMPTY)) { // Reinforcement failed
             SoundUtils.playSoundToPlayer(player, CommonConfig.ReinforcingFailedSound.get());
@@ -130,7 +130,9 @@ public interface IReinforcementStoneItem {
         }
 
         player.setItemInHand(Hand.OFF_HAND, reinforcedItem);
-        player.getMainHandItem().shrink(1);
+        if (!player.isCreative()) {
+            player.getMainHandItem().shrink(1);
+        }
 
 
         return ActionResultType.SUCCESS;

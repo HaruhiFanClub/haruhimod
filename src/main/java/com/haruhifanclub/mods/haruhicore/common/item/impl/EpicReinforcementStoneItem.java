@@ -1,8 +1,9 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import com.haruhifanclub.mods.haruhicore.common.item.base.IReinforcementStoneItem;
-import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupManager;
+import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import org.auioc.mods.ahutils.utils.game.EnchUtils;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
@@ -15,7 +16,7 @@ public class EpicReinforcementStoneItem extends Item implements IReinforcementSt
     public EpicReinforcementStoneItem() {
         super(
             new Item.Properties()
-                .tab(ItemGroupManager.itemGroup)
+                .tab(ItemGroupRegistry.itemGroup)
                 .rarity(Rarity.EPIC)
                 .stacksTo(16)
         );
@@ -27,7 +28,7 @@ public class EpicReinforcementStoneItem extends Item implements IReinforcementSt
     }
 
     @Override
-    public ItemStack processEnchantment(ItemStack stack) {
+    public ItemStack processEnchantment(ItemStack stack, PlayerEntity player) {
         ListNBT enchantments = stack.getEnchantmentTags();
 
         EnchUtils.enchantAll(enchantments);

@@ -15,18 +15,30 @@ public class CommonConfig {
     public static BooleanValue EnableCommonReinforcementStone;
     public static BooleanValue EnableEpicReinforcementStone;
     public static IntValue CommonReinforcingExperienceCost;
+    public static IntValue CommonReinforcingLuckEffectMultiplier;
+    public static IntValue CommonReinforcingDanchouConeMultiplier;
     public static IntValue EpicReinforcingExperienceCost;
     public static ConfigValue<String> ReinforcingSuccessSound;
     public static ConfigValue<String> ReinforcingFailedSound;
     public static ConfigValue<List<? extends String>> ReinforcementStoneItemBlacklist;
     public static ConfigValue<List<? extends String>> ReinforcementStoneUseOnBlock;
 
+    public static IntValue MikurusMaidOutfitEffectRange;
+    public static BooleanValue MikurusMaidOutfitForOtherPlayers;
+    public static BooleanValue MikurusMaidOutfitForFriendlyEntities;
+
+    public static IntValue YukisWizardCloakEffectDuration;
+
+
     public static IntValue SingleSosBadgeSlabEffectCooldown;
+    public static IntValue SingleSosBadgeSlabLootCooldown;
+    public static ConfigValue<String> SingleSosBadgeSlabLootTable;
+
     public static IntValue DoubleSosBadgeSlabEffectCooldown;
-    public static IntValue SingleSosBadgeSlabGiveCooldown;
-    public static IntValue DoubleSosBadgeSlabGiveCooldown;
-    public static ConfigValue<String> SosBadgeSlabGiveItemInput;
-    public static IntValue SosBadgeSlabGiveItemCount;
+    public static ConfigValue<List<? extends Integer>> DoubleSosBadgeSlabEffectLevelRange;
+    public static IntValue DoubleSosBadgeSlabLootCooldown;
+    public static ConfigValue<String> DoubleSosBadgeSlabLootTable;
+    public static BooleanValue SosBadgeSlabLogLootDetail;
 
     static {
         ForgeConfigSpec.Builder b = new ForgeConfigSpec.Builder();
@@ -45,18 +57,34 @@ public class CommonConfig {
 
                 {
                     b.push("common");
-                    EnableCommonReinforcementStone = b.define("enable", false);
+                    EnableCommonReinforcementStone = b.define("enable", true);
                     CommonReinforcingExperienceCost = b.defineInRange("experience_cost", 0, 0, Integer.MAX_VALUE);
+                    CommonReinforcingLuckEffectMultiplier = b.defineInRange("luck_effect_multiplier", 1, 0, Integer.MAX_VALUE);
+                    CommonReinforcingDanchouConeMultiplier = b.defineInRange("danchou_cone_multiplier", 2, 0, Integer.MAX_VALUE);
                     b.pop();
                 }
 
                 {
                     b.push("epic");
-                    EnableEpicReinforcementStone = b.define("enable", false);
+                    EnableEpicReinforcementStone = b.define("enable", true);
                     EpicReinforcingExperienceCost = b.defineInRange("experience_cost", 0, 0, Integer.MAX_VALUE);
                     b.pop();
                 }
 
+                b.pop();
+            }
+
+            {
+                b.push("mikurus_maid_outfit");
+                MikurusMaidOutfitEffectRange = b.defineInRange("effect_range", 10, 1, 64);
+                MikurusMaidOutfitForOtherPlayers = b.define("is_effective_for_other_players", true);
+                MikurusMaidOutfitForFriendlyEntities = b.define("is_effective_for_friendly_entities", true);
+                b.pop();
+            }
+
+            {
+                b.push("yukis_wizard_cloak");
+                YukisWizardCloakEffectDuration = b.defineInRange("effect_duration", 840, 20, Integer.MAX_VALUE);
                 b.pop();
             }
 
@@ -69,21 +97,28 @@ public class CommonConfig {
 
             {
                 b.push("sos_badge_slab");
-
-                SosBadgeSlabGiveItemInput = b.define("give_item_input", "minecraft:stone");
-                SosBadgeSlabGiveItemCount = b.defineInRange("give_item_count", 1, 1, Integer.MAX_VALUE);
+                SosBadgeSlabLogLootDetail = b.define("log_loot_detail", false);
 
                 {
                     b.push("single");
                     SingleSosBadgeSlabEffectCooldown = b.defineInRange("effect_cooldown", 6, 1, Integer.MAX_VALUE);
-                    SingleSosBadgeSlabGiveCooldown = b.defineInRange("give_cooldown", 6, 1, Integer.MAX_VALUE);
+                    SingleSosBadgeSlabLootCooldown = b.defineInRange("loot_cooldown", 6, 1, Integer.MAX_VALUE);
+                    SingleSosBadgeSlabLootTable = b.define("loot_table", "");
                     b.pop();
                 }
 
                 {
                     b.push("double");
                     DoubleSosBadgeSlabEffectCooldown = b.defineInRange("effect_cooldown", 3, 1, Integer.MAX_VALUE);
-                    DoubleSosBadgeSlabGiveCooldown = b.defineInRange("give_cooldown", 3, 1, Integer.MAX_VALUE);
+                    DoubleSosBadgeSlabLootCooldown = b.defineInRange("loot_cooldown", 3, 1, Integer.MAX_VALUE);
+                    DoubleSosBadgeSlabLootTable = b.define("loot_table", "");
+                    DoubleSosBadgeSlabEffectLevelRange = b
+                        .comment("Array: [min, max]", "Range: 0 ~ 255")
+                        .define(
+                            "effect_level_range",
+                            new ArrayList<Integer>(Arrays.asList(0, 2)),
+                            (x) -> checkIntArray(x, 2)
+                        );
                     b.pop();
                 }
 
@@ -95,4 +130,21 @@ public class CommonConfig {
 
         CONFIG = b.build();
     }
+
+    @SuppressWarnings("unchecked")
+    private static boolean checkIntArray(Object x, int size) {
+        if (!(x instanceof ArrayList)) {
+            return false;
+        }
+        if (((ArrayList<Object>) x).size() != size) {
+            return false;
+        }
+        for (Object o : (ArrayList<Object>) x) {
+            if (!(o instanceof Integer)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

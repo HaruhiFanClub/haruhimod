@@ -1,6 +1,6 @@
 package org.auioc.mods.ahutils.client.render;
 
-import org.auioc.mods.ahutils.common.block.BlockManager;
+import org.auioc.mods.ahutils.common.block.BlockRegistry;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.api.distmarker.Dist;
@@ -12,6 +12,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class RenderTypeRegistry {
     @SubscribeEvent
     public static void onRenderTypeSetup(FMLClientSetupEvent event) {
-        RenderTypeLookup.setRenderLayer(BlockManager.LIGHT_BLOCK.get(), RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.LIGHT_BLOCK.get(), RenderType.translucent());
     }
 }

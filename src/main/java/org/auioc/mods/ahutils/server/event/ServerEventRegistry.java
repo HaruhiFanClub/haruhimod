@@ -9,7 +9,7 @@ import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.MinecraftForge;
 
-public class ServerEventManager {
+public class ServerEventRegistry {
     public static void postServerLoginEvent(final CHandshakePacket packet, final NetworkManager manager) {
         MinecraftForge.EVENT_BUS.post(new ServerLoginEvent(packet, manager));
     }

@@ -10,5 +10,21 @@
     "item.haruhicore.reinforcement_stone.empty_enchantments": "§c目标物品上不存在附魔",
 
     "block.haruhicore.sos_badge_slab": "SOS团徽台阶",
-    "block.haruhicore.danchou_cone": "团长立锥"
+    "block.haruhicore.danchou_cone": "团长立锥",
+
+    "item.haruhicore.mikurus_maid_outfit": "朝比奈实玖瑠的女仆装",
+    "item.haruhicore.maid_outfit": "女仆装",
+    "item.haruhicore.yukis_wizard_cloak": "长门有希的魔法斗篷",
+    "item.haruhicore.wizard_cloak": "魔法斗篷",
+    "item.haruhicore.yukis_wizard_hat": "长门有希的魔法帽",
+    "item.haruhicore.wizard_hat": "魔法帽",
+
+    "item.haruhicore.music_disc_in_the_summertime": "音乐唱片",
+    "item.haruhicore.music_disc_someday_in_the_rain": "音乐唱片",
+    "item.haruhicore.music_disc_vox_in_box": "音乐唱片",
+    "item.haruhicore.music_disc_halo": "音乐唱片",
+    "item.haruhicore.music_disc_in_the_summertime.desc": "HaruhiFanClub - In the summertime",
+    "item.haruhicore.music_disc_someday_in_the_rain.desc": "HaruhiFanClub - Someday in the rain",
+    "item.haruhicore.music_disc_vox_in_box.desc": "HaruhiFanClub - Vox in box",
+    "item.haruhicore.music_disc_halo.desc": "HaruhiFanClub - Halo"
 }

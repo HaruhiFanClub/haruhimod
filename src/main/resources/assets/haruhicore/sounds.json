@@ -1,0 +1,34 @@
+{
+    "music_disc.vox_in_box": {
+        "sounds": [
+            {
+                "stream": true,
+                "name": "haruhicore:records/vox_in_box"
+            }
+        ]
+    },
+    "music_disc.someday_in_the_rain": {
+        "sounds": [
+            {
+                "stream": true,
+                "name": "haruhicore:records/someday_in_the_rain"
+            }
+        ]
+    },
+    "music_disc.in_the_summertime": {
+        "sounds": [
+            {
+                "stream": true,
+                "name": "haruhicore:records/in_the_summertime"
+            }
+        ]
+    },
+    "music_disc.halo": {
+        "sounds": [
+            {
+                "stream": true,
+                "name": "haruhicore:records/halo"
+            }
+        ]
+    }
+}
