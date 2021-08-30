@@ -1,11 +1,13 @@
 package com.haruhifanclub.mods.haruhicore.common.item.base;
 
 import java.util.List;
+import com.haruhifanclub.mods.haruhicore.common.advancement.criterion.ItemReinforcedTrigger;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import org.auioc.mods.ahutils.utils.game.I18nUtils;
 import org.auioc.mods.ahutils.utils.game.MessageUtils;
 import org.auioc.mods.ahutils.utils.game.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
@@ -72,7 +74,7 @@ public interface IReinforcementStoneItem {
             return ActionResultType.PASS;
         }
 
-        PlayerEntity player = context.getPlayer();
+        ServerPlayerEntity player = (ServerPlayerEntity) context.getPlayer();
 
         if (!player.isSteppingCarefully()) {
             return ActionResultType.PASS;
@@ -125,8 +127,10 @@ public interface IReinforcementStoneItem {
 
         if (reinforcedItem.equals(ItemStack.EMPTY)) { // Reinforcement failed
             SoundUtils.playSoundToPlayer(player, CommonConfig.ReinforcingFailedSound.get());
+            ItemReinforcedTrigger.INSTANCE.trigger(player, false, false);
         } else {
             SoundUtils.playSoundToPlayer(player, CommonConfig.ReinforcingSuccessSound.get());
+            ItemReinforcedTrigger.INSTANCE.trigger(player, isEpic, true);
         }
 
         player.setItemInHand(Hand.OFF_HAND, reinforcedItem);
