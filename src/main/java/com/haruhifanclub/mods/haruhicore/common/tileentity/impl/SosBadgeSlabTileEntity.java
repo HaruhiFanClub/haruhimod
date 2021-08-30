@@ -7,20 +7,26 @@ import java.util.Map.Entry;
 import com.haruhifanclub.mods.haruhicore.common.block.impl.SosBadgeSlabBlock;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.tileentity.TileEntityManager;
-import com.mojang.brigadier.StringReader;
 import org.auioc.mods.ahutils.utils.LogUtil;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
+import org.auioc.mods.ahutils.utils.game.ItemUtils;
 import org.auioc.mods.ahutils.utils.game.PlayerUtils;
-import net.minecraft.command.arguments.ItemParser;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameterSets;
+import net.minecraft.loot.LootParameters;
+import net.minecraft.loot.LootTable;
 import net.minecraft.state.properties.SlabType;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EntityPredicates;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.server.ServerWorld;
 
 public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileEntity {
     private static final int MAX_TIME = 20;
@@ -80,7 +86,7 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
 
                             if (count % lootColldown == 0) {
                                 // log("hit 2", player);
-                                lootItem(player);
+                                lootItem(player, isDouble);
                             } else {
                                 // log("pass 2");
                             }
@@ -127,13 +133,32 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
         );
     }
 
-    private static void lootItem(PlayerEntity player) {
-        try {
-            ItemParser itemParser = new ItemParser(new StringReader(CommonConfig.SosBadgeSlabGiveItemInput.get()), false).parse();
-            PlayerUtils.giveItem(((ServerPlayerEntity) player), itemParser.getItem(), itemParser.getNbt(), CommonConfig.SosBadgeSlabGiveItemCount.get());
-        } catch (Exception e) {
-            e.printStackTrace();
+    private static void lootItem(PlayerEntity player, boolean isDouble) {
+        String lootTableId = (isDouble) ? CommonConfig.DoubleSosBadgeSlabLootTable.get() : CommonConfig.SingleSosBadgeSlabLootTable.get();
+        boolean logDetail = CommonConfig.DoubleSosBadgeSlabLogLootDetail.get();
+
+        LootContext lootCtx = new LootContext.Builder((ServerWorld) player.level)
+            .withParameter(LootParameters.THIS_ENTITY, player)
+            .withParameter(LootParameters.ORIGIN, player.position())
+            .create(LootParameterSets.GIFT);
+
+        LootTable lootTable = player.getServer().getLootTables().get(new ResourceLocation(lootTableId));
+        List<ItemStack> list = lootTable.getRandomItems(lootCtx);
+
+        String logs = "Dropped " + list.size() + " items"
+            + ((logDetail) ? (" from table " + lootTableId) : "")
+            + " to player " + ((logDetail) ? PlayerUtils.toString(player) : player.getName().getString()) + ".";
+
+        if (!list.isEmpty()) {
+            for (ItemStack itemStack : list) {
+                PlayerUtils.giveItem(((ServerPlayerEntity) player), itemStack);
+                if (logDetail) {
+                    logs += "\n\t" + ItemUtils.toString(itemStack);
+                }
+            }
         }
+
+        LogUtil.info(logs);
     }
 
 
@@ -141,8 +166,8 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
         LogUtil.debug(String.format("[%s] (%s) %s", prefix, worldPosition.toString(), player.getName().getString()));
     }
 
-    private void log(String text) {
-        LogUtil.debug(text);
+    private static void log(String text) {
+        LogUtil.info(text);
     }
 
 }

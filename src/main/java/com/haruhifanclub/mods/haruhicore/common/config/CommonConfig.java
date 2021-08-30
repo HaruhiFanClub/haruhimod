@@ -29,13 +29,16 @@ public class CommonConfig {
 
     public static IntValue YukisWizardCloakEffectDuration;
 
+
     public static IntValue SingleSosBadgeSlabEffectCooldown;
-    public static IntValue DoubleSosBadgeSlabEffectCooldown;
     public static IntValue SingleSosBadgeSlabLootCooldown;
-    public static IntValue DoubleSosBadgeSlabLootCooldown;
+    public static ConfigValue<String> SingleSosBadgeSlabLootTable;
+
+    public static IntValue DoubleSosBadgeSlabEffectCooldown;
     public static ConfigValue<List<? extends Integer>> DoubleSosBadgeSlabEffectLevelRange;
-    public static ConfigValue<String> SosBadgeSlabGiveItemInput;
-    public static IntValue SosBadgeSlabGiveItemCount;
+    public static IntValue DoubleSosBadgeSlabLootCooldown;
+    public static ConfigValue<String> DoubleSosBadgeSlabLootTable;
+    public static BooleanValue DoubleSosBadgeSlabLogLootDetail;
 
     static {
         ForgeConfigSpec.Builder b = new ForgeConfigSpec.Builder();
@@ -95,20 +98,20 @@ public class CommonConfig {
             {
                 b.push("sos_badge_slab");
 
-                SosBadgeSlabGiveItemInput = b.define("give_item_input", "minecraft:stone");
-                SosBadgeSlabGiveItemCount = b.defineInRange("give_item_count", 1, 1, Integer.MAX_VALUE);
-
                 {
                     b.push("single");
                     SingleSosBadgeSlabEffectCooldown = b.defineInRange("effect_cooldown", 6, 1, Integer.MAX_VALUE);
                     SingleSosBadgeSlabLootCooldown = b.defineInRange("loot_cooldown", 6, 1, Integer.MAX_VALUE);
+                    SingleSosBadgeSlabLootTable = b.define("loot_table", "");
                     b.pop();
                 }
 
                 {
                     b.push("double");
                     DoubleSosBadgeSlabEffectCooldown = b.defineInRange("effect_cooldown", 3, 1, Integer.MAX_VALUE);
+                    DoubleSosBadgeSlabLogLootDetail = b.define("log_loot_detail", false);
                     DoubleSosBadgeSlabLootCooldown = b.defineInRange("loot_cooldown", 3, 1, Integer.MAX_VALUE);
+                    DoubleSosBadgeSlabLootTable = b.define("loot_table", "");
                     DoubleSosBadgeSlabEffectLevelRange = b
                         .comment("Array: [min, max]", "Range: 0 ~ 255")
                         .define(
@@ -133,7 +136,7 @@ public class CommonConfig {
         if (!(x instanceof ArrayList)) {
             return false;
         }
-        if (((ArrayList<Object>) x).size() != 2) {
+        if (((ArrayList<Object>) x).size() != size) {
             return false;
         }
         for (Object o : (ArrayList<Object>) x) {
