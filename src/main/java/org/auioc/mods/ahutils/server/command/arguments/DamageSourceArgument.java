@@ -1,4 +1,4 @@
-package org.auioc.mods.ahutils.common.command.arguments;
+package org.auioc.mods.ahutils.server.command.arguments;
 
 import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
