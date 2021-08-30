@@ -135,7 +135,7 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
 
     private static void lootItem(PlayerEntity player, boolean isDouble) {
         String lootTableId = (isDouble) ? CommonConfig.DoubleSosBadgeSlabLootTable.get() : CommonConfig.SingleSosBadgeSlabLootTable.get();
-        boolean logDetail = CommonConfig.DoubleSosBadgeSlabLogLootDetail.get();
+        boolean logDetail = CommonConfig.SosBadgeSlabLogLootDetail.get();
 
         LootContext lootCtx = new LootContext.Builder((ServerWorld) player.level)
             .withParameter(LootParameters.THIS_ENTITY, player)

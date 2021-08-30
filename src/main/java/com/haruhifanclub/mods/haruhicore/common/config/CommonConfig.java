@@ -38,7 +38,7 @@ public class CommonConfig {
     public static ConfigValue<List<? extends Integer>> DoubleSosBadgeSlabEffectLevelRange;
     public static IntValue DoubleSosBadgeSlabLootCooldown;
     public static ConfigValue<String> DoubleSosBadgeSlabLootTable;
-    public static BooleanValue DoubleSosBadgeSlabLogLootDetail;
+    public static BooleanValue SosBadgeSlabLogLootDetail;
 
     static {
         ForgeConfigSpec.Builder b = new ForgeConfigSpec.Builder();
@@ -97,6 +97,7 @@ public class CommonConfig {
 
             {
                 b.push("sos_badge_slab");
+                SosBadgeSlabLogLootDetail = b.define("log_loot_detail", false);
 
                 {
                     b.push("single");
@@ -109,7 +110,6 @@ public class CommonConfig {
                 {
                     b.push("double");
                     DoubleSosBadgeSlabEffectCooldown = b.defineInRange("effect_cooldown", 3, 1, Integer.MAX_VALUE);
-                    DoubleSosBadgeSlabLogLootDetail = b.define("log_loot_detail", false);
                     DoubleSosBadgeSlabLootCooldown = b.defineInRange("loot_cooldown", 3, 1, Integer.MAX_VALUE);
                     DoubleSosBadgeSlabLootTable = b.define("loot_table", "");
                     DoubleSosBadgeSlabEffectLevelRange = b
