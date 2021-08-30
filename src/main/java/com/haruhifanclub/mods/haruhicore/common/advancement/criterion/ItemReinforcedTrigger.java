@@ -22,26 +22,29 @@ public class ItemReinforcedTrigger extends AbstractCriterionTrigger<ItemReinforc
     @Override
     protected Instance createInstance(JsonObject json, EntityPredicate.AndPredicate player, ConditionArrayParser parser) {
         BooleanPredicate isSucceed = BooleanPredicate.fromJson(json, "isSucceed");
-        return new Instance(player, isSucceed);
+        BooleanPredicate isEpic = BooleanPredicate.fromJson(json, "isEpic");
+        return new Instance(player, isEpic, isSucceed);
     }
 
-    public void trigger(ServerPlayerEntity player, boolean isSucceed) {
+    public void trigger(ServerPlayerEntity player, boolean isEpic, boolean isSucceed) {
         this.trigger(player, (instance) -> {
-            return instance.test(player, isSucceed);
+            return instance.test(player, isEpic, isSucceed);
         });
     }
 
 
     public static class Instance extends CriterionInstance {
+        private final BooleanPredicate isEpic;
         private final BooleanPredicate isSucceed;
 
-        public Instance(EntityPredicate.AndPredicate player, BooleanPredicate isSucceed) {
+        public Instance(EntityPredicate.AndPredicate player, BooleanPredicate isEpic, BooleanPredicate isSucceed) {
             super(ID, player);
+            this.isEpic = isEpic;
             this.isSucceed = isSucceed;
         }
 
-        public boolean test(ServerPlayerEntity player, boolean isSucceed) {
-            return this.isSucceed.test(isSucceed);
+        public boolean test(ServerPlayerEntity player, boolean isEpic, boolean isSucceed) {
+            return this.isEpic.test(isEpic) && this.isSucceed.test(isSucceed);
         }
 
         // @Override
