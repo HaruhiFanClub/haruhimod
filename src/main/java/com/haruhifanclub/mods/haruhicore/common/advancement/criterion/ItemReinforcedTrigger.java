@@ -4,11 +4,8 @@ import com.google.gson.JsonObject;
 import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
 import net.minecraft.advancements.criterion.CriterionInstance;
 import net.minecraft.advancements.criterion.EntityPredicate;
-import net.minecraft.advancements.criterion.EntityPredicate.AndPredicate;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.loot.ConditionArrayParser;
-import net.minecraft.loot.ConditionArraySerializer;
-import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 
 public class ItemReinforcedTrigger extends AbstractCriterionTrigger<ItemReinforcedTrigger.Instance> {
@@ -23,8 +20,8 @@ public class ItemReinforcedTrigger extends AbstractCriterionTrigger<ItemReinforc
     }
 
     @Override
-    protected Instance createInstance(JsonObject json, AndPredicate player, ConditionArrayParser parser) {
-        boolean isSucceed = JSONUtils.getAsBoolean(json, "isSucceed");
+    protected Instance createInstance(JsonObject json, EntityPredicate.AndPredicate player, ConditionArrayParser parser) {
+        BooleanPredicate isSucceed = BooleanPredicate.fromJson(json, "isSucceed");
         return new Instance(player, isSucceed);
     }
 
@@ -36,23 +33,23 @@ public class ItemReinforcedTrigger extends AbstractCriterionTrigger<ItemReinforc
 
 
     public static class Instance extends CriterionInstance {
-        private final boolean isSucceed;
+        private final BooleanPredicate isSucceed;
 
-        public Instance(EntityPredicate.AndPredicate player, boolean isSucceed) {
+        public Instance(EntityPredicate.AndPredicate player, BooleanPredicate isSucceed) {
             super(ID, player);
             this.isSucceed = isSucceed;
         }
 
         public boolean test(ServerPlayerEntity player, boolean isSucceed) {
-            return isSucceed == this.isSucceed;
+            return this.isSucceed.test(isSucceed);
         }
 
-        @Override
-        public JsonObject serializeToJson(ConditionArraySerializer serializer) {
-            JsonObject jsonObject = super.serializeToJson(serializer);
-            jsonObject.addProperty("isSucceed", this.isSucceed);
-            return jsonObject;
-        }
+        // @Override
+        // public JsonObject serializeToJson(ConditionArraySerializer serializer) {
+        //     JsonObject jsonObject = super.serializeToJson(serializer);
+        //     jsonObject.addProperty("isSucceed", this.isSucceed.serializeToJson());
+        //     return jsonObject;
+        // }
 
     }
 
