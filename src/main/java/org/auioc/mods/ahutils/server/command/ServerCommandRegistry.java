@@ -11,7 +11,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.command.arguments.GameProfileArgument;
 
-public class ServerCommandRegister {
+public class ServerCommandRegistry {
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
         dispatcher.register(
             literal("ahutils")

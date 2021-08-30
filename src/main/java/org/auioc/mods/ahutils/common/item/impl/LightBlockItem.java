@@ -1,7 +1,7 @@
 package org.auioc.mods.ahutils.common.item.impl;
 
-import org.auioc.mods.ahutils.common.block.BlockManager;
-import org.auioc.mods.ahutils.common.itemgroup.ItemGroupManager;
+import org.auioc.mods.ahutils.common.block.BlockRegistry;
+import org.auioc.mods.ahutils.common.itemgroup.ItemGroupRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItem;
@@ -21,9 +21,9 @@ import net.minecraft.world.World;
 public class LightBlockItem extends BlockItem {
     public LightBlockItem() {
         super(
-            BlockManager.LIGHT_BLOCK.get(),
+            BlockRegistry.LIGHT_BLOCK.get(),
             new Item.Properties()
-                .tab(ItemGroupManager.ahuItemGroup)
+                .tab(ItemGroupRegistry.ahuItemGroup)
                 .rarity(Rarity.UNCOMMON)
                 .stacksTo(1)
         );

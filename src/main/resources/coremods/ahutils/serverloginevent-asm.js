@@ -45,7 +45,7 @@ function initializeCoreMod() {
                 toInject.add(
                     new MethodInsnNode(
                         Opcodes.INVOKESTATIC,
-                        "org/auioc/mods/ahutils/server/event/ServerEventManager",
+                        "org/auioc/mods/ahutils/server/event/ServerEventRegistry",
                         "postServerLoginEvent",
                         "(Lnet/minecraft/network/handshake/client/CHandshakePacket;Lnet/minecraft/network/NetworkManager;)V",
                         //boolean isInterface
@@ -75,7 +75,7 @@ public static boolean handleServerLogin(final CHandshakePacket packet, final Net
 /* net.minecraftforge.fml.server.ServerLifecycleHooks.handleServerLogin
 public static boolean handleServerLogin(final CHandshakePacket packet, final NetworkManager manager) {
     // ~ INSERT BEGIN ~ //
-    org.auioc.mods.ahutils.server.event.ServerEventRegister.registerServerLoginEvent(packet, manager);
+    org.auioc.mods.ahutils.server.event.ServerEventRegistry.registerServerLoginEvent(packet, manager);
     // ~ INSERT END ~ //
 
     if (!allowLogins.get())

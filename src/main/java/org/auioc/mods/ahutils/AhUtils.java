@@ -34,8 +34,8 @@ public class AhUtils {
     }
 
     private void modSetup(final IEventBus modEventBus) {
-        org.auioc.mods.ahutils.common.item.ItemManager.ITEMS.register(modEventBus);
-        org.auioc.mods.ahutils.common.block.BlockManager.BLOCKS.register(modEventBus);
+        org.auioc.mods.ahutils.common.item.ItemRegistry.ITEMS.register(modEventBus);
+        org.auioc.mods.ahutils.common.block.BlockRegistry.BLOCKS.register(modEventBus);
         modEventBus.register(org.auioc.mods.ahutils.common.network.PacketHandler.class);
         ArgumentTypes.register("ahutils:damage_source", DamageSourceArgument.class, new ArgumentSerializer<>(DamageSourceArgument::damageSource));
     }
