@@ -27,6 +27,7 @@ public class HaruhiCore {
         com.haruhifanclub.mods.haruhicore.common.block.BlockRegistry.BLOCKS.register(modEventBus);
         com.haruhifanclub.mods.haruhicore.common.sound.SoundEventRegistry.SOUND_EVENTS.register(modEventBus);
         com.haruhifanclub.mods.haruhicore.common.tileentity.TileEntityRegistry.TILE_ENTITIES.register(modEventBus);
+        com.haruhifanclub.mods.haruhicore.common.advancement.CriterionRegistry.register();
     }
 
     private void forgeSetup(final IEventBus forgeEventBus) {}
