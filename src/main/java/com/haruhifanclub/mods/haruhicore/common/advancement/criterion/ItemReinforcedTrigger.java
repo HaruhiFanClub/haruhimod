@@ -4,11 +4,10 @@ import com.google.gson.JsonObject;
 import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
 import net.minecraft.advancements.criterion.CriterionInstance;
 import net.minecraft.advancements.criterion.EntityPredicate;
-import net.minecraft.advancements.criterion.EntityPredicate.AndPredicate;
+import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.loot.ConditionArrayParser;
-import net.minecraft.loot.ConditionArraySerializer;
-import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 
 public class ItemReinforcedTrigger extends AbstractCriterionTrigger<ItemReinforcedTrigger.Instance> {
@@ -23,36 +22,48 @@ public class ItemReinforcedTrigger extends AbstractCriterionTrigger<ItemReinforc
     }
 
     @Override
-    protected Instance createInstance(JsonObject json, AndPredicate player, ConditionArrayParser parser) {
-        boolean isSucceed = JSONUtils.getAsBoolean(json, "isSucceed");
-        return new Instance(player, isSucceed);
+    protected Instance createInstance(JsonObject json, EntityPredicate.AndPredicate player, ConditionArrayParser parser) {
+        BooleanPredicate isSuccessful = BooleanPredicate.fromJson(json, "successful");
+        BooleanPredicate isEpic = BooleanPredicate.fromJson(json, "epic");
+        ItemPredicate oldItem = ItemPredicate.fromJson(json.get("item"));
+        ItemPredicate newItem = ItemPredicate.fromJson(json.get("reinforced_item"));
+        return new Instance(player, isEpic, isSuccessful, oldItem, newItem);
     }
 
-    public void trigger(ServerPlayerEntity player, boolean isSucceed) {
+    public void trigger(ServerPlayerEntity player, boolean isEpic, boolean isSuccessful, ItemStack oldItem, ItemStack newItem) {
         this.trigger(player, (instance) -> {
-            return instance.test(player, isSucceed);
+            return instance.test(player, isEpic, isSuccessful, oldItem, newItem);
         });
     }
 
 
     public static class Instance extends CriterionInstance {
-        private final boolean isSucceed;
+        private final BooleanPredicate isEpic;
+        private final BooleanPredicate isSuccessful;
+        private final ItemPredicate oldItem;
+        private final ItemPredicate newItem;
 
-        public Instance(EntityPredicate.AndPredicate player, boolean isSucceed) {
+        public Instance(EntityPredicate.AndPredicate player, BooleanPredicate isEpic, BooleanPredicate isSuccessful, ItemPredicate oldItem, ItemPredicate newItem) {
             super(ID, player);
-            this.isSucceed = isSucceed;
+            this.isEpic = isEpic;
+            this.isSuccessful = isSuccessful;
+            this.oldItem = oldItem;
+            this.newItem = newItem;
         }
 
-        public boolean test(ServerPlayerEntity player, boolean isSucceed) {
-            return isSucceed == this.isSucceed;
+        public boolean test(ServerPlayerEntity player, boolean isEpic, boolean isSuccessful, ItemStack oldItem, ItemStack newItem) {
+            return this.isEpic.test(isEpic)
+                && this.isSuccessful.test(isSuccessful)
+                && this.oldItem.matches(oldItem)
+                && this.newItem.matches(newItem);
         }
 
-        @Override
-        public JsonObject serializeToJson(ConditionArraySerializer serializer) {
-            JsonObject jsonObject = super.serializeToJson(serializer);
-            jsonObject.addProperty("isSucceed", this.isSucceed);
-            return jsonObject;
-        }
+        // @Override
+        // public JsonObject serializeToJson(ConditionArraySerializer serializer) {
+        //     JsonObject jsonObject = super.serializeToJson(serializer);
+        //     jsonObject.addProperty("isSuccessful", this.isSuccessful.serializeToJson());
+        //     return jsonObject;
+        // }
 
     }
 
