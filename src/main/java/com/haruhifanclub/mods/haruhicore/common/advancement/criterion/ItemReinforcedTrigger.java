@@ -21,36 +21,36 @@ public class ItemReinforcedTrigger extends AbstractCriterionTrigger<ItemReinforc
 
     @Override
     protected Instance createInstance(JsonObject json, EntityPredicate.AndPredicate player, ConditionArrayParser parser) {
-        BooleanPredicate isSucceed = BooleanPredicate.fromJson(json, "isSucceed");
-        BooleanPredicate isEpic = BooleanPredicate.fromJson(json, "isEpic");
-        return new Instance(player, isEpic, isSucceed);
+        BooleanPredicate isSuccessful = BooleanPredicate.fromJson(json, "successful");
+        BooleanPredicate isEpic = BooleanPredicate.fromJson(json, "epic");
+        return new Instance(player, isEpic, isSuccessful);
     }
 
-    public void trigger(ServerPlayerEntity player, boolean isEpic, boolean isSucceed) {
+    public void trigger(ServerPlayerEntity player, boolean isEpic, boolean isSuccessful) {
         this.trigger(player, (instance) -> {
-            return instance.test(player, isEpic, isSucceed);
+            return instance.test(player, isEpic, isSuccessful);
         });
     }
 
 
     public static class Instance extends CriterionInstance {
         private final BooleanPredicate isEpic;
-        private final BooleanPredicate isSucceed;
+        private final BooleanPredicate isSuccessful;
 
-        public Instance(EntityPredicate.AndPredicate player, BooleanPredicate isEpic, BooleanPredicate isSucceed) {
+        public Instance(EntityPredicate.AndPredicate player, BooleanPredicate isEpic, BooleanPredicate isSuccessful) {
             super(ID, player);
             this.isEpic = isEpic;
-            this.isSucceed = isSucceed;
+            this.isSuccessful = isSuccessful;
         }
 
-        public boolean test(ServerPlayerEntity player, boolean isEpic, boolean isSucceed) {
-            return this.isEpic.test(isEpic) && this.isSucceed.test(isSucceed);
+        public boolean test(ServerPlayerEntity player, boolean isEpic, boolean isSuccessful) {
+            return this.isEpic.test(isEpic) && this.isSuccessful.test(isSuccessful);
         }
 
         // @Override
         // public JsonObject serializeToJson(ConditionArraySerializer serializer) {
         //     JsonObject jsonObject = super.serializeToJson(serializer);
-        //     jsonObject.addProperty("isSucceed", this.isSucceed.serializeToJson());
+        //     jsonObject.addProperty("isSuccessful", this.isSuccessful.serializeToJson());
         //     return jsonObject;
         // }
 
