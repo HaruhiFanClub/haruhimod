@@ -127,10 +127,10 @@ public interface IReinforcementStoneItem {
 
         if (reinforcedItem.equals(ItemStack.EMPTY)) { // Reinforcement failed
             SoundUtils.playSoundToPlayer(player, CommonConfig.ReinforcingFailedSound.get());
-            ItemReinforcedTrigger.INSTANCE.trigger(player, false, false);
+            ItemReinforcedTrigger.INSTANCE.trigger(player, false, false, targetItemStack, reinforcedItem);
         } else {
             SoundUtils.playSoundToPlayer(player, CommonConfig.ReinforcingSuccessSound.get());
-            ItemReinforcedTrigger.INSTANCE.trigger(player, isEpic, true);
+            ItemReinforcedTrigger.INSTANCE.trigger(player, isEpic, true, targetItemStack, reinforcedItem);
         }
 
         player.setItemInHand(Hand.OFF_HAND, reinforcedItem);
