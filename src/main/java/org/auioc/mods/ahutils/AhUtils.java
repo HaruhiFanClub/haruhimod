@@ -39,6 +39,7 @@ public class AhUtils {
 
     private void forgeSetup(final IEventBus forgeEventBus) {
         forgeEventBus.register(org.auioc.mods.ahutils.server.event.ServerEventHandler.class);
+        forgeEventBus.register(org.auioc.mods.ahutils.common.event.CommonEventHandler.class);
     }
 
     public class ClientSideOnlySetup {
