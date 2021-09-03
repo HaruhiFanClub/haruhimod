@@ -1,5 +1,5 @@
-// cSpell: disable
 function initializeCoreMod() {
+    // ASMAPI = Java.type("net.minecraftforge.coremod.api.ASMAPI");
     Opcodes = Java.type("org.objectweb.asm.Opcodes");
 
     InsnList = Java.type("org.objectweb.asm.tree.InsnList");
@@ -18,6 +18,7 @@ function initializeCoreMod() {
                     "(Lnet/minecraft/network/handshake/client/CHandshakePacket;Lnet/minecraft/network/NetworkManager;)Z",
             },
             transformer: function (methodNode) {
+                // print(ASMAPI.methodNodeToString(methodNode));
                 instructions = methodNode.instructions;
 
                 var arrayLength = instructions.size();
@@ -27,7 +28,7 @@ function initializeCoreMod() {
                     var instruction = instructions.get(i);
                     if (instruction.getType() == AbstractInsnNode.LABEL) {
                         firstLabel = instruction;
-                        print("Found injection point at label: " + instruction);
+                        // print("Found injection point at label: " + instruction);
                         break;
                     }
                 }
@@ -40,49 +41,71 @@ function initializeCoreMod() {
 
                 var toInject = new InsnList();
 
-                toInject.add(new VarInsnNode(Opcodes.ALOAD, 0)); // CHandshakePacket packet
-                toInject.add(new VarInsnNode(Opcodes.ALOAD, 1)); // NetworkManager manager
-                toInject.add(
-                    new MethodInsnNode(
-                        Opcodes.INVOKESTATIC,
-                        "org/auioc/mods/ahutils/server/event/ServerEventRegistry",
-                        "postServerLoginEvent",
-                        "(Lnet/minecraft/network/handshake/client/CHandshakePacket;Lnet/minecraft/network/NetworkManager;)V",
-                        //boolean isInterface
-                        false
-                    )
-                );
+                {
+                    /* LocalVariableTable
+                        Slot  Name            Signature
+                        0     packet          Lnet/minecraft/network/handshake/client/CHandshakePacket;
+                        1     manager         Lnet/minecraft/network/NetworkManager;
+                    */
+                    toInject.add(new VarInsnNode(Opcodes.ALOAD, 0));
+                    toInject.add(new VarInsnNode(Opcodes.ALOAD, 1));
+                    toInject.add(
+                        new MethodInsnNode(
+                            Opcodes.INVOKESTATIC,
+                            "org/auioc/mods/ahutils/server/event/ServerEventRegistry",
+                            "postServerLoginEvent",
+                            "(Lnet/minecraft/network/handshake/client/CHandshakePacket;Lnet/minecraft/network/NetworkManager;)V",
+                            false
+                        )
+                    );
+                }
 
                 instructions.insert(firstLabel, toInject);
 
+                // print(ASMAPI.methodNodeToString(methodNode));
                 return methodNode;
             },
         },
     };
 }
 
-/* net.minecraftforge.fml.server.ServerLifecycleHooks.handleServerLogin
+//! Original method
+/*
 public static boolean handleServerLogin(final CHandshakePacket packet, final NetworkManager manager) {
-    if (!allowLogins.get())
-    {
+    if (!allowLogins.get()) {
         // ......
     }
-
     // ......
 }
+
+*   ========== ByteCode ==========   *
+
+    L0
+        LINENUMBER 144 L0
+        GETSTATIC net/minecraftforge/fml/server/ServerLifecycleHooks.allowLogins : Ljava/util/concurrent/atomic/AtomicBoolean;
+        INVOKEVIRTUAL java/util/concurrent/atomic/AtomicBoolean.get ()Z
+        IFNE L1
 */
 
-/* net.minecraftforge.fml.server.ServerLifecycleHooks.handleServerLogin
+//! Transformed method
+/*
 public static boolean handleServerLogin(final CHandshakePacket packet, final NetworkManager manager) {
-    // ~ INSERT BEGIN ~ //
-    org.auioc.mods.ahutils.server.event.ServerEventRegistry.registerServerLoginEvent(packet, manager);
-    // ~ INSERT END ~ //
+~+  org.auioc.mods.ahutils.server.event.ServerEventRegistry.registerServerLoginEvent(packet, manager);
 
-    if (!allowLogins.get())
-    {
+    if (!allowLogins.get()) {
         // ......
     }
-
     // ......
 }
+
+*   ========== ByteCode ==========   *
+
+    L0
+~+      ALOAD 0
+~+      ALOAD 1
+~+      INVOKESTATIC org/auioc/mods/ahutils/server/event/ServerEventRegistry.postServerLoginEvent (Lnet/minecraft/network/handshake/client/CHandshakePacket;Lnet/minecraft/network/NetworkManager;)V
+        LINENUMBER 144 L0
+        GETSTATIC net/minecraftforge/fml/server/ServerLifecycleHooks.allowLogins : Ljava/util/concurrent/atomic/AtomicBoolean;
+        INVOKEVIRTUAL java/util/concurrent/atomic/AtomicBoolean.get ()Z
+        IFNE L1
 */
