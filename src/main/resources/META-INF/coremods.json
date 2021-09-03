@@ -1,4 +1,5 @@
 {
-    "ahutils-serverloginevent-asm": "coremods/ahutils/serverloginevent-asm.js",
-    "ahutils-spesendmessageevent-asm-asm": "coremods/ahutils/spesendmessageevent-asm.js"
+    "ahutils.CheckPushableEvent": "coremods/ahutils/CheckPushableEvent.js",
+    "ahutils.ServerLoginEvent": "coremods/ahutils/serverloginevent.js",
+    "ahutils.ServerPlayerSendMessageEvent": "coremods/ahutils/ServerPlayerSendMessageEvent.js"
 }
