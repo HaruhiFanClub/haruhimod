@@ -1,0 +1,18 @@
+{
+    "ahutils.title": "AhUtils",
+    "itemGroup.ahutils_group": "AhUtils",
+    "itemGroup.mc_hidden_items_group": "Vanilla Hidden Items",
+
+    "item.ahutils.physics_excalibur": "Physics Excalibur",
+    "ahutils.physics_excalibur.creative_only": "§cOnly creative mode players can use this item",
+    "ahutils.physics_excalibur.entity_info.1": "§3§lEntity Info",
+    "ahutils.physics_excalibur.entity_info.2": "\n§3┣ Name: §r",
+    "ahutils.physics_excalibur.entity_info.3": "\n§3┣ Type: §r",
+    "ahutils.physics_excalibur.entity_info.4": "\n§3┣ UUID: §r",
+    "ahutils.physics_excalibur.entity_info.5": "\n§3┣ Pos: §r",
+
+    "block.ahutils.light": "Light Block",
+    "ahutils.light.item.name.level": " (level:%d)",
+
+    "ahutils.argument.damage_source.invalid": "Invalid damage source%s"
+}
