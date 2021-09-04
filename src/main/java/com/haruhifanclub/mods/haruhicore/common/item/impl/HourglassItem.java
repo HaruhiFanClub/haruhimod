@@ -8,7 +8,11 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.ChatType;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.event.HoverEvent;
 import net.minecraft.world.World;
 
 public class HourglassItem extends Item {
@@ -53,15 +57,32 @@ public class HourglassItem extends Item {
         int min = (int) (ticks / ticksPerMinute) % 60;
         int sec = (int) (ticks / ticksPerSecond) % 60;
 
-        String fmt = "{d}d {h}:{m}:{s}";
-        fmt = fmt.replace("{d}", String.format("%d", day));
-        fmt = fmt.replace("{h}", String.format("%02d", hour));
-        fmt = fmt.replace("{m}", String.format("%02d", min));
-        fmt = fmt.replace("{s}", String.format("%02d", sec));
+        TranslationTextComponent fmt = new TranslationTextComponent(
+            "item.haruhicore.hourglass.message.time_fmt",
+            String.format("%d", day),
+            String.format("%02d", hour),
+            String.format("%02d", min),
+            String.format("%02d", sec)
+        );
 
-        level.getServer().getPlayerList().broadcastMessage(new StringTextComponent(fmt), ChatType.SYSTEM, Util.NIL_UUID);
+        Style style = Style.EMPTY.withHoverEvent(
+            new HoverEvent(
+                HoverEvent.Action.SHOW_TEXT,
+                new StringTextComponent(
+                    String.format("Day time: %s\nGame time: %s", rawDayTime, level.getGameTime())
+                )
+            )
+        );
 
-        return ActionResult.success(itemStack);
+        ITextComponent message = new TranslationTextComponent(
+            "item.haruhicore.hourglass.message",
+            player.getDisplayName(),
+            fmt.withStyle(style)
+        );
+
+        level.getServer().getPlayerList().broadcastMessage(message, ChatType.SYSTEM, Util.NIL_UUID);
+
+        return ActionResult.sidedSuccess(itemStack, false);
     }
 
 }
