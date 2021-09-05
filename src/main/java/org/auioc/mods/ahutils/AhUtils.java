@@ -1,6 +1,5 @@
 package org.auioc.mods.ahutils;
 
-import org.auioc.mods.ahutils.common.config.CommonConfig;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -15,7 +14,8 @@ public class AhUtils {
     public static final String MOD_ID = "ahutils";
 
     public AhUtils() {
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.CONFIG);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, org.auioc.mods.ahutils.common.config.CommonConfig.CONFIG);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, org.auioc.mods.ahutils.client.config.ClientConfig.CONFIG);
 
         org.auioc.mods.ahutils.utils.delogger.Delogger.init();
 
@@ -55,6 +55,8 @@ public class AhUtils {
             modEventBus.register(org.auioc.mods.ahutils.client.render.RenderTypeRegistry.class);
         }
 
-        public void forgeSetup() {}
+        public void forgeSetup() {
+            forgeEventBus.register(org.auioc.mods.ahutils.client.event.ClientEventHandler.class);
+        }
     }
 }
