@@ -3,8 +3,10 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 import java.util.Collection;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCHourglassItem;
 import org.auioc.mods.ahutils.utils.game.MCTimeUtils;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.UseAction;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.NBTUtil;
@@ -20,7 +22,12 @@ public class TpddItem extends HCHourglassItem {
 
     @Override
     public int getUseDuration(ItemStack itemStack) {
-        return 16;
+        return 60;
+    }
+
+    @Override
+    public UseAction getUseAnimation(ItemStack itemStack) {
+        return UseAction.EAT;
     }
 
     @Override
@@ -34,8 +41,25 @@ public class TpddItem extends HCHourglassItem {
         if (player.isSteppingCarefully()) {
             return write(level, player, itemStack);
         } else {
-            return read(level, player, itemStack);
+            if (!checkNBT(itemStack)) {
+                return ActionResult.pass(itemStack);
+            }
+            player.startUsingItem(hand);
+            return ActionResult.consume(itemStack);
         }
+    }
+
+    @Override
+    public ItemStack finishUsingItem(ItemStack itemStack, World level, LivingEntity player) {
+        if (!(player instanceof PlayerEntity)) {
+            return itemStack;
+        }
+
+        return read(level, (PlayerEntity) player, itemStack);
+    }
+
+    private static boolean checkNBT(ItemStack itemStack) {
+        return itemStack.hasTag() && itemStack.getTag().contains("tpdd");
     }
 
     private ActionResult<ItemStack> write(World level, PlayerEntity player, ItemStack itemStack) {
@@ -48,7 +72,7 @@ public class TpddItem extends HCHourglassItem {
         }
 
         { // Process NBT
-            if (itemStack.hasTag() && itemStack.getTag().contains("tpdd")) {
+            if (checkNBT(itemStack)) {
                 itemStack.removeTagKey("tpdd");
             }
 
@@ -100,8 +124,9 @@ public class TpddItem extends HCHourglassItem {
         return ActionResult.sidedSuccess(itemStack, level.isClientSide());
     }
 
-    private ActionResult<ItemStack> read(World level, PlayerEntity player, ItemStack itemStack) {
-        return ActionResult.pass(itemStack);
+    private ItemStack read(World level, PlayerEntity player, ItemStack itemStack) {
+        itemStack.removeTagKey("tpdd");
+        return itemStack;
     }
 
 }
