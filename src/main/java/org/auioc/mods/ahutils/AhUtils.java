@@ -55,6 +55,8 @@ public class AhUtils {
             modEventBus.register(org.auioc.mods.ahutils.client.render.RenderTypeRegistry.class);
         }
 
-        public void forgeSetup() {}
+        public void forgeSetup() {
+            forgeEventBus.register(org.auioc.mods.ahutils.client.event.ClientEventHandler.class);
+        }
     }
 }
