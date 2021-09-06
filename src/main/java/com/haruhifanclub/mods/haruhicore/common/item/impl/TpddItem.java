@@ -12,7 +12,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.CooldownTracker;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -20,11 +19,15 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class TpddItem extends HCHourglassItem {
 
+    private static final int useDuration = 20;
+    private static final int writeCooldown = 20;
+    private static final int readCooldown = 80;
+
     public TpddItem() {}
 
     @Override
     public int getUseDuration(ItemStack itemStack) {
-        return 20;
+        return useDuration;
     }
 
     @Override
@@ -44,6 +47,10 @@ public class TpddItem extends HCHourglassItem {
 
         if (itemStack.getCount() != 1) {
             return ActionResult.fail(ItemStack.EMPTY);
+        }
+
+        if (player.getCooldowns().isOnCooldown(this)) {
+            return ActionResult.pass(itemStack);
         }
 
         if (player.isSteppingCarefully()) {
@@ -71,14 +78,6 @@ public class TpddItem extends HCHourglassItem {
     }
 
     private ActionResult<ItemStack> write(World level, PlayerEntity player, ItemStack itemStack) {
-        { // Cooldown
-            CooldownTracker cooldownTracker = player.getCooldowns();
-            if (cooldownTracker.isOnCooldown(this)) {
-                return ActionResult.pass(itemStack);
-            }
-            cooldownTracker.addCooldown(this, 20);
-        }
-
         { // Process NBT
             if (checkNBT(itemStack)) {
                 itemStack.removeTagKey("tpdd");
@@ -131,6 +130,8 @@ public class TpddItem extends HCHourglassItem {
             super.broadcastTime(level, player);
         }
 
+        player.getCooldowns().addCooldown(this, writeCooldown);
+
         return ActionResult.sidedSuccess(itemStack, level.isClientSide());
     }
 
@@ -156,6 +157,8 @@ public class TpddItem extends HCHourglassItem {
 
             itemStack.removeTagKey("tpdd");
         }
+
+        player.getCooldowns().addCooldown(this, readCooldown);
 
         return itemStack;
     }
