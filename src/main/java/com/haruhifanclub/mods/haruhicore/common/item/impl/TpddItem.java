@@ -1,10 +1,13 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCHourglassItem;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.MCTimeUtils;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -15,6 +18,11 @@ import net.minecraft.nbt.LongArrayNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -116,6 +124,8 @@ public class TpddItem extends HCHourglassItem {
                     nbt.put("time", time_nbt);
                 }
 
+
+
                 itemStack.addTagElement("tpdd", nbt);
             }
         }
@@ -166,6 +176,42 @@ public class TpddItem extends HCHourglassItem {
         player.getCooldowns().addCooldown(this, CommonConfig.TpddReadCooldown.get() * 20);
 
         return itemStack;
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void appendHoverText(ItemStack itemStack, World level, List<ITextComponent> list, ITooltipFlag flag) {
+        super.appendHoverText(itemStack, level, list, flag);
+
+        if (checkNBT(itemStack)) {
+            CompoundNBT nbt = itemStack.getTag().getCompound("tpdd");
+
+            String code = String.valueOf(Math.abs(nbt.hashCode()) + nbt.getLongArray("time")[1])
+                + String.valueOf(nbt.getLongArray("time")[2] + nbt.getIntArray("player")[0]);
+            if (code.length() % 2 != 0) {
+                code += "0";
+            }
+            char[] code2 = code.toCharArray();
+
+            String code3 = "";
+            int blockSize = 2;
+            int blockCount = (code2.length + blockSize - 1) / blockSize;
+            for (int i = 0; i < blockCount; i++) {
+                int idx = i * blockSize;
+                char[] b = Arrays.copyOfRange(code2, idx, idx + blockSize);
+                int u = ((Integer.parseInt(String.valueOf(b[0])) + Integer.parseInt(String.valueOf(b[1]))) * 2) % 52;
+                code3 += (char) (u + ((u <= 25) ? 97 : (65 - 26)));
+            }
+
+            list.add(
+                new StringTextComponent(code3)
+                    .withStyle(
+                        Style.EMPTY
+                            .withFont(new ResourceLocation("minecraft", "alt"))
+                            .withColor(TextFormatting.DARK_PURPLE)
+                    )
+            );
+        }
     }
 
 }
