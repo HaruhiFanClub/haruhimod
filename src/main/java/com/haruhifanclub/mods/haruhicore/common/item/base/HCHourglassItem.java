@@ -31,9 +31,8 @@ public class HCHourglassItem extends Item {
         return super.use(level, player, hand);
     }
 
-    protected static ITextComponent getTimeMessage(World level) {
-        long[] time = MCTimeUtils.getTime(level);
 
+    private static ITextComponent formatTimeMessage(long[] time) {
         int[] formatedDayTime = MCTimeUtils.formatDayTime(time[0]);
 
         TranslationTextComponent fmt = new TranslationTextComponent(
@@ -56,11 +55,23 @@ public class HCHourglassItem extends Item {
         return fmt.withStyle(style);
     }
 
+    protected static ITextComponent getTimeMessage(World level) {
+        return formatTimeMessage(MCTimeUtils.getTime(level));
+    }
+
+    protected static ITextComponent getTimeMessage(long[] time) {
+        return formatTimeMessage(time);
+    }
+
+
+    protected static void broadcast(World level, ITextComponent message) {
+        level.getServer().getPlayerList().broadcastMessage(message, ChatType.SYSTEM, Util.NIL_UUID);
+    }
+
     protected static void broadcastTime(World level, PlayerEntity player) {
-        level.getServer().getPlayerList().broadcastMessage(
-            new TranslationTextComponent(
-                "item.haruhicore.hourglass.message", player.getDisplayName(), getTimeMessage(level)
-            ), ChatType.SYSTEM, Util.NIL_UUID
+        broadcast(
+            level,
+            new TranslationTextComponent("item.haruhicore.hourglass.message", player.getDisplayName(), getTimeMessage(level))
         );
     }
 
