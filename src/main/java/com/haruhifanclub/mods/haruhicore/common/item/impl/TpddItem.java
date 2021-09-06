@@ -22,15 +22,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class TpddItem extends HCHourglassItem {
 
-    private static final int useDuration = 20;
-    private static final int writeCooldown = 20;
-    private static final int readCooldown = 80;
-
     public TpddItem() {}
 
     @Override
     public int getUseDuration(ItemStack itemStack) {
-        return useDuration;
+        return CommonConfig.TpddReadDuration.get() * 20;
     }
 
     @Override
@@ -128,7 +124,7 @@ public class TpddItem extends HCHourglassItem {
             super.broadcastTime(level, player);
         }
 
-        player.getCooldowns().addCooldown(this, writeCooldown);
+        player.getCooldowns().addCooldown(this, CommonConfig.TpddWriteCooldown.get() * 20);
 
         return ActionResult.sidedSuccess(itemStack, level.isClientSide());
     }
@@ -167,7 +163,7 @@ public class TpddItem extends HCHourglassItem {
             );
         }
 
-        player.getCooldowns().addCooldown(this, readCooldown);
+        player.getCooldowns().addCooldown(this, CommonConfig.TpddReadCooldown.get() * 20);
 
         return itemStack;
     }
