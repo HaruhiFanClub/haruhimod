@@ -2,6 +2,7 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import java.util.Collection;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCHourglassItem;
+import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.MCTimeUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.CooldownTracker;
@@ -22,12 +22,17 @@ public class TpddItem extends HCHourglassItem {
 
     @Override
     public int getUseDuration(ItemStack itemStack) {
-        return 60;
+        return 20;
     }
 
     @Override
     public UseAction getUseAnimation(ItemStack itemStack) {
-        return UseAction.EAT;
+        return UseAction.SPEAR;
+    }
+
+    @Override
+    public boolean isFoil(ItemStack itemStack) {
+        return checkNBT(itemStack);
     }
 
     @Override
@@ -68,7 +73,7 @@ public class TpddItem extends HCHourglassItem {
             if (cooldownTracker.isOnCooldown(this)) {
                 return ActionResult.pass(itemStack);
             }
-            cooldownTracker.addCooldown(this, 40);
+            cooldownTracker.addCooldown(this, 20);
         }
 
         { // Process NBT
@@ -79,12 +84,14 @@ public class TpddItem extends HCHourglassItem {
             { // Write NBT
                 CompoundNBT nbt = new CompoundNBT();
 
-                nbt.put("player", NBTUtil.createUUID(player.getUUID()));
+                nbt.putUUID("player", player.getUUID());
 
-                { // Status
-                    nbt.putFloat("health", player.getHealth());
-                    nbt.putInt("food", player.getFoodData().getFoodLevel());
-                    nbt.putFloat("saturation", player.getFoodData().getSaturationLevel());
+                nbt.putFloat("health", player.getHealth());
+
+                { // Food
+                    CompoundNBT food_nbt = new CompoundNBT();
+                    player.getFoodData().addAdditionalSaveData(food_nbt);
+                    nbt.put("food", food_nbt);
                 }
 
                 { // Effects
@@ -94,8 +101,8 @@ public class TpddItem extends HCHourglassItem {
                     for (EffectInstance effect : effects) {
                         CompoundNBT effect_nbt = new CompoundNBT();
                         effect_nbt.putString("id", effect.getEffect().getRegistryName().toString());
-                        effect_nbt.putInt("amplifier", effect.getAmplifier());
                         effect_nbt.putInt("duration", effect.getDuration());
+                        effect_nbt.putInt("amplifier", effect.getAmplifier());
                         effects_nbt.add(effect_nbt);
                     }
 
@@ -125,7 +132,28 @@ public class TpddItem extends HCHourglassItem {
     }
 
     private ItemStack read(World level, PlayerEntity player, ItemStack itemStack) {
-        itemStack.removeTagKey("tpdd");
+        {
+            CompoundNBT nbt = itemStack.getTag().getCompound("tpdd");
+
+            {
+                player.setHealth(nbt.getFloat("health"));
+                player.getFoodData().readAdditionalSaveData(nbt.getCompound("food"));
+            }
+
+            {
+                player.removeAllEffects();
+                ListNBT effects_nbt = nbt.getList("effects", 10);
+                if (!effects_nbt.isEmpty()) {
+                    for (int i = 0; i < effects_nbt.size(); i++) {
+                        CompoundNBT effect_nbt = effects_nbt.getCompound(i);
+                        player.addEffect(EffectUtils.getEffectInstance(effect_nbt));
+                    }
+                }
+            }
+
+            itemStack.removeTagKey("tpdd");
+        }
+
         return itemStack;
     }
 
