@@ -15,6 +15,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.CooldownTracker;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class TpddItem extends HCHourglassItem {
 
@@ -31,6 +33,7 @@ public class TpddItem extends HCHourglassItem {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     public boolean isFoil(ItemStack itemStack) {
         return checkNBT(itemStack);
     }
