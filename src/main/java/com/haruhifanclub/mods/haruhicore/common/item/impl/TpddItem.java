@@ -1,6 +1,7 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import java.util.Collection;
+import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCHourglassItem;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.MCTimeUtils;
@@ -123,7 +124,7 @@ public class TpddItem extends HCHourglassItem {
             }
         }
 
-        if (!level.isClientSide()) {
+        if (CommonConfig.TpddBroadcastOnWrite.get() && !level.isClientSide()) {
             super.broadcastTime(level, player);
         }
 
@@ -155,7 +156,7 @@ public class TpddItem extends HCHourglassItem {
             itemStack.removeTagKey("tpdd");
         }
 
-        if (!level.isClientSide()) {
+        if (CommonConfig.TpddBroadcastOnRead.get() && !level.isClientSide()) {
             super.broadcast(
                 level,
                 new TranslationTextComponent(
