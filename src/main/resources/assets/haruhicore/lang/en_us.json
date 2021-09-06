@@ -32,5 +32,6 @@
     "item.haruhicore.hourglass.message": "%s: It is %s now.",
     "item.haruhicore.hourglass.message.time_fmt": "Day %1$s %2$s:%3$s:%4$s",
 
-    "item.haruhicore.tpdd": "Time Plane Destroy Device"
+    "item.haruhicore.tpdd": "Time Plane Destroy Device",
+    "item.haruhicore.tpdd.read.message": "Player %s has returned to %s."
 }

@@ -10,9 +10,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.LongArrayNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -113,12 +115,7 @@ public class TpddItem extends HCHourglassItem {
 
                 { // Time
                     long[] time = MCTimeUtils.getTime(level);
-
-                    CompoundNBT time_nbt = new CompoundNBT();
-                    time_nbt.putLong("day", time[0]);
-                    time_nbt.putLong("game", time[1]);
-                    time_nbt.putLong("real", time[2]);
-
+                    LongArrayNBT time_nbt = new LongArrayNBT(time);
                     nbt.put("time", time_nbt);
                 }
 
@@ -136,9 +133,9 @@ public class TpddItem extends HCHourglassItem {
     }
 
     private ItemStack read(World level, PlayerEntity player, ItemStack itemStack) {
-        {
-            CompoundNBT nbt = itemStack.getTag().getCompound("tpdd");
+        CompoundNBT nbt = itemStack.getTag().getCompound("tpdd");
 
+        {
             {
                 player.setHealth(nbt.getFloat("health"));
                 player.getFoodData().readAdditionalSaveData(nbt.getCompound("food"));
@@ -156,6 +153,17 @@ public class TpddItem extends HCHourglassItem {
             }
 
             itemStack.removeTagKey("tpdd");
+        }
+
+        if (!level.isClientSide()) {
+            super.broadcast(
+                level,
+                new TranslationTextComponent(
+                    "item.haruhicore.tpdd.read.message",
+                    player.getDisplayName(),
+                    super.getTimeMessage(nbt.getLongArray("time"))
+                )
+            );
         }
 
         player.getCooldowns().addCooldown(this, readCooldown);
