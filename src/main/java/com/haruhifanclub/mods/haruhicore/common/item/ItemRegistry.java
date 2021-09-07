@@ -50,4 +50,5 @@ public final class ItemRegistry {
     public static RegistryObject<Item> MUSIC_DISC_ITEM_HALO = register("music_disc_halo", () -> new HCMusicDiscItem(SoundEventRegistry.MUSIC_DISC_HALO));
 
     public static RegistryObject<Item> HOURGLASS_ITEM = register("hourglass", HourglassItem::new);
+    public static RegistryObject<Item> TPDD_ITEM = register("tpdd", TpddItem::new);
 }

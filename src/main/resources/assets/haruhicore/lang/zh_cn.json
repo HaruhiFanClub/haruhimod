@@ -30,5 +30,8 @@
 
     "item.haruhicore.hourglass": "沙漏",
     "item.haruhicore.hourglass.message": "%s提醒：现在是Minecraft时间%s。",
-    "item.haruhicore.hourglass.message.time_fmt": "第%1$s天%2$s:%3$s:%4$s"
+    "item.haruhicore.hourglass.message.time_fmt": "第%1$s天%2$s:%3$s:%4$s",
+
+    "item.haruhicore.tpdd": "TPDD",
+    "item.haruhicore.tpdd.read.message": "%s已经回到了%s。"
 }
