@@ -35,6 +35,7 @@ public class AhUtils {
         org.auioc.mods.ahutils.common.block.BlockRegistry.BLOCKS.register(modEventBus);
         modEventBus.register(org.auioc.mods.ahutils.common.network.PacketHandler.class);
         org.auioc.mods.ahutils.common.command.CommandArgumentRegistry.register();
+        modEventBus.register(org.auioc.mods.ahutils.server.loot.GlobalLootModifierRegistry.class);
     }
 
     private void forgeSetup(final IEventBus forgeEventBus) {
