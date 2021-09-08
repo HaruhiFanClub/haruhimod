@@ -23,6 +23,12 @@ public class CommonConfig {
     public static ConfigValue<List<? extends String>> ReinforcementStoneItemBlacklist;
     public static ConfigValue<List<? extends String>> ReinforcementStoneUseOnBlock;
 
+    public static BooleanValue TpddBroadcastOnWrite;
+    public static BooleanValue TpddBroadcastOnRead;
+    public static IntValue TpddReadCooldown;
+    public static IntValue TpddWriteCooldown;
+    public static IntValue TpddReadDuration;
+
     public static IntValue MikurusMaidOutfitEffectRange;
     public static BooleanValue MikurusMaidOutfitForOtherPlayers;
     public static BooleanValue MikurusMaidOutfitForFriendlyEntities;
@@ -71,6 +77,16 @@ public class CommonConfig {
                     b.pop();
                 }
 
+                b.pop();
+            }
+
+            {
+                b.push("tpdd");
+                TpddBroadcastOnWrite = b.define("broadcast_on_write", true);
+                TpddBroadcastOnRead = b.define("broadcast_on_read", true);
+                TpddWriteCooldown = b.defineInRange("write_cooldown", 3, 0, Integer.MAX_VALUE);
+                TpddReadCooldown = b.defineInRange("read_cooldown", 3, 0, Integer.MAX_VALUE);
+                TpddReadDuration = b.defineInRange("read_duration", 3, 0, Integer.MAX_VALUE);
                 b.pop();
             }
 

@@ -26,5 +26,12 @@
     "item.haruhicore.music_disc_in_the_summertime.desc": "HaruhiFanClub - In the summertime",
     "item.haruhicore.music_disc_someday_in_the_rain.desc": "HaruhiFanClub - Someday in the rain",
     "item.haruhicore.music_disc_vox_in_box.desc": "HaruhiFanClub - Vox in box",
-    "item.haruhicore.music_disc_halo.desc": "HaruhiFanClub - Halo"
+    "item.haruhicore.music_disc_halo.desc": "HaruhiFanClub - Halo",
+
+    "item.haruhicore.hourglass": "沙漏",
+    "item.haruhicore.hourglass.message": "%s提醒：现在是Minecraft时间%s。",
+    "item.haruhicore.hourglass.message.time_fmt": "第%1$s天%2$s:%3$s:%4$s",
+
+    "item.haruhicore.tpdd": "TPDD",
+    "item.haruhicore.tpdd.read.message": "%s已经回到了%s。"
 }
