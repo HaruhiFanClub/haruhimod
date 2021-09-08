@@ -10,6 +10,8 @@ import net.minecraft.item.ItemUseContext;
 import net.minecraft.item.Rarity;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ActionResultType;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class EpicReinforcementStoneItem extends Item implements IReinforcementStoneItem {
 
@@ -23,6 +25,7 @@ public class EpicReinforcementStoneItem extends Item implements IReinforcementSt
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     public boolean isFoil(ItemStack stack) {
         return true;
     }

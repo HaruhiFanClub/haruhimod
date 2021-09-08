@@ -9,6 +9,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class PhysicsExcaliburItem extends Item {
 
@@ -23,6 +25,7 @@ public class PhysicsExcaliburItem extends Item {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     public boolean isFoil(ItemStack stack) {
         return true;
     }
