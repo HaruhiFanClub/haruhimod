@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.mojang.realmsclient.util.JsonUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameterSets;
@@ -18,16 +19,19 @@ import net.minecraftforge.common.loot.LootModifier;
 public class HLootInjector extends LootModifier {
 
     private HashMap<ResourceLocation, ResourceLocation> injectors = new HashMap<ResourceLocation, ResourceLocation>();
+    private boolean strictParameter;
 
-    protected HLootInjector(ILootCondition[] conditionsIn, HashMap<ResourceLocation, ResourceLocation> injectors) {
+    protected HLootInjector(ILootCondition[] conditionsIn, HashMap<ResourceLocation, ResourceLocation> injectors, boolean strictParameter) {
         super(conditionsIn);
         this.injectors = injectors;
+        this.strictParameter = strictParameter;
     }
 
     private List<ItemStack> getItemStacks(LootContext context, ResourceLocation target) {
         ResourceLocation id = this.injectors.get(target);
         LootTable lootTable = context.getLootTable(id);
-        LootContext context2 = new LootContext.Builder(context).create(LootParameterSets.CHEST);
+        LootContext context2 = new LootContext.Builder(context)
+            .create((this.strictParameter) ? lootTable.getParamSet() : LootParameterSets.CHEST);
         context2.setQueriedLootTableId(id); // coremod LootContext#setQueriedLootTableId
         List<ItemStack> list = lootTable.getRandomItems(context2);
         return list;
@@ -51,6 +55,7 @@ public class HLootInjector extends LootModifier {
         @Override
         public HLootInjector read(ResourceLocation location, JsonObject json, ILootCondition[] conditions) {
             HashMap<ResourceLocation, ResourceLocation> injectors = new HashMap<ResourceLocation, ResourceLocation>();
+            boolean strictParameter;
 
             JsonArray injectorsJson = JSONUtils.getAsJsonArray(json, "injectors");
             for (JsonElement injectorJsonElement : injectorsJson) {
@@ -58,7 +63,9 @@ public class HLootInjector extends LootModifier {
                 injectors.put(new ResourceLocation(injectorJson.get(0).getAsString()), new ResourceLocation(injectorJson.get(1).getAsString()));
             }
 
-            return new HLootInjector(conditions, injectors);
+            strictParameter = JsonUtils.getBooleanOr("strict_parameter", json, true);
+
+            return new HLootInjector(conditions, injectors, strictParameter);
         }
 
         @Override
