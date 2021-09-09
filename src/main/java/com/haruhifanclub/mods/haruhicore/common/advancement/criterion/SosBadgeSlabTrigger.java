@@ -7,6 +7,7 @@ import net.minecraft.advancements.criterion.CriterionInstance;
 import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.loot.ConditionArrayParser;
+import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 
 public class SosBadgeSlabTrigger extends AbstractCriterionTrigger<SosBadgeSlabTrigger.Instance> {
@@ -22,24 +23,27 @@ public class SosBadgeSlabTrigger extends AbstractCriterionTrigger<SosBadgeSlabTr
 
     @Override
     protected SosBadgeSlabTrigger.Instance createInstance(JsonObject json, EntityPredicate.AndPredicate player, ConditionArrayParser parser) {
-        return null;
+        boolean isDouble = JSONUtils.getAsBoolean(json, "double", false);
+        return new Instance(player, isDouble);
     }
 
-    public void trigger(ServerPlayerEntity player) {
+    public void trigger(ServerPlayerEntity player, boolean isDouble) {
         this.trigger(player, (instance) -> {
-            return instance.test(player);
+            return instance.test(player, isDouble);
         });
     }
 
 
     public static class Instance extends CriterionInstance {
+        private final boolean isDouble;
 
-        public Instance(EntityPredicate.AndPredicate player) {
+        public Instance(EntityPredicate.AndPredicate player, boolean isDouble) {
             super(ID, player);
+            this.isDouble = isDouble;
         }
 
-        public boolean test(ServerPlayerEntity player) {
-            return true;
+        public boolean test(ServerPlayerEntity player, boolean isDouble) {
+            return (this.isDouble == isDouble);
         }
 
     }
