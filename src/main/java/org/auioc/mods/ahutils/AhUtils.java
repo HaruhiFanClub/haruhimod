@@ -39,6 +39,7 @@ public class AhUtils {
     }
 
     private void forgeSetup(final IEventBus forgeEventBus) {
+        org.auioc.mods.ahutils.common.itemgroup.ItemGroupRegistry.register();
         forgeEventBus.register(org.auioc.mods.ahutils.server.event.ServerEventHandler.class);
         forgeEventBus.register(org.auioc.mods.ahutils.common.event.CommonEventHandler.class);
     }

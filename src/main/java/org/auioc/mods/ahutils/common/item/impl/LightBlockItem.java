@@ -1,7 +1,6 @@
 package org.auioc.mods.ahutils.common.item.impl;
 
 import org.auioc.mods.ahutils.common.block.BlockRegistry;
-import org.auioc.mods.ahutils.common.itemgroup.ItemGroupRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItem;
@@ -23,7 +22,7 @@ public class LightBlockItem extends BlockItem {
         super(
             BlockRegistry.LIGHT_BLOCK.get(),
             new Item.Properties()
-                .tab(ItemGroupRegistry.ahuItemGroup)
+                // .tab(ItemGroupRegistry.ahuItemGroup)
                 .rarity(Rarity.UNCOMMON)
                 .stacksTo(1)
         );

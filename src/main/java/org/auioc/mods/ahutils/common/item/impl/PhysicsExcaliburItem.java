@@ -1,7 +1,6 @@
 package org.auioc.mods.ahutils.common.item.impl;
 
 import org.auioc.mods.ahutils.common.config.CommonConfig;
-import org.auioc.mods.ahutils.common.itemgroup.ItemGroupRegistry;
 import org.auioc.mods.ahutils.utils.game.I18nUtils;
 import org.auioc.mods.ahutils.utils.game.MessageUtils;
 import net.minecraft.entity.Entity;
@@ -17,7 +16,7 @@ public class PhysicsExcaliburItem extends Item {
     public PhysicsExcaliburItem() {
         super(
             new Item.Properties()
-                .tab(ItemGroupRegistry.ahuItemGroup)
+                // .tab(ItemGroupRegistry.ahuItemGroup)
                 .rarity(Rarity.EPIC)
                 .fireResistant()
                 .stacksTo(1)
