@@ -12,15 +12,6 @@ description='''
 '''
 
 [[mods]]
-modId="addrlimiter"
-version="${addrlimiter_version}"
-displayName="Address Limiter"
-credits="AUIOC"
-authors="WakelssSloth56"
-description='''
-'''
-
-[[mods]]
 modId="ahutils"
 version="${ahutils_version}"
 displayName="AHUtils"
@@ -41,19 +32,12 @@ description='''
     versionRange="[1.16.5,1.17)"
     ordering="NONE"
     side="BOTH"
-
-[[dependencies.addrlimiter]]
-    modId="forge"
+[[dependencies.haruhicore]]
+    modId="ahutils"
     mandatory=true
-    versionRange="[36.2,)"
+    versionRange="[${ahutils_version},)"
     ordering="NONE"
-    side="SERVER"
-[[dependencies.addrlimiter]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.16.5,1.17)"
-    ordering="NONE"
-    side="SERVER"
+    side="BOTH"
 
 [[dependencies.ahutils]]
     modId="forge"

@@ -1,6 +1,7 @@
 package com.haruhifanclub.mods.haruhicore.common.advancement.criterion;
 
 import com.google.gson.JsonObject;
+import com.haruhifanclub.mods.haruhicore.HaruhiCore;
 import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
 import net.minecraft.advancements.criterion.CriterionInstance;
 import net.minecraft.advancements.criterion.EntityPredicate;
@@ -14,7 +15,7 @@ public class ItemReinforcedTrigger extends AbstractCriterionTrigger<ItemReinforc
 
     public static final ItemReinforcedTrigger INSTANCE = new ItemReinforcedTrigger();
 
-    private static final ResourceLocation ID = new ResourceLocation("haruhicore", "item_reinforced");
+    private static final ResourceLocation ID = new ResourceLocation(HaruhiCore.MOD_ID, "item_reinforced");
 
     @Override
     public ResourceLocation getId() {
@@ -22,7 +23,7 @@ public class ItemReinforcedTrigger extends AbstractCriterionTrigger<ItemReinforc
     }
 
     @Override
-    protected Instance createInstance(JsonObject json, EntityPredicate.AndPredicate player, ConditionArrayParser parser) {
+    protected ItemReinforcedTrigger.Instance createInstance(JsonObject json, EntityPredicate.AndPredicate player, ConditionArrayParser parser) {
         BooleanPredicate isSuccessful = BooleanPredicate.fromJson(json, "successful");
         BooleanPredicate isEpic = BooleanPredicate.fromJson(json, "epic");
         ItemPredicate oldItem = ItemPredicate.fromJson(json.get("item"));

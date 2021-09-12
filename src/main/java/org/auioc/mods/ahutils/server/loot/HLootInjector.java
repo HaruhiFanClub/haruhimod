@@ -5,7 +5,6 @@ import java.util.List;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.mojang.realmsclient.util.JsonUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameterSets;
@@ -63,7 +62,7 @@ public class HLootInjector extends LootModifier {
                 injectors.put(new ResourceLocation(injectorJson.get(0).getAsString()), new ResourceLocation(injectorJson.get(1).getAsString()));
             }
 
-            strictParameter = JsonUtils.getBooleanOr("strict_parameter", json, true);
+            strictParameter = JSONUtils.getAsBoolean(json, "strict_parameter", true);
 
             return new HLootInjector(conditions, injectors, strictParameter);
         }

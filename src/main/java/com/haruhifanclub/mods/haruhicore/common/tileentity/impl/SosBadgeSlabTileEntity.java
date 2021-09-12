@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
+import com.haruhifanclub.mods.haruhicore.common.advancement.criterion.SosBadgeSlabTrigger;
 import com.haruhifanclub.mods.haruhicore.common.block.impl.SosBadgeSlabBlock;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.tileentity.TileEntityRegistry;
@@ -157,6 +158,8 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
                 }
             }
         }
+
+        SosBadgeSlabTrigger.INSTANCE.trigger(((ServerPlayerEntity) player), isDouble);
 
         LogUtil.info(logs);
     }
