@@ -2,6 +2,7 @@ package org.auioc.mods.ahutils.common.network;
 
 import java.util.Optional;
 import java.util.function.Function;
+import org.auioc.mods.ahutils.AhUtils;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
@@ -20,7 +21,7 @@ public final class PacketHandler {
 
     private static final String PROTOCOL_VERSION = Integer.toString(1);
     private static final SimpleChannel HANDLER = NetworkRegistry.newSimpleChannel(
-        new ResourceLocation("ahutils", "networking"),
+        new ResourceLocation(AhUtils.MOD_ID, "network"),
         () -> PROTOCOL_VERSION,
         PROTOCOL_VERSION::equals,
         PROTOCOL_VERSION::equals
