@@ -32,6 +32,12 @@ description='''
     versionRange="[1.16.5,1.17)"
     ordering="NONE"
     side="BOTH"
+[[dependencies.haruhicore]]
+    modId="ahutils"
+    mandatory=true
+    versionRange="[${ahutils_version},)"
+    ordering="NONE"
+    side="BOTH"
 
 [[dependencies.ahutils]]
     modId="forge"
