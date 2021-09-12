@@ -3,7 +3,7 @@
         "sounds": [
             {
                 "stream": true,
-                "name": "haruhicore:records/vox_in_box"
+                "name": "haruhicore:placeholder"
             }
         ]
     },
@@ -11,7 +11,7 @@
         "sounds": [
             {
                 "stream": true,
-                "name": "haruhicore:records/someday_in_the_rain"
+                "name": "haruhicore:placeholder"
             }
         ]
     },
@@ -19,7 +19,7 @@
         "sounds": [
             {
                 "stream": true,
-                "name": "haruhicore:records/in_the_summertime"
+                "name": "haruhicore:placeholder"
             }
         ]
     },
@@ -27,7 +27,7 @@
         "sounds": [
             {
                 "stream": true,
-                "name": "haruhicore:records/halo"
+                "name": "haruhicore:placeholder"
             }
         ]
     }

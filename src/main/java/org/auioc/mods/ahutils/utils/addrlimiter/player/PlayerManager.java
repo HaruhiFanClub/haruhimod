@@ -1,8 +1,8 @@
-package org.auioc.mods.addrlimiter.player;
+package org.auioc.mods.ahutils.utils.addrlimiter.player;
 
 import java.util.UUID;
-import org.auioc.mods.addrlimiter.config.Config;
-import org.auioc.mods.addrlimiter.data.AddrManager;
+import org.auioc.mods.ahutils.server.config.ServerConfig;
+import org.auioc.mods.ahutils.utils.addrlimiter.data.AddrManager;
 import org.auioc.mods.ahutils.utils.LogUtil;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -43,7 +43,7 @@ public class PlayerManager {
                         new StringTextComponent(
                             String.format(
                                 "You can only connect %d times with the same IP!",
-                                Config.MaxPlayerPreAddr.get()
+                                ServerConfig.MaxPlayerPreAddr.get()
                             )
                         )
                             .setStyle(Style.EMPTY.withColor(TextFormatting.RED))

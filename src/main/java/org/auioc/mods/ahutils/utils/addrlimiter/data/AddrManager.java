@@ -1,10 +1,10 @@
-package org.auioc.mods.addrlimiter.data;
+package org.auioc.mods.ahutils.utils.addrlimiter.data;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import org.auioc.mods.addrlimiter.config.Config;
+import org.auioc.mods.ahutils.server.config.ServerConfig;
 import org.auioc.mods.ahutils.utils.LogUtil;
 
 public class AddrManager {
@@ -68,13 +68,13 @@ public class AddrManager {
         if (addrMap.containsKey(address)) {
             AddrMap map = addrMap.get(address);
 
-            if ((Config.EnableAddrWhitelist.get()) && (Config.AddrWhitelist.get().contains(address))) {
+            if ((ServerConfig.EnableAddrWhitelist.get()) && (ServerConfig.AddrWhitelist.get().contains(address))) {
                 LogUtil.info(String.format("Address %s is in the whitelist", address));
                 return true;
             }
 
             // if (map.getOnlineUserCount() > 0) {
-            if ((map.getOnlineUserCount()) > (Config.MaxPlayerPreAddr.get())) {
+            if ((map.getOnlineUserCount()) > (ServerConfig.MaxPlayerPreAddr.get())) {
                 LogUtil.warn("Reached the limit on the maximum number of player at same address");
                 return false;
             }
