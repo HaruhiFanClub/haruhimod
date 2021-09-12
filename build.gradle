@@ -68,7 +68,7 @@ processResources {
     from (sourceSets.main.resources.srcDirs) {
         include 'META-INF/mods.toml'
         duplicatesStrategy 'include'
-        expand 'haruhicore_version': "${minecraft_version}-${haruhicore_version}+${getBuildNumber()}", 'addrlimiter_version': "${minecraft_version}-${addrlimiter_version}+${getBuildNumber()}", 'ahutils_version': "${minecraft_version}-${ahutils_version}+${getBuildNumber()}"
+        expand 'haruhicore_version': "${minecraft_version}-${haruhicore_version}+${getBuildNumber()}", 'ahutils_version': "${minecraft_version}-${ahutils_version}+${getBuildNumber()}"
     }
 }
 
@@ -93,7 +93,7 @@ jar {
 
 }
 
-jar.finalizedBy('reobfJar') 
+jar.finalizedBy('reobfJar')
 
 publishing {
     publications {
