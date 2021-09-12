@@ -16,6 +16,7 @@ public class AhUtils {
     public AhUtils() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, org.auioc.mods.ahutils.common.config.CommonConfig.CONFIG);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, org.auioc.mods.ahutils.client.config.ClientConfig.CONFIG);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, org.auioc.mods.ahutils.server.config.ServerConfig.CONFIG);
 
         org.auioc.mods.ahutils.utils.delogger.Delogger.init();
 
