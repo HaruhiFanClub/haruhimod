@@ -1,6 +1,0 @@
-{
-    "parent": "ahutils:block/light",
-    "textures": {
-        "level": "ahutils:misc/level_15"
-    }
-}

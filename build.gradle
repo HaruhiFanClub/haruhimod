@@ -1,74 +1,54 @@
 buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
-        maven { url = "https://plugins.gradle.org/m2/" }
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-        classpath "org.ajoberstar.grgit:grgit-gradle:4.1.0"
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
-
-apply plugin: 'java'
+// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
-apply plugin: "org.ajoberstar.grgit"
 
-version = "${minecraft_version}-${mod_version}+${getBuildNumber()}"
-group = 'org.auioc.mods.haruhimod'
+version = "${minecraft_version}-${haruhicore_version}-${getBuildNumber()}"
+group = 'com.haruhifanclub.mods.haruhimod'
 archivesBaseName = 'haruhimod'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(16)
-println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
     mappings channel: "${mappings_channel}", version: "${mappings_version}"
     runs {
         client {
-            workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
+            workingDirectory project.file('run').canonicalPath
             mods {
-                haruhimod {
+                ahutils {
+                    source project(':ahutils').sourceSets.main
+                }
+                haruhicore {
                     source sourceSets.main
                 }
             }
         }
 
         server {
-            workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
+            workingDirectory project.file('run').canonicalPath
             mods {
-                haruhimod {
+                ahutils {
+                    source project(':ahutils').sourceSets.main
+                }
+                haruhicore {
                     source sourceSets.main
                 }
             }
         }
-
-        data {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            args '--mod', 'haruhicore', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-            mods {
-                haruhimod {
-                    source sourceSets.main
-                }
-            }
-        }
-    }
-}
-
-sourceSets.main.resources { srcDir 'src/generated/resources' }
-
-processResources {
-    from (sourceSets.main.resources.srcDirs) {
-        include 'META-INF/mods.toml'
-        duplicatesStrategy 'include'
-        expand 'haruhicore_version': "${minecraft_version}-${haruhicore_version}+${getBuildNumber()}", 'ahutils_version': "${minecraft_version}-${ahutils_version}+${getBuildNumber()}"
     }
 }
 
@@ -84,45 +64,30 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
+    implementation project(':ahutils')
+
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
     runtimeOnly fg.deobf("net.darkhax.openloader:OpenLoader-${minecraft_version}:${openloader_version}")
 }
 
-jar {
-
+processResources {
+    from (sourceSets.main.resources.srcDirs) {
+        include 'META-INF/mods.toml'
+        duplicatesStrategy 'include'
+        expand 'haruhicore_version': "${minecraft_version}-${haruhicore_version}-${getBuildNumber()}", 'ahutils_version': "${ahutils_version}"
+    }
 }
+
+jar {}
 
 jar.finalizedBy('reobfJar')
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact jar
-        }
-    }
-}
+publishing {}
 
 def getBuildNumber() {
-    def build_id = System.getenv("GITHUB_RUN_NUMBER")
-
-    // CI builds only
-    if (build_id != null) {
-        return "build.${build_id}"
+    def ci_version = System.getenv("CI_VERSION")
+    if (ci_version != null) {
+        return ci_version
     }
-
-    if (grgit != null) {
-        def head = grgit.head()
-        def id = head.abbreviatedId
-
-        // Flag the build if the build tree is not clean
-        if (!grgit.status().clean) {
-            id += "-dirty"
-        }
-
-        return "rev.${id}"
-    }
-
-    // No tracking information could be found about the build
     return "unknown"
 }

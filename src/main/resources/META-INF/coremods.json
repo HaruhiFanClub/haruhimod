@@ -1,6 +1,0 @@
-{
-    "ahutils.CheckPushableEvent": "coremods/ahutils/CheckPushableEvent.js",
-    "ahutils.ServerLoginEvent": "coremods/ahutils/ServerLoginEvent.js",
-    "ahutils.ServerPlayerSendMessageEvent": "coremods/ahutils/ServerPlayerSendMessageEvent.js",
-    "ahutils.setQueriedLootTableId": "coremods/ahutils/setQueriedLootTableId.js"
-}
