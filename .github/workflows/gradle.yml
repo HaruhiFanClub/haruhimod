@@ -34,7 +34,7 @@ jobs:
               run: |
                   cd ./ahutils
                   if git rev-parse "v${{env.AHUTILS_VERSION}}" >/dev/null 2>&1;then
-                  git checkout "v${{env.AHUTILS_VERSION}"
+                  git checkout "v${{env.AHUTILS_VERSION}}"
                   cd ../
                   else
                   echo "ahutils version v${{env.AHUTILS_VERSION}} does not exist"
