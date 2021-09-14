@@ -1,0 +1,3 @@
+rootProject.name = 'haruhimod'
+
+include 'ahutils'
