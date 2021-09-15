@@ -16,7 +16,6 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.CooldownTracker;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -64,19 +63,27 @@ public interface IReinforcementStoneItem {
     }
 
 
-    public ItemStack processEnchantment(ItemStack stack, PlayerEntity player);
+    default ItemStack processEnchantment(ItemStack stack, PlayerEntity player) {
+        return stack;
+    };
 
-    default ActionResultType reinforce(Item item, ItemUseContext context, boolean isEpic) {
+    default ActionResultType reinforce(ItemUseContext context, boolean isEpic) {
         if (!isEnabled(isEpic)) {
             return ActionResultType.PASS;
         }
 
-        World world = context.getLevel();
-        if (world.isClientSide) {
-            return ActionResultType.PASS;
+        if (context.getLevel().isClientSide()) {
+            return ActionResultType.CONSUME;
         }
 
         ServerPlayerEntity player = (ServerPlayerEntity) context.getPlayer();
+
+
+        Item stoneItem = player.getItemInHand(Hand.MAIN_HAND).getItem();
+        CooldownTracker cooldownTracker = player.getCooldowns();
+        if (cooldownTracker.isOnCooldown(stoneItem)) {
+            return ActionResultType.PASS;
+        }
 
         if (!player.isSteppingCarefully()) {
             return ActionResultType.PASS;
@@ -115,14 +122,10 @@ public interface IReinforcementStoneItem {
 
 
         if (MinecraftForge.EVENT_BUS.post(new PlayerReinforceItemEvent.Pre(player, targetItemStack))) {
-            return ActionResultType.PASS;
+            return ActionResultType.FAIL;
         }
 
-        CooldownTracker cooldownTracker = player.getCooldowns();
-        if (cooldownTracker.isOnCooldown(item)) {
-            return ActionResultType.PASS;
-        }
-        cooldownTracker.addCooldown(item, 40);
+        cooldownTracker.addCooldown(stoneItem, 40);
 
         player.giveExperiencePoints(-1 * experienceCost);
 
