@@ -123,7 +123,7 @@ public interface IReinforcementStoneItem {
         player.giveExperiencePoints(-1 * experienceCost);
 
 
-        ItemStack reinforcedItem = processEnchantment(targetItemStack, player);
+        ItemStack reinforcedItem = processEnchantment(targetItemStack.copy(), player);
 
         if (reinforcedItem.equals(ItemStack.EMPTY)) { // Reinforcement failed
             SoundUtils.playSoundToPlayer(player, CommonConfig.ReinforcingFailedSound.get());
