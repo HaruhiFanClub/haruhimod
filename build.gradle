@@ -13,7 +13,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = "${minecraft_version}-${haruhicore_version}-${getBuildNumber()}"
-group = 'com.haruhifanclub.mods.haruhimod'
+group = 'com.haruhifanclub.mods'
 archivesBaseName = 'haruhimod'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(16)
