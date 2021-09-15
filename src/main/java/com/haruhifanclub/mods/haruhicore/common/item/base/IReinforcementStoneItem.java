@@ -3,6 +3,7 @@ package com.haruhifanclub.mods.haruhicore.common.item.base;
 import java.util.List;
 import com.haruhifanclub.mods.haruhicore.common.advancement.criterion.ItemReinforcedTrigger;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
+import com.haruhifanclub.mods.haruhicore.server.event.impl.PlayerReinforceItemEvent;
 import org.auioc.mods.ahutils.utils.game.I18nUtils;
 import org.auioc.mods.ahutils.utils.game.MessageUtils;
 import org.auioc.mods.ahutils.utils.game.SoundUtils;
@@ -15,7 +16,7 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.CooldownTracker;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public interface IReinforcementStoneItem {
@@ -62,19 +63,27 @@ public interface IReinforcementStoneItem {
     }
 
 
-    public ItemStack processEnchantment(ItemStack stack, PlayerEntity player);
+    default ItemStack processEnchantment(ItemStack stack, PlayerEntity player) {
+        return stack;
+    };
 
-    default ActionResultType reinforce(Item item, ItemUseContext context, boolean isEpic) {
+    default ActionResultType reinforce(ItemUseContext context, boolean isEpic) {
         if (!isEnabled(isEpic)) {
             return ActionResultType.PASS;
         }
 
-        World world = context.getLevel();
-        if (world.isClientSide) {
-            return ActionResultType.PASS;
+        if (context.getLevel().isClientSide()) {
+            return ActionResultType.CONSUME;
         }
 
         ServerPlayerEntity player = (ServerPlayerEntity) context.getPlayer();
+
+
+        Item stoneItem = player.getItemInHand(Hand.MAIN_HAND).getItem();
+        CooldownTracker cooldownTracker = player.getCooldowns();
+        if (cooldownTracker.isOnCooldown(stoneItem)) {
+            return ActionResultType.PASS;
+        }
 
         if (!player.isSteppingCarefully()) {
             return ActionResultType.PASS;
@@ -112,32 +121,30 @@ public interface IReinforcementStoneItem {
         }
 
 
-        CooldownTracker cooldownTracker = player.getCooldowns();
-
-        if (cooldownTracker.isOnCooldown(item)) {
-            return ActionResultType.PASS;
+        if (MinecraftForge.EVENT_BUS.post(new PlayerReinforceItemEvent.Pre(player, targetItemStack))) {
+            return ActionResultType.FAIL;
         }
-        cooldownTracker.addCooldown(item, 40);
 
+        cooldownTracker.addCooldown(stoneItem, 40);
 
         player.giveExperiencePoints(-1 * experienceCost);
 
+        ItemStack reinforcedItemStack = processEnchantment(targetItemStack.copy(), player);
 
-        ItemStack reinforcedItem = processEnchantment(targetItemStack, player);
+        MinecraftForge.EVENT_BUS.post(new PlayerReinforceItemEvent.Post(player, targetItemStack, reinforcedItemStack));
 
-        if (reinforcedItem.equals(ItemStack.EMPTY)) { // Reinforcement failed
+        if (reinforcedItemStack.equals(ItemStack.EMPTY)) { // Reinforcement failed
             SoundUtils.playSoundToPlayer(player, CommonConfig.ReinforcingFailedSound.get());
-            ItemReinforcedTrigger.INSTANCE.trigger(player, false, false, targetItemStack, reinforcedItem);
+            ItemReinforcedTrigger.INSTANCE.trigger(player, false, false, targetItemStack, reinforcedItemStack);
         } else {
             SoundUtils.playSoundToPlayer(player, CommonConfig.ReinforcingSuccessSound.get());
-            ItemReinforcedTrigger.INSTANCE.trigger(player, isEpic, true, targetItemStack, reinforcedItem);
+            ItemReinforcedTrigger.INSTANCE.trigger(player, isEpic, true, targetItemStack, reinforcedItemStack);
         }
 
-        player.setItemInHand(Hand.OFF_HAND, reinforcedItem);
+        player.setItemInHand(Hand.OFF_HAND, reinforcedItemStack);
         if (!player.isCreative()) {
             player.getMainHandItem().shrink(1);
         }
-
 
         return ActionResultType.SUCCESS;
     }

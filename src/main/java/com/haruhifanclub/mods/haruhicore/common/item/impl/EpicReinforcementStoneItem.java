@@ -44,6 +44,6 @@ public class EpicReinforcementStoneItem extends Item implements IReinforcementSt
 
     @Override
     public ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext context) {
-        return reinforce(this, context, true);
+        return reinforce(context, true);
     }
 }

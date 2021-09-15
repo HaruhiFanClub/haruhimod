@@ -30,6 +30,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.server.ServerWorld;
 
 public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileEntity {
+
     private static final int MAX_TIME = 20;
     private int timer = 0;
 
@@ -162,15 +163,6 @@ public class SosBadgeSlabTileEntity extends TileEntity implements ITickableTileE
         SosBadgeSlabTrigger.INSTANCE.trigger(((ServerPlayerEntity) player), isDouble);
 
         LogUtil.info(logs);
-    }
-
-
-    private void log(String prefix, PlayerEntity player) {
-        LogUtil.debug(String.format("[%s] (%s) %s", prefix, worldPosition.toString(), player.getName().getString()));
-    }
-
-    private static void log(String text) {
-        LogUtil.info(text);
     }
 
 }
