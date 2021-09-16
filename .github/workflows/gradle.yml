@@ -25,21 +25,22 @@ jobs:
                   }
                   echo "AHUTILS_VERSION=`echo $(prop "ahutils_version")`" >> $GITHUB_ENV
                   echo "HARUHICORE_VERSION=`echo $(prop "haruhicore_version")`" >> $GITHUB_ENV
+                  echo "MINECRAFT_VERSION=`echo $(prop "minecraft_version")`" >> $GITHUB_ENV
 
-            - name: Clone ahutils
-              run: |
-                  git clone https://github.com/WakelessSloth56/ahutils-mod.git ahutils
+            # - name: Clone ahutils
+            #   run: |
+            #       git clone https://github.com/WakelessSloth56/ahutils-mod.git ahutils
 
-            - name: Check ahutils version
-              run: |
-                  cd ./ahutils
-                  if git rev-parse "v${{env.AHUTILS_VERSION}}" >/dev/null 2>&1;then
-                  git checkout "v${{env.AHUTILS_VERSION}}"
-                  cd ../
-                  else
-                  echo "ahutils version v${{env.AHUTILS_VERSION}} does not exist"
-                  exit 1
-                  fi
+            # - name: Check ahutils version
+            #   run: |
+            #       cd ./ahutils
+            #       if git rev-parse "v${{env.AHUTILS_VERSION}}" >/dev/null 2>&1;then
+            #       git checkout "v${{env.AHUTILS_VERSION}}"
+            #       cd ../
+            #       else
+            #       echo "ahutils version v${{env.AHUTILS_VERSION}} does not exist"
+            #       exit 1
+            #       fi
 
             - name: Set up JDK 16
               uses: actions/setup-java@v2
@@ -49,6 +50,8 @@ jobs:
                   architecture: x64
 
             - name: Build with Gradle
+              env:
+                  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
               run: |
                   chmod +x ./gradlew
                   ./gradlew clean
@@ -57,5 +60,5 @@ jobs:
             - name: Upload build artifacts
               uses: actions/upload-artifact@v1
               with:
-                  name: haruhimod-${{env.HARUHICORE_VERSION}}-${{env.CI_VERSION}}
+                  name: haruhimod-${{env.MINECRAFT_VERSION}}-${{env.HARUHICORE_VERSION}}-${{env.CI_VERSION}}
                   path: build/libs
