@@ -12,9 +12,9 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = "${minecraft_version}-${haruhicore_version}-${getBuildNumber()}"
+version = "${haruhicore_version}-${getBuildNumber()}"
 group = 'com.haruhifanclub.mods'
-archivesBaseName = 'haruhimod'
+archivesBaseName = "haruhimod-${minecraft_version}"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(16)
 
@@ -27,9 +27,6 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
             workingDirectory project.file('run').canonicalPath
             mods {
-                ahutils {
-                    source project(':ahutils').sourceSets.main
-                }
                 haruhicore {
                     source sourceSets.main
                 }
@@ -41,9 +38,6 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
             workingDirectory project.file('run').canonicalPath
             mods {
-                ahutils {
-                    source project(':ahutils').sourceSets.main
-                }
                 haruhicore {
                     source sourceSets.main
                 }
@@ -59,12 +53,19 @@ repositories {
     maven {
         url "https://maven.blamejared.com"
     }
+    maven {
+        url "https://maven.pkg.github.com/wakelesssloth56/ahutils-mod"
+        credentials {
+            username = System.getenv("GITHUB_ACTOR") ? System.getenv("GITHUB_ACTOR") : System.getenv("GITHUB_USERNAME")
+            password = System.getenv("GITHUB_TOKEN")
+        }
+    }
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    implementation project(':ahutils')
+    implementation fg.deobf("org.auioc.mods:ahutils-${minecraft_version}:${ahutils_version}:forgelib")
 
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
     runtimeOnly fg.deobf("net.darkhax.openloader:OpenLoader-${minecraft_version}:${openloader_version}")
