@@ -45,6 +45,7 @@ public final class ItemRegistry {
 
     // Weapons
     public static RegistryObject<Item> BASEBALL_BAT_ITEM = register("baseball_bat", BaseballBatItem::new);
+    public static RegistryObject<Item> GUIDED_BASEBALL_BAT_ITEM = register("guided_baseball_bat", GuidedBaseballBatItem::new);
 
 
     // Music Discs
