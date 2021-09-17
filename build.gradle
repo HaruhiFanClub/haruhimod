@@ -54,6 +54,9 @@ repositories {
         url "https://maven.blamejared.com"
     }
     maven {
+        url "https://maven.tehnut.info"
+    }
+    maven {
         url "https://maven.pkg.github.com/wakelesssloth56/ahutils-mod"
         credentials {
             username = System.getenv("GITHUB_ACTOR") ? System.getenv("GITHUB_ACTOR") : System.getenv("GITHUB_USERNAME")
@@ -70,6 +73,7 @@ dependencies {
 
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
     runtimeOnly fg.deobf("net.darkhax.openloader:OpenLoader-${minecraft_version}:${openloader_version}")
+    runtimeOnly fg.deobf("mcp.mobius.waila:Hwyla:1.10.11-B78_1.16.2")
 }
 
 processResources {
