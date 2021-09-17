@@ -35,6 +35,8 @@ public class CommonConfig {
 
     public static IntValue YukisWizardCloakEffectDuration;
 
+    public static ConfigValue<List<? extends String>> BaseballBatCompatibleEnchantments;
+
 
     public static IntValue SingleSosBadgeSlabEffectCooldown;
     public static IntValue SingleSosBadgeSlabLootCooldown;
@@ -101,6 +103,15 @@ public class CommonConfig {
             {
                 b.push("yukis_wizard_cloak");
                 YukisWizardCloakEffectDuration = b.defineInRange("effect_duration", 840, 20, Integer.MAX_VALUE);
+                b.pop();
+            }
+
+            {
+                b.push("baseball_bat");
+                BaseballBatCompatibleEnchantments = b.define(
+                    "compatible_enchantments",
+                    new ArrayList<String>(Arrays.asList("minecraft:knockback", "minecraft:unbreaking", "minecraft:mending", "minecraft:vanishing_curse"))
+                );
                 b.pop();
             }
 

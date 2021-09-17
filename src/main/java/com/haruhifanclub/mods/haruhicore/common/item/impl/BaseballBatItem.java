@@ -8,9 +8,16 @@ import net.minecraft.item.crafting.Ingredient;
 public class BaseballBatItem extends HCBaseballBatItem {
 
     public BaseballBatItem() {
-        super(new HItemTier().setDurability(59).setEnchantmentValue(15).setRepairIngredient(() -> {
-            return Ingredient.of(Items.STICK);
-        }), 3, 1.6F);
+        super(
+            new HItemTier()
+                .setDurability(59)
+                .setEnchantmentValue(15)
+                .setRepairIngredient(() -> {
+                    return Ingredient.of(Items.STICK);
+                }),
+            3,
+            1.6F
+        );
     }
 
 }
