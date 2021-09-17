@@ -65,7 +65,8 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    implementation fg.deobf("org.auioc.mods:ahutils-${minecraft_version}:${ahutils_version}:forgelib")
+    compileOnly "org.auioc.mods.ahutils:ahutils-${minecraft_version}:${ahutils_version}:forgelib"
+    runtimeOnly "org.auioc.mods.ahutils:ahutils-${minecraft_version}:${ahutils_version}"
 
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
     runtimeOnly fg.deobf("net.darkhax.openloader:OpenLoader-${minecraft_version}:${openloader_version}")
