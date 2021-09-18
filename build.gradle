@@ -12,6 +12,8 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
+println("Local debug: ${local_debug.toBoolean()}")
+
 version = "${haruhicore_version}-${getBuildNumber()}"
 group = 'com.haruhifanclub.mods'
 archivesBaseName = "haruhimod-${minecraft_version}"
@@ -71,8 +73,13 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    compileOnly "org.auioc.mods.ahutils:ahutils-${minecraft_version}:${ahutils_version}:forgelib"
-    runtimeOnly "org.auioc.mods.ahutils:ahutils-${minecraft_version}:${ahutils_version}"
+    if (local_debug.toBoolean()){
+        compileOnly fileTree(dir: 'libs', include: ['*-forgelib.jar', '*-api.jar'])
+        runtimeOnly fileTree(dir: 'libs', exclude: ['*-forgelib.jar', '*-deobf.jar', '*-sources.jar', '*-api.jar'])
+    } else {
+        compileOnly "org.auioc.mods.ahutils:ahutils-${minecraft_version}:${ahutils_version}:forgelib"
+        runtimeOnly "org.auioc.mods.ahutils:ahutils-${minecraft_version}:${ahutils_version}"
+    }
 
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
     runtimeOnly fg.deobf("net.darkhax.openloader:OpenLoader-${minecraft_version}:${openloader_version}")
