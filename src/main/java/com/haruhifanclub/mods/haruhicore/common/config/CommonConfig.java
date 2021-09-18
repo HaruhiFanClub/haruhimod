@@ -7,6 +7,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import net.minecraftforge.common.ForgeConfigSpec.IntValue;
+import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;;
 
 public class CommonConfig {
     public static ForgeConfigSpec CONFIG;
@@ -37,6 +38,7 @@ public class CommonConfig {
 
     public static ConfigValue<List<? extends String>> BaseballBatCompatibleEnchantments;
     public static ConfigValue<Float> GuidedBaseballBatKnockbackDamageMultiplier;
+    public static DoubleValue GuidedBaseballBatHitProjectileRayTraceLength;
 
 
     public static IntValue SingleSosBadgeSlabEffectCooldown;
@@ -110,6 +112,7 @@ public class CommonConfig {
                 {
                     b.push("guided");
                     GuidedBaseballBatKnockbackDamageMultiplier = b.define("knockback_damage_multiplier", 1.5F);
+                    GuidedBaseballBatHitProjectileRayTraceLength = b.defineInRange("hit_projectile_max_distance", 7.5D, 0.0D, Double.MAX_VALUE);
                     b.pop();
                 }
                 b.pop();

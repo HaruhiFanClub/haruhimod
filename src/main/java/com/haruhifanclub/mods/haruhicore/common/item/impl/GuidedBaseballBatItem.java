@@ -100,7 +100,7 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem {
     }
 
     private static boolean hitProjectile(PlayerEntity player) {
-        Double rayLength = 7.5D;
+        Double rayLength = CommonConfig.GuidedBaseballBatHitProjectileRayTraceLength.get();
 
         ProjectileEntity target;
         EntityRayTraceResult rayHitEntity = PlayerUtils.getEntityRayTraceResult(player, rayLength);
