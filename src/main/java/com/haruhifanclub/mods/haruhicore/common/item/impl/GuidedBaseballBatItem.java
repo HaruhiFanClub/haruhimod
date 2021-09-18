@@ -90,6 +90,10 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem {
             return false;
         }
 
+        if (player.getAttackStrengthScale(0) < 1.0F) {
+            return false;
+        }
+
         hitProjectile(player);
 
         return false;
