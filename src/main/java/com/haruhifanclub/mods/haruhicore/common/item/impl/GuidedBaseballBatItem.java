@@ -9,15 +9,21 @@ import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCBaseballBatItem;
 import org.auioc.mods.ahutils.utils.game.HItemTier;
+import org.auioc.mods.ahutils.utils.game.PlayerUtils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.FireballEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.math.EntityRayTraceResult;
 
 public class GuidedBaseballBatItem extends HCBaseballBatItem {
 
@@ -72,6 +78,36 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem {
         }
 
         return newModifiers;
+    }
+
+    @Override
+    public boolean onEntitySwing(ItemStack itemStack, LivingEntity entity) {
+        if (!(entity instanceof PlayerEntity)) {
+            return false;
+        }
+        PlayerEntity player = (PlayerEntity) entity;
+        if (player.level.isClientSide()) {
+            return false;
+        }
+
+        hitProjectile(player);
+
+        return false;
+    }
+
+    private static boolean hitProjectile(PlayerEntity player) {
+        Double rayLength = 7.5D;
+
+        ProjectileEntity target;
+        EntityRayTraceResult rayHitEntity = PlayerUtils.getEntityRayTraceResult(player, rayLength);
+        if (rayHitEntity == null || !(rayHitEntity.getEntity() instanceof ProjectileEntity) || (rayHitEntity.getEntity() instanceof FireballEntity)) {
+            return false;
+        }
+        target = (ProjectileEntity) rayHitEntity.getEntity();
+
+        target.setDeltaMovement(player.getViewVector(0).scale(target.getDeltaMovement().length()));
+
+        return true;
     }
 
 }
