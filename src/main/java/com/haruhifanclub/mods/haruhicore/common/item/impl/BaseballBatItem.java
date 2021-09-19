@@ -16,7 +16,7 @@ public class BaseballBatItem extends HCBaseballBatItem {
                     return Ingredient.of(Items.STICK);
                 }),
             3,
-            1.6F
+            1.0F
         );
     }
 

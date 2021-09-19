@@ -36,7 +36,7 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem {
                     return Ingredient.of(ItemRegistry.REINFORCEMENT_STONE_ITEM.get());
                 }),
             3,
-            1.6F
+            1.0F
         );
     }
 
