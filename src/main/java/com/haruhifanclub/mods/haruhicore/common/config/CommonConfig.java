@@ -7,6 +7,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import net.minecraftforge.common.ForgeConfigSpec.IntValue;
+import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;;
 
 public class CommonConfig {
     public static ForgeConfigSpec CONFIG;
@@ -35,6 +36,11 @@ public class CommonConfig {
 
     public static IntValue YukisWizardCloakEffectDuration;
 
+    public static ConfigValue<List<? extends String>> BaseballBatCompatibleEnchantments;
+    public static ConfigValue<Float> GuidedBaseballBatKnockbackDamageMultiplier;
+    public static DoubleValue GuidedBaseballBatHitProjectileRayTraceLength;
+    public static DoubleValue GuidedBaseballBatHitProjectileKnockbackSpeedMultiplier;
+
 
     public static IntValue SingleSosBadgeSlabEffectCooldown;
     public static IntValue SingleSosBadgeSlabLootCooldown;
@@ -54,13 +60,10 @@ public class CommonConfig {
 
             {
                 b.push("reinforcement_stone");
-
                 ReinforcementStoneItemBlacklist = b.define("item_blacklist", new ArrayList<String>());
                 ReinforcementStoneUseOnBlock = b.define("use_on_block", new ArrayList<String>(Arrays.asList("minecraft:anvil")));
-
                 ReinforcingSuccessSound = b.define("success_sound", "");
                 ReinforcingFailedSound = b.define("failed_sound", "");
-
                 {
                     b.push("common");
                     EnableCommonReinforcementStone = b.define("enable", true);
@@ -69,14 +72,12 @@ public class CommonConfig {
                     CommonReinforcingDanchouConeMultiplier = b.defineInRange("danchou_cone_multiplier", 2, 0, Integer.MAX_VALUE);
                     b.pop();
                 }
-
                 {
                     b.push("epic");
                     EnableEpicReinforcementStone = b.define("enable", true);
                     EpicReinforcingExperienceCost = b.defineInRange("experience_cost", 0, 0, Integer.MAX_VALUE);
                     b.pop();
                 }
-
                 b.pop();
             }
 
@@ -104,6 +105,21 @@ public class CommonConfig {
                 b.pop();
             }
 
+            {
+                b.push("baseball_bat");
+                BaseballBatCompatibleEnchantments = b.define(
+                    "compatible_enchantments", new ArrayList<String>(Arrays.asList("minecraft:knockback", "minecraft:unbreaking", "minecraft:mending", "minecraft:vanishing_curse"))
+                );
+                {
+                    b.push("guided");
+                    GuidedBaseballBatKnockbackDamageMultiplier = b.define("knockback_damage_multiplier", 1.5F);
+                    GuidedBaseballBatHitProjectileRayTraceLength = b.defineInRange("hit_projectile_max_distance", 7.5D, 0.0D, Double.MAX_VALUE);
+                    GuidedBaseballBatHitProjectileKnockbackSpeedMultiplier = b.defineInRange("hit_projectile_knockback_speed_multiplier", 0.05D, 0.0D, Double.MAX_VALUE);
+                    b.pop();
+                }
+                b.pop();
+            }
+
             b.pop();
         }
 
@@ -114,7 +130,6 @@ public class CommonConfig {
             {
                 b.push("sos_badge_slab");
                 SosBadgeSlabLogLootDetail = b.define("log_loot_detail", false);
-
                 {
                     b.push("single");
                     SingleSosBadgeSlabEffectCooldown = b.defineInRange("effect_cooldown", 6, 1, Integer.MAX_VALUE);
@@ -122,7 +137,6 @@ public class CommonConfig {
                     SingleSosBadgeSlabLootTable = b.define("loot_table", "");
                     b.pop();
                 }
-
                 {
                     b.push("double");
                     DoubleSosBadgeSlabEffectCooldown = b.defineInRange("effect_cooldown", 3, 1, Integer.MAX_VALUE);
@@ -137,7 +151,6 @@ public class CommonConfig {
                         );
                     b.pop();
                 }
-
                 b.pop();
             }
 
@@ -146,6 +159,7 @@ public class CommonConfig {
 
         CONFIG = b.build();
     }
+
 
     @SuppressWarnings("unchecked")
     private static boolean checkIntArray(Object x, int size) {
