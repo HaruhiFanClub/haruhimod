@@ -93,13 +93,14 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem {
             return false;
         }
 
-        hitProjectile(player);
+        hitProjectile(player, getKnockbackLevel(itemStack));
 
         return false;
     }
 
-    private static boolean hitProjectile(PlayerEntity player) {
+    private static boolean hitProjectile(PlayerEntity player, int knockbackBonus) {
         Double rayLength = CommonConfig.GuidedBaseballBatHitProjectileRayTraceLength.get();
+        Double KnockbackMultiplier = CommonConfig.GuidedBaseballBatHitProjectileKnockbackSpeedMultiplier.get();
 
         ProjectileEntity target;
         EntityRayTraceResult rayHitEntity = PlayerUtils.getEntityRayTraceResult(player, rayLength);
@@ -108,7 +109,11 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem {
         }
         target = (ProjectileEntity) rayHitEntity.getEntity();
 
-        target.setDeltaMovement(player.getViewVector(0).scale(target.getDeltaMovement().length()));
+        target.setDeltaMovement(
+            player.getViewVector(0)
+                .scale(target.getDeltaMovement().length())
+                .scale(0.4D + knockbackBonus * KnockbackMultiplier)
+        );
 
         return true;
     }
