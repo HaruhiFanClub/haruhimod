@@ -51,11 +51,10 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem {
             return oldModifiers;
         }
 
-        Map<Enchantment, Integer> ench = EnchantmentHelper.getEnchantments(itemStack);
-        if (!ench.containsKey(Enchantments.KNOCKBACK)) {
+        int bonus = getKnockbackLevel(itemStack);
+        if (bonus == 0) {
             return oldModifiers;
         }
-        int bonus = ench.get(Enchantments.KNOCKBACK);
 
         Multimap<Attribute, AttributeModifier> newModifiers = HashMultimap.<Attribute, AttributeModifier>create();
 
@@ -112,6 +111,14 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem {
         target.setDeltaMovement(player.getViewVector(0).scale(target.getDeltaMovement().length()));
 
         return true;
+    }
+
+    private static int getKnockbackLevel(ItemStack itemStack) {
+        Map<Enchantment, Integer> ench = EnchantmentHelper.getEnchantments(itemStack);
+        if (!ench.containsKey(Enchantments.KNOCKBACK)) {
+            return 0;
+        }
+        return ench.get(Enchantments.KNOCKBACK);
     }
 
 }
