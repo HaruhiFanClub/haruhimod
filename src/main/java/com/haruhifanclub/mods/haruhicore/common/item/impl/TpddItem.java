@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCHourglassItem;
+import com.haruhifanclub.mods.haruhicore.common.item.base.IBlessedItem;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.MCTimeUtils;
 import net.minecraft.client.util.ITooltipFlag;
@@ -28,7 +29,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class TpddItem extends HCHourglassItem {
+public class TpddItem extends HCHourglassItem implements IBlessedItem {
 
     public TpddItem() {}
 

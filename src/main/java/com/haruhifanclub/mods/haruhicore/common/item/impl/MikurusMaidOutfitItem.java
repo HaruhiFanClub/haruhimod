@@ -4,6 +4,7 @@ import java.util.List;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
+import com.haruhifanclub.mods.haruhicore.common.item.base.IBlessedItem;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.HArmorMaterial;
 import net.minecraft.entity.Entity;
@@ -15,7 +16,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
-public class MikurusMaidOutfitItem extends HCArmorItem {
+public class MikurusMaidOutfitItem extends HCArmorItem implements IBlessedItem {
 
     public MikurusMaidOutfitItem() {
         super(

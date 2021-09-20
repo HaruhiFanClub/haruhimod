@@ -8,6 +8,7 @@ import com.google.common.collect.Multimap;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCBaseballBatItem;
+import com.haruhifanclub.mods.haruhicore.common.item.base.IBlessedItem;
 import org.auioc.mods.ahutils.utils.game.HItemTier;
 import org.auioc.mods.ahutils.utils.game.PlayerUtils;
 import net.minecraft.enchantment.Enchantment;
@@ -25,7 +26,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.math.EntityRayTraceResult;
 
-public class GuidedBaseballBatItem extends HCBaseballBatItem {
+public class GuidedBaseballBatItem extends HCBaseballBatItem implements IBlessedItem {
 
     public GuidedBaseballBatItem() {
         super(

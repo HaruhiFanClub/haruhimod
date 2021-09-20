@@ -1,9 +1,10 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
+import com.haruhifanclub.mods.haruhicore.common.item.base.IBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import net.minecraft.item.Item;
 
-public class MikurusContactItem extends Item {
+public class MikurusContactItem extends Item implements IBlessedItem {
 
     public MikurusContactItem() {
         super(

@@ -7,7 +7,7 @@ import net.minecraft.item.MusicDiscItem;
 import net.minecraft.item.Rarity;
 import net.minecraft.util.SoundEvent;
 
-public class HCMusicDiscItem extends MusicDiscItem {
+public class HCMusicDiscItem extends MusicDiscItem implements IBlessedItem {
 
     public HCMusicDiscItem(Supplier<SoundEvent> soundSupplier) {
         super(
