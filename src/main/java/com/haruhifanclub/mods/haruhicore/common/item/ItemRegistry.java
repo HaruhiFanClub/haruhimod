@@ -47,6 +47,12 @@ public final class ItemRegistry {
     // Weapons
     public static RegistryObject<Item> BASEBALL_BAT_ITEM = register("baseball_bat", BaseballBatItem::new);
     public static RegistryObject<Item> GUIDED_BASEBALL_BAT_ITEM = register("guided_baseball_bat", GuidedBaseballBatItem::new);
+    public static RegistryObject<Item> YUKIS_WIZARD_WAND_ITEM = register("yukis_wizard_wand", YukisWizardWandItem::new);
+    public static RegistryObject<Item> INFERIOR_WIZARD_WAND_ITEM = register("inferior_wizard_wand", () -> new WizardWandItem(1));
+    public static RegistryObject<Item> ORDINARY_WIZARD_WAND_ITEM = register("ordinary_wizard_wand", () -> new WizardWandItem(2));
+    public static RegistryObject<Item> EXCELLENT_WIZARD_WAND_ITEM = register("excellent_wizard_wand", () -> new WizardWandItem(3));
+    public static RegistryObject<Item> RARE_WIZARD_WAND_ITEM = register("rare_wizard_wand", () -> new WizardWandItem(4));
+    public static RegistryObject<Item> EPIC_WIZARD_WAND_ITEM = register("epic_wizard_wand", () -> new WizardWandItem(5));
 
 
     // Music Discs
