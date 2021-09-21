@@ -26,7 +26,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class MikurusContactItem extends Item implements IBlessedItem {
 
-    public static final EquipmentSlotType equipmentSlotType = EquipmentSlotType.HEAD;
+    private static final EquipmentSlotType equipmentSlotType = EquipmentSlotType.HEAD;
     private static final double rayLength = 27.0D;
 
     public MikurusContactItem() {
@@ -100,7 +100,7 @@ public class MikurusContactItem extends Item implements IBlessedItem {
     @OnlyIn(Dist.CLIENT)
     public static void renderLaser() {}
 
-    private static boolean isMaidOutfitEquipped(PlayerEntity player) {
+    public static boolean isMaidOutfitEquipped(PlayerEntity player) {
         return (player.getItemBySlot(EquipmentSlotType.CHEST).getItem()).equals(ItemRegistry.MIKURUS_MAID_OUTFIT_ITEM.get());
     }
 
