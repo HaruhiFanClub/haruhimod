@@ -6,6 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
@@ -32,6 +33,13 @@ public class MikurusContactItem extends Item implements IBlessedItem {
             return ActionResult.sidedSuccess(itemStack, world.isClientSide());
         } else {
             return ActionResult.fail(itemStack);
+        }
+    }
+
+    @Override
+    public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
+        if (player.hasEffect(Effects.BLINDNESS)) {
+            player.removeEffect(Effects.BLINDNESS);
         }
     }
 
