@@ -2,6 +2,7 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import com.haruhifanclub.mods.haruhicore.common.item.base.IBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
@@ -34,6 +35,14 @@ public class MikurusContactItem extends Item implements IBlessedItem {
         } else {
             return ActionResult.fail(itemStack);
         }
+    }
+
+    @Override
+    public boolean canEquip(ItemStack itemStack, EquipmentSlotType armorType, Entity entity) {
+        if (armorType.compareTo(equipmentSlotType) == 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
