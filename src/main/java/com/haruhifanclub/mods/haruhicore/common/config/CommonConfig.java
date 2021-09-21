@@ -37,7 +37,7 @@ public class CommonConfig {
     public static IntValue YukisWizardCloakEffectDuration;
 
     public static ConfigValue<List<? extends String>> BaseballBatCompatibleEnchantments;
-    public static ConfigValue<Float> GuidedBaseballBatKnockbackDamageMultiplier;
+    public static DoubleValue GuidedBaseballBatKnockbackDamageMultiplier;
     public static DoubleValue GuidedBaseballBatHitProjectileRayTraceLength;
     public static DoubleValue GuidedBaseballBatHitProjectileKnockbackSpeedMultiplier;
 
@@ -112,7 +112,7 @@ public class CommonConfig {
                 );
                 {
                     b.push("guided");
-                    GuidedBaseballBatKnockbackDamageMultiplier = b.define("knockback_damage_multiplier", 1.5F);
+                    GuidedBaseballBatKnockbackDamageMultiplier = b.defineInRange("knockback_damage_multiplier", 1.5D, 0.0D, Double.MAX_VALUE);
                     GuidedBaseballBatHitProjectileRayTraceLength = b.defineInRange("hit_projectile_max_distance", 7.5D, 0.0D, Double.MAX_VALUE);
                     GuidedBaseballBatHitProjectileKnockbackSpeedMultiplier = b.defineInRange("hit_projectile_knockback_speed_multiplier", 0.05D, 0.0D, Double.MAX_VALUE);
                     b.pop();
