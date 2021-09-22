@@ -69,14 +69,11 @@ public class MikurusContactItem extends Item implements IBlessedItem {
         }
     }
 
-    // @Override
-    // public void inventoryTick(ItemStack itemStack, World world, Entity entity, int slot, boolean selected) {
-    //     if (entity instanceof PlayerEntity && selected) {
-    //         emitLaser((PlayerEntity) entity);
-    //     }
-    // }
-
     public static boolean emitLaser(PlayerEntity player) {
+        if (!canEmitLaser(player)) {
+            return false;
+        }
+
         EntityRayTraceResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, rayLength);
         if ((rayHitEntity != null) && (rayHitEntity.getEntity() instanceof LivingEntity)) {
             rayHitEntity.getEntity().hurt(DamageSource.MAGIC, player.getHealth() * 0.3F);
@@ -102,6 +99,13 @@ public class MikurusContactItem extends Item implements IBlessedItem {
 
     public static boolean isMaidOutfitEquipped(PlayerEntity player) {
         return (player.getItemBySlot(EquipmentSlotType.CHEST).getItem()).equals(ItemRegistry.MIKURUS_MAID_OUTFIT_ITEM.get());
+    }
+
+    public static boolean canEmitLaser(PlayerEntity player) {
+        if ((player.getItemBySlot(EquipmentSlotType.HEAD).getItem()).equals(ItemRegistry.MIKURUS_CONTACT_ITEM.get()) && isMaidOutfitEquipped(player)) {
+            return true;
+        }
+        return false;
     }
 
 }
