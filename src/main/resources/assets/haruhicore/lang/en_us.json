@@ -1,6 +1,13 @@
 {
     "haruhicore.title": "Haruhi Core",
+
+    "key.category.haruhicore": "Haruhi Core",
+    "key.haruhicore.contace_emit_laser": "Emit Mikuru Beam",
+
     "itemGroup.haruhicore_group": "Haruhi Core",
+
+    "block.haruhicore.sos_badge_slab": "SOS Badge Slab",
+    "block.haruhicore.danchou_cone": "Danchou Cone",
 
     "item.haruhicore.reinforcement_stone": "Reinforcement Stone",
     "item.haruhicore.epic_reinforcement_stone": "Blessing of Haruhi-chan",
@@ -8,9 +15,6 @@
     "item.haruhicore.reinforcement_stone.blacklist": "§cCannot reinforce blacklisted item!",
     "item.haruhicore.reinforcement_stone.empty_item": "§cTarget item not found",
     "item.haruhicore.reinforcement_stone.empty_enchantments": "§cNo enchantments exists on the target item",
-
-    "block.haruhicore.sos_badge_slab": "SOS Badge Slab",
-    "block.haruhicore.danchou_cone": "Danchou Cone",
 
     "item.haruhicore.mikurus_contact": "Mikuru's Contact",
     "item.haruhicore.mikurus_maid_outfit": "Mikuru's Maid Outfit",
