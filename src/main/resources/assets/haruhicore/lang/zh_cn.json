@@ -1,6 +1,13 @@
 {
     "haruhicore.title": "春日核心",
+
+    "key.category.haruhicore": "春日核心",
+    "key.haruhicore.contace_emit_laser": "发射实玖瑠射线",
+
     "itemGroup.haruhicore_group": "春日核心",
+
+    "block.haruhicore.sos_badge_slab": "SOS团徽台阶",
+    "block.haruhicore.danchou_cone": "团长立锥",
 
     "item.haruhicore.reinforcement_stone": "强化石",
     "item.haruhicore.epic_reinforcement_stone": "春日酱的眷顾",
@@ -8,9 +15,6 @@
     "item.haruhicore.reinforcement_stone.blacklist": "§c无法强化此物品",
     "item.haruhicore.reinforcement_stone.empty_item": "§c目标物品为空",
     "item.haruhicore.reinforcement_stone.empty_enchantments": "§c目标物品上不存在附魔",
-
-    "block.haruhicore.sos_badge_slab": "SOS团徽台阶",
-    "block.haruhicore.danchou_cone": "团长立锥",
 
     "item.haruhicore.mikurus_contact": "朝比奈实玖瑠的隐形眼镜",
     "item.haruhicore.mikurus_maid_outfit": "朝比奈实玖瑠的女仆装",

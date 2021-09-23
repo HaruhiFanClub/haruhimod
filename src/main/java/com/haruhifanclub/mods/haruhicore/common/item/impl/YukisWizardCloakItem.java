@@ -5,7 +5,7 @@ import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
 import com.haruhifanclub.mods.haruhicore.common.item.base.IBlessedItem;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
-import org.auioc.mods.ahutils.utils.game.HArmorMaterial;
+import org.auioc.mods.ahutils.api.item.HArmorMaterial;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;

@@ -9,8 +9,8 @@ import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCBaseballBatItem;
 import com.haruhifanclub.mods.haruhicore.common.item.base.IBlessedItem;
+import org.auioc.mods.ahutils.utils.game.EntityUtils;
 import org.auioc.mods.ahutils.utils.game.HItemTier;
-import org.auioc.mods.ahutils.utils.game.PlayerUtils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -104,7 +104,7 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem implements IBlessed
         Double KnockbackMultiplier = CommonConfig.GuidedBaseballBatHitProjectileKnockbackSpeedMultiplier.get();
 
         ProjectileEntity target;
-        EntityRayTraceResult rayHitEntity = PlayerUtils.getEntityRayTraceResult(player, rayLength);
+        EntityRayTraceResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, rayLength);
         if (rayHitEntity == null || !(rayHitEntity.getEntity() instanceof ProjectileEntity) || (rayHitEntity.getEntity() instanceof FireballEntity)) {
             return false;
         }
