@@ -1,10 +1,10 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import java.util.List;
+import com.haruhifanclub.mods.haruhicore.api.item.IBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
-import com.haruhifanclub.mods.haruhicore.common.item.base.IBlessedItem;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.api.item.HArmorMaterial;
 import net.minecraft.entity.Entity;
