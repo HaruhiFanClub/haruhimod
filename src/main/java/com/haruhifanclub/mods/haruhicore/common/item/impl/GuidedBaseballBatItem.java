@@ -8,8 +8,10 @@ import com.google.common.collect.Multimap;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCBaseballBatItem;
+import com.haruhifanclub.mods.haruhicore.common.item.base.IBlessedItem;
+import org.auioc.mods.ahutils.utils.game.EffectUtils;
+import org.auioc.mods.ahutils.utils.game.EntityUtils;
 import org.auioc.mods.ahutils.utils.game.HItemTier;
-import org.auioc.mods.ahutils.utils.game.PlayerUtils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -23,9 +25,10 @@ import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.EntityRayTraceResult;
 
-public class GuidedBaseballBatItem extends HCBaseballBatItem {
+public class GuidedBaseballBatItem extends HCBaseballBatItem implements IBlessedItem {
 
     public GuidedBaseballBatItem() {
         super(
@@ -101,9 +104,14 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem {
     private static boolean hitProjectile(PlayerEntity player, int knockbackBonus) {
         Double rayLength = CommonConfig.GuidedBaseballBatHitProjectileRayTraceLength.get();
         Double KnockbackMultiplier = CommonConfig.GuidedBaseballBatHitProjectileKnockbackSpeedMultiplier.get();
+        int luckBonus = 0;
+        EffectInstance luckEffect = player.getEffect(EffectUtils.getEffect(26));
+        if (luckEffect != null) {
+            luckBonus = luckEffect.getAmplifier() + 1;
+        }
 
         ProjectileEntity target;
-        EntityRayTraceResult rayHitEntity = PlayerUtils.getEntityRayTraceResult(player, rayLength);
+        EntityRayTraceResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, rayLength, (float) (0.45 - 0.2 * Math.pow(0.5, luckBonus)));
         if (rayHitEntity == null || !(rayHitEntity.getEntity() instanceof ProjectileEntity) || (rayHitEntity.getEntity() instanceof FireballEntity)) {
             return false;
         }

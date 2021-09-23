@@ -3,7 +3,7 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 import com.haruhifanclub.mods.haruhicore.client.model.WizardHatArmorModel;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
-import org.auioc.mods.ahutils.utils.game.HArmorMaterial;
+import org.auioc.mods.ahutils.api.item.HArmorMaterial;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.crafting.Ingredient;

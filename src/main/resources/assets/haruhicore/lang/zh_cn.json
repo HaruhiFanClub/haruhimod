@@ -1,6 +1,13 @@
 {
     "haruhicore.title": "春日核心",
+
+    "key.category.haruhicore": "春日核心",
+    "key.haruhicore.contace_emit_laser": "发射实玖瑠射线",
+
     "itemGroup.haruhicore_group": "春日核心",
+
+    "block.haruhicore.sos_badge_slab": "SOS团徽台阶",
+    "block.haruhicore.danchou_cone": "团长立锥",
 
     "item.haruhicore.reinforcement_stone": "强化石",
     "item.haruhicore.epic_reinforcement_stone": "春日酱的眷顾",
@@ -9,9 +16,7 @@
     "item.haruhicore.reinforcement_stone.empty_item": "§c目标物品为空",
     "item.haruhicore.reinforcement_stone.empty_enchantments": "§c目标物品上不存在附魔",
 
-    "block.haruhicore.sos_badge_slab": "SOS团徽台阶",
-    "block.haruhicore.danchou_cone": "团长立锥",
-
+    "item.haruhicore.mikurus_contact": "朝比奈实玖瑠的隐形眼镜",
     "item.haruhicore.mikurus_maid_outfit": "朝比奈实玖瑠的女仆装",
     "item.haruhicore.maid_outfit": "女仆装",
     "item.haruhicore.yukis_wizard_cloak": "长门有希的魔法斗篷",
@@ -21,6 +26,13 @@
 
     "item.haruhicore.baseball_bat": "棒球棍",
     "item.haruhicore.guided_baseball_bat": "制导模式棒球棍",
+
+    "item.haruhicore.inferior_wizard_wand": "魔法杖LV.1",
+    "item.haruhicore.ordinary_wizard_wand": "魔法杖LV.2",
+    "item.haruhicore.excellent_wizard_wand": "魔法杖LV.3",
+    "item.haruhicore.rare_wizard_wand": "魔法杖LV.4",
+    "item.haruhicore.epic_wizard_wand": "魔法杖LV.5",
+    "item.haruhicore.yukis_wizard_wand": "长门有希的魔法杖",
 
     "item.haruhicore.music_disc_in_the_summertime": "音乐唱片",
     "item.haruhicore.music_disc_someday_in_the_rain": "音乐唱片",

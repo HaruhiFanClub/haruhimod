@@ -3,8 +3,9 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 import com.haruhifanclub.mods.haruhicore.client.model.WizardHatArmorModel;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
+import com.haruhifanclub.mods.haruhicore.common.item.base.IBlessedItem;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
-import org.auioc.mods.ahutils.utils.game.HArmorMaterial;
+import org.auioc.mods.ahutils.api.item.HArmorMaterial;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -15,7 +16,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class YukisWizardHatItem extends HCArmorItem {
+public class YukisWizardHatItem extends HCArmorItem implements IBlessedItem {
 
     public YukisWizardHatItem() {
         super(

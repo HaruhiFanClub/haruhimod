@@ -42,10 +42,17 @@ public final class ItemRegistry {
     public static RegistryObject<Item> YUKIS_WIZARD_CLOAK_ITEM = register("yukis_wizard_cloak", YukisWizardCloakItem::new);
     public static RegistryObject<Item> MAID_OUTFIT_ITEM = register("maid_outfit", MaidOutfitItem::new);
     public static RegistryObject<Item> MIKURUS_MAID_OUTFIT_ITEM = register("mikurus_maid_outfit", MikurusMaidOutfitItem::new);
+    public static RegistryObject<Item> MIKURUS_CONTACT_ITEM = register("mikurus_contact", MikurusContactItem::new);
 
     // Weapons
     public static RegistryObject<Item> BASEBALL_BAT_ITEM = register("baseball_bat", BaseballBatItem::new);
     public static RegistryObject<Item> GUIDED_BASEBALL_BAT_ITEM = register("guided_baseball_bat", GuidedBaseballBatItem::new);
+    public static RegistryObject<Item> YUKIS_WIZARD_WAND_ITEM = register("yukis_wizard_wand", YukisWizardWandItem::new);
+    public static RegistryObject<Item> INFERIOR_WIZARD_WAND_ITEM = register("inferior_wizard_wand", () -> new WizardWandItem(1));
+    public static RegistryObject<Item> ORDINARY_WIZARD_WAND_ITEM = register("ordinary_wizard_wand", () -> new WizardWandItem(2));
+    public static RegistryObject<Item> EXCELLENT_WIZARD_WAND_ITEM = register("excellent_wizard_wand", () -> new WizardWandItem(3));
+    public static RegistryObject<Item> RARE_WIZARD_WAND_ITEM = register("rare_wizard_wand", () -> new WizardWandItem(4));
+    public static RegistryObject<Item> EPIC_WIZARD_WAND_ITEM = register("epic_wizard_wand", () -> new WizardWandItem(5));
 
 
     // Music Discs

@@ -1,0 +1,6 @@
+{
+    "parent": "haruhicore:item/hourglass",
+    "textures": {
+        "1": "haruhicore:item/tpdd_1"
+    }
+}

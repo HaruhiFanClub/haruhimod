@@ -3,8 +3,9 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
+import com.haruhifanclub.mods.haruhicore.common.item.base.IBlessedItem;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
-import org.auioc.mods.ahutils.utils.game.HArmorMaterial;
+import org.auioc.mods.ahutils.api.item.HArmorMaterial;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -13,7 +14,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.Effects;
 import net.minecraft.world.World;
 
-public class YukisWizardCloakItem extends HCArmorItem {
+public class YukisWizardCloakItem extends HCArmorItem implements IBlessedItem {
 
     public YukisWizardCloakItem() {
         super(
