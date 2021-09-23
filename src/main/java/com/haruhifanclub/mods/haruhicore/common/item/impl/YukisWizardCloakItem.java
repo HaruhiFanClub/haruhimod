@@ -16,6 +16,8 @@ import net.minecraft.world.World;
 
 public class YukisWizardCloakItem extends HCArmorItem implements IBlessedItem {
 
+    private static final int effectDuration = CommonConfig.YukisWizardCloakEffectDuration.get() * 20;
+
     public YukisWizardCloakItem() {
         super(
             new HArmorMaterial("yukis_wizard_cloak")
@@ -46,7 +48,7 @@ public class YukisWizardCloakItem extends HCArmorItem implements IBlessedItem {
         }
 
         if (!player.hasEffect(Effects.ABSORPTION)) {
-            EffectUtils.addEffect(player, 22, CommonConfig.YukisWizardCloakEffectDuration.get(), 2);
+            EffectUtils.addEffect(player, 22, effectDuration, 2);
         }
 
     }

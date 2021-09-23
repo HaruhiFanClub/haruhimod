@@ -111,7 +111,7 @@ public class CommonConfig {
 
             {
                 b.push("yukis_wizard_cloak");
-                YukisWizardCloakEffectDuration = b.defineInRange("effect_duration", 840, 20, Integer.MAX_VALUE);
+                YukisWizardCloakEffectDuration = b.defineInRange("effect_duration", 42, 0, Integer.MAX_VALUE);
                 b.pop();
             }
 
