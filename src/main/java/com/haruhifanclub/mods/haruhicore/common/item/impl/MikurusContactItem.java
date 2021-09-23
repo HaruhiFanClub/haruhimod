@@ -1,5 +1,6 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
+import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.IBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
@@ -27,7 +28,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class MikurusContactItem extends Item implements IBlessedItem {
 
     private static final EquipmentSlotType equipmentSlotType = EquipmentSlotType.HEAD;
-    private static final double rayLength = 27.0D;
+    private static final double rayLength = CommonConfig.MikurusContactLaserLength.get();
+    private static final int cooldown = CommonConfig.MikurusContactLaserCooldown.get() * 20;
 
     public MikurusContactItem() {
         super(
@@ -70,10 +72,6 @@ public class MikurusContactItem extends Item implements IBlessedItem {
     }
 
     public static boolean emitLaser(PlayerEntity player) {
-        if (!canEmitLaser(player)) {
-            return false;
-        }
-
         EntityRayTraceResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, rayLength);
         if ((rayHitEntity != null) && (rayHitEntity.getEntity() instanceof LivingEntity)) {
             rayHitEntity.getEntity().hurt(DamageSource.MAGIC, player.getHealth() * 0.3F);
@@ -106,6 +104,10 @@ public class MikurusContactItem extends Item implements IBlessedItem {
             return true;
         }
         return false;
+    }
+
+    public static int getCooldown() {
+        return cooldown;
     }
 
 }
