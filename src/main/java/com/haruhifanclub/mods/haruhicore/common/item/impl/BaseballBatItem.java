@@ -1,7 +1,7 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCBaseballBatItem;
-import org.auioc.mods.ahutils.utils.game.HItemTier;
+import org.auioc.mods.ahutils.api.item.HItemTier;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 

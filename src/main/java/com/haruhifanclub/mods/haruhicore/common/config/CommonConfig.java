@@ -34,6 +34,9 @@ public class CommonConfig {
     public static BooleanValue MikurusMaidOutfitForOtherPlayers;
     public static BooleanValue MikurusMaidOutfitForFriendlyEntities;
 
+    public static DoubleValue MikurusContactLaserLength;
+    public static IntValue MikurusContactLaserCooldown;
+
     public static IntValue YukisWizardCloakEffectDuration;
 
     public static ConfigValue<List<? extends String>> BaseballBatCompatibleEnchantments;
@@ -100,8 +103,15 @@ public class CommonConfig {
             }
 
             {
+                b.push("mikurus_contact");
+                MikurusContactLaserLength = b.defineInRange("laser_length", 27.0D, 0.0D, Double.MAX_VALUE);
+                MikurusContactLaserCooldown = b.defineInRange("laser_cooldown", 1, 0, Integer.MAX_VALUE);
+                b.pop();
+            }
+
+            {
                 b.push("yukis_wizard_cloak");
-                YukisWizardCloakEffectDuration = b.defineInRange("effect_duration", 840, 20, Integer.MAX_VALUE);
+                YukisWizardCloakEffectDuration = b.defineInRange("effect_duration", 42, 0, Integer.MAX_VALUE);
                 b.pop();
             }
 

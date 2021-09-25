@@ -3,9 +3,9 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import com.haruhifanclub.mods.haruhicore.api.item.IBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCHourglassItem;
-import com.haruhifanclub.mods.haruhicore.common.item.base.IBlessedItem;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.MCTimeUtils;
 import net.minecraft.client.util.ITooltipFlag;
@@ -31,11 +31,17 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class TpddItem extends HCHourglassItem implements IBlessedItem {
 
+    private static final int readDuration = CommonConfig.TpddReadDuration.get() * 20;
+    private static final int readCooldown = CommonConfig.TpddReadCooldown.get() * 20;
+    private static final int writeCooldown = CommonConfig.TpddWriteCooldown.get() * 20;
+    private static final boolean broadcastOnWrite = CommonConfig.TpddBroadcastOnWrite.get();
+    private static final boolean broadcastOnRead = CommonConfig.TpddBroadcastOnRead.get();
+
     public TpddItem() {}
 
     @Override
     public int getUseDuration(ItemStack itemStack) {
-        return CommonConfig.TpddReadDuration.get() * 20;
+        return readDuration;
     }
 
     @Override
@@ -131,11 +137,11 @@ public class TpddItem extends HCHourglassItem implements IBlessedItem {
             }
         }
 
-        if (CommonConfig.TpddBroadcastOnWrite.get() && !level.isClientSide()) {
+        if (broadcastOnWrite && !level.isClientSide()) {
             super.broadcastTime(level, player);
         }
 
-        player.getCooldowns().addCooldown(this, CommonConfig.TpddWriteCooldown.get() * 20);
+        player.getCooldowns().addCooldown(this, writeCooldown);
 
         return ActionResult.sidedSuccess(itemStack, level.isClientSide());
     }
@@ -163,7 +169,7 @@ public class TpddItem extends HCHourglassItem implements IBlessedItem {
             itemStack.removeTagKey("tpdd");
         }
 
-        if (CommonConfig.TpddBroadcastOnRead.get() && !level.isClientSide()) {
+        if (broadcastOnRead && !level.isClientSide()) {
             super.broadcast(
                 level,
                 new TranslationTextComponent(
@@ -174,7 +180,7 @@ public class TpddItem extends HCHourglassItem implements IBlessedItem {
             );
         }
 
-        player.getCooldowns().addCooldown(this, CommonConfig.TpddReadCooldown.get() * 20);
+        player.getCooldowns().addCooldown(this, readCooldown);
 
         return itemStack;
     }

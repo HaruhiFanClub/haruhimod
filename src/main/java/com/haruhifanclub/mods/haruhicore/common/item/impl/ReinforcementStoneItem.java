@@ -17,6 +17,9 @@ import net.minecraft.util.ActionResultType;
 
 public class ReinforcementStoneItem extends Item implements IReinforcementStoneItem {
 
+    private static final int luckMultiplier = CommonConfig.CommonReinforcingLuckEffectMultiplier.get();
+    private static final int danchouConeMultiplier = CommonConfig.CommonReinforcingDanchouConeMultiplier.get();
+
     public ReinforcementStoneItem() {
         super(
             new Item.Properties()
@@ -59,11 +62,11 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
 
             EffectInstance luckEffect = player.getEffect(EffectUtils.getEffect(26));
             if (luckEffect != null) {
-                N += (luckEffect.getAmplifier() + 1) * CommonConfig.CommonReinforcingLuckEffectMultiplier.get();
+                N += (luckEffect.getAmplifier() + 1) * luckMultiplier;
             }
 
             if ((player.getItemBySlot(EquipmentSlotType.HEAD).getItem()).equals(ItemRegistry.DANCHOU_CONE_BLOCK.get())) {
-                N += 1 * CommonConfig.CommonReinforcingDanchouConeMultiplier.get();
+                N += 1 * danchouConeMultiplier;
             }
 
             if (N >= X) {

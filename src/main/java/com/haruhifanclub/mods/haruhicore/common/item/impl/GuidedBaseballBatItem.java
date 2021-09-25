@@ -5,13 +5,13 @@ import java.util.Map;
 import java.util.Map.Entry;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.haruhifanclub.mods.haruhicore.api.item.IBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCBaseballBatItem;
-import com.haruhifanclub.mods.haruhicore.common.item.base.IBlessedItem;
+import org.auioc.mods.ahutils.api.item.HItemTier;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.EntityUtils;
-import org.auioc.mods.ahutils.utils.game.HItemTier;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -29,6 +29,10 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.EntityRayTraceResult;
 
 public class GuidedBaseballBatItem extends HCBaseballBatItem implements IBlessedItem {
+
+    private static final double knockbackDamageMultiplier = CommonConfig.GuidedBaseballBatKnockbackDamageMultiplier.get();
+    private static final double hitProjectileRayLength = CommonConfig.GuidedBaseballBatHitProjectileRayTraceLength.get();
+    private static final double hitProjectileKnockbackSpeedMultiplier = CommonConfig.GuidedBaseballBatHitProjectileKnockbackSpeedMultiplier.get();
 
     public GuidedBaseballBatItem() {
         super(
@@ -72,7 +76,7 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem implements IBlessed
                     new AttributeModifier(
                         BASE_ATTACK_DAMAGE_UUID,
                         "Weapon modifier",
-                        (double) (super.getDamage() + bonus * CommonConfig.GuidedBaseballBatKnockbackDamageMultiplier.get()),
+                        (double) (super.getDamage() + bonus * knockbackDamageMultiplier),
                         AttributeModifier.Operation.ADDITION
                     )
                 );
@@ -96,14 +100,16 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem implements IBlessed
             return false;
         }
 
-        hitProjectile(player, getKnockbackLevel(itemStack));
+        if (hitProjectile(player, getKnockbackLevel(itemStack))) {
+            itemStack.hurtAndBreak(1, player, (e) -> {
+                e.broadcastBreakEvent(player.getUsedItemHand());
+            });
+        }
 
         return false;
     }
 
     private static boolean hitProjectile(PlayerEntity player, int knockbackBonus) {
-        Double rayLength = CommonConfig.GuidedBaseballBatHitProjectileRayTraceLength.get();
-        Double KnockbackMultiplier = CommonConfig.GuidedBaseballBatHitProjectileKnockbackSpeedMultiplier.get();
         int luckBonus = 0;
         EffectInstance luckEffect = player.getEffect(EffectUtils.getEffect(26));
         if (luckEffect != null) {
@@ -111,7 +117,7 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem implements IBlessed
         }
 
         ProjectileEntity target;
-        EntityRayTraceResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, rayLength, (float) (0.45 - 0.2 * Math.pow(0.5, luckBonus)));
+        EntityRayTraceResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, hitProjectileRayLength, (float) (0.45 - 0.2 * Math.pow(0.5, luckBonus)));
         if (rayHitEntity == null || !(rayHitEntity.getEntity() instanceof ProjectileEntity) || (rayHitEntity.getEntity() instanceof FireballEntity)) {
             return false;
         }
@@ -120,7 +126,7 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem implements IBlessed
         target.setDeltaMovement(
             player.getViewVector(0)
                 .scale(target.getDeltaMovement().length())
-                .scale(0.4D + knockbackBonus * KnockbackMultiplier)
+                .scale(0.4D + knockbackBonus * hitProjectileKnockbackSpeedMultiplier)
         );
 
         return true;

@@ -1,10 +1,10 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import java.util.List;
+import com.haruhifanclub.mods.haruhicore.api.item.IBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
-import com.haruhifanclub.mods.haruhicore.common.item.base.IBlessedItem;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.api.item.HArmorMaterial;
 import net.minecraft.entity.Entity;
@@ -17,6 +17,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class MikurusMaidOutfitItem extends HCArmorItem implements IBlessedItem {
+
+    private static final int effectRange = CommonConfig.MikurusMaidOutfitEffectRange.get();
+    private static final boolean forOtherPlayers = CommonConfig.MikurusMaidOutfitForOtherPlayers.get();
+    private static final boolean forFriendlyEntities = CommonConfig.MikurusMaidOutfitForFriendlyEntities.get();
 
     public MikurusMaidOutfitItem() {
         super(
@@ -49,8 +53,6 @@ public class MikurusMaidOutfitItem extends HCArmorItem implements IBlessedItem {
 
         EffectUtils.addEffect(player, 10, 4, 1); // regeneration
 
-        int effectRange = CommonConfig.MikurusMaidOutfitEffectRange.get();
-
         AxisAlignedBB aabb = (new AxisAlignedBB(player.blockPosition())).inflate(effectRange).expandTowards(0.0D, effectRange, 0.0D);
 
         List<LivingEntity> list = player.level.getEntitiesOfClass(LivingEntity.class, aabb);
@@ -60,10 +62,10 @@ public class MikurusMaidOutfitItem extends HCArmorItem implements IBlessedItem {
             }
 
             if (entity2 instanceof PlayerEntity) {
-                if (CommonConfig.MikurusMaidOutfitForOtherPlayers.get()) {
+                if (forOtherPlayers) {
                     EffectUtils.addEffect(entity2, 10, 4, 1);
                 }
-            } else if ((CommonConfig.MikurusMaidOutfitForFriendlyEntities.get()) && (entity2.getType().getCategory().isFriendly())) {
+            } else if ((forFriendlyEntities) && (entity2.getType().getCategory().isFriendly())) {
                 EffectUtils.addEffect(entity2, 10, 4, 1);
             }
         }
