@@ -11,7 +11,7 @@ import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCBaseballBatItem;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.EntityUtils;
-import org.auioc.mods.ahutils.utils.game.HItemTier;
+import org.auioc.mods.ahutils.api.item.HItemTier;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
