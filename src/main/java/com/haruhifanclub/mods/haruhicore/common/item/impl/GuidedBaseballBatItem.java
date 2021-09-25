@@ -9,9 +9,9 @@ import com.haruhifanclub.mods.haruhicore.api.item.IBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCBaseballBatItem;
+import org.auioc.mods.ahutils.api.item.HItemTier;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.EntityUtils;
-import org.auioc.mods.ahutils.api.item.HItemTier;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -100,7 +100,11 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem implements IBlessed
             return false;
         }
 
-        hitProjectile(player, getKnockbackLevel(itemStack));
+        if (hitProjectile(player, getKnockbackLevel(itemStack))) {
+            itemStack.hurtAndBreak(1, player, (e) -> {
+                e.broadcastBreakEvent(player.getUsedItemHand());
+            });
+        }
 
         return false;
     }
