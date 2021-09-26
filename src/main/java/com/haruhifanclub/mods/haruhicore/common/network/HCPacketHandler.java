@@ -33,7 +33,7 @@ public class HCPacketHandler implements IHPacketHandler {
     private static int index;
 
     public static void register() {
-        registerClientToServer(com.haruhifanclub.mods.haruhicore.server.network.EmitLaserPacket.class, com.haruhifanclub.mods.haruhicore.server.network.EmitLaserPacket::decode);
+        registerClientToServer(com.haruhifanclub.mods.haruhicore.server.network.EmitMikuruBeamPacket.class, com.haruhifanclub.mods.haruhicore.server.network.EmitMikuruBeamPacket::decode);
     }
 
 

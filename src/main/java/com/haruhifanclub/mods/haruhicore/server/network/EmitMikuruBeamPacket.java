@@ -9,11 +9,11 @@ import net.minecraft.item.Item;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
 
-public class EmitLaserPacket implements IHPacket {
+public class EmitMikuruBeamPacket implements IHPacket {
 
     private final UUID uuid;
 
-    public EmitLaserPacket(UUID uuid) {
+    public EmitMikuruBeamPacket(UUID uuid) {
         this.uuid = uuid;
     }
 
@@ -22,8 +22,8 @@ public class EmitLaserPacket implements IHPacket {
         ServerPlayerEntity sender = ctx.getSender();
         if (sender != null && this.uuid.equals(sender.getUUID())) {
             Item item = ItemRegistry.MIKURUS_CONTACT_ITEM.get();
-            if (!sender.getCooldowns().isOnCooldown(item) && MikurusContactItem.canEmitLaser(sender)) {
-                MikurusContactItem.emitLaser(sender);
+            if (!sender.getCooldowns().isOnCooldown(item) && MikurusContactItem.canEmitMikuruBeam(sender)) {
+                MikurusContactItem.emitMikuruBeam(sender);
                 sender.getCooldowns().addCooldown(item, MikurusContactItem.getCooldown());
             }
         }
@@ -34,8 +34,8 @@ public class EmitLaserPacket implements IHPacket {
         buffer.writeUUID(this.uuid);
     }
 
-    public static EmitLaserPacket decode(PacketBuffer buffer) {
-        return new EmitLaserPacket(buffer.readUUID());
+    public static EmitMikuruBeamPacket decode(PacketBuffer buffer) {
+        return new EmitMikuruBeamPacket(buffer.readUUID());
     }
 
 }

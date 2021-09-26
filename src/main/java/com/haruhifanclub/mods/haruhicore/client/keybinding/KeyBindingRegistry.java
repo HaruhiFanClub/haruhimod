@@ -29,10 +29,10 @@ public class KeyBindingRegistry {
     public static void onClientSetup(FMLClientSetupEvent event) {
         MinecraftForge.EVENT_BUS.register(KeyInputHandler.class);
 
-        register(CONTACT_EMIT_LASER_KEY);
+        register(EMIT_MIKURU_BEAM_KEY);
     }
 
 
-    public static final KeyBinding CONTACT_EMIT_LASER_KEY = create("contace_emit_laser", KeyConflictContext.IN_GAME, GLFW.GLFW_KEY_B);
+    public static final KeyBinding EMIT_MIKURU_BEAM_KEY = create("emit_mikuru_beam", KeyConflictContext.IN_GAME, GLFW.GLFW_KEY_B);
 
 }
