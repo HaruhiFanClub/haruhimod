@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.haruhifanclub.mods.haruhicore.api.item.IBlessedItem;
+import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCBaseballBatItem;
@@ -28,7 +28,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.EntityRayTraceResult;
 
-public class GuidedBaseballBatItem extends HCBaseballBatItem implements IBlessedItem {
+public class GuidedBaseballBatItem extends HCBaseballBatItem implements IHCBlessedItem {
 
     private static final double knockbackDamageMultiplier = CommonConfig.GuidedBaseballBatKnockbackDamageMultiplier.get();
     private static final double hitProjectileRayLength = CommonConfig.GuidedBaseballBatHitProjectileRayTraceLength.get();

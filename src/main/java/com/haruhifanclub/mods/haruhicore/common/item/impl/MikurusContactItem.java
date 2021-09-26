@@ -1,6 +1,6 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
-import com.haruhifanclub.mods.haruhicore.api.item.IBlessedItem;
+import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class MikurusContactItem extends Item implements IBlessedItem {
+public class MikurusContactItem extends Item implements IHCBlessedItem {
 
     private static final EquipmentSlotType equipmentSlotType = EquipmentSlotType.HEAD;
     private static final double rayLength = CommonConfig.MikurusContactLaserLength.get();
