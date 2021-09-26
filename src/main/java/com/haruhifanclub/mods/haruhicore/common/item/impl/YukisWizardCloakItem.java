@@ -1,6 +1,6 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
-import com.haruhifanclub.mods.haruhicore.api.item.IBlessedItem;
+import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
@@ -14,7 +14,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.Effects;
 import net.minecraft.world.World;
 
-public class YukisWizardCloakItem extends HCArmorItem implements IBlessedItem {
+public class YukisWizardCloakItem extends HCArmorItem implements IHCBlessedItem {
 
     private static final int effectDuration = CommonConfig.YukisWizardCloakEffectDuration.get() * 20;
 

@@ -20,9 +20,9 @@ public class KeyInputHandler {
             return;
         }
 
-        if (KeyBindingRegistry.CONTACT_EMIT_LASER_KEY.isDown()) {
-            if (MikurusContactItem.canEmitLaser(player)) {
-                HCPacketHandler.sendToServer(new com.haruhifanclub.mods.haruhicore.server.network.EmitLaserPacket(player.getUUID()));
+        if (KeyBindingRegistry.EMIT_MIKURU_BEAM_KEY.isDown()) {
+            if (MikurusContactItem.canEmitMikuruBeam(player)) {
+                HCPacketHandler.sendToServer(new com.haruhifanclub.mods.haruhicore.server.network.EmitMikuruBeamPacket(player.getUUID()));
             }
         }
     }

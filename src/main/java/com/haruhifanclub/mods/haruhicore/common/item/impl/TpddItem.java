@@ -3,7 +3,7 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import com.haruhifanclub.mods.haruhicore.api.item.IBlessedItem;
+import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCHourglassItem;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
@@ -29,7 +29,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class TpddItem extends HCHourglassItem implements IBlessedItem {
+public class TpddItem extends HCHourglassItem implements IHCBlessedItem {
 
     private static final int readDuration = CommonConfig.TpddReadDuration.get() * 20;
     private static final int readCooldown = CommonConfig.TpddReadCooldown.get() * 20;

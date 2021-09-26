@@ -1,7 +1,8 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
-import com.haruhifanclub.mods.haruhicore.api.item.IBlessedItem;
+import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
+import com.haruhifanclub.mods.haruhicore.common.damagesource.MikuruBeamDamageSource;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
@@ -15,7 +16,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class MikurusContactItem extends Item implements IBlessedItem {
+public class MikurusContactItem extends Item implements IHCBlessedItem {
 
     private static final EquipmentSlotType equipmentSlotType = EquipmentSlotType.HEAD;
     private static final double rayLength = CommonConfig.MikurusContactLaserLength.get();
@@ -71,10 +71,11 @@ public class MikurusContactItem extends Item implements IBlessedItem {
         }
     }
 
-    public static boolean emitLaser(PlayerEntity player) {
+    public static boolean emitMikuruBeam(PlayerEntity player) {
         EntityRayTraceResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, rayLength);
         if ((rayHitEntity != null) && (rayHitEntity.getEntity() instanceof LivingEntity)) {
-            rayHitEntity.getEntity().hurt(DamageSource.MAGIC, player.getHealth() * 0.3F);
+            LivingEntity target = (LivingEntity) rayHitEntity.getEntity();
+            target.hurt(MikuruBeamDamageSource.build(target, player), player.getHealth() * 0.3F);
             return true;
         }
 
@@ -93,13 +94,13 @@ public class MikurusContactItem extends Item implements IBlessedItem {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static void renderLaser() {}
+    public static void renderMikuruBeam() {}
 
     public static boolean isMaidOutfitEquipped(PlayerEntity player) {
         return (player.getItemBySlot(EquipmentSlotType.CHEST).getItem()).equals(ItemRegistry.MIKURUS_MAID_OUTFIT_ITEM.get());
     }
 
-    public static boolean canEmitLaser(PlayerEntity player) {
+    public static boolean canEmitMikuruBeam(PlayerEntity player) {
         if ((player.getItemBySlot(EquipmentSlotType.HEAD).getItem()).equals(ItemRegistry.MIKURUS_CONTACT_ITEM.get()) && isMaidOutfitEquipped(player)) {
             return true;
         }

@@ -2,7 +2,9 @@
     "haruhicore.title": "Haruhi Core",
 
     "key.category.haruhicore": "Haruhi Core",
-    "key.haruhicore.contace_emit_laser": "Emit Mikuru Beam",
+    "key.haruhicore.emit_mikuru_beam": "Emit Mikuru Beam",
+
+    "death.haruhicore.mikuru_beam": "%1$s was killed by %2$s using Mikuru Beam",
 
     "itemGroup.haruhicore_group": "Haruhi Core",
 

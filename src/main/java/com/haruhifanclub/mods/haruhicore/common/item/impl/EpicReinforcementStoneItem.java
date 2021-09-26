@@ -1,6 +1,6 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
-import com.haruhifanclub.mods.haruhicore.api.item.IBlessedItem;
+import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.item.base.IReinforcementStoneItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import org.auioc.mods.ahutils.utils.game.EnchUtils;
@@ -14,7 +14,7 @@ import net.minecraft.util.ActionResultType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class EpicReinforcementStoneItem extends Item implements IReinforcementStoneItem, IBlessedItem {
+public class EpicReinforcementStoneItem extends Item implements IReinforcementStoneItem, IHCBlessedItem {
 
     public EpicReinforcementStoneItem() {
         super(

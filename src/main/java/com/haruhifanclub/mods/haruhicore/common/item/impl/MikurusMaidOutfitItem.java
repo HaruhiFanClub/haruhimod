@@ -1,7 +1,7 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import java.util.List;
-import com.haruhifanclub.mods.haruhicore.api.item.IBlessedItem;
+import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
@@ -16,7 +16,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
-public class MikurusMaidOutfitItem extends HCArmorItem implements IBlessedItem {
+public class MikurusMaidOutfitItem extends HCArmorItem implements IHCBlessedItem {
 
     private static final int effectRange = CommonConfig.MikurusMaidOutfitEffectRange.get();
     private static final boolean forOtherPlayers = CommonConfig.MikurusMaidOutfitForOtherPlayers.get();

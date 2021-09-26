@@ -1,6 +1,6 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
-import com.haruhifanclub.mods.haruhicore.api.item.IBlessedItem;
+import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.client.model.WizardHatArmorModel;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class YukisWizardHatItem extends HCArmorItem implements IBlessedItem {
+public class YukisWizardHatItem extends HCArmorItem implements IHCBlessedItem {
 
     public YukisWizardHatItem() {
         super(
