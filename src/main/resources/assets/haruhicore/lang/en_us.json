@@ -4,6 +4,8 @@
     "key.category.haruhicore": "Haruhi Core",
     "key.haruhicore.emit_mikuru_beam": "Emit Mikuru Beam",
 
+    "death.haruhicore.mikuru_beam": "%1$s was killed by %2$s using Mikuru Beam",
+
     "itemGroup.haruhicore_group": "Haruhi Core",
 
     "block.haruhicore.sos_badge_slab": "SOS Badge Slab",
