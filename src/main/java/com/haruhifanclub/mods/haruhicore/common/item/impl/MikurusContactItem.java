@@ -74,7 +74,8 @@ public class MikurusContactItem extends Item implements IBlessedItem {
     public static boolean emitLaser(PlayerEntity player) {
         EntityRayTraceResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, rayLength);
         if ((rayHitEntity != null) && (rayHitEntity.getEntity() instanceof LivingEntity)) {
-            rayHitEntity.getEntity().hurt(DamageSource.MAGIC, player.getHealth() * 0.3F);
+            LivingEntity target = (LivingEntity) rayHitEntity.getEntity();
+            target.hurt(DamageSource.indirectMagic(target, player), player.getHealth() * 0.3F);
             return true;
         }
 
