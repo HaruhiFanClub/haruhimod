@@ -16,10 +16,15 @@ import net.minecraft.world.World;
 public class YukisWizardWandItem extends HCWizardWandItem implements IHCBlessedItem {
 
     private static final double rightUseLength = 6.0D;
+    private static final int rightUseCooldown = 496 * 20;
 
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack wand = player.getItemInHand(hand);
+
+        if (player.getCooldowns().isOnCooldown(this)) {
+            return ActionResult.pass(wand);
+        }
 
         EntityRayTraceResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, rightUseLength);
         if ((rayHitEntity == null) || !(rayHitEntity.getEntity() instanceof LivingEntity)) {
@@ -34,6 +39,8 @@ public class YukisWizardWandItem extends HCWizardWandItem implements IHCBlessedI
             }
             target.removeAllEffects();
         }
+
+        player.getCooldowns().addCooldown(this, rightUseCooldown);
 
         return ActionResult.sidedSuccess(wand, world.isClientSide());
     }
