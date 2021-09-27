@@ -14,7 +14,7 @@ public class MikuruBeamDamageSource extends IndirectEntityDamageSource implement
     }
 
     public static MikuruBeamDamageSource build(LivingEntity target, LivingEntity source) {
-        return (MikuruBeamDamageSource) new MikuruBeamDamageSource(target, source).bypassArmor().setMagic();
+        return (MikuruBeamDamageSource) new MikuruBeamDamageSource(target, source).bypassArmor().bypassMagic();
     }
 
 
@@ -26,6 +26,11 @@ public class MikuruBeamDamageSource extends IndirectEntityDamageSource implement
     @Override
     public String toString() {
         return String.format("MikuruBeamDamageSource (target=%s, source=%s)", this.getDirectEntity(), this.getEntity());
+    }
+
+    @Override
+    public boolean scalesWithDifficulty() {
+        return false;
     }
 
     @Override
