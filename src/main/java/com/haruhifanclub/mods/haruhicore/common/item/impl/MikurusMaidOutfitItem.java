@@ -71,7 +71,7 @@ public class MikurusMaidOutfitItem extends HCArmorItem implements IHCBlessedItem
         }
     }
 
-    public static boolean isMaidOutfitEquipped(PlayerEntity player) {
+    public static boolean isEquipped(PlayerEntity player) {
         return (player.getItemBySlot(EquipmentSlotType.CHEST).getItem()).equals(ItemRegistry.MIKURUS_MAID_OUTFIT_ITEM.get());
     }
 

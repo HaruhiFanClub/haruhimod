@@ -57,7 +57,7 @@ public class YukisWizardHatItem extends HCArmorItem implements IHCBlessedItem {
         }
     }
 
-    public static boolean isYukisWizardHatEquipped(PlayerEntity player) {
+    public static boolean isEquipped(PlayerEntity player) {
         return (player.getItemBySlot(EquipmentSlotType.HEAD).getItem()).equals(ItemRegistry.YUKIS_WIZARD_HAT_ITEM.get());
     }
 

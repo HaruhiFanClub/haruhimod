@@ -52,7 +52,7 @@ public class YukisWizardCloakItem extends HCArmorItem implements IHCBlessedItem 
         }
     }
 
-    public static boolean isYukisWizardCloakEquipped(PlayerEntity player) {
+    public static boolean isEquipped(PlayerEntity player) {
         return (player.getItemBySlot(EquipmentSlotType.CHEST).getItem()).equals(ItemRegistry.YUKIS_WIZARD_CLOAK_ITEM.get());
     }
 
