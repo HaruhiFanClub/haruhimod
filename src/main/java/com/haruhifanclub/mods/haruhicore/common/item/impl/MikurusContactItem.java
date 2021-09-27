@@ -66,7 +66,7 @@ public class MikurusContactItem extends Item implements IHCBlessedItem {
             player.removeEffect(Effects.BLINDNESS);
         }
 
-        if (isMaidOutfitEquipped(player)) {
+        if (MikurusMaidOutfitItem.isMaidOutfitEquipped(player)) {
             EffectUtils.addEffect(player, 32, 4, 0); // hero_of_the_village
         }
     }
@@ -96,12 +96,12 @@ public class MikurusContactItem extends Item implements IHCBlessedItem {
     @OnlyIn(Dist.CLIENT)
     public static void renderMikuruBeam() {}
 
-    public static boolean isMaidOutfitEquipped(PlayerEntity player) {
-        return (player.getItemBySlot(EquipmentSlotType.CHEST).getItem()).equals(ItemRegistry.MIKURUS_MAID_OUTFIT_ITEM.get());
+    public static boolean isMikurusContactEquipped(PlayerEntity player) {
+        return (player.getItemBySlot(EquipmentSlotType.HEAD).getItem()).equals(ItemRegistry.MIKURUS_CONTACT_ITEM.get());
     }
 
     public static boolean canEmitMikuruBeam(PlayerEntity player) {
-        if ((player.getItemBySlot(EquipmentSlotType.HEAD).getItem()).equals(ItemRegistry.MIKURUS_CONTACT_ITEM.get()) && isMaidOutfitEquipped(player)) {
+        if (isMikurusContactEquipped(player) && MikurusMaidOutfitItem.isMaidOutfitEquipped(player)) {
             return true;
         }
         return false;
