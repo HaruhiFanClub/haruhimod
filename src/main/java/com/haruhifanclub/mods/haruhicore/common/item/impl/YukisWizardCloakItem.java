@@ -36,7 +36,7 @@ public class YukisWizardCloakItem extends HCArmorItem implements IHCBlessedItem 
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int index, boolean selected) {
-        if (world.isClientSide) {
+        if (world.isClientSide()) {
             return;
         }
 
@@ -50,7 +50,10 @@ public class YukisWizardCloakItem extends HCArmorItem implements IHCBlessedItem 
         if (!player.hasEffect(Effects.ABSORPTION)) {
             EffectUtils.addEffect(player, 22, effectDuration, 2);
         }
+    }
 
+    public static boolean isYukisWizardCloakEquipped(PlayerEntity player) {
+        return (player.getItemBySlot(EquipmentSlotType.CHEST).getItem()).equals(ItemRegistry.YUKIS_WIZARD_CLOAK_ITEM.get());
     }
 
 }
