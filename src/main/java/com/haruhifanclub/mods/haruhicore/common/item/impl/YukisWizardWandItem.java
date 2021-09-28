@@ -29,7 +29,7 @@ public class YukisWizardWandItem extends HCWizardWandItem implements IHCBlessedI
         if (player.isSteppingCarefully()) {
             return depriveEffect(wand, player);
         } else {
-            return ActionResult.pass(wand);
+            return magicAttack(wand, player);
         }
     }
 
@@ -51,6 +51,11 @@ public class YukisWizardWandItem extends HCWizardWandItem implements IHCBlessedI
         player.getCooldowns().addCooldown(wand.getItem(), depriveEffectCooldown);
 
         return ActionResult.sidedSuccess(wand, player.level.isClientSide());
+    }
+
+    private static ActionResult<ItemStack> magicAttack(ItemStack wand, PlayerEntity player) {
+        // TODO Magic attack
+        return ActionResult.pass(wand);
     }
 
 }
