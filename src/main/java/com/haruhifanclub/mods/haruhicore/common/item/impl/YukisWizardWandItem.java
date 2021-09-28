@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 
 public class YukisWizardWandItem extends HCWizardWandItem implements IHCBlessedItem {
 
-    private static final double rightUseLength = 6.0D;
-    private static final int rightUseCooldown = 496 * 20;
+    private static final double depriveEffectLength = 6.0D;
+    private static final int depriveEffectCooldown = 2 * 20;
 
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
@@ -26,12 +26,20 @@ public class YukisWizardWandItem extends HCWizardWandItem implements IHCBlessedI
             return ActionResult.pass(wand);
         }
 
-        EntityRayTraceResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, rightUseLength);
+        if (player.isSteppingCarefully()) {
+            return depriveEffect(wand, player);
+        } else {
+            return ActionResult.pass(wand);
+        }
+    }
+
+    private static ActionResult<ItemStack> depriveEffect(ItemStack wand, PlayerEntity player) {
+        EntityRayTraceResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, depriveEffectLength);
         if ((rayHitEntity == null) || !(rayHitEntity.getEntity() instanceof LivingEntity)) {
             return ActionResult.pass(wand);
         }
 
-        if (!world.isClientSide()) {
+        if (!player.level.isClientSide()) {
             LivingEntity target = (LivingEntity) rayHitEntity.getEntity();
             Collection<EffectInstance> effects = target.getActiveEffects();
             for (EffectInstance effect : effects) {
@@ -40,9 +48,9 @@ public class YukisWizardWandItem extends HCWizardWandItem implements IHCBlessedI
             target.removeAllEffects();
         }
 
-        player.getCooldowns().addCooldown(this, rightUseCooldown);
+        player.getCooldowns().addCooldown(wand.getItem(), depriveEffectCooldown);
 
-        return ActionResult.sidedSuccess(wand, world.isClientSide());
+        return ActionResult.sidedSuccess(wand, player.level.isClientSide());
     }
 
 }
