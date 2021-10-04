@@ -18,9 +18,6 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -66,42 +63,42 @@ public class MikurusContactItem extends Item implements IHCBlessedItem {
             player.removeEffect(Effects.BLINDNESS);
         }
 
-        if (isMaidOutfitEquipped(player)) {
+        if (MikurusMaidOutfitItem.isEquipped(player)) {
             EffectUtils.addEffect(player, 32, 4, 0); // hero_of_the_village
         }
     }
 
-    public static boolean emitMikuruBeam(PlayerEntity player) {
-        EntityRayTraceResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, rayLength);
-        if ((rayHitEntity != null) && (rayHitEntity.getEntity() instanceof LivingEntity)) {
-            LivingEntity target = (LivingEntity) rayHitEntity.getEntity();
-            target.hurt(MikuruBeamDamageSource.build(target, player), player.getHealth() * 0.3F);
-            return true;
-        }
-
-        BlockRayTraceResult rayHitBlock = EntityUtils.getBlockRayTraceResult(player, rayLength);
-        if (rayHitBlock.getType() != RayTraceResult.Type.MISS) {
-            World world = player.level;
-            BlockPos targetBlockPos = rayHitBlock.getBlockPos().relative(rayHitBlock.getDirection());
-            if (AbstractFireBlock.canBePlacedAt(world, targetBlockPos, player.getDirection())) {
-                world.setBlock(targetBlockPos, AbstractFireBlock.getState(world, targetBlockPos), 11);
-                return true;
+    public static int emitMikuruBeam(PlayerEntity player) {
+        return EntityUtils.rayHitLivingEntityOrBlock(
+            player, rayLength,
+            (e) -> {
+                LivingEntity target = (LivingEntity) e.getEntity();
+                if (target.hurt(MikuruBeamDamageSource.build(target, player), player.getHealth() * 0.3F)) {
+                    return 1;
+                }
+                return 0;
+            },
+            (b) -> {
+                World world = player.level;
+                BlockPos targetBlockPos = b.getBlockPos().relative(b.getDirection());
+                if (AbstractFireBlock.canBePlacedAt(world, targetBlockPos, player.getDirection())) {
+                    world.setBlock(targetBlockPos, AbstractFireBlock.getState(world, targetBlockPos), 11);
+                    return 1;
+                }
+                return 0;
             }
-            return false;
-        }
-
-        return false;
+        );
     }
 
     @OnlyIn(Dist.CLIENT)
     public static void renderMikuruBeam() {}
 
-    public static boolean isMaidOutfitEquipped(PlayerEntity player) {
-        return (player.getItemBySlot(EquipmentSlotType.CHEST).getItem()).equals(ItemRegistry.MIKURUS_MAID_OUTFIT_ITEM.get());
+    public static boolean isEquipped(PlayerEntity player) {
+        return (player.getItemBySlot(EquipmentSlotType.HEAD).getItem()).equals(ItemRegistry.MIKURUS_CONTACT_ITEM.get());
     }
 
     public static boolean canEmitMikuruBeam(PlayerEntity player) {
-        if ((player.getItemBySlot(EquipmentSlotType.HEAD).getItem()).equals(ItemRegistry.MIKURUS_CONTACT_ITEM.get()) && isMaidOutfitEquipped(player)) {
+        if (isEquipped(player) && MikurusMaidOutfitItem.isEquipped(player)) {
             return true;
         }
         return false;

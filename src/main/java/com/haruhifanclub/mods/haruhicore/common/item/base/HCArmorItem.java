@@ -1,6 +1,7 @@
 package com.haruhifanclub.mods.haruhicore.common.item.base;
 
 import javax.annotation.Nullable;
+import com.haruhifanclub.mods.haruhicore.api.item.IHCArmorItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
@@ -13,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class HCArmorItem extends ArmorItem {
+public class HCArmorItem extends ArmorItem implements IHCArmorItem {
 
     public HCArmorItem(IArmorMaterial material, EquipmentSlotType slotType) {
         super(

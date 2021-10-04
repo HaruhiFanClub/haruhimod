@@ -4,11 +4,12 @@ import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.client.model.WizardHatArmorModel;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
-import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.api.item.HArmorMaterial;
+import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -41,7 +42,7 @@ public class YukisWizardHatItem extends HCArmorItem implements IHCBlessedItem {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int index, boolean selected) {
-        if (world.isClientSide) {
+        if (world.isClientSide()) {
             return;
         }
 
@@ -54,6 +55,10 @@ public class YukisWizardHatItem extends HCArmorItem implements IHCBlessedItem {
             EffectUtils.addEffect(livingEntity, 24, 4, 0); // glowing
             EffectUtils.addEffect(livingEntity, 26, 4, 0); // luck
         }
+    }
+
+    public static boolean isEquipped(PlayerEntity player) {
+        return (player.getItemBySlot(EquipmentSlotType.HEAD).getItem()).equals(ItemRegistry.YUKIS_WIZARD_HAT_ITEM.get());
     }
 
 }

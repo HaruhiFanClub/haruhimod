@@ -4,9 +4,8 @@ import java.util.List;
 import com.haruhifanclub.mods.haruhicore.common.advancement.criterion.ItemReinforcedTrigger;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.server.event.impl.PlayerReinforceItemEvent;
-import org.auioc.mods.ahutils.utils.game.I18nUtils;
-import org.auioc.mods.ahutils.utils.game.MessageUtils;
 import org.auioc.mods.ahutils.utils.game.SoundUtils;
+import org.auioc.mods.ahutils.utils.game.TextUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
@@ -99,15 +98,15 @@ public interface IReinforcementStoneItem {
         if (itemStackCheckResult > 0) {
             switch (itemStackCheckResult) {
                 case 1: {
-                    MessageUtils.chat(player, I18nUtils.getTranslatedText(messageKey + "empty_item"));
+                    TextUtils.chat(player, TextUtils.getI18nText(messageKey + "empty_item"));
                     break;
                 }
                 case 2: {
-                    MessageUtils.chat(player, I18nUtils.getTranslatedText(messageKey + "blacklist"));
+                    TextUtils.chat(player, TextUtils.getI18nText(messageKey + "blacklist"));
                     break;
                 }
                 case 3: {
-                    MessageUtils.chat(player, I18nUtils.getTranslatedText(messageKey + "empty_enchantments"));
+                    TextUtils.chat(player, TextUtils.getI18nText(messageKey + "empty_enchantments"));
                     break;
                 }
             }
@@ -116,7 +115,7 @@ public interface IReinforcementStoneItem {
 
         int experienceCost = getExperienceCost(isEpic);
         if ((!player.isCreative()) && (player.totalExperience < experienceCost)) {
-            MessageUtils.chat(player, I18nUtils.getTranslatedText(messageKey + "xp_not_enough"));
+            TextUtils.chat(player, TextUtils.getI18nText(messageKey + "xp_not_enough"));
             return ActionResultType.FAIL;
         }
 

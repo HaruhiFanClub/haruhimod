@@ -25,6 +25,7 @@ public class HaruhiCore {
     private void modSetup(final IEventBus modEventBus) {
         com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry.ITEMS.register(modEventBus);
         com.haruhifanclub.mods.haruhicore.common.block.BlockRegistry.BLOCKS.register(modEventBus);
+        com.haruhifanclub.mods.haruhicore.common.entity.EntityRegistry.ENTITIES.register(modEventBus);
         com.haruhifanclub.mods.haruhicore.common.sound.SoundEventRegistry.SOUND_EVENTS.register(modEventBus);
         com.haruhifanclub.mods.haruhicore.common.tileentity.TileEntityRegistry.TILE_ENTITIES.register(modEventBus);
         com.haruhifanclub.mods.haruhicore.common.advancement.CriterionRegistry.register();
