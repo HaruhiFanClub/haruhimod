@@ -18,16 +18,15 @@ version = "${haruhicore_version}-${getBuildNumber()}"
 group = 'com.haruhifanclub.mods'
 archivesBaseName = "haruhimod-${minecraft_version}"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(16)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
     mappings channel: "${mappings_channel}", version: "${mappings_version}"
     runs {
         client {
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
             workingDirectory project.file('run').canonicalPath
+            property 'log4j.configurationFile', 'log4j2.xml'
             mods {
                 haruhicore {
                     source sourceSets.main
@@ -36,9 +35,8 @@ minecraft {
         }
 
         server {
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
             workingDirectory project.file('run').canonicalPath
+            property 'log4j.configurationFile', 'log4j2.xml'
             mods {
                 haruhicore {
                     source sourceSets.main
@@ -81,17 +79,17 @@ dependencies {
         runtimeOnly "org.auioc.mods.ahutils:ahutils-${minecraft_version}:${ahutils_version}"
     }
 
-    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
-    runtimeOnly fg.deobf("net.darkhax.openloader:OpenLoader-${minecraft_version}:${openloader_version}")
-    runtimeOnly fg.deobf("curse.maven:jade-324717:3439522")
+    // runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
+    // runtimeOnly fg.deobf("net.darkhax.openloader:OpenLoader-${minecraft_version}:${openloader_version}")
+    // runtimeOnly fg.deobf("curse.maven:jade-324717:3439522")
 }
 
 processResources {
-    from (sourceSets.main.resources.srcDirs) {
-        include 'META-INF/mods.toml'
-        duplicatesStrategy 'include'
-        expand 'haruhicore_version': "${minecraft_version}-${haruhicore_version}-${getBuildNumber()}", 'ahutils_version': "${ahutils_version}"
-    }
+    // from (sourceSets.main.resources.srcDirs) {
+    //     include 'META-INF/mods.toml'
+    //     duplicatesStrategy 'include'
+    //     expand 'haruhicore_version': "${minecraft_version}-${haruhicore_version}-${getBuildNumber()}", 'ahutils_version': "${ahutils_version}"
+    // }
 }
 
 jar {}

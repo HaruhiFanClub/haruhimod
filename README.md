@@ -7,12 +7,12 @@ Language:  **English** | [简体中文](/docs/readme-zh_cn.md)
 Minecraft mods for [HaruhiServer](https://github.com/HaruhiFanClub/MCHaruhiServer).
 
 [![GitHub license](https://img.shields.io/github/license/WakelessSloth56/haruhimod?style=flat-square)](/LICENSE)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/WakelessSloth56/haruhimod/gradle-ci/1.16-forge?style=flat-square)](https://github.com/WakelessSloth56/haruhimod/actions)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/WakelessSloth56/haruhimod/gradle-ci?style=flat-square)](https://github.com/WakelessSloth56/haruhimod/actions)
 &nbsp;
-![Minecraft](https://img.shields.io/static/v1?label=Minecraft&message=1.16.5&color=00aa00&style=flat-square)
-[![Forge](https://img.shields.io/static/v1?label=Forge&message=36.2.5&color=e04e14&logo=Conda-Forge&style=flat-square)](http://files.minecraftforge.net/net/minecraftforge/forge/index_1.16.5.html)
-[![AdoptOpenJDK](https://img.shields.io/static/v1?label=AdoptOpenJDK&message=16.0.2%2B7&color=brightgreen&logo=java&style=flat-square)](https://adoptopenjdk.net/?variant=openjdk16&jvmVariant=hotspot)
-[![Gradle](https://img.shields.io/static/v1?label=Gradle&message=7.1.1&color=brightgreen&logo=gradle&style=flat-square)](https://docs.gradle.org/7.1.1/release-notes.html)
+![Minecraft](https://img.shields.io/static/v1?label=Minecraft&message=1.18.1&color=00aa00&style=flat-square)
+[![Forge](https://img.shields.io/static/v1?label=Forge&message=39.0.8&color=e04e14&logo=Conda-Forge&style=flat-square)](http://files.minecraftforge.net/net/minecraftforge/forge/index_1.18.1.html)
+[![AdoptiumOpenJDK](https://img.shields.io/static/v1?label=AdoptiumOpenJDK&message=17.0.1%2B12&color=brightgreen&logo=java&style=flat-square)](https://adoptium.net/?variant=openjdk17&jvmVariant=hotspot)
+[![Gradle](https://img.shields.io/static/v1?label=Gradle&message=7.3&color=brightgreen&logo=gradle&style=flat-square)](https://docs.gradle.org/7.3/release-notes.html)
 
 </div>
 
