@@ -12,21 +12,21 @@ import com.haruhifanclub.mods.haruhicore.common.item.base.HCBaseballBatItem;
 import org.auioc.mods.ahutils.api.item.HItemTier;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.EntityUtils;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.math.EntityRayTraceResult;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.phys.EntityHitResult;
 
 public class GuidedBaseballBatItem extends HCBaseballBatItem implements IHCBlessedItem {
 
@@ -48,10 +48,10 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem implements IHCBless
     }
 
     @Override
-    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType slot, ItemStack itemStack) {
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack itemStack) {
         Multimap<Attribute, AttributeModifier> oldModifiers = super.getAttributeModifiers(slot, itemStack);
 
-        if (slot.compareTo(EquipmentSlotType.MAINHAND) != 0) {
+        if (slot.compareTo(EquipmentSlot.MAINHAND) != 0) {
             return oldModifiers;
         }
         if (!itemStack.isEnchanted()) {
@@ -88,10 +88,10 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem implements IHCBless
 
     @Override
     public boolean onEntitySwing(ItemStack itemStack, LivingEntity entity) {
-        if (!(entity instanceof PlayerEntity)) {
+        if (!(entity instanceof Player)) {
             return false;
         }
-        PlayerEntity player = (PlayerEntity) entity;
+        Player player = (Player) entity;
         if (player.level.isClientSide()) {
             return false;
         }
@@ -109,15 +109,15 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem implements IHCBless
         return false;
     }
 
-    private static boolean hitProjectile(PlayerEntity player, int knockbackBonus) {
+    private static boolean hitProjectile(Player player, int knockbackBonus) {
         int luckBonus = 0;
-        EffectInstance luckEffect = player.getEffect(EffectUtils.getEffect(26));
+        MobEffectInstance luckEffect = player.getEffect(EffectUtils.getEffect(26));
         if (luckEffect != null) {
             luckBonus = luckEffect.getAmplifier() + 1;
         }
 
         ProjectileEntity target;
-        EntityRayTraceResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, hitProjectileRayLength, (float) (0.45 - 0.2 * Math.pow(0.5, luckBonus)), false);
+        EntityHitResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, hitProjectileRayLength, (float) (0.45 - 0.2 * Math.pow(0.5, luckBonus)), false);
         if (rayHitEntity == null || !(rayHitEntity.getEntity() instanceof ProjectileEntity) || (rayHitEntity.getEntity() instanceof FireballEntity)) {
             return false;
         }

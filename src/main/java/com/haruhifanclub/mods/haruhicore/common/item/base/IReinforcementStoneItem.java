@@ -6,15 +6,15 @@ import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.server.event.impl.PlayerReinforceItemEvent;
 import org.auioc.mods.ahutils.utils.game.SoundUtils;
 import org.auioc.mods.ahutils.utils.game.TextUtils;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.CooldownTracker;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.ItemCooldowns;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -27,7 +27,7 @@ public interface IReinforcementStoneItem {
             : CommonConfig.EnableCommonReinforcementStone.get();
     }
 
-    default boolean checkTargetBlock(ItemUseContext context) {
+    default boolean checkTargetBlock(UseOnContext context) {
         List<? extends String> blocks = CommonConfig.ReinforcementStoneUseOnBlock.get();
         ResourceLocation key =
             ForgeRegistries.BLOCKS.getKey(context.getLevel().getBlockState(context.getClickedPos()).getBlock());
@@ -62,37 +62,37 @@ public interface IReinforcementStoneItem {
     }
 
 
-    default ItemStack processEnchantment(ItemStack stack, PlayerEntity player) {
+    default ItemStack processEnchantment(ItemStack stack, Player player) {
         return stack;
     };
 
-    default ActionResultType reinforce(ItemUseContext context, boolean isEpic) {
+    default InteractionResult reinforce(UseOnContext context, boolean isEpic) {
         if (!isEnabled(isEpic)) {
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         }
 
         if (context.getLevel().isClientSide()) {
-            return ActionResultType.CONSUME;
+            return InteractionResult.CONSUME;
         }
 
-        ServerPlayerEntity player = (ServerPlayerEntity) context.getPlayer();
+        ServerPlayer player = (ServerPlayer) context.getPlayer();
 
 
-        Item stoneItem = player.getItemInHand(Hand.MAIN_HAND).getItem();
-        CooldownTracker cooldownTracker = player.getCooldowns();
+        Item stoneItem = player.getItemInHand(InteractionHand.MAIN_HAND).getItem();
+        ItemCooldowns cooldownTracker = player.getCooldowns();
         if (cooldownTracker.isOnCooldown(stoneItem)) {
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         }
 
         if (!player.isSteppingCarefully()) {
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         }
 
         if (!checkTargetBlock(context)) {
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         }
 
-        ItemStack targetItemStack = player.getItemInHand(Hand.OFF_HAND);
+        ItemStack targetItemStack = player.getItemInHand(InteractionHand.OFF_HAND);
 
         int itemStackCheckResult = checkTargetItemStack(targetItemStack);
         if (itemStackCheckResult > 0) {
@@ -110,18 +110,18 @@ public interface IReinforcementStoneItem {
                     break;
                 }
             }
-            return ActionResultType.FAIL;
+            return InteractionResult.FAIL;
         }
 
         int experienceCost = getExperienceCost(isEpic);
         if ((!player.isCreative()) && (player.totalExperience < experienceCost)) {
             TextUtils.chat(player, TextUtils.getI18nText(messageKey + "xp_not_enough"));
-            return ActionResultType.FAIL;
+            return InteractionResult.FAIL;
         }
 
 
         if (MinecraftForge.EVENT_BUS.post(new PlayerReinforceItemEvent.Pre(player, targetItemStack))) {
-            return ActionResultType.FAIL;
+            return InteractionResult.FAIL;
         }
 
         cooldownTracker.addCooldown(stoneItem, 40);
@@ -140,12 +140,12 @@ public interface IReinforcementStoneItem {
             ItemReinforcedTrigger.INSTANCE.trigger(player, isEpic, true, targetItemStack, reinforcedItemStack);
         }
 
-        player.setItemInHand(Hand.OFF_HAND, reinforcedItemStack);
+        player.setItemInHand(InteractionHand.OFF_HAND, reinforcedItemStack);
         if (!player.isCreative()) {
             player.getMainHandItem().shrink(1);
         }
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
 }

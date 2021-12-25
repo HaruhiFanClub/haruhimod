@@ -4,9 +4,9 @@ import com.haruhifanclub.mods.haruhicore.client.model.WizardHatArmorModel;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
 import org.auioc.mods.ahutils.api.item.HArmorMaterial;
-import net.minecraft.client.renderer.entity.model.BipedModel;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.client.resources.HumanoidModel;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -21,14 +21,14 @@ public class WizardHatItem extends HCArmorItem {
                 .setRepairIngredient(() -> {
                     return Ingredient.of(ItemRegistry.REINFORCEMENT_STONE_ITEM.get());
                 }),
-            EquipmentSlotType.HEAD
+            EquipmentSlot.HEAD
         );
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
     @SuppressWarnings("unchecked")
-    public <A extends BipedModel<?>> A getArmorModel() {
+    public <A extends HumanoidModel<?>> A getArmorModel() {
         return (A) new WizardHatArmorModel();
     }
 }

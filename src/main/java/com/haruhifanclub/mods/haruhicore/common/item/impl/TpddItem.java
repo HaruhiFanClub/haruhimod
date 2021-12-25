@@ -6,26 +6,28 @@ import java.util.List;
 import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCHourglassItem;
-import org.auioc.mods.ahutils.utils.game.EffectUtils;
+// import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.MCTimeUtils;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.UseAction;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.nbt.LongArrayNBT;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.LongArrayTag;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffectUtil;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Style;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -45,8 +47,8 @@ public class TpddItem extends HCHourglassItem implements IHCBlessedItem {
     }
 
     @Override
-    public UseAction getUseAnimation(ItemStack itemStack) {
-        return UseAction.SPEAR;
+    public UseAnim getUseAnimation(ItemStack itemStack) {
+        return UseAnim.SPEAR;
     }
 
     @Override
@@ -56,66 +58,66 @@ public class TpddItem extends HCHourglassItem implements IHCBlessedItem {
     }
 
     @Override
-    public ActionResult<ItemStack> use(World level, PlayerEntity player, Hand hand) {
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
 
         if (itemStack.getCount() != 1) {
-            return ActionResult.fail(ItemStack.EMPTY);
+            return InteractionResultHolder.fail(ItemStack.EMPTY);
         }
 
         if (player.getCooldowns().isOnCooldown(this)) {
-            return ActionResult.pass(itemStack);
+            return InteractionResultHolder.pass(itemStack);
         }
 
         if (player.isSteppingCarefully()) {
             return write(level, player, itemStack);
         } else {
             if (!checkNBT(itemStack)) {
-                return ActionResult.pass(itemStack);
+                return InteractionResultHolder.pass(itemStack);
             }
             player.startUsingItem(hand);
-            return ActionResult.consume(itemStack);
+            return InteractionResultHolder.consume(itemStack);
         }
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack itemStack, World level, LivingEntity player) {
-        if (!(player instanceof PlayerEntity)) {
+    public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity player) {
+        if (!(player instanceof Player)) {
             return itemStack;
         }
 
-        return read(level, (PlayerEntity) player, itemStack);
+        return read(level, (Player) player, itemStack);
     }
 
     private static boolean checkNBT(ItemStack itemStack) {
         return itemStack.hasTag() && itemStack.getTag().contains("tpdd");
     }
 
-    private ActionResult<ItemStack> write(World level, PlayerEntity player, ItemStack itemStack) {
+    private InteractionResultHolder<ItemStack> write(Level level, Player player, ItemStack itemStack) {
         { // Process NBT
             if (checkNBT(itemStack)) {
                 itemStack.removeTagKey("tpdd");
             }
 
             { // Write NBT
-                CompoundNBT nbt = new CompoundNBT();
+                CompoundTag nbt = new CompoundTag();
 
                 nbt.putUUID("player", player.getUUID());
 
                 nbt.putFloat("health", player.getHealth());
 
                 { // Food
-                    CompoundNBT food_nbt = new CompoundNBT();
+                    CompoundTag food_nbt = new CompoundTag();
                     player.getFoodData().addAdditionalSaveData(food_nbt);
                     nbt.put("food", food_nbt);
                 }
 
                 { // Effects
-                    ListNBT effects_nbt = new ListNBT();
+                    ListTag effects_nbt = new ListTag();
 
-                    Collection<EffectInstance> effects = player.getActiveEffects();
-                    for (EffectInstance effect : effects) {
-                        CompoundNBT effect_nbt = new CompoundNBT();
+                    Collection<MobEffectInstance> effects = player.getActiveEffects();
+                    for (MobEffectInstance effect : effects) {
+                        CompoundTag effect_nbt = new CompoundTag();
                         effect_nbt.putString("id", effect.getEffect().getRegistryName().toString());
                         effect_nbt.putInt("duration", effect.getDuration());
                         effect_nbt.putInt("amplifier", effect.getAmplifier());
@@ -127,7 +129,7 @@ public class TpddItem extends HCHourglassItem implements IHCBlessedItem {
 
                 { // Time
                     long[] time = MCTimeUtils.getTime(level);
-                    LongArrayNBT time_nbt = new LongArrayNBT(time);
+                    LongArrayTag time_nbt = new LongArrayTag(time);
                     nbt.put("time", time_nbt);
                 }
 
@@ -143,11 +145,11 @@ public class TpddItem extends HCHourglassItem implements IHCBlessedItem {
 
         player.getCooldowns().addCooldown(this, writeCooldown);
 
-        return ActionResult.sidedSuccess(itemStack, level.isClientSide());
+        return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
     }
 
-    private ItemStack read(World level, PlayerEntity player, ItemStack itemStack) {
-        CompoundNBT nbt = itemStack.getTag().getCompound("tpdd");
+    private ItemStack read(Level level, Player player, ItemStack itemStack) {
+        CompoundTag nbt = itemStack.getTag().getCompound("tpdd");
 
         {
             {
@@ -157,11 +159,11 @@ public class TpddItem extends HCHourglassItem implements IHCBlessedItem {
 
             {
                 player.removeAllEffects();
-                ListNBT effects_nbt = nbt.getList("effects", 10);
+                ListTag effects_nbt = nbt.getList("effects", 10);
                 if (!effects_nbt.isEmpty()) {
                     for (int i = 0; i < effects_nbt.size(); i++) {
-                        CompoundNBT effect_nbt = effects_nbt.getCompound(i);
-                        player.addEffect(EffectUtils.getEffectInstance(effect_nbt));
+                        CompoundTag effect_nbt = effects_nbt.getCompound(i);
+                        player.addEffect(MobEffectInstance.load(effect_nbt));
                     }
                 }
             }
@@ -172,7 +174,7 @@ public class TpddItem extends HCHourglassItem implements IHCBlessedItem {
         if (broadcastOnRead && !level.isClientSide()) {
             super.broadcast(
                 level,
-                new TranslationTextComponent(
+                new TranslatableComponent(
                     "item.haruhicore.tpdd.read.message",
                     player.getDisplayName(),
                     super.getTimeMessage(nbt.getLongArray("time"))
@@ -187,11 +189,11 @@ public class TpddItem extends HCHourglassItem implements IHCBlessedItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack itemStack, World level, List<ITextComponent> list, ITooltipFlag flag) {
+    public void appendHoverText(ItemStack itemStack, Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(itemStack, level, list, flag);
 
         if (checkNBT(itemStack)) {
-            CompoundNBT nbt = itemStack.getTag().getCompound("tpdd");
+            CompoundTag nbt = itemStack.getTag().getCompound("tpdd");
 
             String code = String.valueOf(Math.abs(nbt.hashCode()) + nbt.getLongArray("time")[1])
                 + String.valueOf(nbt.getLongArray("time")[2] + nbt.getIntArray("player")[0]);
@@ -211,11 +213,11 @@ public class TpddItem extends HCHourglassItem implements IHCBlessedItem {
             }
 
             list.add(
-                new StringTextComponent(code3)
+                new TextComponent(code3)
                     .withStyle(
                         Style.EMPTY
                             .withFont(new ResourceLocation("minecraft", "alt"))
-                            .withColor(TextFormatting.DARK_PURPLE)
+                            .withColor(ChatFormatting.DARK_PURPLE)
                     )
             );
         }

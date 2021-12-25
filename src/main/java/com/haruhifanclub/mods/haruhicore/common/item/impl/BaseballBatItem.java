@@ -2,8 +2,8 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCBaseballBatItem;
 import org.auioc.mods.ahutils.api.item.HItemTier;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 
 public class BaseballBatItem extends HCBaseballBatItem {
 

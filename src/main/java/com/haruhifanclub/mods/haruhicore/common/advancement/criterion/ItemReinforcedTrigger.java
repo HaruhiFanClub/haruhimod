@@ -6,10 +6,10 @@ import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
 import net.minecraft.advancements.criterion.CriterionInstance;
 import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.advancements.criterion.ItemPredicate;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.loot.ConditionArrayParser;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 public class ItemReinforcedTrigger extends AbstractCriterionTrigger<ItemReinforcedTrigger.Instance> {
 
@@ -31,7 +31,7 @@ public class ItemReinforcedTrigger extends AbstractCriterionTrigger<ItemReinforc
         return new Instance(player, isEpic, isSuccessful, oldItem, newItem);
     }
 
-    public void trigger(ServerPlayerEntity player, boolean isEpic, boolean isSuccessful, ItemStack oldItem, ItemStack newItem) {
+    public void trigger(ServerPlayer player, boolean isEpic, boolean isSuccessful, ItemStack oldItem, ItemStack newItem) {
         this.trigger(player, (instance) -> {
             return instance.test(player, isEpic, isSuccessful, oldItem, newItem);
         });
@@ -52,7 +52,7 @@ public class ItemReinforcedTrigger extends AbstractCriterionTrigger<ItemReinforc
             this.newItem = newItem;
         }
 
-        public boolean test(ServerPlayerEntity player, boolean isEpic, boolean isSuccessful, ItemStack oldItem, ItemStack newItem) {
+        public boolean test(ServerPlayer player, boolean isEpic, boolean isSuccessful, ItemStack oldItem, ItemStack newItem) {
             return this.isEpic.test(isEpic)
                 && this.isSuccessful.test(isSuccessful)
                 && this.oldItem.matches(oldItem)

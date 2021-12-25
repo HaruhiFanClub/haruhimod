@@ -1,28 +1,28 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCHourglassItem;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.CooldownTracker;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.item.ItemCooldowns;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.Level;
 
 public class HourglassItem extends HCHourglassItem {
 
     public HourglassItem() {}
 
     @Override
-    public ActionResult<ItemStack> use(World level, PlayerEntity player, Hand hand) {
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
 
         if (!player.isSteppingCarefully()) {
-            return ActionResult.pass(itemStack);
+            return InteractionResultHolder.pass(itemStack);
         }
 
-        CooldownTracker cooldownTracker = player.getCooldowns();
+        ItemCooldowns cooldownTracker = player.getCooldowns();
         if (cooldownTracker.isOnCooldown(this)) {
-            return ActionResult.pass(itemStack);
+            return InteractionResultHolder.pass(itemStack);
         }
         cooldownTracker.addCooldown(this, 1200);
 
@@ -30,7 +30,7 @@ public class HourglassItem extends HCHourglassItem {
             super.broadcastTime(level, player);
         }
 
-        return ActionResult.sidedSuccess(itemStack, level.isClientSide());
+        return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
     }
 
 }

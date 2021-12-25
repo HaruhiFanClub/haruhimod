@@ -4,13 +4,13 @@ import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.item.base.IReinforcementStoneItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import org.auioc.mods.ahutils.utils.game.EnchUtils;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.item.Rarity;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.util.ActionResultType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.world.InteractionResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -32,8 +32,8 @@ public class EpicReinforcementStoneItem extends Item implements IReinforcementSt
     }
 
     @Override
-    public ItemStack processEnchantment(ItemStack stack, PlayerEntity player) {
-        ListNBT enchantments = stack.getEnchantmentTags();
+    public ItemStack processEnchantment(ItemStack stack, Player player) {
+        ListTag enchantments = stack.getEnchantmentTags();
 
         EnchUtils.enchantAll(enchantments);
 
@@ -44,7 +44,7 @@ public class EpicReinforcementStoneItem extends Item implements IReinforcementSt
     }
 
     @Override
-    public ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext context) {
+    public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
         return reinforce(context, true);
     }
 }

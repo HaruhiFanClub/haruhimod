@@ -5,10 +5,10 @@ import com.haruhifanclub.mods.haruhicore.HaruhiCore;
 import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
 import net.minecraft.advancements.criterion.CriterionInstance;
 import net.minecraft.advancements.criterion.EntityPredicate;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.loot.ConditionArrayParser;
 import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 public class SosBadgeSlabTrigger extends AbstractCriterionTrigger<SosBadgeSlabTrigger.Instance> {
 
@@ -27,7 +27,7 @@ public class SosBadgeSlabTrigger extends AbstractCriterionTrigger<SosBadgeSlabTr
         return new Instance(player, isDouble);
     }
 
-    public void trigger(ServerPlayerEntity player, boolean isDouble) {
+    public void trigger(ServerPlayer player, boolean isDouble) {
         this.trigger(player, (instance) -> {
             return instance.test(player, isDouble);
         });
@@ -42,7 +42,7 @@ public class SosBadgeSlabTrigger extends AbstractCriterionTrigger<SosBadgeSlabTr
             this.isDouble = isDouble;
         }
 
-        public boolean test(ServerPlayerEntity player, boolean isDouble) {
+        public boolean test(ServerPlayer player, boolean isDouble) {
             return (this.isDouble == isDouble);
         }
 

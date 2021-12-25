@@ -2,8 +2,8 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import com.haruhifanclub.mods.haruhicore.common.block.BlockRegistry;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 
 public class DanchouConeBlockItem extends BlockItem {
 

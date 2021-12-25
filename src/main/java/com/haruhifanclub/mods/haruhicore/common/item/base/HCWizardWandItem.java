@@ -1,7 +1,7 @@
 package com.haruhifanclub.mods.haruhicore.common.item.base;
 
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 
 public class HCWizardWandItem extends Item {
 

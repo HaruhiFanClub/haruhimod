@@ -1,7 +1,7 @@
 package com.haruhifanclub.mods.haruhicore.common.entity;
 
 import com.haruhifanclub.mods.haruhicore.HaruhiCore;
-import net.minecraft.entity.EntityType;
+import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 

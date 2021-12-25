@@ -4,10 +4,10 @@ import java.util.UUID;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.impl.MikurusContactItem;
 import org.auioc.mods.ahutils.api.network.IHPacket;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.fml.network.NetworkEvent.Context;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.Item;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraftforge.network.NetworkEvent.Context;
 
 public class EmitMikuruBeamPacket implements IHPacket {
 
@@ -19,7 +19,7 @@ public class EmitMikuruBeamPacket implements IHPacket {
 
     @Override
     public void handle(Context ctx) {
-        ServerPlayerEntity sender = ctx.getSender();
+        ServerPlayer sender = ctx.getSender();
         if (sender != null && this.uuid.equals(sender.getUUID())) {
             Item item = ItemRegistry.MIKURUS_CONTACT_ITEM.get();
             if (!sender.getCooldowns().isOnCooldown(item) && MikurusContactItem.canEmitMikuruBeam(sender)) {
@@ -30,11 +30,11 @@ public class EmitMikuruBeamPacket implements IHPacket {
     }
 
     @Override
-    public void encode(PacketBuffer buffer) {
+    public void encode(FriendlyByteBuf buffer) {
         buffer.writeUUID(this.uuid);
     }
 
-    public static EmitMikuruBeamPacket decode(PacketBuffer buffer) {
+    public static EmitMikuruBeamPacket decode(FriendlyByteBuf buffer) {
         return new EmitMikuruBeamPacket(buffer.readUUID());
     }
 

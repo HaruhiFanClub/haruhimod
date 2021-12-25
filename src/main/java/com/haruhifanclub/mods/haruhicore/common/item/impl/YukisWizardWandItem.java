@@ -4,14 +4,14 @@ import java.util.Collection;
 import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCWizardWandItem;
 import org.auioc.mods.ahutils.utils.game.EntityUtils;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.level.Level;
 
 public class YukisWizardWandItem extends HCWizardWandItem implements IHCBlessedItem {
 
@@ -19,11 +19,11 @@ public class YukisWizardWandItem extends HCWizardWandItem implements IHCBlessedI
     private static final int depriveEffectCooldown = 2 * 20;
 
     @Override
-    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         ItemStack wand = player.getItemInHand(hand);
 
         if (player.getCooldowns().isOnCooldown(this)) {
-            return ActionResult.pass(wand);
+            return InteractionResultHolder.pass(wand);
         }
 
         if (player.isSteppingCarefully()) {
@@ -33,16 +33,16 @@ public class YukisWizardWandItem extends HCWizardWandItem implements IHCBlessedI
         }
     }
 
-    private static ActionResult<ItemStack> depriveEffect(ItemStack wand, PlayerEntity player) {
-        EntityRayTraceResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, depriveEffectLength);
+    private static InteractionResultHolder<ItemStack> depriveEffect(ItemStack wand, Player player) {
+        EntityHitResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, depriveEffectLength);
         if ((rayHitEntity == null) || !(rayHitEntity.getEntity() instanceof LivingEntity)) {
-            return ActionResult.pass(wand);
+            return InteractionResultHolder.pass(wand);
         }
 
         if (!player.level.isClientSide()) {
             LivingEntity target = (LivingEntity) rayHitEntity.getEntity();
-            Collection<EffectInstance> effects = target.getActiveEffects();
-            for (EffectInstance effect : effects) {
+            Collection<MobEffectInstance> effects = target.getActiveEffects();
+            for (MobEffectInstance effect : effects) {
                 player.addEffect(effect);
             }
             target.removeAllEffects();
@@ -50,12 +50,12 @@ public class YukisWizardWandItem extends HCWizardWandItem implements IHCBlessedI
 
         player.getCooldowns().addCooldown(wand.getItem(), depriveEffectCooldown);
 
-        return ActionResult.sidedSuccess(wand, player.level.isClientSide());
+        return InteractionResultHolder.sidedSuccess(wand, player.level.isClientSide());
     }
 
-    private static ActionResult<ItemStack> magicAttack(ItemStack wand, PlayerEntity player) {
+    private static InteractionResultHolder<ItemStack> magicAttack(ItemStack wand, Player player) {
         // TODO Magic attack
-        return ActionResult.pass(wand);
+        return InteractionResultHolder.pass(wand);
     }
 
 }

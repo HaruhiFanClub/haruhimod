@@ -2,14 +2,14 @@ package com.haruhifanclub.mods.haruhicore.client.model;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.client.renderer.entity.model.BipedModel;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class WizardHatArmorModel extends BipedModel<LivingEntity> {
+public class WizardHatArmorModel extends HumanoidModel<LivingEntity> {
     private final ModelRenderer bb_hat;
 
     private final ModelRenderer f0;
