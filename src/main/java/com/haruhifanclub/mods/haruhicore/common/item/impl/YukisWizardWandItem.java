@@ -34,7 +34,7 @@ public class YukisWizardWandItem extends HCWizardWandItem implements IHCBlessedI
     }
 
     private static InteractionResultHolder<ItemStack> depriveEffect(ItemStack wand, Player player) {
-        EntityHitResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, depriveEffectLength);
+        EntityHitResult rayHitEntity = EntityUtils.getEntityHitResult(player, depriveEffectLength);
         if ((rayHitEntity == null) || !(rayHitEntity.getEntity() instanceof LivingEntity)) {
             return InteractionResultHolder.pass(wand);
         }

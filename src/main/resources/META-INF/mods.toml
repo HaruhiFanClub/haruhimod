@@ -1,10 +1,10 @@
 modLoader="javafml"
-loaderVersion="[36.2,)"
+loaderVersion="[39,)"
 license="GNU GPLv3"
 
 [[mods]]
 modId="haruhicore"
-version="${haruhicore_version}"
+version="${file.jarVersion}"
 displayName="Haruhi Core"
 credits="Haruhifanclub"
 authors="WakelssSloth56"
@@ -14,18 +14,18 @@ description='''
 [[dependencies.haruhicore]]
     modId="forge"
     mandatory=true
-    versionRange="[36.2,)"
+    versionRange="[39,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.haruhicore]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5,1.17)"
+    versionRange="[1.18.1,1.19)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.haruhicore]]
     modId="ahutils"
     mandatory=true
-    versionRange="[${ahutils_version},)"
+    versionRange="[4.0.0,)"
     ordering="NONE"
     side="BOTH"

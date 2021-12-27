@@ -118,7 +118,7 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem implements IHCBless
         }
 
         Projectile target;
-        EntityHitResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, hitProjectileRayLength, (float) (0.45 - 0.2 * Math.pow(0.5, luckBonus)), false);
+        EntityHitResult rayHitEntity = EntityUtils.getEntityHitResult(player, hitProjectileRayLength, (float) (0.45 - 0.2 * Math.pow(0.5, luckBonus)), false);
         if (rayHitEntity == null || !(rayHitEntity.getEntity() instanceof Projectile) || (rayHitEntity.getEntity() instanceof Fireball)) {
             return false;
         }

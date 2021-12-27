@@ -161,7 +161,8 @@ public class TpddItem extends HCHourglassItem implements IHCBlessedItem {
                 if (!effects_nbt.isEmpty()) {
                     for (int i = 0; i < effects_nbt.size(); i++) {
                         CompoundTag effect_nbt = effects_nbt.getCompound(i);
-                        player.addEffect(MobEffectInstance.load(effect_nbt));
+                        System.err.println(effect_nbt.toString());
+                        // player.addEffect(MobEffectInstance.load(effect_nbt));
                     }
                 }
             }
