@@ -73,15 +73,15 @@ dependencies {
 
     if (local_debug.toBoolean()){
         compileOnly fileTree(dir: 'libs', include: ['*-forgelib.jar', '*-api.jar'])
-        runtimeOnly fileTree(dir: 'libs', exclude: ['*-forgelib.jar', '*-deobf.jar', '*-sources.jar', '*-api.jar'])
+        runtimeOnly fileTree(dir: 'libs', include: ['*-deobf.jar'])
     } else {
         compileOnly "org.auioc.mods.ahutils:ahutils-${minecraft_version}:${ahutils_version}:forgelib"
-        runtimeOnly "org.auioc.mods.ahutils:ahutils-${minecraft_version}:${ahutils_version}"
+        runtimeOnly "org.auioc.mods.ahutils:ahutils-${minecraft_version}:${ahutils_version}:deobf"
     }
 
-    // runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
+    runtimeOnly fg.deobf("curse.maven:jade-324717:${jade_version}")
     // runtimeOnly fg.deobf("net.darkhax.openloader:OpenLoader-${minecraft_version}:${openloader_version}")
-    // runtimeOnly fg.deobf("curse.maven:jade-324717:3439522")
 }
 
 processResources {
