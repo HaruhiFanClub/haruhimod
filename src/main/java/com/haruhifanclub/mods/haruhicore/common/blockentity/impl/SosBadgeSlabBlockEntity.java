@@ -29,6 +29,8 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.resources.ResourceLocation;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Marker;
 
 public class SosBadgeSlabBlockEntity extends BlockEntity {
 
@@ -37,83 +39,84 @@ public class SosBadgeSlabBlockEntity extends BlockEntity {
 
     private HashMap<Player, Integer> storagedPlayerMap = new HashMap<Player, Integer>();
 
+    private static final Logger LOGGER = LogUtil.getNamedLogger("SosBadgeSlabBlockEntity");
+    private static final Marker SINGLE_MARKER = LogUtil.getMarker("SINGLE");
+    private static final Marker DOUBLE_MARKER = LogUtil.getMarker("DOUBLE");
+
     public SosBadgeSlabBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.SOS_BADGE_SLAB_BLOCK_TILE_ENTITY.get(), pos, state);
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, SosBadgeSlabBlockEntity tile) {
-        if (tile.timer >= MAX_TIME) {
-            SlabType slabtype = tile.getBlockState().getValue(SosBadgeSlabBlock.TYPE);
+        if (tile.timer < MAX_TIME) {
+            tile.timer++;
+            return;
+        }
 
-            AABB boundsAbove = new AABB(
-                tile.worldPosition.getX(), tile.worldPosition.getY(), tile.worldPosition.getZ(),
-                tile.worldPosition.getX() + 1, tile.worldPosition.getY() + (slabtype == SlabType.BOTTOM ? 1 : 2), tile.worldPosition.getZ() + 1
-            );
+        SlabType slabtype = state.getValue(SosBadgeSlabBlock.TYPE);
+        boolean isDouble = (slabtype == SlabType.DOUBLE ? true : false);
 
-            List<Player> playerList = level.getEntities(EntityType.PLAYER, boundsAbove, (e) -> !e.isSpectator());
+        HashMap<Player, Integer> map = tile.storagedPlayerMap;
 
-            if (!playerList.isEmpty()) {
-                Iterator<Entry<Player, Integer>> sit = tile.storagedPlayerMap.entrySet().iterator();
-                while (sit.hasNext()) {
-                    Entry<Player, Integer> entry = sit.next();
-                    Player player = entry.getKey();
+        AABB boundsAbove = new AABB(
+            pos.getX(), pos.getY(), pos.getZ(),
+            pos.getX() + 1, pos.getY() + (slabtype == SlabType.BOTTOM ? 1 : 2), pos.getZ() + 1
+        );
 
-                    counter: if (playerList.contains(player)) {
-                        int count = entry.getValue();
+        List<Player> playerList = level.getEntities(EntityType.PLAYER, boundsAbove, (e) -> !e.isSpectator());
 
-                        if (count == 0) {
-                            entry.setValue(entry.getValue() + 1);
-                            break counter;
-                        }
+        if (!playerList.isEmpty()) {
+            Iterator<Entry<Player, Integer>> sit = map.entrySet().iterator();
+            while (sit.hasNext()) {
+                Entry<Player, Integer> entry = sit.next();
+                Player player = entry.getKey();
 
-                        boolean isDouble = (slabtype == SlabType.DOUBLE ? true : false);
+                counter: if (playerList.contains(player)) {
+                    int count = entry.getValue();
 
-                        int effectCooldown;
-                        int lootColldown;
-                        if (isDouble) {
-                            effectCooldown = CommonConfig.DoubleSosBadgeSlabEffectCooldown.get();
-                            lootColldown = CommonConfig.DoubleSosBadgeSlabLootCooldown.get();
-                        } else {
-                            effectCooldown = CommonConfig.SingleSosBadgeSlabEffectCooldown.get();
-                            lootColldown = CommonConfig.SingleSosBadgeSlabLootCooldown.get();
-                        }
+                    if (count == 0) {
+                        entry.setValue(entry.getValue() + 1);
+                        break counter;
+                    }
 
-                        if (count % effectCooldown == 0) {
-                            // log("hit 1", player);
-                            addEffect(player, effectCooldown, isDouble);
-                        } else {
-                            // log("pass 1");
-                        }
-
-                        if (count % lootColldown == 0) {
-                            // log("hit 2", player);
-                            lootItem(player, isDouble);
-                        } else {
-                            // log("pass 2");
-                        }
-
-                        entry.setValue(count + 1);
+                    int effectCooldown;
+                    int lootColldown;
+                    if (isDouble) {
+                        effectCooldown = CommonConfig.DoubleSosBadgeSlabEffectCooldown.get();
+                        lootColldown = CommonConfig.DoubleSosBadgeSlabLootCooldown.get();
                     } else {
-                        // log("remove", player);
-                        sit.remove();
+                        effectCooldown = CommonConfig.SingleSosBadgeSlabEffectCooldown.get();
+                        lootColldown = CommonConfig.SingleSosBadgeSlabLootCooldown.get();
                     }
-                }
 
-                Iterator<Player> cit = playerList.iterator();
-                while (cit.hasNext()) {
-                    Player player = cit.next();
-                    if (!tile.storagedPlayerMap.containsKey(player)) {
-                        // log("add", player);
-                        tile.storagedPlayerMap.put(player, 0);
+                    if (count % effectCooldown == 0) {
+                        addEffect(player, effectCooldown, isDouble);
+                    } else {
                     }
+
+                    if (count % lootColldown == 0) {
+                        lootItem(player, isDouble);
+                    } else {
+                    }
+
+                    entry.setValue(count + 1);
+                } else {
+                    sit.remove();
                 }
-            } else if (tile.storagedPlayerMap.size() > 0) {
-                // log("[clear] (" + worldPosition.toString() + ")");
-                tile.storagedPlayerMap.clear();
             }
 
-            tile.timer = 0;
+            Iterator<Player> cit = playerList.iterator();
+            while (cit.hasNext()) {
+                Player player = cit.next();
+                if (!map.containsKey(player)) {
+                    map.put(player, 0);
+                }
+            }
+        } else if (map.size() > 0) {
+            map.clear();
         }
+
+        tile.timer = 0;
     }
 
     private static void addEffect(Player player, int duration, boolean isDouble) {
@@ -158,7 +161,7 @@ public class SosBadgeSlabBlockEntity extends BlockEntity {
 
         SosBadgeSlabTrigger.INSTANCE.trigger(((ServerPlayer) player), isDouble);
 
-        LogUtil.info(logs);
+        LOGGER.info(isDouble ? DOUBLE_MARKER : SINGLE_MARKER, logs);
     }
 
 }
