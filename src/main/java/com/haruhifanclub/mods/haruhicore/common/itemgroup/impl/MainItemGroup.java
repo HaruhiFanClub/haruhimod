@@ -1,10 +1,10 @@
 package com.haruhifanclub.mods.haruhicore.common.itemgroup.impl;
 
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 
-public class MainItemGroup extends ItemGroup {
+public class MainItemGroup extends CreativeModeTab {
     public MainItemGroup() {
         super("haruhicore_group");
     }

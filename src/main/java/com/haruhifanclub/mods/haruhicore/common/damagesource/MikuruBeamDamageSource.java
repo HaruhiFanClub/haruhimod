@@ -1,11 +1,11 @@
 package com.haruhifanclub.mods.haruhicore.common.damagesource;
 
 import com.haruhifanclub.mods.haruhicore.api.damagesource.IHCDamageSource;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.IndirectEntityDamageSource;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.damagesource.IndirectEntityDamageSource;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 
 public class MikuruBeamDamageSource extends IndirectEntityDamageSource implements IHCDamageSource {
 
@@ -19,8 +19,8 @@ public class MikuruBeamDamageSource extends IndirectEntityDamageSource implement
 
 
     @Override
-    public ITextComponent getLocalizedDeathMessage(LivingEntity target) {
-        return new TranslationTextComponent(messageKey + this.msgId, target.getDisplayName(), this.getEntity().getDisplayName());
+    public Component getLocalizedDeathMessage(LivingEntity target) {
+        return new TranslatableComponent(messageKey + this.msgId, target.getDisplayName(), this.getEntity().getDisplayName());
     }
 
     @Override

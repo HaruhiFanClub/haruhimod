@@ -6,14 +6,14 @@ import com.haruhifanclub.mods.haruhicore.common.item.base.IReinforcementStoneIte
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.EnchUtils;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.ActionResultType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.InteractionResult;
 
 public class ReinforcementStoneItem extends Item implements IReinforcementStoneItem {
 
@@ -29,8 +29,8 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
     }
 
     @Override
-    public ItemStack processEnchantment(ItemStack stack, PlayerEntity player) {
-        ListNBT enchantments = stack.getEnchantmentTags();
+    public ItemStack processEnchantment(ItemStack stack, Player player) {
+        ListTag enchantments = stack.getEnchantmentTags();
 
         int enchCount = enchantments.size();
 
@@ -60,12 +60,12 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
             int X = highestLevel;
             int N = enchCount;
 
-            EffectInstance luckEffect = player.getEffect(EffectUtils.getEffect(26));
+            MobEffectInstance luckEffect = player.getEffect(EffectUtils.getEffect(26));
             if (luckEffect != null) {
                 N += (luckEffect.getAmplifier() + 1) * luckMultiplier;
             }
 
-            if ((player.getItemBySlot(EquipmentSlotType.HEAD).getItem()).equals(ItemRegistry.DANCHOU_CONE_BLOCK.get())) {
+            if ((player.getItemBySlot(EquipmentSlot.HEAD).getItem()).equals(ItemRegistry.DANCHOU_CONE_BLOCK.get())) {
                 N += 1 * danchouConeMultiplier;
             }
 
@@ -99,7 +99,7 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
     }
 
     @Override
-    public ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext context) {
+    public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
         return reinforce(context, false);
     }
 }

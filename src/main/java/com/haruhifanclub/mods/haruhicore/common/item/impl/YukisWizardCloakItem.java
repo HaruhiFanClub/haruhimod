@@ -6,13 +6,13 @@ import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.api.item.HArmorMaterial;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.potion.Effects;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.level.Level;
 
 public class YukisWizardCloakItem extends HCArmorItem implements IHCBlessedItem {
 
@@ -28,32 +28,32 @@ public class YukisWizardCloakItem extends HCArmorItem implements IHCBlessedItem 
                 .setRepairIngredient(() -> {
                     return Ingredient.of(ItemRegistry.REINFORCEMENT_STONE_ITEM.get());
                 }),
-            EquipmentSlotType.CHEST
+            EquipmentSlot.CHEST
         );
     }
 
     // TODO Custom armor model
 
     @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int index, boolean selected) {
+    public void inventoryTick(ItemStack stack, Level world, Entity entity, int index, boolean selected) {
         if (world.isClientSide()) {
             return;
         }
 
-        PlayerEntity player = ((PlayerEntity) entity);
+        Player player = ((Player) entity);
 
-        ItemStack chestItemStack = player.getItemBySlot(EquipmentSlotType.CHEST);
+        ItemStack chestItemStack = player.getItemBySlot(EquipmentSlot.CHEST);
         if (!(chestItemStack.getItem()).equals(this)) {
             return;
         }
 
-        if (!player.hasEffect(Effects.ABSORPTION)) {
+        if (!player.hasEffect(MobEffects.ABSORPTION)) {
             EffectUtils.addEffect(player, 22, effectDuration, 2);
         }
     }
 
-    public static boolean isEquipped(PlayerEntity player) {
-        return (player.getItemBySlot(EquipmentSlotType.CHEST).getItem()).equals(ItemRegistry.YUKIS_WIZARD_CLOAK_ITEM.get());
+    public static boolean isEquipped(Player player) {
+        return (player.getItemBySlot(EquipmentSlot.CHEST).getItem()).equals(ItemRegistry.YUKIS_WIZARD_CLOAK_ITEM.get());
     }
 
 }

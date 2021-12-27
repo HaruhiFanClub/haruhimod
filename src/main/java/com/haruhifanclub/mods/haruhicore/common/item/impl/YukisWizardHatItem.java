@@ -1,21 +1,18 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
-import com.haruhifanclub.mods.haruhicore.client.model.WizardHatArmorModel;
+// import com.haruhifanclub.mods.haruhicore.client.model.WizardHatArmorModel;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
 import org.auioc.mods.ahutils.api.item.HArmorMaterial;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
-import net.minecraft.client.renderer.entity.model.BipedModel;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
 
 public class YukisWizardHatItem extends HCArmorItem implements IHCBlessedItem {
 
@@ -29,26 +26,26 @@ public class YukisWizardHatItem extends HCArmorItem implements IHCBlessedItem {
                 .setRepairIngredient(() -> {
                     return Ingredient.of(ItemRegistry.REINFORCEMENT_STONE_ITEM.get());
                 }),
-            EquipmentSlotType.HEAD
+            EquipmentSlot.HEAD
         );
     }
 
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    @SuppressWarnings("unchecked")
-    public <A extends BipedModel<?>> A getArmorModel() {
-        return (A) new WizardHatArmorModel();
-    }
+    // @Override
+    // @OnlyIn(Dist.CLIENT)
+    // @SuppressWarnings("unchecked")
+    // public <A extends HumanoidModel<?>> A getArmorModel() {
+    //     return (A) new WizardHatArmorModel();
+    // }
 
     @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int index, boolean selected) {
+    public void inventoryTick(ItemStack stack, Level world, Entity entity, int index, boolean selected) {
         if (world.isClientSide()) {
             return;
         }
 
         LivingEntity livingEntity = ((LivingEntity) entity);
 
-        ItemStack headItemStack = livingEntity.getItemBySlot(EquipmentSlotType.HEAD);
+        ItemStack headItemStack = livingEntity.getItemBySlot(EquipmentSlot.HEAD);
         if ((headItemStack.getItem()).equals(this)) {
             EffectUtils.addEffect(livingEntity, 11, 4, 0); // resistance
             EffectUtils.addEffect(livingEntity, 23, 4, 0); // saturation
@@ -57,8 +54,8 @@ public class YukisWizardHatItem extends HCArmorItem implements IHCBlessedItem {
         }
     }
 
-    public static boolean isEquipped(PlayerEntity player) {
-        return (player.getItemBySlot(EquipmentSlotType.HEAD).getItem()).equals(ItemRegistry.YUKIS_WIZARD_HAT_ITEM.get());
+    public static boolean isEquipped(Player player) {
+        return (player.getItemBySlot(EquipmentSlot.HEAD).getItem()).equals(ItemRegistry.YUKIS_WIZARD_HAT_ITEM.get());
     }
 
 }

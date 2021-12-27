@@ -1,5 +1,3 @@
-Language:  **English** | [简体中文](/docs/readme-zh_cn.md)
-
 <h1 align="center">HaruhiMod</h1>
 
 <div align="center">
@@ -16,23 +14,23 @@ Minecraft mods for [HaruhiServer](https://github.com/HaruhiFanClub/MCHaruhiServe
 
 </div>
 
-## Maintainers
+## 维护者
 
 * [@WakelessSloth56](https://github.com/WakelessSloth56)
 
-## Credits
+## 感谢
 
 * [HaruhiFanClub](https://github.com/HaruhiFanClub)
 * [AUIOC](https://www.auioc.com)
 
-## Contributing
+## 参与贡献
 
-Any type of contribution is welcome, here are some examples of how you may contribute to this project:
+我们非常欢迎你的贡献，你可以通过以下方式和我们一起共建此项目：
 
-* Submit [issues](https://github.com/WakelessSloth56/haruhimod/issues) to report bugs or ask questions.
-* Propose [pull requests](https://github.com/WakelessSloth56/haruhimod/pulls) to improve our code.
+* 通过[议题](https://github.com/WakelessSloth56/haruhimod/issues)来报告错误或进行咨询。
+* 提交[拉取请求](https://github.com/WakelessSloth56/haruhimod/pulls)来改进项目。
 
-## License
+## 许可证
 
-HaruhiMod is licensed under the **GNU General Public License v3.0**.
-Full license is in [LICENSE](/LICENSE) file.
+HaruhiMod 采用 **GNU通用公共许可证 v3.0** 授权。
+完整许可文件参见 [LICENSE](/LICENSE)。

@@ -3,20 +3,17 @@ package com.haruhifanclub.mods.haruhicore.common.item.base;
 import javax.annotation.Nullable;
 import com.haruhifanclub.mods.haruhicore.api.item.IHCArmorItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
-import net.minecraft.client.renderer.entity.model.BipedModel;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class HCArmorItem extends ArmorItem implements IHCArmorItem {
 
-    public HCArmorItem(IArmorMaterial material, EquipmentSlotType slotType) {
+    public HCArmorItem(ArmorMaterial material, EquipmentSlot slotType) {
         super(
             material,
             slotType,
@@ -26,21 +23,21 @@ public class HCArmorItem extends ArmorItem implements IHCArmorItem {
 
     @Nullable
     @OnlyIn(Dist.CLIENT)
-    public <A extends BipedModel<?>> A getArmorModel() {
+    public <A extends HumanoidModel<?>> A getArmorModel() {
         return null;
     }
 
-    @Override
-    @Nullable
-    @OnlyIn(Dist.CLIENT)
-    @SuppressWarnings("unchecked")
-    public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-        return (A) getArmorModel();
-    }
+    // @Override
+    // @Nullable
+    // @OnlyIn(Dist.CLIENT)
+    // @SuppressWarnings("unchecked")
+    // public <A extends HumanoidModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, A _default) {
+    //     return (A) getArmorModel();
+    // }
 
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-        return "haruhicore:textures/models/armor/" + this.material.getName() + ".png";
-    }
+    // @Override
+    // @OnlyIn(Dist.CLIENT)
+    // public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
+    //     return "haruhicore:textures/models/armor/" + this.material.getName() + ".png";
+    // }
 }

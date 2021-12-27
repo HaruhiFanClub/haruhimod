@@ -7,9 +7,9 @@ import com.haruhifanclub.mods.haruhicore.common.item.base.HCMusicDiscItem;
 import com.haruhifanclub.mods.haruhicore.common.item.impl.*;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import com.haruhifanclub.mods.haruhicore.common.sound.SoundEventRegistry;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 

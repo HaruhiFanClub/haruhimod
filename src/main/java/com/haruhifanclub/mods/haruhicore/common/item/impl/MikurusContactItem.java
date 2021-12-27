@@ -7,24 +7,24 @@ import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.EntityUtils;
-import net.minecraft.block.AbstractFireBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.BaseFireBlock;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class MikurusContactItem extends Item implements IHCBlessedItem {
 
-    private static final EquipmentSlotType equipmentSlotType = EquipmentSlotType.HEAD;
+    private static final EquipmentSlot equipmentSlotType = EquipmentSlot.HEAD;
     private static final double rayLength = CommonConfig.MikurusContactLaserLength.get();
     private static final int cooldown = CommonConfig.MikurusContactLaserCooldown.get() * 20;
 
@@ -37,20 +37,20 @@ public class MikurusContactItem extends Item implements IHCBlessedItem {
     }
 
     @Override
-    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
         ItemStack headItemStack = player.getItemBySlot(equipmentSlotType);
         if (headItemStack.isEmpty()) {
             player.setItemSlot(equipmentSlotType, itemStack.copy());
             itemStack.setCount(0);
-            return ActionResult.sidedSuccess(itemStack, world.isClientSide());
+            return InteractionResultHolder.sidedSuccess(itemStack, world.isClientSide());
         } else {
-            return ActionResult.fail(itemStack);
+            return InteractionResultHolder.fail(itemStack);
         }
     }
 
     @Override
-    public boolean canEquip(ItemStack itemStack, EquipmentSlotType armorType, Entity entity) {
+    public boolean canEquip(ItemStack itemStack, EquipmentSlot armorType, Entity entity) {
         if (armorType.compareTo(equipmentSlotType) == 0) {
             return true;
         }
@@ -58,9 +58,9 @@ public class MikurusContactItem extends Item implements IHCBlessedItem {
     }
 
     @Override
-    public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
-        if (player.hasEffect(Effects.BLINDNESS)) {
-            player.removeEffect(Effects.BLINDNESS);
+    public void onArmorTick(ItemStack stack, Level world, Player player) {
+        if (player.hasEffect(MobEffects.BLINDNESS)) {
+            player.removeEffect(MobEffects.BLINDNESS);
         }
 
         if (MikurusMaidOutfitItem.isEquipped(player)) {
@@ -68,7 +68,7 @@ public class MikurusContactItem extends Item implements IHCBlessedItem {
         }
     }
 
-    public static int emitMikuruBeam(PlayerEntity player) {
+    public static int emitMikuruBeam(Player player) {
         return EntityUtils.rayHitLivingEntityOrBlock(
             player, rayLength,
             (e) -> {
@@ -79,10 +79,10 @@ public class MikurusContactItem extends Item implements IHCBlessedItem {
                 return 0;
             },
             (b) -> {
-                World world = player.level;
+                Level world = player.level;
                 BlockPos targetBlockPos = b.getBlockPos().relative(b.getDirection());
-                if (AbstractFireBlock.canBePlacedAt(world, targetBlockPos, player.getDirection())) {
-                    world.setBlock(targetBlockPos, AbstractFireBlock.getState(world, targetBlockPos), 11);
+                if (BaseFireBlock.canBePlacedAt(world, targetBlockPos, player.getDirection())) {
+                    world.setBlock(targetBlockPos, BaseFireBlock.getState(world, targetBlockPos), 11);
                     return 1;
                 }
                 return 0;
@@ -93,11 +93,11 @@ public class MikurusContactItem extends Item implements IHCBlessedItem {
     @OnlyIn(Dist.CLIENT)
     public static void renderMikuruBeam() {}
 
-    public static boolean isEquipped(PlayerEntity player) {
-        return (player.getItemBySlot(EquipmentSlotType.HEAD).getItem()).equals(ItemRegistry.MIKURUS_CONTACT_ITEM.get());
+    public static boolean isEquipped(Player player) {
+        return (player.getItemBySlot(EquipmentSlot.HEAD).getItem()).equals(ItemRegistry.MIKURUS_CONTACT_ITEM.get());
     }
 
-    public static boolean canEmitMikuruBeam(PlayerEntity player) {
+    public static boolean canEmitMikuruBeam(Player player) {
         if (isEquipped(player) && MikurusMaidOutfitItem.isEquipped(player)) {
             return true;
         }

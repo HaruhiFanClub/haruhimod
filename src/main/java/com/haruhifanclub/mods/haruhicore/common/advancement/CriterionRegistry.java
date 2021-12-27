@@ -3,7 +3,7 @@ package com.haruhifanclub.mods.haruhicore.common.advancement;
 import com.haruhifanclub.mods.haruhicore.common.advancement.criterion.ItemReinforcedTrigger;
 import com.haruhifanclub.mods.haruhicore.common.advancement.criterion.SosBadgeSlabTrigger;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
+import net.minecraft.advancements.CriterionTrigger;
 
 public class CriterionRegistry {
 
@@ -12,7 +12,7 @@ public class CriterionRegistry {
         register(SosBadgeSlabTrigger.INSTANCE);
     }
 
-    private static void register(AbstractCriterionTrigger<?> instance) {
+    private static <T extends CriterionTrigger<?>> void register(T instance) {
         CriteriaTriggers.register(instance);
     }
 

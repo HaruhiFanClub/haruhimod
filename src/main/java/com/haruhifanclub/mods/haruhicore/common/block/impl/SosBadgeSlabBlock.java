@@ -1,39 +1,44 @@
 package com.haruhifanclub.mods.haruhicore.common.block.impl;
 
 import javax.annotation.Nullable;
-import com.haruhifanclub.mods.haruhicore.common.tileentity.impl.SosBadgeSlabTileEntity;
+import com.haruhifanclub.mods.haruhicore.common.blockentity.BlockEntityRegistry;
+import com.haruhifanclub.mods.haruhicore.common.blockentity.impl.SosBadgeSlabBlockEntity;
 import org.auioc.mods.ahutils.api.block.HBlockMaterial;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.block.material.MaterialColor;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.state.properties.SlabType;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockReader;
-import net.minecraftforge.common.ToolType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.SlabType;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 
-public class SosBadgeSlabBlock extends Block {
+public class SosBadgeSlabBlock extends BaseEntityBlock {
 
     public static final EnumProperty<SlabType> TYPE = BlockStateProperties.SLAB_TYPE;
-    public static final DirectionProperty FACING = HorizontalBlock.FACING;
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     private static final VoxelShape BOTTOM_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
     private static final VoxelShape TOP_AABB = Block.box(0.0D, 8.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 
     public SosBadgeSlabBlock() {
         super(
-            AbstractBlock.Properties
+            BlockBehaviour.Properties
                 .of(
                     (new HBlockMaterial.Builder())
                         .color(MaterialColor.SNOW)
@@ -43,8 +48,6 @@ public class SosBadgeSlabBlock extends Block {
                 )
                 .strength(50, 1200)
                 .requiresCorrectToolForDrops()
-                .harvestTool(ToolType.PICKAXE)
-                .harvestLevel(3)
         );
         this.registerDefaultState(
             this.defaultBlockState()
@@ -54,13 +57,13 @@ public class SosBadgeSlabBlock extends Block {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(TYPE, FACING);
     }
 
     @Nullable
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext ctx) {
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         BlockPos blockpos = ctx.getClickedPos();
         BlockState blockstate = ctx.getLevel().getBlockState(blockpos);
         Direction facing = ctx.getHorizontalDirection().getClockWise();
@@ -76,7 +79,7 @@ public class SosBadgeSlabBlock extends Block {
     }
 
     @Override
-    public boolean canBeReplaced(BlockState blockstate, BlockItemUseContext ctx) {
+    public boolean canBeReplaced(BlockState blockstate, BlockPlaceContext ctx) {
         SlabType slabtype = blockstate.getValue(TYPE);
         if (slabtype != SlabType.DOUBLE && ctx.getItemInHand().getItem() == this.asItem()) {
             if (ctx.replacingClickedOnBlock()) {
@@ -96,11 +99,11 @@ public class SosBadgeSlabBlock extends Block {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         SlabType slabtype = state.getValue(TYPE);
         switch (slabtype) {
             case DOUBLE:
-                return VoxelShapes.block();
+                return Shapes.block();
             case TOP:
                 return TOP_AABB;
             default:
@@ -109,13 +112,18 @@ public class SosBadgeSlabBlock extends Block {
     }
 
     @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
     }
 
-    @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new SosBadgeSlabTileEntity();
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new SosBadgeSlabBlockEntity(pos, state);
+    }
+
+    @Override
+    @Nullable
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        return level.isClientSide() ? null : createTickerHelper(type, BlockEntityRegistry.SOS_BADGE_SLAB_BLOCK_TILE_ENTITY.get(), SosBadgeSlabBlockEntity::serverTick);
     }
 }

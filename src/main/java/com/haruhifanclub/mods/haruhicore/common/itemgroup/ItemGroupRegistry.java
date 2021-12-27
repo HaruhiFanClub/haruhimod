@@ -1,8 +1,8 @@
 package com.haruhifanclub.mods.haruhicore.common.itemgroup;
 
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.impl.MainItemGroup;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.item.CreativeModeTab;
 
 public class ItemGroupRegistry {
-    public static ItemGroup itemGroup = new MainItemGroup();
+    public static CreativeModeTab itemGroup = new MainItemGroup();
 }
