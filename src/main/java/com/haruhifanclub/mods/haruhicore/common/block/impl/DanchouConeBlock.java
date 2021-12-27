@@ -42,7 +42,6 @@ public class DanchouConeBlock extends Block {
                 )
                 .strength(50, 1200)
                 .requiresCorrectToolForDrops()
-                .requiresCorrectToolForDrops()
         );
         this.registerDefaultState(
             this.defaultBlockState()

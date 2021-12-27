@@ -26,6 +26,6 @@ description='''
 [[dependencies.haruhicore]]
     modId="ahutils"
     mandatory=true
-    versionRange="[4.0.0,)"
+    versionRange="[4.0.3,)"
     ordering="NONE"
     side="BOTH"
