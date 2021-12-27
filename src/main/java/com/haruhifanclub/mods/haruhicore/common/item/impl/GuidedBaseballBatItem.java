@@ -9,24 +9,25 @@ import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCBaseballBatItem;
-import org.auioc.mods.ahutils.api.item.HItemTier;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.EntityUtils;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.entity.projectile.FireballEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.world.entity.projectile.Fireball;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraftforge.common.ForgeTier;
+import net.minecraftforge.common.Tags;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 
 public class GuidedBaseballBatItem extends HCBaseballBatItem implements IHCBlessedItem {
 
@@ -36,15 +37,15 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem implements IHCBless
 
     public GuidedBaseballBatItem() {
         super(
-            new HItemTier()
-                .setDurability(708)
-                .setEnchantmentValue(66)
-                .setRepairIngredient(() -> {
-                    return Ingredient.of(ItemRegistry.REINFORCEMENT_STONE_ITEM.get());
-                }),
+            new ForgeTier(
+                0, 708, 4.0F, 0.0F, 66,
+                Tags.Blocks.NEEDS_WOOD_TOOL,
+                () -> Ingredient.of(ItemRegistry.REINFORCEMENT_STONE_ITEM.get())
+            ),
             3,
             1.0F
         );
+
     }
 
     @Override
@@ -116,12 +117,12 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem implements IHCBless
             luckBonus = luckEffect.getAmplifier() + 1;
         }
 
-        ProjectileEntity target;
+        Projectile target;
         EntityHitResult rayHitEntity = EntityUtils.getEntityRayTraceResult(player, hitProjectileRayLength, (float) (0.45 - 0.2 * Math.pow(0.5, luckBonus)), false);
-        if (rayHitEntity == null || !(rayHitEntity.getEntity() instanceof ProjectileEntity) || (rayHitEntity.getEntity() instanceof FireballEntity)) {
+        if (rayHitEntity == null || !(rayHitEntity.getEntity() instanceof Projectile) || (rayHitEntity.getEntity() instanceof Fireball)) {
             return false;
         }
-        target = (ProjectileEntity) rayHitEntity.getEntity();
+        target = (Projectile) rayHitEntity.getEntity();
 
         target.setDeltaMovement(
             player.getViewVector(0)

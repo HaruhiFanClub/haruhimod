@@ -2,16 +2,17 @@ package com.haruhifanclub.mods.haruhicore.common.advancement.criterion;
 
 import com.google.gson.JsonObject;
 import com.haruhifanclub.mods.haruhicore.HaruhiCore;
-import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
-import net.minecraft.advancements.criterion.CriterionInstance;
-import net.minecraft.advancements.criterion.EntityPredicate;
-import net.minecraft.advancements.criterion.ItemPredicate;
+import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
+import net.minecraft.advancements.critereon.DeserializationContext;
+import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.loot.ConditionArrayParser;
 import net.minecraft.resources.ResourceLocation;
 
-public class ItemReinforcedTrigger extends AbstractCriterionTrigger<ItemReinforcedTrigger.Instance> {
+public class ItemReinforcedTrigger extends SimpleCriterionTrigger<ItemReinforcedTrigger.Instance> {
 
     public static final ItemReinforcedTrigger INSTANCE = new ItemReinforcedTrigger();
 
@@ -23,9 +24,9 @@ public class ItemReinforcedTrigger extends AbstractCriterionTrigger<ItemReinforc
     }
 
     @Override
-    protected ItemReinforcedTrigger.Instance createInstance(JsonObject json, EntityPredicate.AndPredicate player, ConditionArrayParser parser) {
-        BooleanPredicate isSuccessful = BooleanPredicate.fromJson(json, "successful");
-        BooleanPredicate isEpic = BooleanPredicate.fromJson(json, "epic");
+    protected ItemReinforcedTrigger.Instance createInstance(JsonObject json, EntityPredicate.Composite player, DeserializationContext parser) {
+        boolean isSuccessful = GsonHelper.getAsBoolean(json, "successful", false);
+        boolean isEpic = GsonHelper.getAsBoolean(json, "epic", false);
         ItemPredicate oldItem = ItemPredicate.fromJson(json.get("item"));
         ItemPredicate newItem = ItemPredicate.fromJson(json.get("reinforced_item"));
         return new Instance(player, isEpic, isSuccessful, oldItem, newItem);
@@ -38,13 +39,13 @@ public class ItemReinforcedTrigger extends AbstractCriterionTrigger<ItemReinforc
     }
 
 
-    public static class Instance extends CriterionInstance {
-        private final BooleanPredicate isEpic;
-        private final BooleanPredicate isSuccessful;
+    public static class Instance extends AbstractCriterionTriggerInstance {
+        private final boolean isEpic;
+        private final boolean isSuccessful;
         private final ItemPredicate oldItem;
         private final ItemPredicate newItem;
 
-        public Instance(EntityPredicate.AndPredicate player, BooleanPredicate isEpic, BooleanPredicate isSuccessful, ItemPredicate oldItem, ItemPredicate newItem) {
+        public Instance(EntityPredicate.Composite player, boolean isEpic, boolean isSuccessful, ItemPredicate oldItem, ItemPredicate newItem) {
             super(ID, player);
             this.isEpic = isEpic;
             this.isSuccessful = isSuccessful;
@@ -53,19 +54,11 @@ public class ItemReinforcedTrigger extends AbstractCriterionTrigger<ItemReinforc
         }
 
         public boolean test(ServerPlayer player, boolean isEpic, boolean isSuccessful, ItemStack oldItem, ItemStack newItem) {
-            return this.isEpic.test(isEpic)
-                && this.isSuccessful.test(isSuccessful)
+            return (this.isEpic == isEpic)
+                && (this.isSuccessful == isSuccessful)
                 && this.oldItem.matches(oldItem)
                 && this.newItem.matches(newItem);
         }
-
-        // @Override
-        // public JsonObject serializeToJson(ConditionArraySerializer serializer) {
-        //     JsonObject jsonObject = super.serializeToJson(serializer);
-        //     jsonObject.addProperty("isSuccessful", this.isSuccessful.serializeToJson());
-        //     return jsonObject;
-        // }
-
     }
 
 }

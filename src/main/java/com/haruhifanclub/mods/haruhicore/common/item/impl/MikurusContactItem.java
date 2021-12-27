@@ -7,7 +7,7 @@ import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.EntityUtils;
-import net.minecraft.world.level.block.AbstractFireBlock;
+import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -81,8 +81,8 @@ public class MikurusContactItem extends Item implements IHCBlessedItem {
             (b) -> {
                 Level world = player.level;
                 BlockPos targetBlockPos = b.getBlockPos().relative(b.getDirection());
-                if (AbstractFireBlock.canBePlacedAt(world, targetBlockPos, player.getDirection())) {
-                    world.setBlock(targetBlockPos, AbstractFireBlock.getState(world, targetBlockPos), 11);
+                if (BaseFireBlock.canBePlacedAt(world, targetBlockPos, player.getDirection())) {
+                    world.setBlock(targetBlockPos, BaseFireBlock.getState(world, targetBlockPos), 11);
                     return 1;
                 }
                 return 0;

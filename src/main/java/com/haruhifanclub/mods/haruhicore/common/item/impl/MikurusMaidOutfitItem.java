@@ -13,8 +13,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 
 public class MikurusMaidOutfitItem extends HCArmorItem implements IHCBlessedItem {
 
@@ -53,7 +53,7 @@ public class MikurusMaidOutfitItem extends HCArmorItem implements IHCBlessedItem
 
         EffectUtils.addEffect(player, 10, 4, 1); // regeneration
 
-        AxisAlignedBB aabb = (new AxisAlignedBB(player.blockPosition())).inflate(effectRange).expandTowards(0.0D, effectRange, 0.0D);
+        AABB aabb = (new AABB(player.blockPosition())).inflate(effectRange).expandTowards(0.0D, effectRange, 0.0D);
 
         List<LivingEntity> list = player.level.getEntitiesOfClass(LivingEntity.class, aabb);
         for (LivingEntity entity2 : list) {
