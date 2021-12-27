@@ -6,6 +6,7 @@ import java.util.List;
 import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCHourglassItem;
+import org.auioc.mods.ahutils.utils.game.EffectUtils;
 // import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.MCTimeUtils;
 import net.minecraft.world.item.TooltipFlag;
@@ -161,8 +162,7 @@ public class TpddItem extends HCHourglassItem implements IHCBlessedItem {
                 if (!effects_nbt.isEmpty()) {
                     for (int i = 0; i < effects_nbt.size(); i++) {
                         CompoundTag effect_nbt = effects_nbt.getCompound(i);
-                        System.err.println(effect_nbt.toString());
-                        // player.addEffect(MobEffectInstance.load(effect_nbt));
+                        player.addEffect(EffectUtils.getMobEffectInstance(effect_nbt));
                     }
                 }
             }
