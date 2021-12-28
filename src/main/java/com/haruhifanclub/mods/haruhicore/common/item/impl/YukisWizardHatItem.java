@@ -7,9 +7,9 @@ import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
 import org.auioc.mods.ahutils.api.item.HArmorMaterial;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
@@ -36,6 +36,7 @@ public class YukisWizardHatItem extends HCArmorItem implements IHCBlessedItem {
     // public <A extends HumanoidModel<?>> A getArmorModel() {
     //     return (A) new WizardHatArmorModel();
     // }
+    // TODO Custom armor model
 
     @Override
     public void inventoryTick(ItemStack stack, Level world, Entity entity, int index, boolean selected) {

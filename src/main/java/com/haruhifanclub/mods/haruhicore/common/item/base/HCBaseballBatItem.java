@@ -3,11 +3,11 @@ package com.haruhifanclub.mods.haruhicore.common.item.base;
 import java.util.List;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.enchantment.Enchantment;
 
 public class HCBaseballBatItem extends SwordItem {
 

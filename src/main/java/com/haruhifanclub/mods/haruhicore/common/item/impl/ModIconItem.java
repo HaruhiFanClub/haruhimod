@@ -9,4 +9,5 @@ public class ModIconItem extends Item {
             new Item.Properties()
         );
     }
+
 }

@@ -6,21 +6,21 @@ import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.server.event.impl.PlayerReinforceItemEvent;
 import org.auioc.mods.ahutils.utils.game.SoundUtils;
 import org.auioc.mods.ahutils.utils.game.TextUtils;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.item.ItemCooldowns;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public interface IReinforcementStoneItem {
-    static String messageKey = "item.haruhicore.reinforcement_stone.";
 
+    static String messageKey = "item.haruhicore.reinforcement_stone.";
 
     default boolean isEnabled(Boolean isEpic) {
         return isEpic ? CommonConfig.EnableEpicReinforcementStone.get()

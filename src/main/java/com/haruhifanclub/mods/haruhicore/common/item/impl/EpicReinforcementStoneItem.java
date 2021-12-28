@@ -4,13 +4,13 @@ import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.item.base.IReinforcementStoneItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import org.auioc.mods.ahutils.utils.game.EnchUtils;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -47,4 +47,5 @@ public class EpicReinforcementStoneItem extends Item implements IReinforcementSt
     public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
         return reinforce(context, true);
     }
+
 }

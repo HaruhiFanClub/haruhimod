@@ -4,29 +4,29 @@ import javax.annotation.Nullable;
 import com.haruhifanclub.mods.haruhicore.common.blockentity.BlockEntityRegistry;
 import com.haruhifanclub.mods.haruhicore.common.blockentity.impl.SosBadgeSlabBlockEntity;
 import org.auioc.mods.ahutils.api.block.HBlockMaterial;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.material.MaterialColor;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.SlabType;
-import net.minecraft.core.Direction;
-import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class SosBadgeSlabBlock extends BaseEntityBlock {
 
@@ -40,7 +40,7 @@ public class SosBadgeSlabBlock extends BaseEntityBlock {
         super(
             BlockBehaviour.Properties
                 .of(
-                    (new HBlockMaterial.Builder())
+                    (new HBlockMaterial())
                         .color(MaterialColor.SNOW)
                         .notPushable()
                         .flammable()
@@ -124,6 +124,7 @@ public class SosBadgeSlabBlock extends BaseEntityBlock {
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return level.isClientSide() ? null : createTickerHelper(type, BlockEntityRegistry.SOS_BADGE_SLAB_BLOCK_TILE_ENTITY.get(), SosBadgeSlabBlockEntity::serverTick);
+        return level.isClientSide() ? null : createTickerHelper(type, BlockEntityRegistry.SOS_BADGE_SLAB_BLOCK_ENTITY.get(), SosBadgeSlabBlockEntity::serverTick);
     }
+
 }

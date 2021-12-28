@@ -6,14 +6,14 @@ import com.haruhifanclub.mods.haruhicore.common.item.base.IReinforcementStoneIte
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.EnchUtils;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.InteractionResult;
 
 public class ReinforcementStoneItem extends Item implements IReinforcementStoneItem {
 
@@ -102,4 +102,5 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
     public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
         return reinforce(context, false);
     }
+
 }

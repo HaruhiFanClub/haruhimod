@@ -1,11 +1,11 @@
 package com.haruhifanclub.mods.haruhicore.common.damagesource;
 
 import com.haruhifanclub.mods.haruhicore.api.damagesource.IHCDamageSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.damagesource.IndirectEntityDamageSource;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.damagesource.IndirectEntityDamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 
 public class MikuruBeamDamageSource extends IndirectEntityDamageSource implements IHCDamageSource {
 

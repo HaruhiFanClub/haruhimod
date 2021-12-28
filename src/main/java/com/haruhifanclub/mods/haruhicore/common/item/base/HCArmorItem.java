@@ -1,15 +1,11 @@
 package com.haruhifanclub.mods.haruhicore.common.item.base;
 
-import javax.annotation.Nullable;
 import com.haruhifanclub.mods.haruhicore.api.item.IHCArmorItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
-import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class HCArmorItem extends ArmorItem implements IHCArmorItem {
 
@@ -21,11 +17,11 @@ public class HCArmorItem extends ArmorItem implements IHCArmorItem {
         );
     }
 
-    @Nullable
-    @OnlyIn(Dist.CLIENT)
-    public <A extends HumanoidModel<?>> A getArmorModel() {
-        return null;
-    }
+    // @Nullable
+    // @OnlyIn(Dist.CLIENT)
+    // public <A extends HumanoidModel<?>> A getArmorModel() {
+    //     return null;
+    // }
 
     // @Override
     // @Nullable
@@ -40,4 +36,5 @@ public class HCArmorItem extends ArmorItem implements IHCArmorItem {
     // public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
     //     return "haruhicore:textures/models/armor/" + this.material.getName() + ".png";
     // }
+
 }

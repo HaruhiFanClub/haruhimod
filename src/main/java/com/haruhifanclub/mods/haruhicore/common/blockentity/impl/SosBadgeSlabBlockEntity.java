@@ -8,17 +8,20 @@ import com.haruhifanclub.mods.haruhicore.common.advancement.criterion.SosBadgeSl
 import com.haruhifanclub.mods.haruhicore.common.block.impl.SosBadgeSlabBlock;
 import com.haruhifanclub.mods.haruhicore.common.blockentity.BlockEntityRegistry;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Marker;
 import org.auioc.mods.ahutils.utils.LogUtil;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.ItemUtils;
 import org.auioc.mods.ahutils.utils.game.PlayerUtils;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -28,9 +31,6 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.resources.ResourceLocation;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.Marker;
 
 public class SosBadgeSlabBlockEntity extends BlockEntity {
 
@@ -44,7 +44,7 @@ public class SosBadgeSlabBlockEntity extends BlockEntity {
     private static final Marker DOUBLE_MARKER = LogUtil.getMarker("DOUBLE");
 
     public SosBadgeSlabBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityRegistry.SOS_BADGE_SLAB_BLOCK_TILE_ENTITY.get(), pos, state);
+        super(BlockEntityRegistry.SOS_BADGE_SLAB_BLOCK_ENTITY.get(), pos, state);
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, SosBadgeSlabBlockEntity tile) {

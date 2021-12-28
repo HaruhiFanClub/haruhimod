@@ -4,9 +4,9 @@ import java.util.UUID;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.impl.MikurusContactItem;
 import org.auioc.mods.ahutils.api.network.IHPacket;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent.Context;
 
 public class EmitMikuruBeamPacket implements IHPacket {

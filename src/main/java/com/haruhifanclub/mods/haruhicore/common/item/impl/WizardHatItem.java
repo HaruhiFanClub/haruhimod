@@ -28,4 +28,5 @@ public class WizardHatItem extends HCArmorItem {
     // public <A extends HumanoidModel<?>> A getArmorModel() {
     //     return (A) new WizardHatArmorModel();
     // }
+    // TODO Custom armor model
 }

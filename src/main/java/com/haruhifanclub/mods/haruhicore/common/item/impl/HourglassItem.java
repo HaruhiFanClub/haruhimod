@@ -1,11 +1,11 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCHourglassItem;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemCooldowns;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public class HourglassItem extends HCHourglassItem {
