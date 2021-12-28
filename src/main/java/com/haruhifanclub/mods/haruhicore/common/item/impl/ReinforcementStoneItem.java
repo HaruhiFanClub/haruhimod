@@ -6,6 +6,7 @@ import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.IReinforcementStoneItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import org.auioc.mods.ahutils.utils.game.EnchUtils;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -36,38 +37,18 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
     public ItemStack processEnchantment(ItemStack stack, Player player) {
         ListTag enchantments = stack.getEnchantmentTags();
 
-        int enchCount = enchantments.size();
-        int vanillaEnchCount = 0;
+        if (!EnchUtils.isOverLimit(enchantments)) {
+            EnchUtils.enchantAll(enchantments, 1);
+        } else {
+            CompoundTag highestEnchantment = EnchUtils.getHighestEnchantment(enchantments);
+            int X = (int) highestEnchantment.getShort("lvl");
 
-        int highestIndex = 0;
-        int highestLevel = 0;
-        boolean overlimit = false;
-
-        for (int i = 0; i < enchCount; i++) {
-            short lvl = enchantments.getCompound(i).getShort("lvl");
-            String id = enchantments.getCompound(i).getString("id");
-
-            if (!overlimit) {
-                if (lvl > (EnchUtils.getEnchantment(id)).getMaxLevel()) {
-                    overlimit = true;
+            int N = 0; // Vanilla enchantments count
+            for (int i = 0, l = enchantments.size(); i < l; i++) {
+                if (vanillaEnchId.matcher(enchantments.getCompound(i).getString("id")).matches()) {
+                    N++;
                 }
             }
-
-            if (lvl > highestLevel) {
-                highestIndex = i;
-                highestLevel = lvl;
-            }
-
-            if (vanillaEnchId.matcher(id).matches()) {
-                vanillaEnchCount++;
-            }
-        }
-
-        if (!overlimit) {
-            EnchUtils.enchantAll(enchantments);
-        } else {
-            int X = highestLevel;
-            int N = vanillaEnchCount;
 
             MobEffectInstance luckEffect = player.getEffect(MobEffects.LUCK);
             if (luckEffect != null) {
@@ -86,18 +67,18 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
             if (N >= X) {
                 if (Math.random() < (1.0 / X)) {
                     // all+1
-                    EnchUtils.enchantAll(enchantments);
+                    EnchUtils.enchantAll(enchantments, 1);
                 } else {
                     // max+1
-                    EnchUtils.enchantOne(enchantments, highestIndex);
+                    EnchUtils.enchantOne(highestEnchantment, 1);
                 }
             } else if (N < X) {
                 if (Math.random() < (1.0 / X)) {
                     // all+1
-                    EnchUtils.enchantAll(enchantments);
+                    EnchUtils.enchantAll(enchantments, 1);
                 } else if (Math.random() < (N / X)) {
                     // max+1
-                    EnchUtils.enchantOne(enchantments, highestIndex);
+                    EnchUtils.enchantOne(highestEnchantment, 1);
                 } else {
                     // break
                     return ItemStack.EMPTY;
