@@ -1,5 +1,6 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
+import java.util.regex.Pattern;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.IReinforcementStoneItem;
@@ -20,6 +21,8 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
     private static final int luckMultiplier = CommonConfig.CommonReinforcingLuckEffectMultiplier.get();
     private static final int danchouConeMultiplier = CommonConfig.CommonReinforcingDanchouConeMultiplier.get();
 
+    private static final Pattern vanillaEnchId = Pattern.compile("^minecraft:\\w+$");
+
     public ReinforcementStoneItem() {
         super(
             new Item.Properties()
@@ -33,6 +36,7 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
         ListTag enchantments = stack.getEnchantmentTags();
 
         int enchCount = enchantments.size();
+        int vanillaEnchCount = 0;
 
         int highestIndex = 0;
         int highestLevel = 0;
@@ -52,13 +56,17 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
                 highestIndex = i;
                 highestLevel = lvl;
             }
+
+            if (vanillaEnchId.matcher(id).matches()) {
+                vanillaEnchCount++;
+            }
         }
 
         if (!overlimit) {
             EnchUtils.enchantAll(enchantments);
         } else {
             int X = highestLevel;
-            int N = enchCount;
+            int N = vanillaEnchCount;
 
             MobEffectInstance luckEffect = player.getEffect(EffectUtils.getEffect(26));
             if (luckEffect != null) {
