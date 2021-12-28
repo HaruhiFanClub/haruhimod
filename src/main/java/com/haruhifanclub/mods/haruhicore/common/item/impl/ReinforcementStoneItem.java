@@ -2,7 +2,6 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import java.util.regex.Pattern;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
-import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.IReinforcementStoneItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import org.auioc.mods.ahutils.utils.game.EnchUtils;
@@ -11,7 +10,6 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -60,7 +58,7 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
                 N += (-1) * (unluckEffect.getAmplifier() + 1) * unluckMultiplier;
             }
 
-            if ((player.getItemBySlot(EquipmentSlot.HEAD).getItem()).equals(ItemRegistry.DANCHOU_CONE_BLOCK.get())) {
+            if (DanchouConeBlockItem.isEquipped(player)) {
                 N += 1 * danchouConeMultiplier;
             }
 
