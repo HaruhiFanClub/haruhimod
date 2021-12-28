@@ -3,6 +3,7 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.item.base.IReinforcementStoneItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
+import org.apache.commons.lang3.RandomUtils;
 import org.auioc.mods.ahutils.utils.game.EnchUtils;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.InteractionResult;
@@ -35,7 +36,16 @@ public class EpicReinforcementStoneItem extends Item implements IReinforcementSt
     public ItemStack processEnchantment(ItemStack stack, Player player) {
         ListTag enchantments = stack.getEnchantmentTags();
 
-        EnchUtils.enchantAll(enchantments);
+        int P = RandomUtils.nextInt(1, 101);
+        if (P <= 33) {
+            EnchUtils.enchantAll(enchantments, 1);
+        } else if (P > 33 && P <= 66) {
+            EnchUtils.enchantRandom(enchantments, 1);
+        } else if (P > 66 && P <= 99) {
+            EnchUtils.enchantOne(EnchUtils.getHighestEnchantment(enchantments), 1);
+        } else {
+            EnchUtils.enchantAll(enchantments, 3);
+        }
 
         stack.getTag().remove("Enchantments");
         stack.getTag().put("Enchantments", enchantments);
