@@ -53,8 +53,25 @@ public class EpicReinforcementStoneItem extends Item implements IReinforcementSt
         return stack;
     }
 
+
+    @SuppressWarnings("unused")
+    private static void test() {
+        /*@formatter:off*/
+        int X=0,Y=0,Z=0,W=0;
+        float A=33.0F,B=66.0F,C=99.0F;
+        {int n=10;A-=0.6*n;B-=0.6*n;C-=0.6*n;} // Luck
+        {float n=100-C;A-=n;B-=n;C-=n;} // ×2
+        for(int i=0;i<10000;i++){
+            float P=(float) RandomUtils.nextInt(1,101);
+            if(P<=A){X++;}else if(P>A&&P<=B){Y++;}else if(P>B&&P<=C){Z++;}else{W++;}
+        }
+        System.out.println(X+","+Y+","+Z+","+W);
+        /*@formatter:on*/
+    }
+
     @Override
     public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
+        // if (!context.getLevel().isClientSide()) {test();}
         return reinforce(context, true);
     }
 
