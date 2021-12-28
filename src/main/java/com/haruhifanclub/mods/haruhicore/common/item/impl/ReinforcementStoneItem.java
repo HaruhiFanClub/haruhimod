@@ -5,11 +5,11 @@ import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.IReinforcementStoneItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
-import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.EnchUtils;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -19,6 +19,7 @@ import net.minecraft.world.item.context.UseOnContext;
 public class ReinforcementStoneItem extends Item implements IReinforcementStoneItem {
 
     private static final int luckMultiplier = CommonConfig.CommonReinforcingLuckEffectMultiplier.get();
+    private static final int unluckMultiplier = CommonConfig.CommonReinforcingUnluckEffectMultiplier.get();
     private static final int danchouConeMultiplier = CommonConfig.CommonReinforcingDanchouConeMultiplier.get();
 
     private static final Pattern vanillaEnchId = Pattern.compile("^minecraft:\\w+$");
@@ -68,9 +69,14 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
             int X = highestLevel;
             int N = vanillaEnchCount;
 
-            MobEffectInstance luckEffect = player.getEffect(EffectUtils.getEffect(26));
+            MobEffectInstance luckEffect = player.getEffect(MobEffects.LUCK);
             if (luckEffect != null) {
                 N += (luckEffect.getAmplifier() + 1) * luckMultiplier;
+            }
+
+            MobEffectInstance unluckEffect = player.getEffect(MobEffects.UNLUCK);
+            if (unluckEffect != null) {
+                N += (-1) * (unluckEffect.getAmplifier() + 1) * unluckMultiplier;
             }
 
             if ((player.getItemBySlot(EquipmentSlot.HEAD).getItem()).equals(ItemRegistry.DANCHOU_CONE_BLOCK.get())) {

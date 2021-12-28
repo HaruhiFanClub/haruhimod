@@ -18,6 +18,7 @@ public class CommonConfig {
     public static BooleanValue EnableEpicReinforcementStone;
     public static IntValue CommonReinforcingExperienceCost;
     public static IntValue CommonReinforcingLuckEffectMultiplier;
+    public static IntValue CommonReinforcingUnluckEffectMultiplier;
     public static IntValue CommonReinforcingDanchouConeMultiplier;
     public static IntValue EpicReinforcingExperienceCost;
     public static ConfigValue<String> ReinforcingSuccessSound;
@@ -73,6 +74,7 @@ public class CommonConfig {
                     EnableCommonReinforcementStone = b.define("enable", true);
                     CommonReinforcingExperienceCost = b.defineInRange("experience_cost", 0, 0, Integer.MAX_VALUE);
                     CommonReinforcingLuckEffectMultiplier = b.defineInRange("luck_effect_multiplier", 1, 0, Integer.MAX_VALUE);
+                    CommonReinforcingUnluckEffectMultiplier = b.defineInRange("unluck_effect_multiplier", 1, 0, Integer.MAX_VALUE);
                     CommonReinforcingDanchouConeMultiplier = b.defineInRange("danchou_cone_multiplier", 2, 0, Integer.MAX_VALUE);
                     b.pop();
                 }
