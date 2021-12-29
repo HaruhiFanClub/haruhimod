@@ -38,19 +38,24 @@ public class EpicReinforcementStoneItem extends Item implements IReinforcementSt
     public ItemStack processEnchantment(ItemStack stack, Player player) {
         float A = 33.0F, B = 66.0F, C = 99.0F;
 
+        int unluckLevel = EffectUtils.getEffectLevel(player, MobEffects.UNLUCK);
+        if (unluckLevel > 0) {
+            A -= 0.6 * unluckLevel;
+            B -= 0.6 * unluckLevel;
+            C -= 0.6 * unluckLevel;
+        } else {
+            int luckLevel = EffectUtils.getEffectLevel(player, MobEffects.LUCK);
+            A -= 0.6 * luckLevel;
+            B -= 0.6 * luckLevel;
+            C -= 0.6 * luckLevel;
 
-        int luckLevel = EffectUtils.getEffectLevel(player, MobEffects.LUCK);
-        A -= 0.6 * luckLevel;
-        B -= 0.6 * luckLevel;
-        C -= 0.6 * luckLevel;
-
-        if (DanchouConeBlockItem.isEquipped(player)) {
-            float n = 100 - C;
-            A -= n;
-            B -= n;
-            C -= n;
+            if (DanchouConeBlockItem.isEquipped(player)) {
+                float n = 100 - C;
+                A -= n;
+                B -= n;
+                C -= n;
+            }
         }
-
 
         ListTag enchantments = stack.getEnchantmentTags();
 
@@ -62,6 +67,9 @@ public class EpicReinforcementStoneItem extends Item implements IReinforcementSt
         } else if (P > B && P <= C) {
             EnchUtils.enchantOne(EnchUtils.getHighestEnchantment(enchantments), 1);
         } else {
+            if (unluckLevel > 0) {
+                return ItemStack.EMPTY;
+            }
             EnchUtils.enchantAll(enchantments, 3);
         }
 
