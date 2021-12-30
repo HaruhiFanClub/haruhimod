@@ -1,5 +1,7 @@
 package com.haruhifanclub.mods.haruhicore;
 
+import com.haruhifanclub.mods.haruhicore.client.event.ClientForgeEventHandler;
+import com.haruhifanclub.mods.haruhicore.client.event.ClientModEventHandler;
 import com.haruhifanclub.mods.haruhicore.common.advancement.CriterionRegistry;
 import com.haruhifanclub.mods.haruhicore.common.block.BlockRegistry;
 import com.haruhifanclub.mods.haruhicore.common.blockentity.BlockEntityRegistry;
@@ -8,8 +10,10 @@ import com.haruhifanclub.mods.haruhicore.common.entity.EntityRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.network.HCPacketHandler;
 import com.haruhifanclub.mods.haruhicore.common.sound.SoundEventRegistry;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -28,6 +32,10 @@ public class HaruhiCore {
 
         modSetup(modEventBus);
         forgeSetup(forgeEventBus);
+
+        final ClientSideOnlySetup ClientSideOnlySetup = new ClientSideOnlySetup(modEventBus, forgeEventBus);
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientSideOnlySetup::modSetup);
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientSideOnlySetup::forgeSetup);
     }
 
     private void modSetup(final IEventBus modEventBus) {
@@ -41,5 +49,24 @@ public class HaruhiCore {
     }
 
     private void forgeSetup(final IEventBus forgeEventBus) {}
+
+
+    private class ClientSideOnlySetup {
+        private final IEventBus modEventBus;
+        private final IEventBus forgeEventBus;
+
+        public ClientSideOnlySetup(final IEventBus modEventBus, final IEventBus forgeEventBus) {
+            this.modEventBus = modEventBus;
+            this.forgeEventBus = forgeEventBus;
+        }
+
+        public void modSetup() {
+            modEventBus.register(ClientModEventHandler.class);
+        }
+
+        public void forgeSetup() {
+            forgeEventBus.register(ClientForgeEventHandler.class);
+        }
+    }
 
 }
