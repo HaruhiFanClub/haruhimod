@@ -1,6 +1,7 @@
 package com.haruhifanclub.mods.haruhicore;
 
-import com.haruhifanclub.mods.haruhicore.client.event.ClientEventHandler;
+import com.haruhifanclub.mods.haruhicore.client.event.ClientForgeEventHandler;
+import com.haruhifanclub.mods.haruhicore.client.event.ClientModEventHandler;
 import com.haruhifanclub.mods.haruhicore.common.advancement.CriterionRegistry;
 import com.haruhifanclub.mods.haruhicore.common.block.BlockRegistry;
 import com.haruhifanclub.mods.haruhicore.common.blockentity.BlockEntityRegistry;
@@ -19,7 +20,6 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(HaruhiCore.MOD_ID)
-@SuppressWarnings("unused")
 public class HaruhiCore {
 
     public static final String MOD_ID = "haruhicore";
@@ -60,10 +60,12 @@ public class HaruhiCore {
             this.forgeEventBus = forgeEventBus;
         }
 
-        public void modSetup() {}
+        public void modSetup() {
+            modEventBus.register(ClientModEventHandler.class);
+        }
 
         public void forgeSetup() {
-            forgeEventBus.register(ClientEventHandler.class);
+            forgeEventBus.register(ClientForgeEventHandler.class);
         }
     }
 
