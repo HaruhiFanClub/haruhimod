@@ -21,20 +21,6 @@ public class HCArmorItem extends ArmorItem implements IHCArmorItem {
         );
     }
 
-    // @Nullable
-    // @OnlyIn(Dist.CLIENT)
-    // public <A extends HumanoidModel<?>> A getArmorModel() {
-    //     return null;
-    // }
-
-    // @Override
-    // @Nullable
-    // @OnlyIn(Dist.CLIENT)
-    // @SuppressWarnings("unchecked")
-    // public <A extends HumanoidModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, A _default) {
-    //     return (A) getArmorModel();
-    // }
-
     @Override
     @OnlyIn(Dist.CLIENT)
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {

@@ -1,7 +1,8 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
+import java.util.function.Consumer;
 import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
-// import com.haruhifanclub.mods.haruhicore.client.model.WizardHatArmorModel;
+import com.haruhifanclub.mods.haruhicore.client.render.armor.WizardHatArmorRender;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
 import org.auioc.mods.ahutils.api.item.HArmorMaterial;
@@ -13,6 +14,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.IItemRenderProperties;
 
 public class YukisWizardHatItem extends HCArmorItem implements IHCBlessedItem {
 
@@ -29,14 +33,6 @@ public class YukisWizardHatItem extends HCArmorItem implements IHCBlessedItem {
             EquipmentSlot.HEAD
         );
     }
-
-    // @Override
-    // @OnlyIn(Dist.CLIENT)
-    // @SuppressWarnings("unchecked")
-    // public <A extends HumanoidModel<?>> A getArmorModel() {
-    //     return (A) new WizardHatArmorModel();
-    // }
-    // TODO Custom armor model
 
     @Override
     public void inventoryTick(ItemStack stack, Level world, Entity entity, int index, boolean selected) {
@@ -57,6 +53,12 @@ public class YukisWizardHatItem extends HCArmorItem implements IHCBlessedItem {
 
     public static boolean isEquipped(Player player) {
         return (player.getItemBySlot(EquipmentSlot.HEAD).getItem()).equals(ItemRegistry.YUKIS_WIZARD_HAT_ITEM.get());
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void initializeClient(Consumer<IItemRenderProperties> consumer) {
+        consumer.accept(WizardHatArmorRender.INSTANCE);
     }
 
 }

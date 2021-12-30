@@ -1,11 +1,15 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
-// import com.haruhifanclub.mods.haruhicore.client.model.WizardHatArmorModel;
+import java.util.function.Consumer;
+import com.haruhifanclub.mods.haruhicore.client.render.armor.WizardHatArmorRender;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
 import org.auioc.mods.ahutils.api.item.HArmorMaterial;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.IItemRenderProperties;
 
 public class WizardHatItem extends HCArmorItem {
 
@@ -22,11 +26,10 @@ public class WizardHatItem extends HCArmorItem {
         );
     }
 
-    // @Override
-    // @OnlyIn(Dist.CLIENT)
-    // @SuppressWarnings("unchecked")
-    // public <A extends HumanoidModel<?>> A getArmorModel() {
-    //     return (A) new WizardHatArmorModel();
-    // }
-    // TODO Custom armor model
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void initializeClient(Consumer<IItemRenderProperties> consumer) {
+        consumer.accept(WizardHatArmorRender.INSTANCE);
+    }
+
 }
