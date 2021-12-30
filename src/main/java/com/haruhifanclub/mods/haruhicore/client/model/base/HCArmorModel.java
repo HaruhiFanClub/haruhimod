@@ -1,7 +1,10 @@
 package com.haruhifanclub.mods.haruhicore.client.model.base;
 
+import java.util.function.Function;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.decoration.ArmorStand;
 
@@ -9,6 +12,10 @@ public class HCArmorModel extends HumanoidModel<LivingEntity> {
 
     public HCArmorModel(ModelPart root) {
         super(root);
+    }
+
+    public HCArmorModel(ModelPart root, Function<ResourceLocation, RenderType> renderType) {
+        super(root, renderType);
     }
 
     @Override
