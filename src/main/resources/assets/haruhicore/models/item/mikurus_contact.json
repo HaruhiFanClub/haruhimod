@@ -1,0 +1,56 @@
+{
+    "credit": "Made by Libellule505 with Blockbench",
+    "textures": {
+        "0": "haruhicore:item/mikurus_contact"
+    },
+    "elements": [
+        {
+            "from": [7, 0, 7],
+            "to": [9, 0.1, 9],
+            "rotation": { "angle": 0, "axis": "y", "origin": [7, 0, 7] },
+            "faces": {
+                "north": { "uv": [0, 0, 2, 0.1], "texture": "#0" },
+                "east": { "uv": [0, 0, 2, 0.1], "texture": "#0" },
+                "south": { "uv": [0, 0, 2, 0.1], "texture": "#0" },
+                "west": { "uv": [0, 0, 2, 0.1], "texture": "#0" },
+                "up": { "uv": [0, 0, 2, 2], "texture": "#0" },
+                "down": { "uv": [0, 0, 2, 2], "texture": "#0" }
+            }
+        }
+    ],
+    "display": {
+        "thirdperson_righthand": {
+            "rotation": [135, 0, 0],
+            "translation": [0, -5.5, 5.5]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [135, 0, 0],
+            "translation": [0, -5.5, 5.5]
+        },
+        "firstperson_righthand": {
+            "rotation": [90, 0, 0],
+            "translation": [3, -2, 4.5]
+        },
+        "firstperson_lefthand": {
+            "rotation": [90, 0, 0],
+            "translation": [3, -2, 4.5]
+        },
+        "ground": {
+            "rotation": [45, 0, 0],
+            "translation": [0, 7, 5.5]
+        },
+        "gui": {
+            "rotation": [90, 0, 0],
+            "scale": [4, 4, 4]
+        },
+        "head": {
+            "rotation": [90, 0, 0],
+            "translation": [-3, 0.5, 0],
+            "scale": [1.2, 1.2, 1.2]
+        },
+        "fixed": {
+            "rotation": [90, 0, 0],
+            "translation": [0, 0, 7.75]
+        }
+    }
+}
