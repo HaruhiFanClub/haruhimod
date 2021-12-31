@@ -3,7 +3,6 @@ package com.haruhifanclub.mods.haruhicore.common.item.base;
 import java.util.List;
 import com.haruhifanclub.mods.haruhicore.common.advancement.criterion.ItemReinforcedTrigger;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
-import com.haruhifanclub.mods.haruhicore.server.event.impl.PlayerReinforceItemEvent;
 import org.auioc.mods.ahutils.utils.game.SoundUtils;
 import org.auioc.mods.ahutils.utils.game.TextUtils;
 import net.minecraft.resources.ResourceLocation;
@@ -15,7 +14,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public interface IReinforcementStoneItem {
@@ -120,17 +118,11 @@ public interface IReinforcementStoneItem {
         }
 
 
-        if (MinecraftForge.EVENT_BUS.post(new PlayerReinforceItemEvent.Pre(player, targetItemStack))) {
-            return InteractionResult.FAIL;
-        }
-
         cooldownTracker.addCooldown(stoneItem, 40);
 
         player.giveExperiencePoints(-1 * experienceCost);
 
         ItemStack reinforcedItemStack = processEnchantment(targetItemStack.copy(), player);
-
-        MinecraftForge.EVENT_BUS.post(new PlayerReinforceItemEvent.Post(player, targetItemStack, reinforcedItemStack));
 
         if (reinforcedItemStack.equals(ItemStack.EMPTY)) { // Reinforcement failed
             SoundUtils.playSoundToPlayer(player, CommonConfig.ReinforcingFailedSound.get());
