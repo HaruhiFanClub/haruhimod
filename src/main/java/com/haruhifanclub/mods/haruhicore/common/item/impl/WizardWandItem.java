@@ -1,16 +1,18 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
+import com.haruhifanclub.mods.haruhicore.api.item.HCTier;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCWizardWandItem;
 
 public class WizardWandItem extends HCWizardWandItem {
 
-    private final int tier;
+    private final HCTier tier;
 
-    public WizardWandItem(int tier) {
+    public WizardWandItem(HCTier tier) {
         this.tier = tier;
     }
 
-    public int getLevel() {
+    @Override
+    public HCTier getHCTier() {
         return this.tier;
     }
 

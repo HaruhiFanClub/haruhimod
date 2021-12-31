@@ -1,5 +1,6 @@
 package com.haruhifanclub.mods.haruhicore.common.item.base;
 
+import com.haruhifanclub.mods.haruhicore.api.item.IHCItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import org.auioc.mods.ahutils.utils.game.MCTimeUtils;
 import net.minecraft.Util;
@@ -16,7 +17,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-public class HCHourglassItem extends Item {
+public class HCHourglassItem extends Item implements IHCItem {
 
     public HCHourglassItem() {
         super(

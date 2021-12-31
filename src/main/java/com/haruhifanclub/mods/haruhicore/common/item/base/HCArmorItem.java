@@ -1,6 +1,6 @@
 package com.haruhifanclub.mods.haruhicore.common.item.base;
 
-import com.haruhifanclub.mods.haruhicore.api.item.IHCArmorItem;
+import com.haruhifanclub.mods.haruhicore.api.item.IHCItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -11,7 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class HCArmorItem extends ArmorItem implements IHCArmorItem {
+public class HCArmorItem extends ArmorItem implements IHCItem {
 
     public HCArmorItem(ArmorMaterial material, EquipmentSlot slotType) {
         super(

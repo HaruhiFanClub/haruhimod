@@ -1,10 +1,9 @@
 package com.haruhifanclub.mods.haruhicore.api.item;
 
-public interface IHCBlessedItem extends IHCItem {
+public interface IHCItem {
 
-    @Override
     default HCTier getHCTier() {
-        return HCTier.BLESSED;
+        return HCTier.NONE;
     }
 
 }

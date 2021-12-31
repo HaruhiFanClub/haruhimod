@@ -2,6 +2,7 @@ package com.haruhifanclub.mods.haruhicore.common.item;
 
 import java.util.function.Supplier;
 import com.haruhifanclub.mods.haruhicore.HaruhiCore;
+import com.haruhifanclub.mods.haruhicore.api.item.HCTier;
 import com.haruhifanclub.mods.haruhicore.common.block.BlockRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCMusicDiscItem;
 import com.haruhifanclub.mods.haruhicore.common.item.impl.BaseballBatItem;
@@ -64,11 +65,11 @@ public final class ItemRegistry {
     public static final RegistryObject<Item> BASEBALL_BAT_ITEM = register("baseball_bat", BaseballBatItem::new);
     public static final RegistryObject<Item> GUIDED_BASEBALL_BAT_ITEM = register("guided_baseball_bat", GuidedBaseballBatItem::new);
     public static final RegistryObject<Item> YUKIS_WIZARD_WAND_ITEM = register("yukis_wizard_wand", YukisWizardWandItem::new);
-    public static final RegistryObject<Item> INFERIOR_WIZARD_WAND_ITEM = register("inferior_wizard_wand", () -> new WizardWandItem(1));
-    public static final RegistryObject<Item> ORDINARY_WIZARD_WAND_ITEM = register("ordinary_wizard_wand", () -> new WizardWandItem(2));
-    public static final RegistryObject<Item> EXCELLENT_WIZARD_WAND_ITEM = register("excellent_wizard_wand", () -> new WizardWandItem(3));
-    public static final RegistryObject<Item> RARE_WIZARD_WAND_ITEM = register("rare_wizard_wand", () -> new WizardWandItem(4));
-    public static final RegistryObject<Item> EPIC_WIZARD_WAND_ITEM = register("epic_wizard_wand", () -> new WizardWandItem(5));
+    public static final RegistryObject<Item> INFERIOR_WIZARD_WAND_ITEM = register("inferior_wizard_wand", () -> new WizardWandItem(HCTier.INFERIOR));
+    public static final RegistryObject<Item> ORDINARY_WIZARD_WAND_ITEM = register("ordinary_wizard_wand", () -> new WizardWandItem(HCTier.ORDINARY));
+    public static final RegistryObject<Item> EXCELLENT_WIZARD_WAND_ITEM = register("excellent_wizard_wand", () -> new WizardWandItem(HCTier.EXCELLENT));
+    public static final RegistryObject<Item> RARE_WIZARD_WAND_ITEM = register("rare_wizard_wand", () -> new WizardWandItem(HCTier.RARE));
+    public static final RegistryObject<Item> EPIC_WIZARD_WAND_ITEM = register("epic_wizard_wand", () -> new WizardWandItem(HCTier.EPIC));
 
 
     // Music Discs
