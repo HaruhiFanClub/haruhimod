@@ -3,6 +3,7 @@ package com.haruhifanclub.mods.haruhicore.common.item.base;
 import java.util.List;
 import com.haruhifanclub.mods.haruhicore.common.advancement.criterion.ItemReinforcedTrigger;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
+import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
 import org.auioc.mods.ahutils.utils.game.SoundUtils;
 import org.auioc.mods.ahutils.utils.game.TextUtils;
 import net.minecraft.resources.ResourceLocation;
@@ -13,19 +14,36 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public interface IReinforcementStoneItem {
+public class HCReinforcementStoneItem extends Item {
 
-    static String messageKey = "item.haruhicore.reinforcement_stone.";
+    private static final String messageKey = "item.haruhicore.reinforcement_stone.";
 
-    default boolean isEnabled(Boolean isEpic) {
-        return isEpic ? CommonConfig.EnableEpicReinforcementStone.get()
-            : CommonConfig.EnableCommonReinforcementStone.get();
+    public HCReinforcementStoneItem(Rarity rarity) {
+        super(
+            new Item.Properties()
+                .tab(ItemGroupRegistry.itemGroup)
+                .rarity(rarity)
+                .stacksTo(16)
+        );
     }
 
-    default boolean checkTargetBlock(UseOnContext context) {
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public boolean isFoil(ItemStack stack) {
+        if (isEpic()) {
+            return true;
+        }
+        return false;
+    }
+
+
+    private static boolean checkTargetBlock(UseOnContext context) {
         List<? extends String> blocks = CommonConfig.ReinforcementStoneUseOnBlock.get();
         ResourceLocation key =
             ForgeRegistries.BLOCKS.getKey(context.getLevel().getBlockState(context.getClickedPos()).getBlock());
@@ -35,7 +53,7 @@ public interface IReinforcementStoneItem {
         return false;
     }
 
-    default int checkTargetItemStack(ItemStack targetItemStack) {
+    private static int checkTargetItemStack(ItemStack targetItemStack) {
         if (targetItemStack.equals(ItemStack.EMPTY)) {
             return 1; // Empty ItemStack
         }
@@ -54,18 +72,26 @@ public interface IReinforcementStoneItem {
     }
 
 
-    default int getExperienceCost(boolean isEpic) {
-        return isEpic ? CommonConfig.EpicReinforcingExperienceCost.get()
-            : CommonConfig.CommonReinforcingExperienceCost.get();
+    protected boolean isEnabled() {
+        return false;
     }
 
+    protected boolean isEpic() {
+        return false;
+    }
 
-    default ItemStack processEnchantment(ItemStack stack, Player player) {
+    protected int getExperienceCost() {
+        return 0;
+    }
+
+    protected ItemStack processEnchantment(ItemStack stack, Player player) {
         return stack;
     };
 
-    default InteractionResult reinforce(UseOnContext context, boolean isEpic) {
-        if (!isEnabled(isEpic)) {
+
+    @Override
+    public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
+        if (!isEnabled()) {
             return InteractionResult.PASS;
         }
 
@@ -111,7 +137,7 @@ public interface IReinforcementStoneItem {
             return InteractionResult.FAIL;
         }
 
-        int experienceCost = getExperienceCost(isEpic);
+        int experienceCost = getExperienceCost();
         if ((!player.isCreative()) && (player.totalExperience < experienceCost)) {
             TextUtils.chat(player, TextUtils.getI18nText(messageKey + "xp_not_enough"));
             return InteractionResult.FAIL;
@@ -129,7 +155,7 @@ public interface IReinforcementStoneItem {
             ItemReinforcedTrigger.INSTANCE.trigger(player, false, false, targetItemStack, reinforcedItemStack);
         } else {
             SoundUtils.playSoundToPlayer(player, CommonConfig.ReinforcingSuccessSound.get());
-            ItemReinforcedTrigger.INSTANCE.trigger(player, isEpic, true, targetItemStack, reinforcedItemStack);
+            ItemReinforcedTrigger.INSTANCE.trigger(player, isEpic(), true, targetItemStack, reinforcedItemStack);
         }
 
         player.setItemInHand(InteractionHand.OFF_HAND, reinforcedItemStack);

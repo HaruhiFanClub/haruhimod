@@ -1,38 +1,41 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
-import com.haruhifanclub.mods.haruhicore.common.item.base.IReinforcementStoneItem;
-import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
+import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
+import com.haruhifanclub.mods.haruhicore.common.item.base.HCReinforcementStoneItem;
 import org.apache.commons.lang3.RandomUtils;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.EnchUtils;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.context.UseOnContext;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class EpicReinforcementStoneItem extends Item implements IReinforcementStoneItem, IHCBlessedItem {
+public class EpicReinforcementStoneItem extends HCReinforcementStoneItem implements IHCBlessedItem {
+
+    private static final boolean enabled = CommonConfig.EnableEpicReinforcementStone.get();
+    private static final int experienceCost = CommonConfig.EpicReinforcingExperienceCost.get();
 
     public EpicReinforcementStoneItem() {
-        super(
-            new Item.Properties()
-                .tab(ItemGroupRegistry.itemGroup)
-                .rarity(Rarity.EPIC)
-                .stacksTo(16)
-        );
+        super(Rarity.EPIC);
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
-    public boolean isFoil(ItemStack stack) {
+    protected boolean isEnabled() {
+        return enabled;
+    }
+
+    @Override
+    protected boolean isEpic() {
         return true;
     }
+
+    @Override
+    protected int getExperienceCost() {
+        return experienceCost;
+    }
+
 
     @Override
     public ItemStack processEnchantment(ItemStack stack, Player player) {
@@ -93,12 +96,6 @@ public class EpicReinforcementStoneItem extends Item implements IReinforcementSt
         }
         System.out.println(X+","+Y+","+Z+","+W);
         /*@formatter:on*/
-    }
-
-    @Override
-    public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
-        // if (!context.getLevel().isClientSide()) {test();}
-        return reinforce(context, true);
     }
 
 }

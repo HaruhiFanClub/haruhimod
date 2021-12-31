@@ -2,21 +2,20 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import java.util.regex.Pattern;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
-import com.haruhifanclub.mods.haruhicore.common.item.base.IReinforcementStoneItem;
-import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
+import com.haruhifanclub.mods.haruhicore.common.item.base.HCReinforcementStoneItem;
 import org.auioc.mods.ahutils.utils.game.EffectUtils;
 import org.auioc.mods.ahutils.utils.game.EnchUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.Rarity;
 
-public class ReinforcementStoneItem extends Item implements IReinforcementStoneItem {
+public class ReinforcementStoneItem extends HCReinforcementStoneItem {
 
+    private static final boolean enabled = CommonConfig.EnableCommonReinforcementStone.get();
+    private static final int experienceCost = CommonConfig.CommonReinforcingExperienceCost.get();
     private static final int luckMultiplier = CommonConfig.CommonReinforcingLuckEffectMultiplier.get();
     private static final int unluckMultiplier = CommonConfig.CommonReinforcingUnluckEffectMultiplier.get();
     private static final int danchouConeMultiplier = CommonConfig.CommonReinforcingDanchouConeMultiplier.get();
@@ -24,11 +23,17 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
     private static final Pattern vanillaEnchId = Pattern.compile("^minecraft:\\w+$");
 
     public ReinforcementStoneItem() {
-        super(
-            new Item.Properties()
-                .tab(ItemGroupRegistry.itemGroup)
-                .stacksTo(16)
-        );
+        super(Rarity.COMMON);
+    }
+
+    @Override
+    protected boolean isEnabled() {
+        return enabled;
+    }
+
+    @Override
+    protected int getExperienceCost() {
+        return experienceCost;
     }
 
     @Override
@@ -85,11 +90,6 @@ public class ReinforcementStoneItem extends Item implements IReinforcementStoneI
         stack.getTag().put("Enchantments", enchantments);
 
         return stack;
-    }
-
-    @Override
-    public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
-        return reinforce(context, false);
     }
 
 }
