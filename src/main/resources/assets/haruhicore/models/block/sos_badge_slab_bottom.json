@@ -1,5 +1,5 @@
 {
-    "parent": "ahutils:block/slab_bottom",
+    "parent": "arnicalib:block/slab_bottom",
     "textures": {
         "0": "haruhicore:block/sos_badge_slab",
         "particle": "haruhicore:block/sos_badge_slab"

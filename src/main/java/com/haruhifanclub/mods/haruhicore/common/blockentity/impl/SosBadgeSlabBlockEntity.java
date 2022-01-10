@@ -10,15 +10,16 @@ import com.haruhifanclub.mods.haruhicore.common.blockentity.BlockEntityRegistry;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
-import org.auioc.mods.ahutils.utils.LogUtil;
-import org.auioc.mods.ahutils.utils.game.EffectUtils;
-import org.auioc.mods.ahutils.utils.game.ItemUtils;
-import org.auioc.mods.ahutils.utils.game.PlayerUtils;
+import org.auioc.mods.arnicalib.utils.LogUtil;
+import org.auioc.mods.arnicalib.utils.game.EffectUtils;
+import org.auioc.mods.arnicalib.utils.game.ItemUtils;
+import org.auioc.mods.arnicalib.utils.game.PlayerUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -39,7 +40,7 @@ public class SosBadgeSlabBlockEntity extends BlockEntity {
 
     private HashMap<Player, Integer> storagedPlayerMap = new HashMap<Player, Integer>();
 
-    private static final Logger LOGGER = LogUtil.getNamedLogger("SosBadgeSlabBlockEntity");
+    private static final Logger LOGGER = LogUtil.getLogger("SosBadgeSlabBlockEntity");
     private static final Marker SINGLE_MARKER = LogUtil.getMarker("SINGLE");
     private static final Marker DOUBLE_MARKER = LogUtil.getMarker("DOUBLE");
 
@@ -126,12 +127,7 @@ public class SosBadgeSlabBlockEntity extends BlockEntity {
             level = Mth.nextInt(player.getRandom(), levelRange.get(0), levelRange.get(1));
         }
 
-        EffectUtils.addEffect(
-            player,
-            Mth.nextInt(player.getRandom(), 1, 32),
-            duration * 20,
-            level
-        );
+        player.addEffect(new MobEffectInstance(EffectUtils.getEffect(Mth.nextInt(player.getRandom(), 1, 32)), duration * 20, level));
     }
 
     private static void lootItem(Player player, boolean isDouble) {

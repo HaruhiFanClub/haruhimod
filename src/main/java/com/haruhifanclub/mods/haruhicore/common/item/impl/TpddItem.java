@@ -6,8 +6,8 @@ import java.util.List;
 import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCHourglassItem;
-import org.auioc.mods.ahutils.utils.game.EffectUtils;
-import org.auioc.mods.ahutils.utils.game.MCTimeUtils;
+import org.auioc.mods.arnicalib.utils.game.EffectUtils;
+import org.auioc.mods.arnicalib.utils.game.MCTimeUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -161,7 +161,7 @@ public class TpddItem extends HCHourglassItem implements IHCBlessedItem {
                 if (!effects_nbt.isEmpty()) {
                     for (int i = 0; i < effects_nbt.size(); i++) {
                         CompoundTag effect_nbt = effects_nbt.getCompound(i);
-                        player.addEffect(EffectUtils.getMobEffectInstance(effect_nbt));
+                        player.addEffect(EffectUtils.createInstance(effect_nbt));
                     }
                 }
             }

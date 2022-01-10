@@ -4,8 +4,8 @@ import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
-import org.auioc.mods.ahutils.api.item.HArmorMaterial;
-import org.auioc.mods.ahutils.utils.game.EffectUtils;
+import org.auioc.mods.arnicalib.api.game.item.HArmorMaterial;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -48,7 +48,7 @@ public class YukisWizardCloakItem extends HCArmorItem implements IHCBlessedItem 
         }
 
         if (!player.hasEffect(MobEffects.ABSORPTION)) {
-            EffectUtils.addEffect(player, 22, effectDuration, 2);
+            player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, effectDuration, 1));
         }
     }
 

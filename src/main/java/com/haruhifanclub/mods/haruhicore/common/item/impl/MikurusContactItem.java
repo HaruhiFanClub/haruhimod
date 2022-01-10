@@ -5,11 +5,11 @@ import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.damagesource.MikuruBeamDamageSource;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
-import org.auioc.mods.ahutils.utils.game.EffectUtils;
-import org.auioc.mods.ahutils.utils.game.EntityUtils;
+import org.auioc.mods.arnicalib.utils.game.EntityUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -64,7 +64,7 @@ public class MikurusContactItem extends Item implements IHCBlessedItem {
         }
 
         if (MikurusMaidOutfitItem.isEquipped(player)) {
-            EffectUtils.addEffect(player, 32, 4, 0); // hero_of_the_village
+            player.addEffect(new MobEffectInstance(MobEffects.HERO_OF_THE_VILLAGE, 4));
         }
     }
 

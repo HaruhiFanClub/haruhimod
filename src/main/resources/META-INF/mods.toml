@@ -24,8 +24,8 @@ description='''
     ordering="NONE"
     side="BOTH"
 [[dependencies.haruhicore]]
-    modId="ahutils"
+    modId="arnicalib"
     mandatory=true
-    versionRange="[4.0.3,)"
+    versionRange="[4.1.4,)"
     ordering="NONE"
     side="BOTH"

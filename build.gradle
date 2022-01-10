@@ -14,8 +14,8 @@ apply plugin: 'maven-publish'
 
 println("Local debug: ${local_debug.toBoolean()}")
 
-version = "${haruhicore_version}-${getBuildNumber()}"
-group = 'com.haruhifanclub.mods'
+version = "${haruhicore_version}"
+group = 'com.haruhifanclub.mods.haruhimod'
 archivesBaseName = "haruhimod-${minecraft_version}"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -26,6 +26,8 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run').canonicalPath
+            property 'file.encoding', 'UTF-8'
+            property 'user.language', 'en'
             property 'log4j.configurationFile', 'log4j2.xml'
             mods {
                 haruhicore {
@@ -36,6 +38,8 @@ minecraft {
 
         server {
             workingDirectory project.file('run').canonicalPath
+            property 'file.encoding', 'UTF-8'
+            property 'user.language', 'en'
             property 'log4j.configurationFile', 'log4j2.xml'
             mods {
                 haruhicore {
@@ -60,7 +64,7 @@ repositories {
         }
     }
     maven {
-        url "https://maven.pkg.github.com/wakelesssloth56/ahutils-mod"
+        url "https://maven.pkg.github.com/wakelesssloth56/arnicalib-mcmod"
         credentials {
             username = System.getenv("GITHUB_ACTOR") ? System.getenv("GITHUB_ACTOR") : System.getenv("GITHUB_USERNAME")
             password = System.getenv("GITHUB_TOKEN")
@@ -72,36 +76,45 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     if (local_debug.toBoolean()){
-        compileOnly fileTree(dir: 'libs', include: ['*-forgelib.jar', '*-api.jar'])
-        runtimeOnly fileTree(dir: 'libs', include: ['*-deobf.jar'])
+        implementation fileTree(dir: 'libs', include: ['*-forgelib.jar', '*-api.jar'])
     } else {
-        compileOnly "org.auioc.mods.ahutils:ahutils-${minecraft_version}:${ahutils_version}:forgelib"
-        runtimeOnly "org.auioc.mods.ahutils:ahutils-${minecraft_version}:${ahutils_version}:deobf"
+        implementation "org.auioc.mods.arnicalib:arnicalib-${minecraft_version}:${arnicalib_version}:forgelib"
     }
 
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
     runtimeOnly fg.deobf("curse.maven:jade-324717:${jade_version}")
-    // runtimeOnly fg.deobf("net.darkhax.openloader:OpenLoader-${minecraft_version}:${openloader_version}")
 }
 
-processResources {
-    // from (sourceSets.main.resources.srcDirs) {
-    //     include 'META-INF/mods.toml'
-    //     duplicatesStrategy 'include'
-    //     expand 'haruhicore_version': "${minecraft_version}-${haruhicore_version}-${getBuildNumber()}", 'ahutils_version': "${ahutils_version}"
-    // }
+ext {
+    manifest_attributes = [
+        "Specification-Title": 'haruhimod',
+        "Specification-Vendor": 'Haruhifanclub',
+        "Specification-Version": '1',
+        "Implementation-Title": project.name,
+        "Implementation-Version": "${version}",
+        "Implementation-Vendor" :'Haruhifanclub',
+        "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+        "HaruhiCore-Version": "haruhicore-${minecraft_version}-${haruhicore_version}-${getVar('CI_VERSION')}"
+    ]
 }
 
-jar {}
+jar {
+    manifest {attributes(manifest_attributes)}
+}
 
 jar.finalizedBy('reobfJar')
 
+task forgelibJar(type: Jar) {
+    from sourceSets.main.output
+    from sourceSets.main.allJava
+    classifier = 'forgelib'
+    manifest {attributes(manifest_attributes)}
+}
+
+tasks.build.dependsOn('forgelibJar')
+
 publishing {}
 
-def getBuildNumber() {
-    def ci_version = System.getenv("CI_VERSION")
-    if (ci_version != null) {
-        return ci_version
-    }
-    return "unknown"
+def getVar(String var_name) {
+    return System.getenv(var_name)
 }

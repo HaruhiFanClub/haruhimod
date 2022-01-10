@@ -5,8 +5,9 @@ import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.client.render.armor.WizardHatArmorRender;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
-import org.auioc.mods.ahutils.api.item.HArmorMaterial;
-import org.auioc.mods.ahutils.utils.game.EffectUtils;
+import org.auioc.mods.arnicalib.api.game.item.HArmorMaterial;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -44,10 +45,10 @@ public class YukisWizardHatItem extends HCArmorItem implements IHCBlessedItem {
 
         ItemStack headItemStack = livingEntity.getItemBySlot(EquipmentSlot.HEAD);
         if ((headItemStack.getItem()).equals(this)) {
-            EffectUtils.addEffect(livingEntity, 11, 4, 0); // resistance
-            EffectUtils.addEffect(livingEntity, 23, 4, 0); // saturation
-            EffectUtils.addEffect(livingEntity, 24, 4, 0); // glowing
-            EffectUtils.addEffect(livingEntity, 26, 4, 0); // luck
+            livingEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 4));
+            livingEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 4));
+            livingEntity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 4));
+            livingEntity.addEffect(new MobEffectInstance(MobEffects.LUCK, 4));
         }
     }
 

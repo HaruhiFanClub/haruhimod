@@ -2,7 +2,7 @@ package com.haruhifanclub.mods.haruhicore.common.item.base;
 
 import com.haruhifanclub.mods.haruhicore.api.item.IHCItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
-import org.auioc.mods.ahutils.utils.game.MCTimeUtils;
+import org.auioc.mods.arnicalib.utils.game.MCTimeUtils;
 import net.minecraft.Util;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;

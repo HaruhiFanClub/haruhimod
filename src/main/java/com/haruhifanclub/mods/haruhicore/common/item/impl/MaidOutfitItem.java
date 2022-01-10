@@ -2,7 +2,7 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
-import org.auioc.mods.ahutils.api.item.HArmorMaterial;
+import org.auioc.mods.arnicalib.api.game.item.HArmorMaterial;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.crafting.Ingredient;
 

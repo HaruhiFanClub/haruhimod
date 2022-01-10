@@ -5,8 +5,9 @@ import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
-import org.auioc.mods.ahutils.api.item.HArmorMaterial;
-import org.auioc.mods.ahutils.utils.game.EffectUtils;
+import org.auioc.mods.arnicalib.api.game.item.HArmorMaterial;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -51,7 +52,7 @@ public class MikurusMaidOutfitItem extends HCArmorItem implements IHCBlessedItem
             return;
         }
 
-        EffectUtils.addEffect(player, 10, 4, 1); // regeneration
+        player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 4));
 
         AABB aabb = (new AABB(player.blockPosition())).inflate(effectRange).expandTowards(0.0D, effectRange, 0.0D);
 
@@ -63,10 +64,10 @@ public class MikurusMaidOutfitItem extends HCArmorItem implements IHCBlessedItem
 
             if (entity2 instanceof Player) {
                 if (forOtherPlayers) {
-                    EffectUtils.addEffect(entity2, 10, 4, 1);
+                    entity2.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 4));
                 }
             } else if ((forFriendlyEntities) && (entity2.getType().getCategory().isFriendly())) {
-                EffectUtils.addEffect(entity2, 10, 4, 1);
+                entity2.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 4));
             }
         }
     }
