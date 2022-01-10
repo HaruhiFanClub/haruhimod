@@ -127,7 +127,7 @@ public class SosBadgeSlabBlockEntity extends BlockEntity {
             level = Mth.nextInt(player.getRandom(), levelRange.get(0), levelRange.get(1));
         }
 
-        player.addEffect(new MobEffectInstance(EffectUtils.getEffect(Mth.nextInt(player.getRandom(), 1, 32)), duration * 20, level));
+        player.addEffect(new MobEffectInstance(EffectUtils.getRandomEffect(true), duration * 20, level));
     }
 
     private static void lootItem(Player player, boolean isDouble) {
