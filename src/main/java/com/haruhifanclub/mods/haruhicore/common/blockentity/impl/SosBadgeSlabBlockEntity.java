@@ -1,5 +1,6 @@
 package com.haruhifanclub.mods.haruhicore.common.blockentity.impl;
 
+import static com.haruhifanclub.mods.haruhicore.HaruhiCore.LOGGER;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -8,7 +9,6 @@ import com.haruhifanclub.mods.haruhicore.common.advancement.criterion.SosBadgeSl
 import com.haruhifanclub.mods.haruhicore.common.block.impl.SosBadgeSlabBlock;
 import com.haruhifanclub.mods.haruhicore.common.blockentity.BlockEntityRegistry;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
-import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
 import org.auioc.mods.arnicalib.utils.LogUtil;
 import org.auioc.mods.arnicalib.utils.game.EffectUtils;
@@ -40,9 +40,9 @@ public class SosBadgeSlabBlockEntity extends BlockEntity {
 
     private HashMap<Player, Integer> storagedPlayerMap = new HashMap<Player, Integer>();
 
-    private static final Logger LOGGER = LogUtil.getLogger("SosBadgeSlabBlockEntity");
-    private static final Marker SINGLE_MARKER = LogUtil.getMarker("SINGLE");
-    private static final Marker DOUBLE_MARKER = LogUtil.getMarker("DOUBLE");
+    private static final Marker MARKER = LogUtil.getMarker("SosBadgeSlab");
+    private static final Marker SINGLE_MARKER = LogUtil.getMarker("SINGLE").addParents(MARKER);
+    private static final Marker DOUBLE_MARKER = LogUtil.getMarker("DOUBLE").addParents(MARKER);
 
     public SosBadgeSlabBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.SOS_BADGE_SLAB_BLOCK_ENTITY.get(), pos, state);

@@ -10,6 +10,8 @@ import com.haruhifanclub.mods.haruhicore.common.entity.EntityRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.network.HCPacketHandler;
 import com.haruhifanclub.mods.haruhicore.common.sound.SoundEventRegistry;
+import org.apache.logging.log4j.Logger;
+import org.auioc.mods.arnicalib.utils.LogUtil;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -23,6 +25,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class HaruhiCore {
 
     public static final String MOD_ID = "haruhicore";
+    public static final String MOD_NAME = "HaruhiCore";
+
+    public static final Logger LOGGER = LogUtil.getLogger(MOD_NAME);
 
     public HaruhiCore() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.CONFIG);
