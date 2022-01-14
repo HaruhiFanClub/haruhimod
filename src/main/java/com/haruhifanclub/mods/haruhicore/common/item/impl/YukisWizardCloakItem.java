@@ -1,6 +1,8 @@
 package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
+import java.util.function.Consumer;
 import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
+import com.haruhifanclub.mods.haruhicore.client.render.armor.WizardCloakArmorRender;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
@@ -13,6 +15,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.IItemRenderProperties;
 
 public class YukisWizardCloakItem extends HCArmorItem implements IHCBlessedItem {
 
@@ -31,8 +36,6 @@ public class YukisWizardCloakItem extends HCArmorItem implements IHCBlessedItem 
             EquipmentSlot.CHEST
         );
     }
-
-    // TODO Custom armor model
 
     @Override
     public void inventoryTick(ItemStack stack, Level world, Entity entity, int index, boolean selected) {
@@ -54,6 +57,12 @@ public class YukisWizardCloakItem extends HCArmorItem implements IHCBlessedItem 
 
     public static boolean isEquipped(Player player) {
         return (player.getItemBySlot(EquipmentSlot.CHEST).getItem()).equals(ItemRegistry.YUKIS_WIZARD_CLOAK_ITEM.get());
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void initializeClient(Consumer<IItemRenderProperties> consumer) {
+        consumer.accept(WizardCloakArmorRender.INSTANCE);
     }
 
 }
