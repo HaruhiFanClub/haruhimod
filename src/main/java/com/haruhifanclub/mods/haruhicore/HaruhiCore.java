@@ -44,13 +44,13 @@ public class HaruhiCore {
     }
 
     private void modSetup(final IEventBus modEventBus) {
+        HCPacketHandler.init();
         CriterionRegistry.register();
         BlockRegistry.BLOCKS.register(modEventBus);
         BlockEntityRegistry.BLOCK_ENTITIES.register(modEventBus);
         EntityRegistry.ENTITIES.register(modEventBus);
         ItemRegistry.ITEMS.register(modEventBus);
         SoundEventRegistry.SOUND_EVENTS.register(modEventBus);
-        modEventBus.register(HCPacketHandler.class);
     }
 
     private void forgeSetup(final IEventBus forgeEventBus) {}
