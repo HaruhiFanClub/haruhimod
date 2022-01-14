@@ -1,13 +1,13 @@
 # This workflow will build a Java project with Gradle
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
-name: gradle-ci
+name: dev-build
 
 on:
     push:
-        branches: [1.16-forge]
+        branches: [1.18-forge]
     pull_request:
-        branches: [1.16-forge]
+        branches: [1.18-forge]
 
 jobs:
     build:
@@ -18,35 +18,19 @@ jobs:
 
             - name: Set vars
               run: |
-                  echo "CI_VERSION=`echo rev.${GITHUB_SHA:0:7}-build.${{github.run_number}}`" >> $GITHUB_ENV
+                  echo "CI_VERSION=`echo dev-rev.${GITHUB_SHA:0:7}-build.${{github.run_number}}`" >> $GITHUB_ENV
                   config='./gradle.properties'
                   function prop {
                     [ -f "$config" ] && grep -P "^\s*[^#]?${1}=.*$" $config | cut -d'=' -f2
                   }
-                  echo "AHUTILS_VERSION=`echo $(prop "ahutils_version")`" >> $GITHUB_ENV
                   echo "HARUHICORE_VERSION=`echo $(prop "haruhicore_version")`" >> $GITHUB_ENV
                   echo "MINECRAFT_VERSION=`echo $(prop "minecraft_version")`" >> $GITHUB_ENV
 
-            # - name: Clone ahutils
-            #   run: |
-            #       git clone https://github.com/WakelessSloth56/ahutils-mod.git ahutils
-
-            # - name: Check ahutils version
-            #   run: |
-            #       cd ./ahutils
-            #       if git rev-parse "v${{env.AHUTILS_VERSION}}" >/dev/null 2>&1;then
-            #       git checkout "v${{env.AHUTILS_VERSION}}"
-            #       cd ../
-            #       else
-            #       echo "ahutils version v${{env.AHUTILS_VERSION}} does not exist"
-            #       exit 1
-            #       fi
-
-            - name: Set up JDK 16
+            - name: Set up JDK 17
               uses: actions/setup-java@v2
               with:
-                  java-version: "16"
-                  distribution: "adopt"
+                  java-version: '17'
+                  distribution: 'temurin'
                   architecture: x64
 
             - name: Build with Gradle
@@ -54,8 +38,7 @@ jobs:
                   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
               run: |
                   chmod +x ./gradlew
-                  ./gradlew clean
-                  ./gradlew build
+                  ./gradlew clean build
 
             - name: Upload build artifacts
               uses: actions/upload-artifact@v1
