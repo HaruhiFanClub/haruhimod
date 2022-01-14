@@ -64,7 +64,7 @@ repositories {
         }
     }
     maven {
-        url "https://maven.pkg.github.com/wakelesssloth56/arnicalib-mcmod"
+        url "https://maven.pkg.github.com/auioc/arnicalib-mcmod"
         credentials {
             username = System.getenv("GITHUB_ACTOR") ? System.getenv("GITHUB_ACTOR") : System.getenv("GITHUB_USERNAME")
             password = System.getenv("GITHUB_TOKEN")
@@ -76,7 +76,7 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     if (local_debug.toBoolean()){
-        implementation fileTree(dir: 'libs', include: ['*-forgelib.jar', '*-api.jar'])
+        implementation fileTree(dir: 'libs', include: ['*/*-forgelib.jar', '*/*-api.jar'])
     } else {
         implementation "org.auioc.mods.arnicalib:arnicalib-${minecraft_version}:${arnicalib_version}:forgelib"
     }

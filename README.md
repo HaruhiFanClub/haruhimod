@@ -4,8 +4,8 @@
 
 Minecraft mods for [HaruhiServer](https://github.com/HaruhiFanClub/MCHaruhiServer).
 
-[![GitHub license](https://img.shields.io/github/license/WakelessSloth56/haruhimod?style=flat-square)](/LICENSE)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/WakelessSloth56/haruhimod/gradle-ci?style=flat-square)](https://github.com/WakelessSloth56/haruhimod/actions)
+[![GitHub license](https://img.shields.io/github/license/HaruhiFanClub/haruhimod?style=flat-square)](/LICENSE)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/HaruhiFanClub/haruhimod/dev-build?style=flat-square)](https://github.com/HaruhiFanClub/haruhimod/actions)
 &nbsp;
 ![Minecraft](https://img.shields.io/static/v1?label=Minecraft&message=1.18.1&color=00aa00&style=flat-square)
 [![Forge](https://img.shields.io/static/v1?label=Forge&message=39.0.10&color=e04e14&logo=Conda-Forge&style=flat-square)](http://files.minecraftforge.net/net/minecraftforge/forge/index_1.18.1.html)
@@ -27,8 +27,8 @@ Minecraft mods for [HaruhiServer](https://github.com/HaruhiFanClub/MCHaruhiServe
 
 我们非常欢迎你的贡献，你可以通过以下方式和我们一起共建此项目：
 
-* 通过[议题](https://github.com/WakelessSloth56/haruhimod/issues)来报告错误或进行咨询。
-* 提交[拉取请求](https://github.com/WakelessSloth56/haruhimod/pulls)来改进项目。
+* 通过[议题](https://github.com/HaruhiFanClub/haruhimod/issues)来报告错误或进行咨询。
+* 提交[拉取请求](https://github.com/HaruhiFanClub/haruhimod/pulls)来改进项目。
 
 ## 许可证
 
