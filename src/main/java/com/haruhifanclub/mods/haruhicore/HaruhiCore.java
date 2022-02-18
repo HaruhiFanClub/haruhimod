@@ -10,6 +10,7 @@ import com.haruhifanclub.mods.haruhicore.common.entity.EntityRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.network.HCPacketHandler;
 import com.haruhifanclub.mods.haruhicore.common.sound.SoundEventRegistry;
+import com.haruhifanclub.mods.haruhicore.server.event.ServerEventHandler;
 import org.apache.logging.log4j.Logger;
 import org.auioc.mods.arnicalib.utils.LogUtil;
 import net.minecraftforge.api.distmarker.Dist;
@@ -53,7 +54,9 @@ public class HaruhiCore {
         SoundEventRegistry.SOUND_EVENTS.register(modEventBus);
     }
 
-    private void forgeSetup(final IEventBus forgeEventBus) {}
+    private void forgeSetup(final IEventBus forgeEventBus) {
+        forgeEventBus.register(ServerEventHandler.class);
+    }
 
 
     private class ClientSideOnlySetup {
