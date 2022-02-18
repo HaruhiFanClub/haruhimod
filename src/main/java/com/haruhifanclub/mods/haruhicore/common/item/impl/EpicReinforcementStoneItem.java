@@ -91,8 +91,8 @@ public class EpicReinforcementStoneItem extends HCReinforcementStoneItem impleme
         {int n=10;A-=0.6*n;B-=0.6*n;C-=0.6*n;} // Luck
         {float n=100-C;A-=n;B-=n;C-=n;} // ×2
         for(int i=0;i<10000;i++){
-            float P=(float) RandomUtils.nextInt(1,101);
-            if(P<=A){X++;}else if(P>A&&P<=B){Y++;}else if(P>B&&P<=C){Z++;}else{W++;}
+            float P=(float) RandomUtils.nextInt(0,100);
+            if(P<A){X++;}else if(P<B){Y++;}else if(P<C){Z++;}else{W++;}
         }
         System.out.println(X+","+Y+","+Z+","+W);
         /*@formatter:on*/
