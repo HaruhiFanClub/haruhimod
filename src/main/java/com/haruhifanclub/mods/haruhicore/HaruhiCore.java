@@ -11,8 +11,11 @@ import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import com.haruhifanclub.mods.haruhicore.common.network.HCPacketHandler;
 import com.haruhifanclub.mods.haruhicore.common.sound.SoundEventRegistry;
 import com.haruhifanclub.mods.haruhicore.server.event.ServerEventHandler;
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Marker;
 import org.auioc.mods.arnicalib.utils.LogUtil;
+import org.auioc.mods.arnicalib.utils.java.VersionUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -27,8 +30,11 @@ public class HaruhiCore {
 
     public static final String MOD_ID = "haruhicore";
     public static final String MOD_NAME = "HaruhiCore";
+    public static final String MAIN_VERSION;
+    public static final String FULL_VERSION;
 
     public static final Logger LOGGER = LogUtil.getLogger(MOD_NAME);
+    private static final Marker CORE = LogUtil.getMarker("CORE");
 
     public HaruhiCore() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.CONFIG);
@@ -42,6 +48,13 @@ public class HaruhiCore {
         final ClientSideOnlySetup ClientSideOnlySetup = new ClientSideOnlySetup(modEventBus, forgeEventBus);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientSideOnlySetup::modSetup);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientSideOnlySetup::forgeSetup);
+    }
+
+    static {
+        Pair<String, String> version = VersionUtils.getModVersion(HaruhiCore.class);
+        MAIN_VERSION = version.getLeft();
+        FULL_VERSION = version.getRight();
+        LOGGER.info(CORE, "Version: " + MAIN_VERSION + " (" + FULL_VERSION + ")");
     }
 
     private void modSetup(final IEventBus modEventBus) {
