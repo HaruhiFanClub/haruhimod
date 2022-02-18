@@ -19,11 +19,10 @@ public class WizardHatArmorRender implements IItemRenderProperties {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    @SuppressWarnings("unchecked")
-    public <A extends HumanoidModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, A defModel) {
+    public HumanoidModel<?> getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> _default) {
         EntityModelSet models = Minecraft.getInstance().getEntityModels();
         ModelPart root = models.bakeLayer(WizardHatArmorModel.LAYER_LOCATION);
-        return (A) new WizardHatArmorModel(root);
+        return new WizardHatArmorModel(root);
     }
 
 }

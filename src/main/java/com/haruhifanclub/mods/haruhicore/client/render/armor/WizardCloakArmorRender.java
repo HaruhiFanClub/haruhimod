@@ -19,11 +19,10 @@ public class WizardCloakArmorRender implements IItemRenderProperties {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    @SuppressWarnings("unchecked")
-    public <A extends HumanoidModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, A defModel) {
+    public HumanoidModel<?> getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> _default) {
         EntityModelSet models = Minecraft.getInstance().getEntityModels();
         ModelPart root = models.bakeLayer(WizardCloakArmorModel.LAYER_LOCATION);
-        return (A) new WizardCloakArmorModel(root);
+        return new WizardCloakArmorModel(root);
     }
 
 }
