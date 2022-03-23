@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[39,)"
+loaderVersion="[40,)"
 license="GNU GPLv3"
 
 [[mods]]
@@ -14,18 +14,18 @@ description='''
 [[dependencies.haruhicore]]
     modId="forge"
     mandatory=true
-    versionRange="[39,)"
+    versionRange="[40,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.haruhicore]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18.1,1.19)"
+    versionRange="[1.18.2,1.19)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.haruhicore]]
     modId="arnicalib"
     mandatory=true
-    versionRange="[4.1.4,)"
+    versionRange="[5.0.0,)"
     ordering="NONE"
     side="BOTH"

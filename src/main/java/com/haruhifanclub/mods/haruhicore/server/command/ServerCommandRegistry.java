@@ -15,7 +15,7 @@ public final class ServerCommandRegistry {
         NODE.addChild(literal("version").executes((ctx) -> VersionCommand.getModVersion(ctx, HaruhiCore.MAIN_VERSION, HaruhiCore.FULL_VERSION, HaruhiCore.MOD_NAME)).build());
 
         dispatcher.register(literal(HaruhiCore.MOD_ID).redirect(NODE));
-        org.auioc.mods.arnicalib.server.command.ServerCommandRegistry.getRootNode(dispatcher).addChild(NODE);
+        org.auioc.mods.arnicalib.server.command.AHServerCommands.getRootNode(dispatcher).addChild(NODE);
     }
 
 }
