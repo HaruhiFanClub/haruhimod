@@ -51,18 +51,18 @@ minecraft {
 }
 
 repositories {
-    maven {
-        url "https://dvs1.progwml6.com/files/maven/"
-    }
-    maven {
-        url "https://maven.blamejared.com"
-    }
-    maven {
-        url "https://www.cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    }
+    // maven {
+    //     url "https://dvs1.progwml6.com/files/maven/"
+    // }
+    // maven {
+    //     url "https://maven.blamejared.com"
+    // }
+    // maven {
+    //     url "https://www.cursemaven.com"
+    //     content {
+    //         includeGroup "curse.maven"
+    //     }
+    // }
     maven {
         url "https://maven.pkg.github.com/auioc/arnicalib-mcmod"
         credentials {
@@ -81,8 +81,8 @@ dependencies {
         implementation "org.auioc.mods.arnicalib:arnicalib-${minecraft_version}:${arnicalib_version}:forgelib"
     }
 
-    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
-    runtimeOnly fg.deobf("curse.maven:jade-324717:${jade_version}")
+    // runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
+    // runtimeOnly fg.deobf("curse.maven:jade-324717:${jade_version}")
 }
 
 ext {
@@ -113,7 +113,7 @@ task forgelibJar(type: Jar) {
 
 tasks.build.dependsOn('forgelibJar')
 
-publishing {}
+// publishing {}
 
 def getVar(String var_name) {
     return System.getenv(var_name)
