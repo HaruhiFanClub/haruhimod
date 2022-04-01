@@ -14,9 +14,9 @@ apply plugin: 'maven-publish'
 
 println("Local debug: ${local_debug.toBoolean()}")
 
-version = "${haruhicore_version}"
-group = 'com.haruhifanclub.mods.haruhimod'
-archivesBaseName = "haruhimod-${minecraft_version}"
+group = 'com.haruhifanclub.haruhimod'
+archivesBaseName = "haruhimod"
+version = "${minecraft_version}-${haruhicore_version}"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
@@ -78,11 +78,13 @@ dependencies {
     if (local_debug.toBoolean()){
         implementation fileTree(dir: 'libs', include: ['*/*-forgelib.jar', '*/*-api.jar'])
     } else {
-        implementation "org.auioc.mods.arnicalib:arnicalib-${minecraft_version}:${arnicalib_version}:forgelib"
+        implementation "org.auioc.mcmod:arnicalib:${minecraft_version}-${arnicalib_version}:forgelib"
     }
 
-    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
-    runtimeOnly fg.deobf("curse.maven:jade-324717:${jade_version}")
+    if (getVar('GITHUB_ACTOR') == null) {
+        runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
+        runtimeOnly fg.deobf("curse.maven:jade-324717:${jade_version}")
+    }
 }
 
 ext {
@@ -91,7 +93,7 @@ ext {
         "Specification-Vendor": 'Haruhifanclub',
         "Specification-Version": '1',
         "Implementation-Title": project.name,
-        "Implementation-Version": "${version}",
+        "Implementation-Version": "${haruhicore_version}",
         "Implementation-Vendor" :'Haruhifanclub',
         "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
         "HaruhiCore-Version": "haruhicore-${minecraft_version}-${haruhicore_version}-${getVar('CI_VERSION')}"
