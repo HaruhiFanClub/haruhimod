@@ -52,7 +52,7 @@ public class MikurusMaidOutfitItem extends HCArmorItem implements IHCBlessedItem
             return;
         }
 
-        player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 4));
+        player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 4, 0, true, true));
 
         AABB aabb = (new AABB(player.blockPosition())).inflate(effectRange).expandTowards(0.0D, effectRange, 0.0D);
 

@@ -64,7 +64,7 @@ public class MikurusContactItem extends Item implements IHCBlessedItem {
         }
 
         if (MikurusMaidOutfitItem.isEquipped(player)) {
-            player.addEffect(new MobEffectInstance(MobEffects.HERO_OF_THE_VILLAGE, 4));
+            player.addEffect(new MobEffectInstance(MobEffects.HERO_OF_THE_VILLAGE, 4, 0, true, true));
         }
     }
 
