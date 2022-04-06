@@ -1,7 +1,7 @@
 package com.haruhifanclub.mods.haruhicore.common.item.base;
 
 import com.haruhifanclub.mods.haruhicore.api.item.IHCItem;
-import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
+import com.haruhifanclub.mods.haruhicore.common.itemgroup.HCCreativeModeTabs;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
@@ -17,7 +17,7 @@ public class HCArmorItem extends ArmorItem implements IHCItem {
         super(
             material,
             slotType,
-            new Item.Properties().tab(ItemGroupRegistry.itemGroup)
+            new Item.Properties().tab(HCCreativeModeTabs.TAB_MAIN)
         );
     }
 

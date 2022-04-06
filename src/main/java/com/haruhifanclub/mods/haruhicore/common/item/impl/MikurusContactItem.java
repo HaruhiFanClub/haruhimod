@@ -4,7 +4,7 @@ import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.damagesource.MikuruBeamDamageSource;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
-import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
+import com.haruhifanclub.mods.haruhicore.common.itemgroup.HCCreativeModeTabs;
 import org.auioc.mods.arnicalib.utils.game.EntityUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
@@ -31,7 +31,7 @@ public class MikurusContactItem extends Item implements IHCBlessedItem {
     public MikurusContactItem() {
         super(
             new Item.Properties()
-                .tab(ItemGroupRegistry.itemGroup)
+                .tab(HCCreativeModeTabs.TAB_MAIN)
                 .stacksTo(1)
         );
     }

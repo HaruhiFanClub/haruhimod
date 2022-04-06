@@ -6,7 +6,7 @@
 
     "death.haruhicore.mikuru_beam": "%1$s was killed by %2$s using Mikuru Beam",
 
-    "itemGroup.haruhicore_group": "Haruhi Core",
+    "itemGroup.haruhiCoreMainItems": "Haruhi Core",
 
     "block.haruhicore.sos_badge_slab": "SOS Badge Slab",
     "block.haruhicore.danchou_cone": "Danchou Cone",

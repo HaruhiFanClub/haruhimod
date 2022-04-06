@@ -4,10 +4,10 @@ import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
-public class MainItemGroup extends CreativeModeTab {
+public class TabHCMainItems extends CreativeModeTab {
 
-    public MainItemGroup() {
-        super("haruhicore_group");
+    public TabHCMainItems() {
+        super("haruhiCoreMainItems");
     }
 
     @Override

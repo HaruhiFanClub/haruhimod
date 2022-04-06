@@ -8,7 +8,7 @@ import org.auioc.mods.arnicalib.common.command.impl.VersionCommand;
 import org.auioc.mods.arnicalib.server.command.AHServerCommands;
 import net.minecraft.commands.CommandSourceStack;
 
-public final class ServerCommandRegistry {
+public final class HCServerCommands {
 
     public static final CommandNode<CommandSourceStack> NODE = literal(HaruhiCore.MOD_ID).build();
 

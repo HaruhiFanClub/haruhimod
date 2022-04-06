@@ -1,7 +1,7 @@
 package com.haruhifanclub.mods.haruhicore.common.item.base;
 
 import com.haruhifanclub.mods.haruhicore.api.item.IHCItem;
-import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
+import com.haruhifanclub.mods.haruhicore.common.itemgroup.HCCreativeModeTabs;
 import org.auioc.mods.arnicalib.utils.game.MCTimeUtils;
 import net.minecraft.Util;
 import net.minecraft.network.chat.ChatType;
@@ -22,7 +22,7 @@ public class HCHourglassItem extends Item implements IHCItem {
     public HCHourglassItem() {
         super(
             new Item.Properties()
-                .tab(ItemGroupRegistry.itemGroup)
+                .tab(HCCreativeModeTabs.TAB_MAIN)
                 .stacksTo(1)
         );
     }

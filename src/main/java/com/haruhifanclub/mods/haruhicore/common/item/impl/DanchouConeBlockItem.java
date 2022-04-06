@@ -3,7 +3,7 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.block.BlockRegistry;
 import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
-import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
+import com.haruhifanclub.mods.haruhicore.common.itemgroup.HCCreativeModeTabs;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
@@ -15,7 +15,7 @@ public class DanchouConeBlockItem extends BlockItem implements IHCBlessedItem {
         super(
             BlockRegistry.DANCHOU_CONE_BLOCK.get(),
             new Item.Properties()
-                .tab(ItemGroupRegistry.itemGroup)
+                .tab(HCCreativeModeTabs.TAB_MAIN)
         );
     }
 

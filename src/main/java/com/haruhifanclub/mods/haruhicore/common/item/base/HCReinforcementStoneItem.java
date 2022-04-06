@@ -4,7 +4,7 @@ import java.util.List;
 import com.haruhifanclub.mods.haruhicore.api.item.IHCItem;
 import com.haruhifanclub.mods.haruhicore.common.advancement.criterion.ItemReinforcedTrigger;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
-import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
+import com.haruhifanclub.mods.haruhicore.common.itemgroup.HCCreativeModeTabs;
 import org.auioc.mods.arnicalib.utils.game.SoundUtils;
 import org.auioc.mods.arnicalib.utils.game.TextUtils;
 import net.minecraft.resources.ResourceLocation;
@@ -28,7 +28,7 @@ public class HCReinforcementStoneItem extends Item implements IHCItem {
     public HCReinforcementStoneItem(Rarity rarity) {
         super(
             new Item.Properties()
-                .tab(ItemGroupRegistry.itemGroup)
+                .tab(HCCreativeModeTabs.TAB_MAIN)
                 .rarity(rarity)
                 .stacksTo(16)
         );

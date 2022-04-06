@@ -22,7 +22,7 @@ import com.haruhifanclub.mods.haruhicore.common.item.impl.WizardWandItem;
 import com.haruhifanclub.mods.haruhicore.common.item.impl.YukisWizardCloakItem;
 import com.haruhifanclub.mods.haruhicore.common.item.impl.YukisWizardHatItem;
 import com.haruhifanclub.mods.haruhicore.common.item.impl.YukisWizardWandItem;
-import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
+import com.haruhifanclub.mods.haruhicore.common.itemgroup.HCCreativeModeTabs;
 import com.haruhifanclub.mods.haruhicore.common.sound.SoundEventRegistry;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -46,7 +46,7 @@ public final class ItemRegistry {
     public static final RegistryObject<Item> EPIC_REINFORCEMENT_STONE_ITEM = register("epic_reinforcement_stone", EpicReinforcementStoneItem::new);
 
     // Block items
-    public static final RegistryObject<Item> SOS_BADGE_SLAB_BLOCK = register("sos_badge_slab", () -> new BlockItem(BlockRegistry.SOS_BADGE_SLAB_BLOCK.get(), new Item.Properties().tab(ItemGroupRegistry.itemGroup)));
+    public static final RegistryObject<Item> SOS_BADGE_SLAB_BLOCK = register("sos_badge_slab", () -> new BlockItem(BlockRegistry.SOS_BADGE_SLAB_BLOCK.get(), new Item.Properties().tab(HCCreativeModeTabs.TAB_MAIN)));
     public static final RegistryObject<Item> DANCHOU_CONE_BLOCK = register("danchou_cone", DanchouConeBlockItem::new);
 
 

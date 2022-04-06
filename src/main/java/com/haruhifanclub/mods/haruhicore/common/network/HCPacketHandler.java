@@ -9,10 +9,9 @@ import net.minecraft.server.level.ServerPlayer;
 public class HCPacketHandler {
 
     private static final String PROTOCOL_VERSION = Integer.toString(1);
-    private static HPacketHandler HANDLER;
+    private static final HPacketHandler HANDLER = new HPacketHandler(HaruhiCore.MOD_ID, PROTOCOL_VERSION);
 
     public static void init() {
-        HANDLER = new HPacketHandler(HaruhiCore.MOD_ID, "main", PROTOCOL_VERSION);
         registerMessage();
     }
 

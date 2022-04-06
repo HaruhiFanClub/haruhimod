@@ -3,7 +3,7 @@ package com.haruhifanclub.mods.haruhicore.common.item.base;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.haruhifanclub.mods.haruhicore.api.item.IHCItem;
-import com.haruhifanclub.mods.haruhicore.common.itemgroup.ItemGroupRegistry;
+import com.haruhifanclub.mods.haruhicore.common.itemgroup.HCCreativeModeTabs;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -17,7 +17,7 @@ public class HCWizardWandItem extends Item implements IHCItem {
     public HCWizardWandItem() {
         super(
             new Item.Properties()
-                .tab(ItemGroupRegistry.itemGroup)
+                .tab(HCCreativeModeTabs.TAB_MAIN)
                 .stacksTo(1)
         );
         ImmutableMultimap.Builder<Attribute, AttributeModifier> modifiers = ImmutableMultimap.builder();
