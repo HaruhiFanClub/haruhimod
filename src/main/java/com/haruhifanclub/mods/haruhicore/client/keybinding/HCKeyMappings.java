@@ -10,7 +10,7 @@ import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.client.settings.KeyConflictContext;
 
 @OnlyIn(Dist.CLIENT)
-public class KeyBindingRegistry {
+public class HCKeyMappings {
 
     private static KeyMapping create(String name, KeyConflictContext conflict, int key) {
         return new KeyMapping("key." + HaruhiCore.MOD_ID + "." + name, conflict, InputConstants.Type.KEYSYM, key, "key.category." + HaruhiCore.MOD_ID);

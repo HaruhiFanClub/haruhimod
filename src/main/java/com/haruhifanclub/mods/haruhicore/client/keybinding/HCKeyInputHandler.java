@@ -8,7 +8,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class KeyInputHandler {
+public class HCKeyInputHandler {
 
     public static void onInput() {
         Minecraft mc = Minecraft.getInstance();
@@ -17,7 +17,7 @@ public class KeyInputHandler {
             return;
         }
 
-        if (KeyBindingRegistry.EMIT_MIKURU_BEAM_KEY.isDown()) {
+        if (HCKeyMappings.EMIT_MIKURU_BEAM_KEY.isDown()) {
             if (MikurusContactItem.canEmitMikuruBeam(player)) {
                 HCPacketHandler.sendToServer(new com.haruhifanclub.mods.haruhicore.server.network.EmitMikuruBeamPacket(player.getUUID()));
             }

@@ -1,7 +1,8 @@
 package com.haruhifanclub.mods.haruhicore;
 
-import com.haruhifanclub.mods.haruhicore.client.event.ClientForgeEventHandler;
-import com.haruhifanclub.mods.haruhicore.client.event.ClientModEventHandler;
+import com.haruhifanclub.mods.haruhicore.client.event.HCClientEventHandler;
+import com.haruhifanclub.mods.haruhicore.client.keybinding.HCKeyMappings;
+import com.haruhifanclub.mods.haruhicore.client.model.LayerDefinitionRegistry;
 import com.haruhifanclub.mods.haruhicore.common.advancement.CriterionRegistry;
 import com.haruhifanclub.mods.haruhicore.common.block.HCBlocks;
 import com.haruhifanclub.mods.haruhicore.common.blockentity.HCBlockEntities;
@@ -23,6 +24,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(HaruhiCore.MOD_ID)
@@ -82,11 +84,14 @@ public class HaruhiCore {
         }
 
         public void modSetup() {
-            modEventBus.register(ClientModEventHandler.class);
+            modEventBus.addListener((FMLClientSetupEvent event) -> {
+                HCKeyMappings.register();
+            });
+            modEventBus.addListener(LayerDefinitionRegistry::register);
         }
 
         public void forgeSetup() {
-            forgeEventBus.register(ClientForgeEventHandler.class);
+            forgeEventBus.register(HCClientEventHandler.class);
         }
     }
 
