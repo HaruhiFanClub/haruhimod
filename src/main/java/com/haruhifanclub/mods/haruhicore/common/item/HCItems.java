@@ -3,7 +3,7 @@ package com.haruhifanclub.mods.haruhicore.common.item;
 import java.util.function.Supplier;
 import com.haruhifanclub.mods.haruhicore.HaruhiCore;
 import com.haruhifanclub.mods.haruhicore.api.item.HCTier;
-import com.haruhifanclub.mods.haruhicore.common.block.BlockRegistry;
+import com.haruhifanclub.mods.haruhicore.common.block.HCBlocks;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCMusicDiscItem;
 import com.haruhifanclub.mods.haruhicore.common.item.impl.BaseballBatItem;
 import com.haruhifanclub.mods.haruhicore.common.item.impl.DanchouConeBlockItem;
@@ -13,7 +13,6 @@ import com.haruhifanclub.mods.haruhicore.common.item.impl.HourglassItem;
 import com.haruhifanclub.mods.haruhicore.common.item.impl.MaidOutfitItem;
 import com.haruhifanclub.mods.haruhicore.common.item.impl.MikurusContactItem;
 import com.haruhifanclub.mods.haruhicore.common.item.impl.MikurusMaidOutfitItem;
-import com.haruhifanclub.mods.haruhicore.common.item.impl.ModIconItem;
 import com.haruhifanclub.mods.haruhicore.common.item.impl.ReinforcementStoneItem;
 import com.haruhifanclub.mods.haruhicore.common.item.impl.TpddItem;
 import com.haruhifanclub.mods.haruhicore.common.item.impl.WizardCloakItem;
@@ -23,14 +22,14 @@ import com.haruhifanclub.mods.haruhicore.common.item.impl.YukisWizardCloakItem;
 import com.haruhifanclub.mods.haruhicore.common.item.impl.YukisWizardHatItem;
 import com.haruhifanclub.mods.haruhicore.common.item.impl.YukisWizardWandItem;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.HCCreativeModeTabs;
-import com.haruhifanclub.mods.haruhicore.common.sound.SoundEventRegistry;
+import com.haruhifanclub.mods.haruhicore.common.sound.HCSoundEvents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public final class ItemRegistry {
+public final class HCItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, HaruhiCore.MOD_ID);
 
@@ -39,14 +38,14 @@ public final class ItemRegistry {
     }
 
     // Technical items
-    public static final RegistryObject<Item> ICON_ITEM = register("icon", ModIconItem::new);
+    public static final RegistryObject<Item> ICON_ITEM = register("icon", () -> new Item((new Item.Properties())));
 
     // Common items
     public static final RegistryObject<Item> REINFORCEMENT_STONE_ITEM = register("reinforcement_stone", ReinforcementStoneItem::new);
     public static final RegistryObject<Item> EPIC_REINFORCEMENT_STONE_ITEM = register("epic_reinforcement_stone", EpicReinforcementStoneItem::new);
 
     // Block items
-    public static final RegistryObject<Item> SOS_BADGE_SLAB_BLOCK = register("sos_badge_slab", () -> new BlockItem(BlockRegistry.SOS_BADGE_SLAB_BLOCK.get(), new Item.Properties().tab(HCCreativeModeTabs.TAB_MAIN)));
+    public static final RegistryObject<Item> SOS_BADGE_SLAB_BLOCK = register("sos_badge_slab", () -> new BlockItem(HCBlocks.SOS_BADGE_SLAB_BLOCK.get(), new Item.Properties().tab(HCCreativeModeTabs.TAB_MAIN)));
     public static final RegistryObject<Item> DANCHOU_CONE_BLOCK = register("danchou_cone", DanchouConeBlockItem::new);
 
 
@@ -73,10 +72,10 @@ public final class ItemRegistry {
 
 
     // Music Discs
-    public static final RegistryObject<Item> MUSIC_DISC_ITEM_IN_THE_SUMMERTIME = register("music_disc_in_the_summertime", () -> new HCMusicDiscItem(SoundEventRegistry.MUSIC_DISC_IN_THE_SUMMERTIME));
-    public static final RegistryObject<Item> MUSIC_DISC_ITEM_SOMEDAY_IN_THE_RAIN = register("music_disc_someday_in_the_rain", () -> new HCMusicDiscItem(SoundEventRegistry.MUSIC_DISC_SOMEDAY_IN_THE_RAIN));
-    public static final RegistryObject<Item> MUSIC_DISC_ITEM_VOX_IN_BOX = register("music_disc_vox_in_box", () -> new HCMusicDiscItem(SoundEventRegistry.MUSIC_DISC_VOX_IN_BOX));
-    public static final RegistryObject<Item> MUSIC_DISC_ITEM_HALO = register("music_disc_halo", () -> new HCMusicDiscItem(SoundEventRegistry.MUSIC_DISC_HALO));
+    public static final RegistryObject<Item> MUSIC_DISC_ITEM_IN_THE_SUMMERTIME = register("music_disc_in_the_summertime", () -> new HCMusicDiscItem(HCSoundEvents.MUSIC_DISC_IN_THE_SUMMERTIME));
+    public static final RegistryObject<Item> MUSIC_DISC_ITEM_SOMEDAY_IN_THE_RAIN = register("music_disc_someday_in_the_rain", () -> new HCMusicDiscItem(HCSoundEvents.MUSIC_DISC_SOMEDAY_IN_THE_RAIN));
+    public static final RegistryObject<Item> MUSIC_DISC_ITEM_VOX_IN_BOX = register("music_disc_vox_in_box", () -> new HCMusicDiscItem(HCSoundEvents.MUSIC_DISC_VOX_IN_BOX));
+    public static final RegistryObject<Item> MUSIC_DISC_ITEM_HALO = register("music_disc_halo", () -> new HCMusicDiscItem(HCSoundEvents.MUSIC_DISC_HALO));
 
     public static final RegistryObject<Item> HOURGLASS_ITEM = register("hourglass", HourglassItem::new);
     public static final RegistryObject<Item> TPDD_ITEM = register("tpdd", TpddItem::new);

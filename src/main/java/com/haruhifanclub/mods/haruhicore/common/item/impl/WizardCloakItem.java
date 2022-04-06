@@ -2,7 +2,7 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 
 import java.util.function.Consumer;
 import com.haruhifanclub.mods.haruhicore.client.render.armor.WizardCloakArmorRender;
-import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
+import com.haruhifanclub.mods.haruhicore.common.item.HCItems;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
 import org.auioc.mods.arnicalib.api.game.item.HArmorMaterial;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -20,7 +20,7 @@ public class WizardCloakItem extends HCArmorItem {
                 .setDefense(5)
                 .setEnchantmentValue(25)
                 .setRepairIngredient(() -> {
-                    return Ingredient.of(ItemRegistry.REINFORCEMENT_STONE_ITEM.get());
+                    return Ingredient.of(HCItems.REINFORCEMENT_STONE_ITEM.get());
                 }),
             EquipmentSlot.CHEST
         );

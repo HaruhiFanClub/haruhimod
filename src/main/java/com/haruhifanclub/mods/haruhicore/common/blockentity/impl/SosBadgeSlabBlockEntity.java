@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import com.haruhifanclub.mods.haruhicore.common.advancement.criterion.SosBadgeSlabTrigger;
 import com.haruhifanclub.mods.haruhicore.common.block.impl.SosBadgeSlabBlock;
-import com.haruhifanclub.mods.haruhicore.common.blockentity.BlockEntityRegistry;
+import com.haruhifanclub.mods.haruhicore.common.blockentity.HCBlockEntities;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import org.apache.logging.log4j.Marker;
 import org.auioc.mods.arnicalib.utils.LogUtil;
@@ -45,7 +45,7 @@ public class SosBadgeSlabBlockEntity extends BlockEntity {
     private static final Marker DOUBLE_MARKER = LogUtil.getMarker("DOUBLE").addParents(MARKER);
 
     public SosBadgeSlabBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityRegistry.SOS_BADGE_SLAB_BLOCK_ENTITY.get(), pos, state);
+        super(HCBlockEntities.SOS_BADGE_SLAB_BLOCK_ENTITY.get(), pos, state);
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, SosBadgeSlabBlockEntity tile) {

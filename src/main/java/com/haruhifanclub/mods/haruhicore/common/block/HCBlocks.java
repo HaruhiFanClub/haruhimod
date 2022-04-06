@@ -9,10 +9,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public final class BlockRegistry {
+public final class HCBlocks {
 
-    public static final DeferredRegister<Block> BLOCKS =
-        DeferredRegister.create(ForgeRegistries.BLOCKS, HaruhiCore.MOD_ID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, HaruhiCore.MOD_ID);
 
     private static RegistryObject<Block> register(String id, Supplier<? extends Block> sup) {
         return BLOCKS.register(id, sup);

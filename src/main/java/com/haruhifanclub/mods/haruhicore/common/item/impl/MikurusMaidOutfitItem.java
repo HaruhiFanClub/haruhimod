@@ -3,7 +3,7 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 import java.util.List;
 import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
-import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
+import com.haruhifanclub.mods.haruhicore.common.item.HCItems;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
 import org.auioc.mods.arnicalib.api.game.item.HArmorMaterial;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -31,7 +31,7 @@ public class MikurusMaidOutfitItem extends HCArmorItem implements IHCBlessedItem
                 .setToughness(2)
                 .setEnchantmentValue(15)
                 .setRepairIngredient(() -> {
-                    return Ingredient.of(ItemRegistry.REINFORCEMENT_STONE_ITEM.get());
+                    return Ingredient.of(HCItems.REINFORCEMENT_STONE_ITEM.get());
                 }),
             EquipmentSlot.CHEST
         );
@@ -73,7 +73,7 @@ public class MikurusMaidOutfitItem extends HCArmorItem implements IHCBlessedItem
     }
 
     public static boolean isEquipped(Player player) {
-        return (player.getItemBySlot(EquipmentSlot.CHEST).getItem()).equals(ItemRegistry.MIKURUS_MAID_OUTFIT_ITEM.get());
+        return (player.getItemBySlot(EquipmentSlot.CHEST).getItem()).equals(HCItems.MIKURUS_MAID_OUTFIT_ITEM.get());
     }
 
 }

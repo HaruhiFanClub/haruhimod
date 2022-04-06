@@ -3,7 +3,7 @@ package com.haruhifanclub.mods.haruhicore.common.item.impl;
 import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.mods.haruhicore.common.damagesource.MikuruBeamDamageSource;
-import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
+import com.haruhifanclub.mods.haruhicore.common.item.HCItems;
 import com.haruhifanclub.mods.haruhicore.common.itemgroup.HCCreativeModeTabs;
 import org.auioc.mods.arnicalib.utils.game.EntityUtils;
 import net.minecraft.core.BlockPos;
@@ -94,7 +94,7 @@ public class MikurusContactItem extends Item implements IHCBlessedItem {
     public static void renderMikuruBeam() {}
 
     public static boolean isEquipped(Player player) {
-        return (player.getItemBySlot(EquipmentSlot.HEAD).getItem()).equals(ItemRegistry.MIKURUS_CONTACT_ITEM.get());
+        return (player.getItemBySlot(EquipmentSlot.HEAD).getItem()).equals(HCItems.MIKURUS_CONTACT_ITEM.get());
     }
 
     public static boolean canEmitMikuruBeam(Player player) {

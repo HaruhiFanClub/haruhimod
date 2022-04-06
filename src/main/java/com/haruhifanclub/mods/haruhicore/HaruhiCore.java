@@ -3,14 +3,14 @@ package com.haruhifanclub.mods.haruhicore;
 import com.haruhifanclub.mods.haruhicore.client.event.ClientForgeEventHandler;
 import com.haruhifanclub.mods.haruhicore.client.event.ClientModEventHandler;
 import com.haruhifanclub.mods.haruhicore.common.advancement.CriterionRegistry;
-import com.haruhifanclub.mods.haruhicore.common.block.BlockRegistry;
-import com.haruhifanclub.mods.haruhicore.common.blockentity.BlockEntityRegistry;
+import com.haruhifanclub.mods.haruhicore.common.block.HCBlocks;
+import com.haruhifanclub.mods.haruhicore.common.blockentity.HCBlockEntities;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
-import com.haruhifanclub.mods.haruhicore.common.entity.EntityRegistry;
-import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
+import com.haruhifanclub.mods.haruhicore.common.entity.HCEntities;
+import com.haruhifanclub.mods.haruhicore.common.item.HCItems;
 import com.haruhifanclub.mods.haruhicore.common.network.HCPacketHandler;
-import com.haruhifanclub.mods.haruhicore.common.sound.SoundEventRegistry;
-import com.haruhifanclub.mods.haruhicore.server.event.ServerEventHandler;
+import com.haruhifanclub.mods.haruhicore.common.sound.HCSoundEvents;
+import com.haruhifanclub.mods.haruhicore.server.event.HCServerEventHandler;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
@@ -60,15 +60,15 @@ public class HaruhiCore {
     private void modSetup(final IEventBus modEventBus) {
         HCPacketHandler.init();
         CriterionRegistry.register();
-        BlockRegistry.BLOCKS.register(modEventBus);
-        BlockEntityRegistry.BLOCK_ENTITIES.register(modEventBus);
-        EntityRegistry.ENTITIES.register(modEventBus);
-        ItemRegistry.ITEMS.register(modEventBus);
-        SoundEventRegistry.SOUND_EVENTS.register(modEventBus);
+        HCBlocks.BLOCKS.register(modEventBus);
+        HCBlockEntities.BLOCK_ENTITIES.register(modEventBus);
+        HCEntities.ENTITIES.register(modEventBus);
+        HCItems.ITEMS.register(modEventBus);
+        HCSoundEvents.SOUND_EVENTS.register(modEventBus);
     }
 
     private void forgeSetup(final IEventBus forgeEventBus) {
-        forgeEventBus.register(ServerEventHandler.class);
+        forgeEventBus.register(HCServerEventHandler.class);
     }
 
 

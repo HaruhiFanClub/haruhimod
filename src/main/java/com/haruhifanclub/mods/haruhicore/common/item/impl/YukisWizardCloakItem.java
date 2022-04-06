@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.client.render.armor.WizardCloakArmorRender;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
-import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
+import com.haruhifanclub.mods.haruhicore.common.item.HCItems;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCArmorItem;
 import org.auioc.mods.arnicalib.api.game.item.HArmorMaterial;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -31,7 +31,7 @@ public class YukisWizardCloakItem extends HCArmorItem implements IHCBlessedItem 
                 .setToughness(4)
                 .setEnchantmentValue(66)
                 .setRepairIngredient(() -> {
-                    return Ingredient.of(ItemRegistry.REINFORCEMENT_STONE_ITEM.get());
+                    return Ingredient.of(HCItems.REINFORCEMENT_STONE_ITEM.get());
                 }),
             EquipmentSlot.CHEST
         );
@@ -56,7 +56,7 @@ public class YukisWizardCloakItem extends HCArmorItem implements IHCBlessedItem 
     }
 
     public static boolean isEquipped(Player player) {
-        return (player.getItemBySlot(EquipmentSlot.CHEST).getItem()).equals(ItemRegistry.YUKIS_WIZARD_CLOAK_ITEM.get());
+        return (player.getItemBySlot(EquipmentSlot.CHEST).getItem()).equals(HCItems.YUKIS_WIZARD_CLOAK_ITEM.get());
     }
 
     @Override

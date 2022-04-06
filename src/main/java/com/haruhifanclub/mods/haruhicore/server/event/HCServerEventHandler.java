@@ -4,7 +4,7 @@ import com.haruhifanclub.mods.haruhicore.server.command.HCServerCommands;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public final class ServerEventHandler {
+public final class HCServerEventHandler {
 
     @SubscribeEvent
     public static void registerCommands(final RegisterCommandsEvent event) {

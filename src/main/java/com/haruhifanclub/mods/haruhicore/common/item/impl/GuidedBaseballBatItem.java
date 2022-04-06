@@ -7,7 +7,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.haruhifanclub.mods.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.mods.haruhicore.common.config.CommonConfig;
-import com.haruhifanclub.mods.haruhicore.common.item.ItemRegistry;
+import com.haruhifanclub.mods.haruhicore.common.item.HCItems;
 import com.haruhifanclub.mods.haruhicore.common.item.base.HCBaseballBatItem;
 import org.auioc.mods.arnicalib.utils.game.EffectUtils;
 import org.auioc.mods.arnicalib.utils.game.EntityUtils;
@@ -40,7 +40,7 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem implements IHCBless
             new ForgeTier(
                 0, 708, 4.0F, 0.0F, 66,
                 Tags.Blocks.NEEDS_WOOD_TOOL,
-                () -> Ingredient.of(ItemRegistry.REINFORCEMENT_STONE_ITEM.get())
+                () -> Ingredient.of(HCItems.REINFORCEMENT_STONE_ITEM.get())
             ),
             3,
             1.0F
