@@ -50,6 +50,8 @@ minecraft {
     }
 }
 
+sourceSets.remove(sourceSets.test)
+
 repositories {
     maven {
         url "https://dvs1.progwml6.com/files/maven/"
