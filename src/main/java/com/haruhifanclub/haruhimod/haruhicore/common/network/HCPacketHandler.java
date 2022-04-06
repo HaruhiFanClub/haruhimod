@@ -2,8 +2,8 @@ package com.haruhifanclub.haruhimod.haruhicore.common.network;
 
 import com.haruhifanclub.haruhimod.haruhicore.HaruhiCore;
 import com.haruhifanclub.haruhimod.haruhicore.server.network.EmitMikuruBeamPacket;
-import org.auioc.mods.arnicalib.api.game.network.HPacketHandler;
-import org.auioc.mods.arnicalib.api.game.network.IHPacket;
+import org.auioc.mcmod.arnicalib.api.game.network.HPacketHandler;
+import org.auioc.mcmod.arnicalib.api.game.network.IHPacket;
 import net.minecraft.server.level.ServerPlayer;
 
 public class HCPacketHandler {

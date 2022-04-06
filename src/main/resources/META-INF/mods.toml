@@ -26,6 +26,6 @@ description='''
 [[dependencies.haruhicore]]
     modId="arnicalib"
     mandatory=true
-    versionRange="[5.0.0,)"
+    versionRange="[5.2.0,)"
     ordering="NONE"
     side="BOTH"

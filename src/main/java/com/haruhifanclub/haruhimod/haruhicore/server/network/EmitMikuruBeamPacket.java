@@ -3,7 +3,7 @@ package com.haruhifanclub.haruhimod.haruhicore.server.network;
 import java.util.UUID;
 import com.haruhifanclub.haruhimod.haruhicore.common.item.HCItems;
 import com.haruhifanclub.haruhimod.haruhicore.common.item.impl.MikurusContactItem;
-import org.auioc.mods.arnicalib.api.game.network.IHPacket;
+import org.auioc.mcmod.arnicalib.api.game.network.IHPacket;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;

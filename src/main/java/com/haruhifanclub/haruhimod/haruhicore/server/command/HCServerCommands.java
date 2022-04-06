@@ -4,8 +4,8 @@ import static net.minecraft.commands.Commands.literal;
 import com.haruhifanclub.haruhimod.haruhicore.HaruhiCore;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.tree.CommandNode;
-import org.auioc.mods.arnicalib.common.command.impl.VersionCommand;
-import org.auioc.mods.arnicalib.server.command.AHServerCommands;
+import org.auioc.mcmod.arnicalib.common.command.impl.VersionCommand;
+import org.auioc.mcmod.arnicalib.server.command.AHServerCommands;
 import net.minecraft.commands.CommandSourceStack;
 
 public final class HCServerCommands {

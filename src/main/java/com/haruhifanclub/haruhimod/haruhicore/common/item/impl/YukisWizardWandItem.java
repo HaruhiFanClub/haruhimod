@@ -3,7 +3,7 @@ package com.haruhifanclub.haruhimod.haruhicore.common.item.impl;
 import java.util.Collection;
 import com.haruhifanclub.haruhimod.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.haruhimod.haruhicore.common.item.base.HCWizardWandItem;
-import org.auioc.mods.arnicalib.utils.game.EntityUtils;
+import org.auioc.mcmod.arnicalib.utils.game.EntityUtils;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;

@@ -6,7 +6,7 @@ import com.haruhifanclub.haruhimod.haruhicore.client.render.armor.WizardCloakArm
 import com.haruhifanclub.haruhimod.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.haruhimod.haruhicore.common.item.HCItems;
 import com.haruhifanclub.haruhimod.haruhicore.common.item.base.HCArmorItem;
-import org.auioc.mods.arnicalib.api.game.item.HArmorMaterial;
+import org.auioc.mcmod.arnicalib.api.game.item.HArmorMaterial;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;

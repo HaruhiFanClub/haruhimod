@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 import com.haruhifanclub.haruhimod.haruhicore.client.render.armor.WizardHatArmorRender;
 import com.haruhifanclub.haruhimod.haruhicore.common.item.HCItems;
 import com.haruhifanclub.haruhimod.haruhicore.common.item.base.HCArmorItem;
-import org.auioc.mods.arnicalib.api.game.item.HArmorMaterial;
+import org.auioc.mcmod.arnicalib.api.game.item.HArmorMaterial;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.api.distmarker.Dist;

@@ -10,10 +10,10 @@ import com.haruhifanclub.haruhimod.haruhicore.common.block.impl.SosBadgeSlabBloc
 import com.haruhifanclub.haruhimod.haruhicore.common.blockentity.HCBlockEntities;
 import com.haruhifanclub.haruhimod.haruhicore.common.config.CommonConfig;
 import org.apache.logging.log4j.Marker;
-import org.auioc.mods.arnicalib.utils.LogUtil;
-import org.auioc.mods.arnicalib.utils.game.EffectUtils;
-import org.auioc.mods.arnicalib.utils.game.ItemUtils;
-import org.auioc.mods.arnicalib.utils.game.PlayerUtils;
+import org.auioc.mcmod.arnicalib.utils.LogUtil;
+import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
+import org.auioc.mcmod.arnicalib.utils.game.ItemUtils;
+import org.auioc.mcmod.arnicalib.utils.game.PlayerUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;

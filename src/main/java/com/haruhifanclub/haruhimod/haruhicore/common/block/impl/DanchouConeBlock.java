@@ -1,6 +1,6 @@
 package com.haruhifanclub.haruhimod.haruhicore.common.block.impl;
 
-import org.auioc.mods.arnicalib.api.game.block.HBlockMaterial;
+import org.auioc.mcmod.arnicalib.api.game.block.HBlockMaterial;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;

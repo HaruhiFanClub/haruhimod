@@ -5,7 +5,7 @@ import com.haruhifanclub.haruhimod.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.haruhimod.haruhicore.common.damagesource.MikuruBeamDamageSource;
 import com.haruhifanclub.haruhimod.haruhicore.common.item.HCItems;
 import com.haruhifanclub.haruhimod.haruhicore.common.itemgroup.HCCreativeModeTabs;
-import org.auioc.mods.arnicalib.utils.game.EntityUtils;
+import org.auioc.mcmod.arnicalib.utils.game.EntityUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
