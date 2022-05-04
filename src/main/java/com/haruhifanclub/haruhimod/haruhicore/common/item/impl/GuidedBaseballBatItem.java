@@ -9,9 +9,9 @@ import com.haruhifanclub.haruhimod.haruhicore.api.item.IHCBlessedItem;
 import com.haruhifanclub.haruhimod.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.haruhimod.haruhicore.common.item.HCItems;
 import com.haruhifanclub.haruhimod.haruhicore.common.item.base.HCBaseballBatItem;
-import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
 import org.auioc.mcmod.arnicalib.utils.game.EntityUtils;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -112,7 +112,7 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem implements IHCBless
 
     private static boolean hitProjectile(Player player, int knockbackBonus) {
         int luckBonus = 0;
-        MobEffectInstance luckEffect = player.getEffect(EffectUtils.getEffect(26));
+        MobEffectInstance luckEffect = player.getEffect(MobEffects.LUCK);
         if (luckEffect != null) {
             luckBonus = luckEffect.getAmplifier() + 1;
         }
