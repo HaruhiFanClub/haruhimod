@@ -1,12 +1,12 @@
 package com.haruhifanclub.haruhimod.haruhicore.common.item.base;
 
 import java.util.List;
+import org.auioc.mcmod.arnicalib.utils.game.SoundUtils;
+import org.auioc.mcmod.arnicalib.utils.game.TextUtils;
 import com.haruhifanclub.haruhimod.haruhicore.api.item.IHCItem;
 import com.haruhifanclub.haruhimod.haruhicore.common.advancement.criterion.ItemReinforcedTrigger;
 import com.haruhifanclub.haruhimod.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.haruhimod.haruhicore.common.itemgroup.HCCreativeModeTabs;
-import org.auioc.mcmod.arnicalib.utils.game.SoundUtils;
-import org.auioc.mcmod.arnicalib.utils.game.TextUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -152,10 +152,10 @@ public class HCReinforcementStoneItem extends Item implements IHCItem {
         ItemStack reinforcedItemStack = processEnchantment(targetItemStack.copy(), player);
 
         if (reinforcedItemStack.equals(ItemStack.EMPTY)) { // Reinforcement failed
-            SoundUtils.playerToPlayer(player, CommonConfig.ReinforcingFailedSound.get()); // TODO auioc/arnicalib-mcmod/issues/4
+            SoundUtils.play(player, CommonConfig.ReinforcingFailedSound.get()); // TODO auioc/arnicalib-mcmod/issues/4
             ItemReinforcedTrigger.INSTANCE.trigger(player, false, false, targetItemStack, reinforcedItemStack);
         } else {
-            SoundUtils.playerToPlayer(player, CommonConfig.ReinforcingSuccessSound.get()); // TODO auioc/arnicalib-mcmod/issues/4
+            SoundUtils.play(player, CommonConfig.ReinforcingSuccessSound.get()); // TODO auioc/arnicalib-mcmod/issues/4
             ItemReinforcedTrigger.INSTANCE.trigger(player, isEpic(), true, targetItemStack, reinforcedItemStack);
         }
 
