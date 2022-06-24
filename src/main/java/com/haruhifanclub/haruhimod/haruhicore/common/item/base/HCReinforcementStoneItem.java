@@ -152,10 +152,10 @@ public class HCReinforcementStoneItem extends Item implements IHCItem {
         ItemStack reinforcedItemStack = processEnchantment(targetItemStack.copy(), player);
 
         if (reinforcedItemStack.equals(ItemStack.EMPTY)) { // Reinforcement failed
-            SoundUtils.play(player, CommonConfig.ReinforcingFailedSound.get()); // TODO auioc/arnicalib-mcmod/issues/4
+            SoundUtils.play(player, CommonConfig.ReinforcingFailedSound.get());
             ItemReinforcedTrigger.INSTANCE.trigger(player, false, false, targetItemStack, reinforcedItemStack);
         } else {
-            SoundUtils.play(player, CommonConfig.ReinforcingSuccessSound.get()); // TODO auioc/arnicalib-mcmod/issues/4
+            SoundUtils.play(player, CommonConfig.ReinforcingSuccessSound.get());
             ItemReinforcedTrigger.INSTANCE.trigger(player, isEpic(), true, targetItemStack, reinforcedItemStack);
         }
 
