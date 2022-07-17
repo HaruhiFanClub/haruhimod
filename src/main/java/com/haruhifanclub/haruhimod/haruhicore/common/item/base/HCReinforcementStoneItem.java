@@ -152,10 +152,10 @@ public class HCReinforcementStoneItem extends Item implements IHCItem {
         ItemStack reinforcedItemStack = processEnchantment(targetItemStack.copy(), player);
 
         if (reinforcedItemStack.equals(ItemStack.EMPTY)) { // Reinforcement failed
-            SoundUtils.play(player, CommonConfig.ReinforcingFailedSound.get());
+            playSound(player, CommonConfig.ReinforcingFailedSound.get());
             ItemReinforcedTrigger.INSTANCE.trigger(player, false, false, targetItemStack, reinforcedItemStack);
         } else {
-            SoundUtils.play(player, CommonConfig.ReinforcingSuccessSound.get());
+            playSound(player, CommonConfig.ReinforcingSuccessSound.get());
             ItemReinforcedTrigger.INSTANCE.trigger(player, isEpic(), true, targetItemStack, reinforcedItemStack);
         }
 
@@ -165,6 +165,12 @@ public class HCReinforcementStoneItem extends Item implements IHCItem {
         }
 
         return InteractionResult.SUCCESS;
+    }
+
+    private static void playSound(ServerPlayer player, String sound) {
+        if (!sound.isEmpty()) {
+            SoundUtils.play(player, sound);
+        }
     }
 
 }
