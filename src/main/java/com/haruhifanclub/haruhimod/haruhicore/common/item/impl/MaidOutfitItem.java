@@ -1,10 +1,15 @@
 package com.haruhifanclub.haruhimod.haruhicore.common.item.impl;
 
+import java.util.function.Consumer;
+import org.auioc.mcmod.arnicalib.api.game.item.HArmorMaterial;
+import com.haruhifanclub.haruhimod.haruhicore.client.render.armor.MaidOutfitArmorRender;
 import com.haruhifanclub.haruhimod.haruhicore.common.item.HCItems;
 import com.haruhifanclub.haruhimod.haruhicore.common.item.base.HCArmorItem;
-import org.auioc.mcmod.arnicalib.api.game.item.HArmorMaterial;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.IItemRenderProperties;
 
 public class MaidOutfitItem extends HCArmorItem {
 
@@ -21,5 +26,10 @@ public class MaidOutfitItem extends HCArmorItem {
         );
     }
 
-    // TODO Custom armor model
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void initializeClient(Consumer<IItemRenderProperties> consumer) {
+        consumer.accept(MaidOutfitArmorRender.INSTANCE);
+    }
+
 }

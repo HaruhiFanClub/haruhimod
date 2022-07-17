@@ -1,1 +1,6 @@
-{ "parent": "haruhicore:item/wizard_cloak" }
+{
+    "parent": "haruhicore:item/wizard_cloak",
+    "textures": {
+        "0": "haruhicore:item/yukis_wizard_cloak"
+    }
+}

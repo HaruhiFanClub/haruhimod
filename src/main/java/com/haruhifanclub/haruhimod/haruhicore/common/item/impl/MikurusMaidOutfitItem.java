@@ -1,11 +1,13 @@
 package com.haruhifanclub.haruhimod.haruhicore.common.item.impl;
 
 import java.util.List;
+import java.util.function.Consumer;
+import org.auioc.mcmod.arnicalib.api.game.item.HArmorMaterial;
 import com.haruhifanclub.haruhimod.haruhicore.api.item.IHCBlessedItem;
+import com.haruhifanclub.haruhimod.haruhicore.client.render.armor.MaidOutfitArmorRender;
 import com.haruhifanclub.haruhimod.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.haruhimod.haruhicore.common.item.HCItems;
 import com.haruhifanclub.haruhimod.haruhicore.common.item.base.HCArmorItem;
-import org.auioc.mcmod.arnicalib.api.game.item.HArmorMaterial;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -16,6 +18,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.IItemRenderProperties;
 
 public class MikurusMaidOutfitItem extends HCArmorItem implements IHCBlessedItem {
 
@@ -36,8 +41,6 @@ public class MikurusMaidOutfitItem extends HCArmorItem implements IHCBlessedItem
             EquipmentSlot.CHEST
         );
     }
-
-    // TODO Custom armor model
 
     @Override
     public void inventoryTick(ItemStack stack, Level world, Entity entity, int index, boolean selected) {
@@ -74,6 +77,12 @@ public class MikurusMaidOutfitItem extends HCArmorItem implements IHCBlessedItem
 
     public static boolean isEquipped(Player player) {
         return (player.getItemBySlot(EquipmentSlot.CHEST).getItem()).equals(HCItems.MIKURUS_MAID_OUTFIT_ITEM.get());
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void initializeClient(Consumer<IItemRenderProperties> consumer) {
+        consumer.accept(MaidOutfitArmorRender.INSTANCE);
     }
 
 }
