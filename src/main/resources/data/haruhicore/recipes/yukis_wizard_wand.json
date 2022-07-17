@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "haruhicore",
+    "ingredients": [
+        { "item": "haruhicore:epic_wizard_wand" },
+        { "item": "haruhicore:epic_reinforcement_stone" },
+        { "item": "haruhicore:epic_reinforcement_stone" }
+    ],
+    "result": {
+        "item": "haruhicore:yukis_wizard_wand",
+        "count": 1
+    }
+}

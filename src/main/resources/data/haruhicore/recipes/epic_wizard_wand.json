@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "haruhicore",
+    "ingredients": [
+        { "item": "haruhicore:rare_wizard_wand" },
+        { "item": "minecraft:experience_bottle" },
+        { "item": "minecraft:experience_bottle" },
+        { "item": "minecraft:experience_bottle" }
+    ],
+    "result": {
+        "item": "haruhicore:epic_wizard_wand",
+        "count": 1
+    }
+}

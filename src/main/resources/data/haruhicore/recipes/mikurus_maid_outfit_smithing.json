@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:smithing",
+    "base": {
+        "item": "haruhicore:maid_outfit"
+    },
+    "addition": {
+        "item": "haruhicore:epic_reinforcement_stone"
+    },
+    "result": {
+        "item": "haruhicore:mikurus_maid_outfit"
+    }
+}

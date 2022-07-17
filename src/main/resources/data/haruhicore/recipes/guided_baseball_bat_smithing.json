@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:smithing",
+    "base": {
+        "item": "haruhicore:baseball_bat"
+    },
+    "addition": {
+        "item": "haruhicore:epic_reinforcement_stone"
+    },
+    "result": {
+        "item": "haruhicore:guided_baseball_bat"
+    }
+}
