@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:fishing",
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "weight": 1,
+                    "name": "haruhicore:epic_reinforcement_stone"
+                },
+                {
+                    "type": "minecraft:empty",
+                    "weight": 127
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "type": "arnicalib:loot_table_injector",
+    "conditions": [],
+    "strict_parameter": true,
+    "injectors": [
+        {
+            "target": "minecraft:gameplay/piglin_bartering",
+            "source": "haruhicore:injection_sources/minecraft/gameplay/piglin_bartering"
+        },
+        {
+            "target": "minecraft:gameplay/fishing/treasure",
+            "source": "haruhicore:injection_sources/minecraft/gameplay/fishing/treasure"
+        }
+    ]
+}

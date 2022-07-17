@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:chest",
+    "pools": [
+        {
+            "rolls": 4,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "weight": 3,
+                    "quality": 1,
+                    "name": "haruhicore:epic_reinforcement_stone"
+                },
+                {
+                    "type": "minecraft:empty",
+                    "weight": 96
+                }
+            ]
+        }
+    ]
+}
