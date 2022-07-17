@@ -1,7 +1,8 @@
 package com.haruhifanclub.haruhimod.haruhicore.client.model.armor;
 
-import com.google.common.collect.ImmutableList;
 import com.haruhifanclub.haruhimod.haruhicore.client.model.base.HCBaseModel;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -75,8 +76,12 @@ public class MaidOutfitArmorModel extends HumanoidModel<LivingEntity> implements
     }
 
     @Override
-    protected Iterable<ModelPart> bodyParts() {
-        return ImmutableList.of(this.body);
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+        poseStack.pushPose();
+        poseStack.translate(0.0D, 0.15D, 0.0D);
+        poseStack.scale(0.7F, 0.7F, 0.7F);
+        this.body.render(poseStack, buffer, packedLight, packedOverlay);
+        poseStack.popPose();
     }
 
 }
