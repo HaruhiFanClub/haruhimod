@@ -1,11 +1,11 @@
 package com.haruhifanclub.haruhimod.haruhicore.common.item.impl;
 
-import com.haruhifanclub.haruhimod.haruhicore.api.item.IHCBlessedItem;
-import com.haruhifanclub.haruhimod.haruhicore.common.config.CommonConfig;
-import com.haruhifanclub.haruhimod.haruhicore.common.item.base.HCReinforcementStoneItem;
 import org.apache.commons.lang3.RandomUtils;
 import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
 import org.auioc.mcmod.arnicalib.utils.game.EnchUtils;
+import com.haruhifanclub.haruhimod.haruhicore.api.item.IHCBlessedItem;
+import com.haruhifanclub.haruhimod.haruhicore.common.config.CommonConfig;
+import com.haruhifanclub.haruhimod.haruhicore.common.item.base.HCReinforcementStoneItem;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
@@ -14,16 +14,13 @@ import net.minecraft.world.item.Rarity;
 
 public class EpicReinforcementStoneItem extends HCReinforcementStoneItem implements IHCBlessedItem {
 
-    private static final boolean enabled = CommonConfig.EnableEpicReinforcementStone.get();
-    private static final int experienceCost = CommonConfig.EpicReinforcingExperienceCost.get();
-
     public EpicReinforcementStoneItem() {
         super(Rarity.EPIC);
     }
 
     @Override
     protected boolean isEnabled() {
-        return enabled;
+        return CommonConfig.EnableEpicReinforcementStone.get();
     }
 
     @Override
@@ -33,7 +30,7 @@ public class EpicReinforcementStoneItem extends HCReinforcementStoneItem impleme
 
     @Override
     protected int getExperienceCost() {
-        return experienceCost;
+        return CommonConfig.EpicReinforcingExperienceCost.get();
     }
 
 

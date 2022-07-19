@@ -1,10 +1,10 @@
 package com.haruhifanclub.haruhimod.haruhicore.common.item.impl;
 
 import java.util.regex.Pattern;
-import com.haruhifanclub.haruhimod.haruhicore.common.config.CommonConfig;
-import com.haruhifanclub.haruhimod.haruhicore.common.item.base.HCReinforcementStoneItem;
 import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
 import org.auioc.mcmod.arnicalib.utils.game.EnchUtils;
+import com.haruhifanclub.haruhimod.haruhicore.common.config.CommonConfig;
+import com.haruhifanclub.haruhimod.haruhicore.common.item.base.HCReinforcementStoneItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.effect.MobEffects;
@@ -14,12 +14,6 @@ import net.minecraft.world.item.Rarity;
 
 public class ReinforcementStoneItem extends HCReinforcementStoneItem {
 
-    private static final boolean enabled = CommonConfig.EnableCommonReinforcementStone.get();
-    private static final int experienceCost = CommonConfig.CommonReinforcingExperienceCost.get();
-    private static final int luckMultiplier = CommonConfig.CommonReinforcingLuckEffectMultiplier.get();
-    private static final int unluckMultiplier = CommonConfig.CommonReinforcingUnluckEffectMultiplier.get();
-    private static final int danchouConeMultiplier = CommonConfig.CommonReinforcingDanchouConeMultiplier.get();
-
     private static final Pattern vanillaEnchId = Pattern.compile("^minecraft:\\w+$");
 
     public ReinforcementStoneItem() {
@@ -28,16 +22,21 @@ public class ReinforcementStoneItem extends HCReinforcementStoneItem {
 
     @Override
     protected boolean isEnabled() {
-        return enabled;
+        return CommonConfig.EnableCommonReinforcementStone.get();
+    }
+
+    @Override
+    protected boolean isEpic() {
+        return false;
     }
 
     @Override
     protected int getExperienceCost() {
-        return experienceCost;
+        return CommonConfig.CommonReinforcingExperienceCost.get();
     }
 
     @Override
-    public ItemStack processEnchantment(ItemStack stack, Player player) {
+    protected ItemStack processEnchantment(ItemStack stack, Player player) {
         ListTag enchantments = stack.getEnchantmentTags();
 
         if (!EnchUtils.isOverLimit(enchantments)) {
@@ -54,12 +53,12 @@ public class ReinforcementStoneItem extends HCReinforcementStoneItem {
             }
 
 
-            N += EffectUtils.getEffectLevel(player, MobEffects.LUCK) * luckMultiplier;
+            N += EffectUtils.getEffectLevel(player, MobEffects.LUCK) * CommonConfig.CommonReinforcingLuckEffectMultiplier.get();
 
-            N += (-1) * EffectUtils.getEffectLevel(player, MobEffects.UNLUCK) * unluckMultiplier;
+            N += (-1) * EffectUtils.getEffectLevel(player, MobEffects.UNLUCK) * CommonConfig.CommonReinforcingUnluckEffectMultiplier.get();
 
             if (DanchouConeBlockItem.isEquipped(player)) {
-                N += 1 * danchouConeMultiplier;
+                N += 1 * CommonConfig.CommonReinforcingDanchouConeMultiplier.get();
             }
 
 
@@ -84,7 +83,6 @@ public class ReinforcementStoneItem extends HCReinforcementStoneItem {
                 }
             }
         }
-
 
         stack.getTag().remove("Enchantments");
         stack.getTag().put("Enchantments", enchantments);

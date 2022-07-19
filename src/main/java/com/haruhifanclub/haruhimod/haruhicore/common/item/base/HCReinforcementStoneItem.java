@@ -21,7 +21,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class HCReinforcementStoneItem extends Item implements IHCItem {
+public abstract class HCReinforcementStoneItem extends Item implements IHCItem {
 
     private static final String messageKey = "item.haruhicore.reinforcement_stone.";
 
@@ -73,22 +73,13 @@ public class HCReinforcementStoneItem extends Item implements IHCItem {
     }
 
 
-    protected boolean isEnabled() {
-        return false;
-    }
+    protected abstract boolean isEnabled();
 
-    protected boolean isEpic() {
-        return false;
-    }
+    protected abstract boolean isEpic();
 
-    protected int getExperienceCost() {
-        return 0;
-    }
+    protected abstract int getExperienceCost();
 
-    protected ItemStack processEnchantment(ItemStack stack, Player player) {
-        return stack;
-    };
-
+    protected abstract ItemStack processEnchantment(ItemStack stack, Player player);;
 
     @Override
     public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
