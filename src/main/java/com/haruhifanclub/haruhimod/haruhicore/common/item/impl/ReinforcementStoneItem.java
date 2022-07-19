@@ -1,8 +1,8 @@
 package com.haruhifanclub.haruhimod.haruhicore.common.item.impl;
 
-import java.util.regex.Pattern;
 import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
 import org.auioc.mcmod.arnicalib.utils.game.EnchUtils;
+import org.auioc.mcmod.arnicalib.utils.game.VanillaPredicates;
 import com.haruhifanclub.haruhimod.haruhicore.common.config.CommonConfig;
 import com.haruhifanclub.haruhimod.haruhicore.common.item.base.HCReinforcementStoneItem;
 import net.minecraft.nbt.CompoundTag;
@@ -13,8 +13,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 
 public class ReinforcementStoneItem extends HCReinforcementStoneItem {
-
-    private static final Pattern vanillaEnchId = Pattern.compile("^minecraft:\\w+$");
 
     public ReinforcementStoneItem() {
         super(Rarity.COMMON);
@@ -47,7 +45,7 @@ public class ReinforcementStoneItem extends HCReinforcementStoneItem {
 
             int N = 0; // Vanilla enchantments count
             for (int i = 0, l = enchantments.size(); i < l; i++) {
-                if (vanillaEnchId.matcher(enchantments.getCompound(i).getString("id")).matches()) {
+                if (VanillaPredicates.STRING_ID.test(enchantments.getCompound(i).getString("id"))) {
                     N++;
                 }
             }
