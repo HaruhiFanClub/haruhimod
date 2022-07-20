@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "haruhicore",
+    "ingredients": [
+        { "item": "haruhicore:reinforcement_stone" },
+        { "item": "haruhicore:inferior_wizard_wand" }
+    ],
+    "result": {
+        "item": "haruhicore:ordinary_wizard_wand",
+        "count": 1
+    }
+}

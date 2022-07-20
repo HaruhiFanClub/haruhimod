@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "haruhicore",
+    "ingredients": [
+        { "item": "haruhicore:sos_badge_slab" },
+        { "item": "haruhicore:epic_reinforcement_stone" },
+        { "item": "minecraft:pink_dye" }
+    ],
+    "result": {
+        "item": "haruhicore:music_disc_vox_in_box",
+        "count": 1
+    }
+}

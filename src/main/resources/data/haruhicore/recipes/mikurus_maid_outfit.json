@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "haruhicore",
+    "pattern": ["W W", "WSW", "WSW"],
+    "key": {
+        "W": { "item": "minecraft:white_wool" },
+        "S": { "item": "haruhicore:epic_reinforcement_stone" }
+    },
+    "result": {
+        "item": "haruhicore:mikurus_maid_outfit",
+        "count": 1
+    }
+}

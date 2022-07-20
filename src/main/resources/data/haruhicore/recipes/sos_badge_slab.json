@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "haruhicore",
+    "ingredients": [
+        { "tag": "minecraft:wool" },
+        { "tag": "minecraft:wool" },
+        { "tag": "minecraft:wool" },
+        { "tag": "minecraft:wool" },
+        { "tag": "minecraft:wool" },
+        { "tag": "minecraft:wool" },
+        { "tag": "minecraft:wool" },
+        { "tag": "minecraft:wool" },
+        { "tag": "minecraft:wool" }
+    ],
+    "result": {
+        "item": "haruhicore:sos_badge_slab",
+        "count": 1
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "haruhicore",
+    "pattern": ["PBP", "PWP", "PBP"],
+    "key": {
+        "P": { "item": "minecraft:paper" },
+        "B": { "item": "minecraft:black_dye" },
+        "W": { "item": "minecraft:white_dye" }
+    },
+    "result": {
+        "item": "haruhicore:danchou_cone",
+        "count": 1
+    }
+}

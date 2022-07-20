@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "haruhicore",
+    "pattern": ["  W", " W ", "W  "],
+    "key": {
+        "W": { "tag": "minecraft:planks" }
+    },
+    "result": {
+        "item": "haruhicore:baseball_bat",
+        "count": 1
+    }
+}

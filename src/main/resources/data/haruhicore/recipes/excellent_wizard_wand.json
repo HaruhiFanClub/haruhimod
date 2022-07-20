@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "haruhicore",
+    "ingredients": [
+        { "item": "haruhicore:ordinary_wizard_wand" },
+        { "tag": "forge:gems/diamond" },
+        { "tag": "forge:gems/diamond" },
+        { "tag": "forge:gems/diamond" },
+        { "tag": "forge:gems/diamond" },
+        { "tag": "forge:gems/diamond" }
+    ],
+    "result": {
+        "item": "haruhicore:excellent_wizard_wand",
+        "count": 1
+    }
+}
