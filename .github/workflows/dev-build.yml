@@ -26,7 +26,7 @@ jobs:
                   function prop {
                     [ -f "$config" ] && grep -P "^\s*[^#]?${1}=.*$" $config | cut -d'=' -f2
                   }
-                  echo "HARUHICORE_VERSION=`echo $(prop "haruhicore_version")`" >> $GITHUB_ENV
+                  echo "HARUHIISM_VERSION=`echo $(prop "haruhiism_version")`" >> $GITHUB_ENV
                   echo "MINECRAFT_VERSION=`echo $(prop "minecraft_version")`" >> $GITHUB_ENV
 
             - name: Set up JDK 17
@@ -46,5 +46,5 @@ jobs:
             - name: Upload build artifacts
               uses: actions/upload-artifact@v1
               with:
-                  name: haruhimod-${{env.MINECRAFT_VERSION}}-${{env.HARUHICORE_VERSION}}-${{env.CI_VERSION}}
+                  name: haruhiism-${{env.MINECRAFT_VERSION}}-${{env.HARUHIISM_VERSION}}-${{env.CI_VERSION}}
                   path: build/libs
