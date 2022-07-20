@@ -14,9 +14,9 @@ apply plugin: 'maven-publish'
 
 println("Local debug: ${local_debug.toBoolean()}")
 
-group = 'com.haruhifanclub.haruhimod'
-archivesBaseName = "haruhimod"
-version = "${minecraft_version}-${haruhicore_version}"
+group = 'com.haruhifanclub.haruhiism'
+archivesBaseName = "haruhiism"
+version = "${minecraft_version}-${haruhiism_version}"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
@@ -30,7 +30,7 @@ minecraft {
             property 'user.language', 'en'
             property 'log4j.configurationFile', 'log4j2.xml'
             mods {
-                haruhicore {
+                haruhiism {
                     source sourceSets.main
                 }
             }
@@ -42,7 +42,7 @@ minecraft {
             property 'user.language', 'en'
             property 'log4j.configurationFile', 'log4j2.xml'
             mods {
-                haruhicore {
+                haruhiism {
                     source sourceSets.main
                 }
             }
@@ -91,14 +91,14 @@ dependencies {
 
 ext {
     manifest_attributes = [
-        "Specification-Title": 'haruhimod',
+        "Specification-Title": 'Haruhiism',
         "Specification-Vendor": 'Haruhifanclub',
         "Specification-Version": '1',
         "Implementation-Title": project.name,
-        "Implementation-Version": "${haruhicore_version}",
+        "Implementation-Version": "${haruhiism_version}",
         "Implementation-Vendor" :'Haruhifanclub',
         "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-        "HaruhiCore-Version": "haruhicore-${minecraft_version}-${haruhicore_version}-${getVar('CI_VERSION')}"
+        "Haruhiism-Version": "haruhiism-${minecraft_version}-${haruhiism_version}-${getVar('CI_VERSION')}"
     ]
 }
 
