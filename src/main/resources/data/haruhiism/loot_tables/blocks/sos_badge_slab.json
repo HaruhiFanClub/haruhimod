@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "minecraft:item",
-                    "name": "haruhicore:sos_badge_slab",
+                    "name": "haruhiism:sos_badge_slab",
                     "functions": [
                         {
                             "function": "minecraft:set_count",
@@ -14,7 +14,7 @@
                             "conditions": [
                                 {
                                     "condition": "minecraft:block_state_property",
-                                    "block": "haruhicore:sos_badge_slab",
+                                    "block": "haruhiism:sos_badge_slab",
                                     "properties": {
                                         "type": "double"
                                     }

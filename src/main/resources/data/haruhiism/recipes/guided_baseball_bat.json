@@ -1,13 +1,13 @@
 {
     "type": "minecraft:crafting_shaped",
-    "group": "haruhicore",
+    "group": "haruhiism",
     "pattern": ["  W", "RW ", "WR "],
     "key": {
         "W": { "tag": "minecraft:planks" },
-        "R": { "item": "haruhicore:epic_reinforcement_stone" }
+        "R": { "item": "haruhiism:epic_reinforcement_stone" }
     },
     "result": {
-        "item": "haruhicore:guided_baseball_bat",
+        "item": "haruhiism:guided_baseball_bat",
         "count": 1
     }
 }

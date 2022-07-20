@@ -1,13 +1,13 @@
 {
     "type": "minecraft:smithing",
-    "group": "haruhicore",
+    "group": "haruhiism",
     "base": {
-        "item": "haruhicore:wizard_cloak"
+        "item": "haruhiism:wizard_cloak"
     },
     "addition": {
-        "item": "haruhicore:epic_reinforcement_stone"
+        "item": "haruhiism:epic_reinforcement_stone"
     },
     "result": {
-        "item": "haruhicore:yukis_wizard_cloak"
+        "item": "haruhiism:yukis_wizard_cloak"
     }
 }

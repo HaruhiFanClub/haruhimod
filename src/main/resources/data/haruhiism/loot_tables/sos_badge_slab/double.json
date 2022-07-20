@@ -7,7 +7,7 @@
                 {
                     "type": "minecraft:item",
                     "weight": 20,
-                    "name": "haruhicore:epic_reinforcement_stone"
+                    "name": "haruhiism:epic_reinforcement_stone"
                 },
                 {
                     "type": "minecraft:item",
@@ -47,22 +47,22 @@
                 {
                     "type": "minecraft:item",
                     "weight": 1,
-                    "name": "haruhicore:music_disc_in_the_summertime"
+                    "name": "haruhiism:music_disc_in_the_summertime"
                 },
                 {
                     "type": "minecraft:item",
                     "weight": 1,
-                    "name": "haruhicore:music_disc_someday_in_the_rain"
+                    "name": "haruhiism:music_disc_someday_in_the_rain"
                 },
                 {
                     "type": "minecraft:item",
                     "weight": 1,
-                    "name": "haruhicore:music_disc_vox_in_box"
+                    "name": "haruhiism:music_disc_vox_in_box"
                 },
                 {
                     "type": "minecraft:item",
                     "weight": 1,
-                    "name": "haruhicore:music_disc_halo"
+                    "name": "haruhiism:music_disc_halo"
                 }
             ]
         },
@@ -86,7 +86,7 @@
                             }
                         }
                     ],
-                    "name": "haruhicore:reinforcement_stone"
+                    "name": "haruhiism:reinforcement_stone"
                 },
                 {
                     "type": "minecraft:item",

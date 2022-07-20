@@ -1,8 +1,8 @@
 {
     "type": "minecraft:crafting_shapeless",
-    "group": "haruhicore",
+    "group": "haruhiism",
     "ingredients": [
-        { "item": "haruhicore:excellent_wizard_wand" },
+        { "item": "haruhiism:excellent_wizard_wand" },
         { "tag": "forge:storage_blocks/lapis" },
         { "tag": "forge:storage_blocks/lapis" },
         { "tag": "forge:storage_blocks/lapis" },
@@ -10,7 +10,7 @@
         { "tag": "forge:storage_blocks/lapis" }
     ],
     "result": {
-        "item": "haruhicore:rare_wizard_wand",
+        "item": "haruhiism:rare_wizard_wand",
         "count": 1
     }
 }

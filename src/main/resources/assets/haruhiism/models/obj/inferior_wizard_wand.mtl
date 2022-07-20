@@ -10,7 +10,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 3
-map_Kd haruhicore:item/inferior_wizard_wand_star
+map_Kd haruhiism:item/inferior_wizard_wand_star
 
 newmtl 杆材质
 Ns 225.000000
@@ -21,4 +21,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 3
-map_Kd haruhicore:item/wizard_wand_stick
+map_Kd haruhiism:item/wizard_wand_stick

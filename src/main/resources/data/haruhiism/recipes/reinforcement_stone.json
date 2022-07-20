@@ -1,13 +1,13 @@
 {
     "type": "minecraft:crafting_shaped",
-    "group": "haruhicore",
+    "group": "haruhiism",
     "pattern": ["GGG", "GLG", "GGG"],
     "key": {
         "G": { "item": "minecraft:gold_ingot" },
         "L": { "item": "minecraft:lapis_block" }
     },
     "result": {
-        "item": "haruhicore:reinforcement_stone",
+        "item": "haruhiism:reinforcement_stone",
         "count": 1
     }
 }

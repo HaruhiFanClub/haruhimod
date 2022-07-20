@@ -1,7 +1,7 @@
 {
     "parent": "arnicalib:block/slab_bottom",
     "textures": {
-        "0": "haruhicore:block/sos_badge_slab",
-        "particle": "haruhicore:block/sos_badge_slab"
+        "0": "haruhiism:block/sos_badge_slab",
+        "particle": "haruhiism:block/sos_badge_slab"
     }
 }

@@ -1,5 +1,5 @@
 {
-    "parent": "haruhicore:block/danchou_cone",
+    "parent": "haruhiism:block/danchou_cone",
     "display": {
         "thirdperson_righthand": {
             "translation": [0, 8, 0]

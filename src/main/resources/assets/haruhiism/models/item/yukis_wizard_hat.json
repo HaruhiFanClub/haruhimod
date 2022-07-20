@@ -1,6 +1,6 @@
 {
-    "parent": "haruhicore:item/wizard_hat",
+    "parent": "haruhiism:item/wizard_hat",
     "textures": {
-        "0": "haruhicore:item/yukis_wizard_hat"
+        "0": "haruhiism:item/yukis_wizard_hat"
     }
 }

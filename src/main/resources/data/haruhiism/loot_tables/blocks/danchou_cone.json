@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "minecraft:item",
-                    "name": "haruhicore:danchou_cone",
+                    "name": "haruhiism:danchou_cone",
                     "conditions": [
                         {
                             "condition": "minecraft:survives_explosion"

@@ -1,6 +1,6 @@
 {
     "loader": "forge:obj",
-    "model": "haruhicore:models/obj/danchou_cone.obj",
+    "model": "haruhiism:models/obj/danchou_cone.obj",
     "flip-v": true,
     "textures": {
         "particle": "minecraft:block/black_wool"

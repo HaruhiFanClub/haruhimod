@@ -1,13 +1,13 @@
 {
     "type": "minecraft:crafting_shapeless",
-    "group": "haruhicore",
+    "group": "haruhiism",
     "ingredients": [
-        { "item": "haruhicore:sos_badge_slab" },
-        { "item": "haruhicore:epic_reinforcement_stone" },
+        { "item": "haruhiism:sos_badge_slab" },
+        { "item": "haruhiism:epic_reinforcement_stone" },
         { "item": "minecraft:blue_dye" }
     ],
     "result": {
-        "item": "haruhicore:music_disc_in_the_summertime",
+        "item": "haruhiism:music_disc_in_the_summertime",
         "count": 1
     }
 }

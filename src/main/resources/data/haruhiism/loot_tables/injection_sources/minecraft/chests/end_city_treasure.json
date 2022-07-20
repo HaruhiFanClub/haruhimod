@@ -8,7 +8,7 @@
                     "type": "minecraft:item",
                     "weight": 3,
                     "quality": 1,
-                    "name": "haruhicore:epic_reinforcement_stone"
+                    "name": "haruhiism:epic_reinforcement_stone"
                 },
                 {
                     "type": "minecraft:empty",

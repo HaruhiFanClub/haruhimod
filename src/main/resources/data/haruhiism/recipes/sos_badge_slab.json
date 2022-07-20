@@ -1,6 +1,6 @@
 {
     "type": "minecraft:crafting_shapeless",
-    "group": "haruhicore",
+    "group": "haruhiism",
     "ingredients": [
         { "tag": "minecraft:wool" },
         { "tag": "minecraft:wool" },
@@ -13,7 +13,7 @@
         { "tag": "minecraft:wool" }
     ],
     "result": {
-        "item": "haruhicore:sos_badge_slab",
+        "item": "haruhiism:sos_badge_slab",
         "count": 1
     }
 }

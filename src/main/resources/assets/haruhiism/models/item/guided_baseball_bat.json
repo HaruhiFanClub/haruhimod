@@ -1,6 +1,6 @@
 {
-    "parent": "haruhicore:item/baseball_bat",
+    "parent": "haruhiism:item/baseball_bat",
     "textures": {
-        "0": "haruhicore:item/guided_baseball_bat"
+        "0": "haruhiism:item/guided_baseball_bat"
     }
 }

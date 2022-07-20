@@ -1,13 +1,13 @@
 {
     "type": "minecraft:crafting_shaped",
-    "group": "haruhicore",
+    "group": "haruhiism",
     "pattern": ["WSW", "WWW", "WWW"],
     "key": {
         "W": { "item": "minecraft:black_wool" },
-        "S": { "item": "haruhicore:reinforcement_stone" }
+        "S": { "item": "haruhiism:reinforcement_stone" }
     },
     "result": {
-        "item": "haruhicore:wizard_cloak",
+        "item": "haruhiism:wizard_cloak",
         "count": 1
     }
 }

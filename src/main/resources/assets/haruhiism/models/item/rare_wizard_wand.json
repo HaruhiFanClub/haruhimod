@@ -1,6 +1,6 @@
 {
-    "parent": "haruhicore:item/wizard_wand",
+    "parent": "haruhiism:item/wizard_wand",
     "loader": "forge:obj",
-    "model": "haruhicore:models/obj/rare_wizard_wand.obj",
+    "model": "haruhiism:models/obj/rare_wizard_wand.obj",
     "flip-v": true
 }

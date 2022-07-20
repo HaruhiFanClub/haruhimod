@@ -2,7 +2,7 @@
     "credit": "Made by Libellule505 with Blockbench",
     "texture_size": [32, 32],
     "textures": {
-        "0": "haruhicore:item/baseball_bat"
+        "0": "haruhiism:item/baseball_bat"
     },
     "elements": [
         {

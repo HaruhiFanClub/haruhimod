@@ -2,8 +2,8 @@
     "credit": "Made by Libellule505 with Blockbench",
     "texture_size": [32, 32],
     "textures": {
-        "0": "haruhicore:item/hourglass_0",
-        "1": "haruhicore:item/hourglass_1"
+        "0": "haruhiism:item/hourglass_0",
+        "1": "haruhiism:item/hourglass_1"
     },
     "elements": [
         {

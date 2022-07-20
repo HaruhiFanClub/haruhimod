@@ -5,11 +5,11 @@
     "injectors": [
         {
             "target": "minecraft:gameplay/piglin_bartering",
-            "source": "haruhicore:injection_sources/minecraft/gameplay/piglin_bartering"
+            "source": "haruhiism:injection_sources/minecraft/gameplay/piglin_bartering"
         },
         {
             "target": "minecraft:gameplay/fishing/treasure",
-            "source": "haruhicore:injection_sources/minecraft/gameplay/fishing/treasure"
+            "source": "haruhiism:injection_sources/minecraft/gameplay/fishing/treasure"
         }
     ]
 }

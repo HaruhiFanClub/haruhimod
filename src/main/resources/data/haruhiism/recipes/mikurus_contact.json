@@ -1,12 +1,12 @@
 {
     "type": "minecraft:crafting_shapeless",
-    "group": "haruhicore",
+    "group": "haruhiism",
     "ingredients": [
-        { "item": "haruhicore:epic_reinforcement_stone" },
+        { "item": "haruhiism:epic_reinforcement_stone" },
         { "item": "minecraft:blue_stained_glass_pane" }
     ],
     "result": {
-        "item": "haruhicore:mikurus_contact",
+        "item": "haruhiism:mikurus_contact",
         "count": 1
     }
 }

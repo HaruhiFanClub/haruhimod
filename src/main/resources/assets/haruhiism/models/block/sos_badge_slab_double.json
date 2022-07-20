@@ -1,6 +1,6 @@
 {
     "parent": "minecraft:block/cube_all",
     "textures": {
-        "all": "haruhicore:block/sos_badge_slab_double"
+        "all": "haruhiism:block/sos_badge_slab_double"
     }
 }

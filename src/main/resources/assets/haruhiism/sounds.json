@@ -3,7 +3,7 @@
         "sounds": [
             {
                 "stream": true,
-                "name": "haruhicore:placeholder"
+                "name": "haruhiism:placeholder"
             }
         ]
     },
@@ -11,7 +11,7 @@
         "sounds": [
             {
                 "stream": true,
-                "name": "haruhicore:placeholder"
+                "name": "haruhiism:placeholder"
             }
         ]
     },
@@ -19,7 +19,7 @@
         "sounds": [
             {
                 "stream": true,
-                "name": "haruhicore:placeholder"
+                "name": "haruhiism:placeholder"
             }
         ]
     },
@@ -27,7 +27,7 @@
         "sounds": [
             {
                 "stream": true,
-                "name": "haruhicore:placeholder"
+                "name": "haruhiism:placeholder"
             }
         ]
     }

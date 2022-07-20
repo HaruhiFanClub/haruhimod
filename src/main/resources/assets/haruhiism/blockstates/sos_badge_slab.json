@@ -1,51 +1,51 @@
 {
     "variants": {
         "facing=east,type=bottom": {
-            "model": "haruhicore:block/sos_badge_slab_bottom",
+            "model": "haruhiism:block/sos_badge_slab_bottom",
             "y": 90
         },
         "facing=east,type=top": {
-            "model": "haruhicore:block/sos_badge_slab_top",
+            "model": "haruhiism:block/sos_badge_slab_top",
             "y": 90
         },
         "facing=east,type=double": {
-            "model": "haruhicore:block/sos_badge_slab_double",
+            "model": "haruhiism:block/sos_badge_slab_double",
             "y": 90
         },
 
         "facing=north,type=bottom": {
-            "model": "haruhicore:block/sos_badge_slab_bottom"
+            "model": "haruhiism:block/sos_badge_slab_bottom"
         },
         "facing=north,type=top": {
-            "model": "haruhicore:block/sos_badge_slab_top"
+            "model": "haruhiism:block/sos_badge_slab_top"
         },
         "facing=north,type=double": {
-            "model": "haruhicore:block/sos_badge_slab_double"
+            "model": "haruhiism:block/sos_badge_slab_double"
         },
 
         "facing=south,type=bottom": {
-            "model": "haruhicore:block/sos_badge_slab_bottom",
+            "model": "haruhiism:block/sos_badge_slab_bottom",
             "y": 180
         },
         "facing=south,type=top": {
-            "model": "haruhicore:block/sos_badge_slab_top",
+            "model": "haruhiism:block/sos_badge_slab_top",
             "y": 180
         },
         "facing=south,type=double": {
-            "model": "haruhicore:block/sos_badge_slab_double",
+            "model": "haruhiism:block/sos_badge_slab_double",
             "y": 180
         },
 
         "facing=west,type=bottom": {
-            "model": "haruhicore:block/sos_badge_slab_bottom",
+            "model": "haruhiism:block/sos_badge_slab_bottom",
             "y": 270
         },
         "facing=west,type=top": {
-            "model": "haruhicore:block/sos_badge_slab_top",
+            "model": "haruhiism:block/sos_badge_slab_top",
             "y": 270
         },
         "facing=west,type=double": {
-            "model": "haruhicore:block/sos_badge_slab_double",
+            "model": "haruhiism:block/sos_badge_slab_double",
             "y": 270
         }
     }

@@ -1,6 +1,6 @@
 {
-    "parent": "haruhicore:item/maid_outfit",
+    "parent": "haruhiism:item/maid_outfit",
     "textures": {
-        "0": "haruhicore:item/mikurus_maid_outfit"
+        "0": "haruhiism:item/mikurus_maid_outfit"
     }
 }
