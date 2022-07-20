@@ -14,7 +14,7 @@ apply plugin: 'maven-publish'
 
 println("Local debug: ${local_debug.toBoolean()}")
 
-group = 'com.haruhifanclub.haruhiism'
+group = 'com.haruhifanclub'
 archivesBaseName = "haruhiism"
 version = "${minecraft_version}-${haruhiism_version}"
 
