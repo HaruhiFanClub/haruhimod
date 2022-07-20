@@ -1,4 +1,4 @@
-<h1 align="center">HaruhiMod</h1>
+<h1 align="center">Haruhiism</h1>
 
 <div align="center">
 
@@ -16,19 +16,20 @@ Minecraft mods for [HaruhiServer](https://github.com/HaruhiFanClub/MCHaruhiServe
 
 ## 维护者
 
-* [@WakelessSloth56](https://github.com/WakelessSloth56)
+- 策划：[@Libellule505](https://github.com/Libellule505)
+- 程序：[@WakelessSloth56](https://github.com/WakelessSloth56)、[@LainIO24](https://github.com/lainio24)
 
 ## 感谢
 
-* [HaruhiFanClub](https://github.com/HaruhiFanClub)
-* [AUIOC](https://www.auioc.com)
+- [HaruhiFanClub](https://github.com/HaruhiFanClub)
+- [AUIOC](https://www.auioc.com)
 
 ## 参与贡献
 
 我们非常欢迎你的贡献，你可以通过以下方式和我们一起共建此项目：
 
-* 通过[议题](https://github.com/HaruhiFanClub/haruhimod/issues)来报告错误或进行咨询。
-* 提交[拉取请求](https://github.com/HaruhiFanClub/haruhimod/pulls)来改进项目。
+- 通过[议题](https://github.com/HaruhiFanClub/haruhimod/issues)来报告错误或进行咨询。
+- 提交[拉取请求](https://github.com/HaruhiFanClub/haruhimod/pulls)来改进项目。
 
 ## 许可证
 

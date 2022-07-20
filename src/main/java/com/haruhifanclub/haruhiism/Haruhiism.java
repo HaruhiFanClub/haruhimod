@@ -30,7 +30,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(Haruhiism.MOD_ID)
 public class Haruhiism {
 
-    public static final String MOD_ID = "Haruhiism";
+    public static final String MOD_ID = "haruhiism";
     public static final String MOD_NAME = "Haruhiism";
     public static final String MAIN_VERSION;
     public static final String FULL_VERSION;
