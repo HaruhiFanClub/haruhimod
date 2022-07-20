@@ -40,7 +40,7 @@ public class GuidedBaseballBatItem extends HMBaseballBatItem implements IHMBless
             new ForgeTier(
                 0, 708, 4.0F, 0.0F, 66,
                 Tags.Blocks.NEEDS_WOOD_TOOL,
-                () -> Ingredient.of(HMItems.REINFORCEMENT_STONE_ITEM.get())
+                () -> Ingredient.of(HMItems.DANCHOU_ARMBAND_ITEM.get())
             ),
             3,
             1.0F

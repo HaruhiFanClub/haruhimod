@@ -6,7 +6,7 @@
         "P": { "item": "minecraft:glass_pane" },
         "G": { "item": "minecraft:glass" },
         "S": { "item": "minecraft:sand" },
-        "T": { "item": "haruhiism:epic_reinforcement_stone" }
+        "T": { "item": "haruhiism:god_bless_danchou_armband" }
     },
     "result": {
         "item": "haruhiism:tpdd",

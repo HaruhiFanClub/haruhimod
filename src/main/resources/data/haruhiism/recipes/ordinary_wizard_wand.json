@@ -2,7 +2,7 @@
     "type": "minecraft:crafting_shapeless",
     "group": "haruhiism",
     "ingredients": [
-        { "item": "haruhiism:reinforcement_stone" },
+        { "item": "haruhiism:danchou_armband" },
         { "item": "haruhiism:inferior_wizard_wand" }
     ],
     "result": {

@@ -6,14 +6,14 @@ import com.haruhifanclub.haruhiism.api.item.HMTier;
 import com.haruhifanclub.haruhiism.common.block.HMBlocks;
 import com.haruhifanclub.haruhiism.common.item.base.HMMusicDiscItem;
 import com.haruhifanclub.haruhiism.common.item.impl.BaseballBatItem;
+import com.haruhifanclub.haruhiism.common.item.impl.DanchouArmbandItem;
 import com.haruhifanclub.haruhiism.common.item.impl.DanchouConeBlockItem;
-import com.haruhifanclub.haruhiism.common.item.impl.EpicReinforcementStoneItem;
+import com.haruhifanclub.haruhiism.common.item.impl.GodBlessDanchouArmbandItem;
 import com.haruhifanclub.haruhiism.common.item.impl.GuidedBaseballBatItem;
 import com.haruhifanclub.haruhiism.common.item.impl.HourglassItem;
 import com.haruhifanclub.haruhiism.common.item.impl.MaidOutfitItem;
 import com.haruhifanclub.haruhiism.common.item.impl.MikurusContactItem;
 import com.haruhifanclub.haruhiism.common.item.impl.MikurusMaidOutfitItem;
-import com.haruhifanclub.haruhiism.common.item.impl.ReinforcementStoneItem;
 import com.haruhifanclub.haruhiism.common.item.impl.TpddItem;
 import com.haruhifanclub.haruhiism.common.item.impl.WizardCloakItem;
 import com.haruhifanclub.haruhiism.common.item.impl.WizardHatItem;
@@ -41,8 +41,8 @@ public final class HMItems {
     public static final RegistryObject<Item> ICON_ITEM = register("icon", () -> new Item((new Item.Properties())));
 
     // Common items
-    public static final RegistryObject<Item> REINFORCEMENT_STONE_ITEM = register("reinforcement_stone", ReinforcementStoneItem::new);
-    public static final RegistryObject<Item> EPIC_REINFORCEMENT_STONE_ITEM = register("epic_reinforcement_stone", EpicReinforcementStoneItem::new);
+    public static final RegistryObject<Item> DANCHOU_ARMBAND_ITEM = register("danchou_armband", DanchouArmbandItem::new);
+    public static final RegistryObject<Item> GOD_BLESS_DANCHOU_ARMBAND_ITEM = register("god_bless_danchou_armband", GodBlessDanchouArmbandItem::new);
 
     // Block items
     public static final RegistryObject<Item> SOS_BADGE_SLAB_BLOCK = register("sos_badge_slab", () -> new BlockItem(HMBlocks.SOS_BADGE_SLAB_BLOCK.get(), new Item.Properties().tab(HMCreativeModeTabs.TAB_MAIN)));

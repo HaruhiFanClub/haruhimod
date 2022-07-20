@@ -4,7 +4,7 @@
     "pattern": ["WWW", "WSW", "   "],
     "key": {
         "W": { "item": "minecraft:black_wool" },
-        "S": { "item": "haruhiism:reinforcement_stone" }
+        "S": { "item": "haruhiism:danchou_armband" }
     },
     "result": {
         "item": "haruhiism:wizard_hat",

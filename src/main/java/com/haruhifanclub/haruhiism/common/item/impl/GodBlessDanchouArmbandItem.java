@@ -10,22 +10,16 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Rarity;
 
-public class EpicReinforcementStoneItem extends HMReinforcementStoneItem implements IHMBlessedItem {
+public class GodBlessDanchouArmbandItem extends HMReinforcementStoneItem implements IHMBlessedItem {
 
-    public EpicReinforcementStoneItem() {
-        super(Rarity.EPIC);
+    public GodBlessDanchouArmbandItem() {
+        super(true);
     }
 
     @Override
     protected boolean isEnabled() {
         return CommonConfig.EnableEpicReinforcementStone.get();
-    }
-
-    @Override
-    protected boolean isEpic() {
-        return true;
     }
 
     @Override

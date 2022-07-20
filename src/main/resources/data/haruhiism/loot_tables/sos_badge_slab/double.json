@@ -7,7 +7,7 @@
                 {
                     "type": "minecraft:item",
                     "weight": 20,
-                    "name": "haruhiism:epic_reinforcement_stone"
+                    "name": "haruhiism:god_bless_danchou_armband"
                 },
                 {
                     "type": "minecraft:item",
@@ -86,7 +86,7 @@
                             }
                         }
                     ],
-                    "name": "haruhiism:reinforcement_stone"
+                    "name": "haruhiism:danchou_armband"
                 },
                 {
                     "type": "minecraft:item",

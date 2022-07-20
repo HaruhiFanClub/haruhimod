@@ -36,7 +36,7 @@ public class MikurusMaidOutfitItem extends HMArmorItem implements IHMBlessedItem
                 .setToughness(2)
                 .setEnchantmentValue(15)
                 .setRepairIngredient(() -> {
-                    return Ingredient.of(HMItems.REINFORCEMENT_STONE_ITEM.get());
+                    return Ingredient.of(HMItems.DANCHOU_ARMBAND_ITEM.get());
                 }),
             EquipmentSlot.CHEST
         );

@@ -29,7 +29,7 @@ public class YukisWizardHatItem extends HMArmorItem implements IHMBlessedItem {
                 .setToughness(4)
                 .setEnchantmentValue(66)
                 .setRepairIngredient(() -> {
-                    return Ingredient.of(HMItems.REINFORCEMENT_STONE_ITEM.get());
+                    return Ingredient.of(HMItems.DANCHOU_ARMBAND_ITEM.get());
                 }),
             EquipmentSlot.HEAD
         );

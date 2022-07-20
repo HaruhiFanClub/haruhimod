@@ -20,7 +20,7 @@ public class WizardCloakItem extends HMArmorItem {
                 .setDefense(5)
                 .setEnchantmentValue(25)
                 .setRepairIngredient(() -> {
-                    return Ingredient.of(HMItems.REINFORCEMENT_STONE_ITEM.get());
+                    return Ingredient.of(HMItems.DANCHOU_ARMBAND_ITEM.get());
                 }),
             EquipmentSlot.CHEST
         );

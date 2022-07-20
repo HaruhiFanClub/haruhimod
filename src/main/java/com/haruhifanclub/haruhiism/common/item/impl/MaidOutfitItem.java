@@ -20,7 +20,7 @@ public class MaidOutfitItem extends HMArmorItem {
                 .setDefense(3)
                 .setEnchantmentValue(15)
                 .setRepairIngredient(() -> {
-                    return Ingredient.of(HMItems.REINFORCEMENT_STONE_ITEM.get());
+                    return Ingredient.of(HMItems.DANCHOU_ARMBAND_ITEM.get());
                 }),
             EquipmentSlot.CHEST
         );

@@ -3,7 +3,7 @@
     "group": "haruhiism",
     "pattern": ["  G", " S ", "R  "],
     "key": {
-        "R": { "item": "haruhiism:reinforcement_stone" },
+        "R": { "item": "haruhiism:danchou_armband" },
         "G": { "tag": "forge:ingots/gold" },
         "S": { "tag": "forge:rods/wooden" }
     },

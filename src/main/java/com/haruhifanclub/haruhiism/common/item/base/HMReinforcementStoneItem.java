@@ -25,13 +25,16 @@ public abstract class HMReinforcementStoneItem extends Item implements IHMItem {
 
     private static final String messageKey = "item.haruhiism.reinforcement_stone.";
 
-    public HMReinforcementStoneItem(Rarity rarity) {
+    private final boolean isEpic;
+
+    public HMReinforcementStoneItem(boolean isEpic) {
         super(
             new Item.Properties()
                 .tab(HMCreativeModeTabs.TAB_MAIN)
-                .rarity(rarity)
+                .rarity(isEpic ? Rarity.EPIC : Rarity.COMMON)
                 .stacksTo(16)
         );
+        this.isEpic = isEpic;
     }
 
     @Override
@@ -41,6 +44,10 @@ public abstract class HMReinforcementStoneItem extends Item implements IHMItem {
             return true;
         }
         return false;
+    }
+
+    public boolean isEpic() {
+        return this.isEpic;
     }
 
 
@@ -74,8 +81,6 @@ public abstract class HMReinforcementStoneItem extends Item implements IHMItem {
 
 
     protected abstract boolean isEnabled();
-
-    protected abstract boolean isEpic();
 
     protected abstract int getExperienceCost();
 

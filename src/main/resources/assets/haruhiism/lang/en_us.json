@@ -11,8 +11,8 @@
     "block.haruhiism.sos_badge_slab": "SOS Badge Slab",
     "block.haruhiism.danchou_cone": "Danchou Cone",
 
-    "item.haruhiism.reinforcement_stone": "Reinforcement Stone",
-    "item.haruhiism.epic_reinforcement_stone": "Blessing of Haruhi-chan",
+    "item.haruhiism.danchou_armband": "Danchou Armband",
+    "item.haruhiism.god_bless_danchou_armband": "Blessing of Haruhi-chan",
     "item.haruhiism.reinforcement_stone.xp_not_enough": "§cXp not enough",
     "item.haruhiism.reinforcement_stone.blacklist": "§cCannot reinforce blacklisted item!",
     "item.haruhiism.reinforcement_stone.empty_item": "§cTarget item not found",

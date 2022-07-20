@@ -4,7 +4,7 @@
     "pattern": ["W W", "WSW", "WSW"],
     "key": {
         "W": { "item": "minecraft:white_wool" },
-        "S": { "item": "haruhiism:epic_reinforcement_stone" }
+        "S": { "item": "haruhiism:god_bless_danchou_armband" }
     },
     "result": {
         "item": "haruhiism:mikurus_maid_outfit",
