@@ -2,14 +2,14 @@ package com.haruhifanclub.haruhimod.haruhiism.common.network;
 
 import org.auioc.mcmod.arnicalib.api.game.network.HPacketHandler;
 import org.auioc.mcmod.arnicalib.api.game.network.IHPacket;
-import com.haruhifanclub.haruhimod.haruhiism.HaruhiCore;
+import com.haruhifanclub.haruhimod.haruhiism.Haruhiism;
 import com.haruhifanclub.haruhimod.haruhiism.server.network.EmitMikuruBeamPacket;
 import net.minecraft.server.level.ServerPlayer;
 
 public class HCPacketHandler {
 
     private static final String PROTOCOL_VERSION = Integer.toString(1);
-    private static final HPacketHandler HANDLER = new HPacketHandler(HaruhiCore.MOD_ID, PROTOCOL_VERSION);
+    private static final HPacketHandler HANDLER = new HPacketHandler(Haruhiism.MOD_ID, PROTOCOL_VERSION);
 
     public static void init() {
         registerMessage();

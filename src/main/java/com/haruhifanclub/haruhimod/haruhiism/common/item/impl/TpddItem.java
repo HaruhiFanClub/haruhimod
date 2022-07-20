@@ -173,7 +173,7 @@ public class TpddItem extends HCHourglassItem implements IHCBlessedItem {
             super.broadcast(
                 level,
                 new TranslatableComponent(
-                    "item.haruhicore.tpdd.read.message",
+                    "item.haruhiism.tpdd.read.message",
                     player.getDisplayName(),
                     super.getTimeMessage(nbt.getLongArray("time"))
                 )

@@ -1,7 +1,7 @@
 package com.haruhifanclub.haruhimod.haruhiism.common.advancement.criterion;
 
 import com.google.gson.JsonObject;
-import com.haruhifanclub.haruhimod.haruhiism.HaruhiCore;
+import com.haruhifanclub.haruhimod.haruhiism.Haruhiism;
 import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
 import net.minecraft.advancements.critereon.DeserializationContext;
 import net.minecraft.advancements.critereon.EntityPredicate;
@@ -16,7 +16,7 @@ public class ItemReinforcedTrigger extends SimpleCriterionTrigger<ItemReinforced
 
     public static final ItemReinforcedTrigger INSTANCE = new ItemReinforcedTrigger();
 
-    private static final ResourceLocation ID = new ResourceLocation(HaruhiCore.MOD_ID, "item_reinforced");
+    private static final ResourceLocation ID = new ResourceLocation(Haruhiism.MOD_ID, "item_reinforced");
 
     @Override
     public ResourceLocation getId() {

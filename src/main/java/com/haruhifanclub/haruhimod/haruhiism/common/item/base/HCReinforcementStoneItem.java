@@ -23,7 +23,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public abstract class HCReinforcementStoneItem extends Item implements IHCItem {
 
-    private static final String messageKey = "item.haruhicore.reinforcement_stone.";
+    private static final String messageKey = "item.haruhiism.reinforcement_stone.";
 
     public HCReinforcementStoneItem(Rarity rarity) {
         super(

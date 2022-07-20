@@ -1,7 +1,7 @@
 package com.haruhifanclub.haruhimod.haruhiism.common.advancement.criterion;
 
 import com.google.gson.JsonObject;
-import com.haruhifanclub.haruhimod.haruhiism.HaruhiCore;
+import com.haruhifanclub.haruhimod.haruhiism.Haruhiism;
 import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
 import net.minecraft.advancements.critereon.DeserializationContext;
 import net.minecraft.advancements.critereon.EntityPredicate;
@@ -14,7 +14,7 @@ public class SosBadgeSlabTrigger extends SimpleCriterionTrigger<SosBadgeSlabTrig
 
     public static final SosBadgeSlabTrigger INSTANCE = new SosBadgeSlabTrigger();
 
-    private static final ResourceLocation ID = new ResourceLocation(HaruhiCore.MOD_ID, "sos_badge_slab_looted");
+    private static final ResourceLocation ID = new ResourceLocation(Haruhiism.MOD_ID, "sos_badge_slab_looted");
 
     @Override
     public ResourceLocation getId() {

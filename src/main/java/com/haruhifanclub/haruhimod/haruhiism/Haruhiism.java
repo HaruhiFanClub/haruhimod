@@ -27,18 +27,18 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod(HaruhiCore.MOD_ID)
-public class HaruhiCore {
+@Mod(Haruhiism.MOD_ID)
+public class Haruhiism {
 
-    public static final String MOD_ID = "haruhicore";
-    public static final String MOD_NAME = "HaruhiCore";
+    public static final String MOD_ID = "Haruhiism";
+    public static final String MOD_NAME = "Haruhiism";
     public static final String MAIN_VERSION;
     public static final String FULL_VERSION;
 
     public static final Logger LOGGER = LogUtil.getLogger(MOD_NAME);
     private static final Marker CORE = LogUtil.getMarker("CORE");
 
-    public HaruhiCore() {
+    public Haruhiism() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.CONFIG);
 
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -53,7 +53,7 @@ public class HaruhiCore {
     }
 
     static {
-        Pair<String, String> version = VersionUtils.getModVersion(HaruhiCore.class);
+        Pair<String, String> version = VersionUtils.getModVersion(Haruhiism.class);
         MAIN_VERSION = version.getLeft();
         FULL_VERSION = version.getRight();
         LOGGER.info(CORE, "Version: " + MAIN_VERSION + " (" + FULL_VERSION + ")");

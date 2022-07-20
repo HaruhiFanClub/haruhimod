@@ -7,7 +7,7 @@ import net.minecraft.world.item.ItemStack;
 public class TabHCMainItems extends CreativeModeTab {
 
     public TabHCMainItems() {
-        super("haruhiCoreMainItems");
+        super("haruhiismMainItems");
     }
 
     @Override

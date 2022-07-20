@@ -1,6 +1,6 @@
 package com.haruhifanclub.haruhimod.haruhiism.common.sound;
 
-import com.haruhifanclub.haruhimod.haruhiism.HaruhiCore;
+import com.haruhifanclub.haruhimod.haruhiism.Haruhiism;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.registries.DeferredRegister;
@@ -9,10 +9,10 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class HCSoundEvents {
 
-    public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, HaruhiCore.MOD_ID);
+    public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, Haruhiism.MOD_ID);
 
     private static RegistryObject<SoundEvent> register(String id, String soundPath) {
-        return SOUND_EVENTS.register(id, () -> new SoundEvent(new ResourceLocation(HaruhiCore.MOD_ID, soundPath)));
+        return SOUND_EVENTS.register(id, () -> new SoundEvent(new ResourceLocation(Haruhiism.MOD_ID, soundPath)));
     }
 
 

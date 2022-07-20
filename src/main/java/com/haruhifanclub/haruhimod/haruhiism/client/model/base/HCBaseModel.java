@@ -1,6 +1,6 @@
 package com.haruhifanclub.haruhimod.haruhiism.client.model.base;
 
-import com.haruhifanclub.haruhimod.haruhiism.HaruhiCore;
+import com.haruhifanclub.haruhimod.haruhiism.Haruhiism;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.resources.ResourceLocation;
@@ -14,7 +14,7 @@ public interface HCBaseModel {
     }
 
     static ModelLayerLocation register(String model, String layer) {
-        return new ModelLayerLocation(new ResourceLocation(HaruhiCore.MOD_ID, model), layer);
+        return new ModelLayerLocation(new ResourceLocation(Haruhiism.MOD_ID, model), layer);
     }
 
 }

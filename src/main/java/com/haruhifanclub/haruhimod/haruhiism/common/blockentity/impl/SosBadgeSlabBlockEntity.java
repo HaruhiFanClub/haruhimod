@@ -1,6 +1,6 @@
 package com.haruhifanclub.haruhimod.haruhiism.common.blockentity.impl;
 
-import static com.haruhifanclub.haruhimod.haruhiism.HaruhiCore.LOGGER;
+import static com.haruhifanclub.haruhimod.haruhiism.Haruhiism.LOGGER;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;

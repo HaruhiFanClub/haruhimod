@@ -1,7 +1,7 @@
 package com.haruhifanclub.haruhimod.haruhiism.client.keybinding;
 
 import org.lwjgl.glfw.GLFW;
-import com.haruhifanclub.haruhimod.haruhiism.HaruhiCore;
+import com.haruhifanclub.haruhimod.haruhiism.Haruhiism;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraftforge.api.distmarker.Dist;
@@ -13,7 +13,7 @@ import net.minecraftforge.client.settings.KeyConflictContext;
 public class HCKeyMappings {
 
     private static KeyMapping create(String name, KeyConflictContext conflict, int key) {
-        return new KeyMapping("key." + HaruhiCore.MOD_ID + "." + name, conflict, InputConstants.Type.KEYSYM, key, "key.category." + HaruhiCore.MOD_ID);
+        return new KeyMapping("key." + Haruhiism.MOD_ID + "." + name, conflict, InputConstants.Type.KEYSYM, key, "key.category." + Haruhiism.MOD_ID);
     }
 
     private static void register(KeyMapping keyBinding) {

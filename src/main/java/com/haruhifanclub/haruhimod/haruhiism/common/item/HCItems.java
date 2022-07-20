@@ -1,7 +1,7 @@
 package com.haruhifanclub.haruhimod.haruhiism.common.item;
 
 import java.util.function.Supplier;
-import com.haruhifanclub.haruhimod.haruhiism.HaruhiCore;
+import com.haruhifanclub.haruhimod.haruhiism.Haruhiism;
 import com.haruhifanclub.haruhimod.haruhiism.api.item.HCTier;
 import com.haruhifanclub.haruhimod.haruhiism.common.block.HCBlocks;
 import com.haruhifanclub.haruhimod.haruhiism.common.item.base.HCMusicDiscItem;
@@ -31,7 +31,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public final class HCItems {
 
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, HaruhiCore.MOD_ID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Haruhiism.MOD_ID);
 
     private static RegistryObject<Item> register(String id, Supplier<? extends Item> sup) {
         return ITEMS.register(id, sup);
@@ -49,7 +49,7 @@ public final class HCItems {
     public static final RegistryObject<Item> DANCHOU_CONE_BLOCK = register("danchou_cone", DanchouConeBlockItem::new);
 
 
-    // HaruhiCore V2 //
+    // Haruhi Core V2 //
 
     // Armors
     public static final RegistryObject<Item> WIZARD_HAT_ITEM = register("wizard_hat", WizardHatItem::new);

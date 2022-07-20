@@ -37,7 +37,7 @@ public class HCHourglassItem extends Item implements IHCItem {
         int[] formatedDayTime = MCTimeUtils.formatDayTime(time[0]);
 
         TranslatableComponent fmt = new TranslatableComponent(
-            "item.haruhicore.hourglass.message.time_fmt",
+            "item.haruhiism.hourglass.message.time_fmt",
             String.format("%d", formatedDayTime[0]),
             String.format("%02d", formatedDayTime[1]),
             String.format("%02d", formatedDayTime[2]),
@@ -72,7 +72,7 @@ public class HCHourglassItem extends Item implements IHCItem {
     protected static void broadcastTime(Level level, Player player) {
         broadcast(
             level,
-            new TranslatableComponent("item.haruhicore.hourglass.message", player.getDisplayName(), getTimeMessage(level))
+            new TranslatableComponent("item.haruhiism.hourglass.message", player.getDisplayName(), getTimeMessage(level))
         );
     }
 

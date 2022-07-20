@@ -24,7 +24,7 @@ public class HCArmorItem extends ArmorItem implements IHCItem {
     @Override
     @OnlyIn(Dist.CLIENT)
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        return "haruhicore:textures/models/armor/" + this.material.getName() + ".png";
+        return "haruhiism:textures/models/armor/" + this.material.getName() + ".png";
     }
 
 }
