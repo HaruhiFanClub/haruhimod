@@ -1,14 +1,14 @@
 package com.haruhifanclub.haruhiism.client.keybinding;
 
 import com.haruhifanclub.haruhiism.common.item.impl.MikurusContactItem;
-import com.haruhifanclub.haruhiism.common.network.HCPacketHandler;
+import com.haruhifanclub.haruhiism.common.network.HMPacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class HCKeyInputHandler {
+public class HMKeyInputHandler {
 
     public static void onInput() {
         Minecraft mc = Minecraft.getInstance();
@@ -17,9 +17,9 @@ public class HCKeyInputHandler {
             return;
         }
 
-        if (HCKeyMappings.EMIT_MIKURU_BEAM_KEY.isDown()) {
+        if (HMKeyMappings.EMIT_MIKURU_BEAM_KEY.isDown()) {
             if (MikurusContactItem.canEmitMikuruBeam(player)) {
-                HCPacketHandler.sendToServer(new com.haruhifanclub.haruhiism.server.network.EmitMikuruBeamPacket(player.getUUID()));
+                HMPacketHandler.sendToServer(new com.haruhifanclub.haruhiism.server.network.EmitMikuruBeamPacket(player.getUUID()));
             }
         }
     }

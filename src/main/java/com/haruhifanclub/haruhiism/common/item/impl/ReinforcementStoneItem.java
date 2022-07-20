@@ -4,7 +4,7 @@ import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
 import org.auioc.mcmod.arnicalib.utils.game.EnchUtils;
 import org.auioc.mcmod.arnicalib.utils.game.VanillaPredicates;
 import com.haruhifanclub.haruhiism.common.config.CommonConfig;
-import com.haruhifanclub.haruhiism.common.item.base.HCReinforcementStoneItem;
+import com.haruhifanclub.haruhiism.common.item.base.HMReinforcementStoneItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.effect.MobEffects;
@@ -12,7 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 
-public class ReinforcementStoneItem extends HCReinforcementStoneItem {
+public class ReinforcementStoneItem extends HMReinforcementStoneItem {
 
     public ReinforcementStoneItem() {
         super(Rarity.COMMON);

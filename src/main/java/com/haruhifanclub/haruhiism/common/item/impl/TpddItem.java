@@ -5,9 +5,9 @@ import java.util.Collection;
 import java.util.List;
 import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
 import org.auioc.mcmod.arnicalib.utils.game.MCTimeUtils;
-import com.haruhifanclub.haruhiism.api.item.IHCBlessedItem;
+import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
 import com.haruhifanclub.haruhiism.common.config.CommonConfig;
-import com.haruhifanclub.haruhiism.common.item.base.HCHourglassItem;
+import com.haruhifanclub.haruhiism.common.item.base.HMHourglassItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -29,7 +29,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class TpddItem extends HCHourglassItem implements IHCBlessedItem {
+public class TpddItem extends HMHourglassItem implements IHMBlessedItem {
 
     private static final int readDuration = CommonConfig.TpddReadDuration.get() * 20;
     private static final int readCooldown = CommonConfig.TpddReadCooldown.get() * 20;

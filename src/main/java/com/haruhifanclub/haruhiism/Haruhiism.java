@@ -5,18 +5,18 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
 import org.auioc.mcmod.arnicalib.utils.LogUtil;
 import org.auioc.mcmod.arnicalib.utils.java.VersionUtils;
-import com.haruhifanclub.haruhiism.client.event.HCClientEventHandler;
-import com.haruhifanclub.haruhiism.client.keybinding.HCKeyMappings;
+import com.haruhifanclub.haruhiism.client.event.HMClientEventHandler;
+import com.haruhifanclub.haruhiism.client.keybinding.HMKeyMappings;
 import com.haruhifanclub.haruhiism.client.model.LayerDefinitionRegistry;
 import com.haruhifanclub.haruhiism.common.advancement.CriterionRegistry;
-import com.haruhifanclub.haruhiism.common.block.HCBlocks;
-import com.haruhifanclub.haruhiism.common.blockentity.HCBlockEntities;
+import com.haruhifanclub.haruhiism.common.block.HMBlocks;
+import com.haruhifanclub.haruhiism.common.blockentity.HMBlockEntities;
 import com.haruhifanclub.haruhiism.common.config.CommonConfig;
-import com.haruhifanclub.haruhiism.common.entity.HCEntities;
-import com.haruhifanclub.haruhiism.common.item.HCItems;
-import com.haruhifanclub.haruhiism.common.network.HCPacketHandler;
-import com.haruhifanclub.haruhiism.common.sound.HCSoundEvents;
-import com.haruhifanclub.haruhiism.server.event.HCServerEventHandler;
+import com.haruhifanclub.haruhiism.common.entity.HMEntities;
+import com.haruhifanclub.haruhiism.common.item.HMItems;
+import com.haruhifanclub.haruhiism.common.network.HMPacketHandler;
+import com.haruhifanclub.haruhiism.common.sound.HMSoundEvents;
+import com.haruhifanclub.haruhiism.server.event.HMServerEventHandler;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -60,17 +60,17 @@ public class Haruhiism {
     }
 
     private void modSetup(final IEventBus modEventBus) {
-        HCPacketHandler.init();
+        HMPacketHandler.init();
         CriterionRegistry.register();
-        HCBlocks.BLOCKS.register(modEventBus);
-        HCBlockEntities.BLOCK_ENTITIES.register(modEventBus);
-        HCEntities.ENTITIES.register(modEventBus);
-        HCItems.ITEMS.register(modEventBus);
-        HCSoundEvents.SOUND_EVENTS.register(modEventBus);
+        HMBlocks.BLOCKS.register(modEventBus);
+        HMBlockEntities.BLOCK_ENTITIES.register(modEventBus);
+        HMEntities.ENTITIES.register(modEventBus);
+        HMItems.ITEMS.register(modEventBus);
+        HMSoundEvents.SOUND_EVENTS.register(modEventBus);
     }
 
     private void forgeSetup(final IEventBus forgeEventBus) {
-        forgeEventBus.register(HCServerEventHandler.class);
+        forgeEventBus.register(HMServerEventHandler.class);
     }
 
 
@@ -85,13 +85,13 @@ public class Haruhiism {
 
         public void modSetup() {
             modEventBus.addListener((FMLClientSetupEvent event) -> {
-                HCKeyMappings.register();
+                HMKeyMappings.register();
             });
             modEventBus.addListener(LayerDefinitionRegistry::register);
         }
 
         public void forgeSetup() {
-            forgeEventBus.register(HCClientEventHandler.class);
+            forgeEventBus.register(HMClientEventHandler.class);
         }
     }
 

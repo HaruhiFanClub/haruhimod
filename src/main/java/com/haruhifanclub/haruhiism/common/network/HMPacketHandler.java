@@ -6,7 +6,7 @@ import com.haruhifanclub.haruhiism.Haruhiism;
 import com.haruhifanclub.haruhiism.server.network.EmitMikuruBeamPacket;
 import net.minecraft.server.level.ServerPlayer;
 
-public class HCPacketHandler {
+public class HMPacketHandler {
 
     private static final String PROTOCOL_VERSION = Integer.toString(1);
     private static final HPacketHandler HANDLER = new HPacketHandler(Haruhiism.MOD_ID, PROTOCOL_VERSION);

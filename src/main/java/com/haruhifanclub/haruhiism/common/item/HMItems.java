@@ -2,9 +2,9 @@ package com.haruhifanclub.haruhiism.common.item;
 
 import java.util.function.Supplier;
 import com.haruhifanclub.haruhiism.Haruhiism;
-import com.haruhifanclub.haruhiism.api.item.HCTier;
-import com.haruhifanclub.haruhiism.common.block.HCBlocks;
-import com.haruhifanclub.haruhiism.common.item.base.HCMusicDiscItem;
+import com.haruhifanclub.haruhiism.api.item.HMTier;
+import com.haruhifanclub.haruhiism.common.block.HMBlocks;
+import com.haruhifanclub.haruhiism.common.item.base.HMMusicDiscItem;
 import com.haruhifanclub.haruhiism.common.item.impl.BaseballBatItem;
 import com.haruhifanclub.haruhiism.common.item.impl.DanchouConeBlockItem;
 import com.haruhifanclub.haruhiism.common.item.impl.EpicReinforcementStoneItem;
@@ -21,15 +21,15 @@ import com.haruhifanclub.haruhiism.common.item.impl.WizardWandItem;
 import com.haruhifanclub.haruhiism.common.item.impl.YukisWizardCloakItem;
 import com.haruhifanclub.haruhiism.common.item.impl.YukisWizardHatItem;
 import com.haruhifanclub.haruhiism.common.item.impl.YukisWizardWandItem;
-import com.haruhifanclub.haruhiism.common.itemgroup.HCCreativeModeTabs;
-import com.haruhifanclub.haruhiism.common.sound.HCSoundEvents;
+import com.haruhifanclub.haruhiism.common.itemgroup.HMCreativeModeTabs;
+import com.haruhifanclub.haruhiism.common.sound.HMSoundEvents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public final class HCItems {
+public final class HMItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Haruhiism.MOD_ID);
 
@@ -45,7 +45,7 @@ public final class HCItems {
     public static final RegistryObject<Item> EPIC_REINFORCEMENT_STONE_ITEM = register("epic_reinforcement_stone", EpicReinforcementStoneItem::new);
 
     // Block items
-    public static final RegistryObject<Item> SOS_BADGE_SLAB_BLOCK = register("sos_badge_slab", () -> new BlockItem(HCBlocks.SOS_BADGE_SLAB_BLOCK.get(), new Item.Properties().tab(HCCreativeModeTabs.TAB_MAIN)));
+    public static final RegistryObject<Item> SOS_BADGE_SLAB_BLOCK = register("sos_badge_slab", () -> new BlockItem(HMBlocks.SOS_BADGE_SLAB_BLOCK.get(), new Item.Properties().tab(HMCreativeModeTabs.TAB_MAIN)));
     public static final RegistryObject<Item> DANCHOU_CONE_BLOCK = register("danchou_cone", DanchouConeBlockItem::new);
 
 
@@ -64,18 +64,18 @@ public final class HCItems {
     public static final RegistryObject<Item> BASEBALL_BAT_ITEM = register("baseball_bat", BaseballBatItem::new);
     public static final RegistryObject<Item> GUIDED_BASEBALL_BAT_ITEM = register("guided_baseball_bat", GuidedBaseballBatItem::new);
     public static final RegistryObject<Item> YUKIS_WIZARD_WAND_ITEM = register("yukis_wizard_wand", YukisWizardWandItem::new);
-    public static final RegistryObject<Item> INFERIOR_WIZARD_WAND_ITEM = register("inferior_wizard_wand", () -> new WizardWandItem(HCTier.INFERIOR));
-    public static final RegistryObject<Item> ORDINARY_WIZARD_WAND_ITEM = register("ordinary_wizard_wand", () -> new WizardWandItem(HCTier.ORDINARY));
-    public static final RegistryObject<Item> EXCELLENT_WIZARD_WAND_ITEM = register("excellent_wizard_wand", () -> new WizardWandItem(HCTier.EXCELLENT));
-    public static final RegistryObject<Item> RARE_WIZARD_WAND_ITEM = register("rare_wizard_wand", () -> new WizardWandItem(HCTier.RARE));
-    public static final RegistryObject<Item> EPIC_WIZARD_WAND_ITEM = register("epic_wizard_wand", () -> new WizardWandItem(HCTier.EPIC));
+    public static final RegistryObject<Item> INFERIOR_WIZARD_WAND_ITEM = register("inferior_wizard_wand", () -> new WizardWandItem(HMTier.INFERIOR));
+    public static final RegistryObject<Item> ORDINARY_WIZARD_WAND_ITEM = register("ordinary_wizard_wand", () -> new WizardWandItem(HMTier.ORDINARY));
+    public static final RegistryObject<Item> EXCELLENT_WIZARD_WAND_ITEM = register("excellent_wizard_wand", () -> new WizardWandItem(HMTier.EXCELLENT));
+    public static final RegistryObject<Item> RARE_WIZARD_WAND_ITEM = register("rare_wizard_wand", () -> new WizardWandItem(HMTier.RARE));
+    public static final RegistryObject<Item> EPIC_WIZARD_WAND_ITEM = register("epic_wizard_wand", () -> new WizardWandItem(HMTier.EPIC));
 
 
     // Music Discs
-    public static final RegistryObject<Item> MUSIC_DISC_ITEM_IN_THE_SUMMERTIME = register("music_disc_in_the_summertime", () -> new HCMusicDiscItem(HCSoundEvents.MUSIC_DISC_IN_THE_SUMMERTIME));
-    public static final RegistryObject<Item> MUSIC_DISC_ITEM_SOMEDAY_IN_THE_RAIN = register("music_disc_someday_in_the_rain", () -> new HCMusicDiscItem(HCSoundEvents.MUSIC_DISC_SOMEDAY_IN_THE_RAIN));
-    public static final RegistryObject<Item> MUSIC_DISC_ITEM_VOX_IN_BOX = register("music_disc_vox_in_box", () -> new HCMusicDiscItem(HCSoundEvents.MUSIC_DISC_VOX_IN_BOX));
-    public static final RegistryObject<Item> MUSIC_DISC_ITEM_HALO = register("music_disc_halo", () -> new HCMusicDiscItem(HCSoundEvents.MUSIC_DISC_HALO));
+    public static final RegistryObject<Item> MUSIC_DISC_ITEM_IN_THE_SUMMERTIME = register("music_disc_in_the_summertime", () -> new HMMusicDiscItem(HMSoundEvents.MUSIC_DISC_IN_THE_SUMMERTIME));
+    public static final RegistryObject<Item> MUSIC_DISC_ITEM_SOMEDAY_IN_THE_RAIN = register("music_disc_someday_in_the_rain", () -> new HMMusicDiscItem(HMSoundEvents.MUSIC_DISC_SOMEDAY_IN_THE_RAIN));
+    public static final RegistryObject<Item> MUSIC_DISC_ITEM_VOX_IN_BOX = register("music_disc_vox_in_box", () -> new HMMusicDiscItem(HMSoundEvents.MUSIC_DISC_VOX_IN_BOX));
+    public static final RegistryObject<Item> MUSIC_DISC_ITEM_HALO = register("music_disc_halo", () -> new HMMusicDiscItem(HMSoundEvents.MUSIC_DISC_HALO));
 
     public static final RegistryObject<Item> HOURGLASS_ITEM = register("hourglass", HourglassItem::new);
     public static final RegistryObject<Item> TPDD_ITEM = register("tpdd", TpddItem::new);

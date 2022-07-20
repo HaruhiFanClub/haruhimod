@@ -3,10 +3,10 @@ package com.haruhifanclub.haruhiism.common.item.base;
 import java.util.List;
 import org.auioc.mcmod.arnicalib.utils.game.SoundUtils;
 import org.auioc.mcmod.arnicalib.utils.game.TextUtils;
-import com.haruhifanclub.haruhiism.api.item.IHCItem;
+import com.haruhifanclub.haruhiism.api.item.IHMItem;
 import com.haruhifanclub.haruhiism.common.advancement.criterion.ItemReinforcedTrigger;
 import com.haruhifanclub.haruhiism.common.config.CommonConfig;
-import com.haruhifanclub.haruhiism.common.itemgroup.HCCreativeModeTabs;
+import com.haruhifanclub.haruhiism.common.itemgroup.HMCreativeModeTabs;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -21,14 +21,14 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public abstract class HCReinforcementStoneItem extends Item implements IHCItem {
+public abstract class HMReinforcementStoneItem extends Item implements IHMItem {
 
     private static final String messageKey = "item.haruhiism.reinforcement_stone.";
 
-    public HCReinforcementStoneItem(Rarity rarity) {
+    public HMReinforcementStoneItem(Rarity rarity) {
         super(
             new Item.Properties()
-                .tab(HCCreativeModeTabs.TAB_MAIN)
+                .tab(HMCreativeModeTabs.TAB_MAIN)
                 .rarity(rarity)
                 .stacksTo(16)
         );

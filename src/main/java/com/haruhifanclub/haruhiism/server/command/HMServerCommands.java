@@ -8,7 +8,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.tree.CommandNode;
 import net.minecraft.commands.CommandSourceStack;
 
-public final class HCServerCommands {
+public final class HMServerCommands {
 
     public static final CommandNode<CommandSourceStack> NODE = literal(Haruhiism.MOD_ID).build();
 

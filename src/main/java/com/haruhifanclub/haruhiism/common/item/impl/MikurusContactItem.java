@@ -1,11 +1,11 @@
 package com.haruhifanclub.haruhiism.common.item.impl;
 
 import org.auioc.mcmod.arnicalib.utils.game.EntityUtils;
-import com.haruhifanclub.haruhiism.api.item.IHCBlessedItem;
+import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
 import com.haruhifanclub.haruhiism.common.config.CommonConfig;
 import com.haruhifanclub.haruhiism.common.damagesource.MikuruBeamDamageSource;
-import com.haruhifanclub.haruhiism.common.item.HCItems;
-import com.haruhifanclub.haruhiism.common.itemgroup.HCCreativeModeTabs;
+import com.haruhifanclub.haruhiism.common.item.HMItems;
+import com.haruhifanclub.haruhiism.common.itemgroup.HMCreativeModeTabs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class MikurusContactItem extends Item implements IHCBlessedItem {
+public class MikurusContactItem extends Item implements IHMBlessedItem {
 
     private static final EquipmentSlot equipmentSlotType = EquipmentSlot.HEAD;
     private static final double rayLength = CommonConfig.MikurusContactLaserLength.get();
@@ -31,7 +31,7 @@ public class MikurusContactItem extends Item implements IHCBlessedItem {
     public MikurusContactItem() {
         super(
             new Item.Properties()
-                .tab(HCCreativeModeTabs.TAB_MAIN)
+                .tab(HMCreativeModeTabs.TAB_MAIN)
                 .stacksTo(1)
         );
     }
@@ -94,7 +94,7 @@ public class MikurusContactItem extends Item implements IHCBlessedItem {
     public static void renderMikuruBeam() {}
 
     public static boolean isEquipped(Player player) {
-        return (player.getItemBySlot(EquipmentSlot.HEAD).getItem()).equals(HCItems.MIKURUS_CONTACT_ITEM.get());
+        return (player.getItemBySlot(EquipmentSlot.HEAD).getItem()).equals(HMItems.MIKURUS_CONTACT_ITEM.get());
     }
 
     public static boolean canEmitMikuruBeam(Player player) {

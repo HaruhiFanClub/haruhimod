@@ -6,10 +6,10 @@ import java.util.Map.Entry;
 import org.auioc.mcmod.arnicalib.utils.game.EntityUtils;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.haruhifanclub.haruhiism.api.item.IHCBlessedItem;
+import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
 import com.haruhifanclub.haruhiism.common.config.CommonConfig;
-import com.haruhifanclub.haruhiism.common.item.HCItems;
-import com.haruhifanclub.haruhiism.common.item.base.HCBaseballBatItem;
+import com.haruhifanclub.haruhiism.common.item.HMItems;
+import com.haruhifanclub.haruhiism.common.item.base.HMBaseballBatItem;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -29,7 +29,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.common.ForgeTier;
 import net.minecraftforge.common.Tags;
 
-public class GuidedBaseballBatItem extends HCBaseballBatItem implements IHCBlessedItem {
+public class GuidedBaseballBatItem extends HMBaseballBatItem implements IHMBlessedItem {
 
     private static final double knockbackDamageMultiplier = CommonConfig.GuidedBaseballBatKnockbackDamageMultiplier.get();
     private static final double hitProjectileRayLength = CommonConfig.GuidedBaseballBatHitProjectileRayTraceLength.get();
@@ -40,7 +40,7 @@ public class GuidedBaseballBatItem extends HCBaseballBatItem implements IHCBless
             new ForgeTier(
                 0, 708, 4.0F, 0.0F, 66,
                 Tags.Blocks.NEEDS_WOOD_TOOL,
-                () -> Ingredient.of(HCItems.REINFORCEMENT_STONE_ITEM.get())
+                () -> Ingredient.of(HMItems.REINFORCEMENT_STONE_ITEM.get())
             ),
             3,
             1.0F

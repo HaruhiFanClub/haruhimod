@@ -3,16 +3,16 @@ package com.haruhifanclub.haruhiism.common.item.impl;
 import org.apache.commons.lang3.RandomUtils;
 import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
 import org.auioc.mcmod.arnicalib.utils.game.EnchUtils;
-import com.haruhifanclub.haruhiism.api.item.IHCBlessedItem;
+import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
 import com.haruhifanclub.haruhiism.common.config.CommonConfig;
-import com.haruhifanclub.haruhiism.common.item.base.HCReinforcementStoneItem;
+import com.haruhifanclub.haruhiism.common.item.base.HMReinforcementStoneItem;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 
-public class EpicReinforcementStoneItem extends HCReinforcementStoneItem implements IHCBlessedItem {
+public class EpicReinforcementStoneItem extends HMReinforcementStoneItem implements IHMBlessedItem {
 
     public EpicReinforcementStoneItem() {
         super(Rarity.EPIC);

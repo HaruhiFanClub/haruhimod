@@ -2,8 +2,8 @@ package com.haruhifanclub.haruhiism.common.item.impl;
 
 import java.util.Collection;
 import org.auioc.mcmod.arnicalib.utils.game.EntityUtils;
-import com.haruhifanclub.haruhiism.api.item.IHCBlessedItem;
-import com.haruhifanclub.haruhiism.common.item.base.HCWizardWandItem;
+import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
+import com.haruhifanclub.haruhiism.common.item.base.HMWizardWandItem;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -13,7 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 
-public class YukisWizardWandItem extends HCWizardWandItem implements IHCBlessedItem {
+public class YukisWizardWandItem extends HMWizardWandItem implements IHMBlessedItem {
 
     private static final double depriveEffectLength = 6.0D;
     private static final int DEPRIVE_EFFECT_COOLDOWN = 2 * 20;

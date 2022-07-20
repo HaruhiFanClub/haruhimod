@@ -2,8 +2,8 @@ package com.haruhifanclub.haruhiism.common.item.base;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import com.haruhifanclub.haruhiism.api.item.IHCItem;
-import com.haruhifanclub.haruhiism.common.itemgroup.HCCreativeModeTabs;
+import com.haruhifanclub.haruhiism.api.item.IHMItem;
+import com.haruhifanclub.haruhiism.common.itemgroup.HMCreativeModeTabs;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -14,14 +14,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-public abstract class HCWizardWandItem extends Item implements IHCItem {
+public abstract class HMWizardWandItem extends Item implements IHMItem {
 
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 
-    public HCWizardWandItem() {
+    public HMWizardWandItem() {
         super(
             new Item.Properties()
-                .tab(HCCreativeModeTabs.TAB_MAIN)
+                .tab(HMCreativeModeTabs.TAB_MAIN)
                 .stacksTo(1)
         );
         ImmutableMultimap.Builder<Attribute, AttributeModifier> modifiers = ImmutableMultimap.builder();

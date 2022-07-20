@@ -2,7 +2,7 @@ package com.haruhifanclub.haruhiism.common.block.impl;
 
 import javax.annotation.Nullable;
 import org.auioc.mcmod.arnicalib.api.game.block.HBlockMaterial;
-import com.haruhifanclub.haruhiism.common.blockentity.HCBlockEntities;
+import com.haruhifanclub.haruhiism.common.blockentity.HMBlockEntities;
 import com.haruhifanclub.haruhiism.common.blockentity.impl.SosBadgeSlabBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -124,7 +124,7 @@ public class SosBadgeSlabBlock extends BaseEntityBlock {
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return level.isClientSide() ? null : createTickerHelper(type, HCBlockEntities.SOS_BADGE_SLAB_BLOCK_ENTITY.get(), SosBadgeSlabBlockEntity::serverTick);
+        return level.isClientSide() ? null : createTickerHelper(type, HMBlockEntities.SOS_BADGE_SLAB_BLOCK_ENTITY.get(), SosBadgeSlabBlockEntity::serverTick);
     }
 
 }

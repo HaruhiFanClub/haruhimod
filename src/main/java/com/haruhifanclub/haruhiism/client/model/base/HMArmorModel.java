@@ -8,13 +8,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.decoration.ArmorStand;
 
-public class HCArmorModel extends HumanoidModel<LivingEntity> {
+public class HMArmorModel extends HumanoidModel<LivingEntity> {
 
-    public HCArmorModel(ModelPart root) {
+    public HMArmorModel(ModelPart root) {
         super(root);
     }
 
-    public HCArmorModel(ModelPart root, Function<ResourceLocation, RenderType> renderType) {
+    public HMArmorModel(ModelPart root, Function<ResourceLocation, RenderType> renderType) {
         super(root, renderType);
     }
 

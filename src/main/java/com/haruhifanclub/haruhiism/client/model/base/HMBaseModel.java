@@ -5,7 +5,7 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.resources.ResourceLocation;
 
-public interface HCBaseModel {
+public interface HMBaseModel {
 
     CubeDeformation cubeDeformationZero = new CubeDeformation(0.0F);
 

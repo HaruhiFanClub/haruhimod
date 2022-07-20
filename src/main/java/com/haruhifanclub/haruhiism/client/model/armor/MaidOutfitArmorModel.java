@@ -1,6 +1,6 @@
 package com.haruhifanclub.haruhiism.client.model.armor;
 
-import com.haruhifanclub.haruhiism.client.model.base.HCBaseModel;
+import com.haruhifanclub.haruhiism.client.model.base.HMBaseModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.HumanoidModel;
@@ -14,9 +14,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class MaidOutfitArmorModel extends HumanoidModel<LivingEntity> implements HCBaseModel {
+public class MaidOutfitArmorModel extends HumanoidModel<LivingEntity> implements HMBaseModel {
 
-    public static final ModelLayerLocation LAYER_LOCATION = HCBaseModel.register("maid_outfit_armor");
+    public static final ModelLayerLocation LAYER_LOCATION = HMBaseModel.register("maid_outfit_armor");
     private final ModelPart body;
 
     public MaidOutfitArmorModel(ModelPart root) {

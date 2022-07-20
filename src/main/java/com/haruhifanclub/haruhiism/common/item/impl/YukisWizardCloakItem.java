@@ -2,11 +2,11 @@ package com.haruhifanclub.haruhiism.common.item.impl;
 
 import java.util.function.Consumer;
 import org.auioc.mcmod.arnicalib.api.game.item.HArmorMaterial;
-import com.haruhifanclub.haruhiism.api.item.IHCBlessedItem;
+import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
 import com.haruhifanclub.haruhiism.client.render.armor.WizardCloakArmorRender;
 import com.haruhifanclub.haruhiism.common.config.CommonConfig;
-import com.haruhifanclub.haruhiism.common.item.HCItems;
-import com.haruhifanclub.haruhiism.common.item.base.HCArmorItem;
+import com.haruhifanclub.haruhiism.common.item.HMItems;
+import com.haruhifanclub.haruhiism.common.item.base.HMArmorItem;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -19,7 +19,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.IItemRenderProperties;
 
-public class YukisWizardCloakItem extends HCArmorItem implements IHCBlessedItem {
+public class YukisWizardCloakItem extends HMArmorItem implements IHMBlessedItem {
 
     private static final int effectDuration = CommonConfig.YukisWizardCloakEffectDuration.get() * 20;
 
@@ -31,7 +31,7 @@ public class YukisWizardCloakItem extends HCArmorItem implements IHCBlessedItem 
                 .setToughness(4)
                 .setEnchantmentValue(66)
                 .setRepairIngredient(() -> {
-                    return Ingredient.of(HCItems.REINFORCEMENT_STONE_ITEM.get());
+                    return Ingredient.of(HMItems.REINFORCEMENT_STONE_ITEM.get());
                 }),
             EquipmentSlot.CHEST
         );
@@ -56,7 +56,7 @@ public class YukisWizardCloakItem extends HCArmorItem implements IHCBlessedItem 
     }
 
     public static boolean isEquipped(Player player) {
-        return (player.getItemBySlot(EquipmentSlot.CHEST).getItem()).equals(HCItems.YUKIS_WIZARD_CLOAK_ITEM.get());
+        return (player.getItemBySlot(EquipmentSlot.CHEST).getItem()).equals(HMItems.YUKIS_WIZARD_CLOAK_ITEM.get());
     }
 
     @Override

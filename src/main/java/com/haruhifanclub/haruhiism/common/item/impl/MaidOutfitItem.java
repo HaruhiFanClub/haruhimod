@@ -3,15 +3,15 @@ package com.haruhifanclub.haruhiism.common.item.impl;
 import java.util.function.Consumer;
 import org.auioc.mcmod.arnicalib.api.game.item.HArmorMaterial;
 import com.haruhifanclub.haruhiism.client.render.armor.MaidOutfitArmorRender;
-import com.haruhifanclub.haruhiism.common.item.HCItems;
-import com.haruhifanclub.haruhiism.common.item.base.HCArmorItem;
+import com.haruhifanclub.haruhiism.common.item.HMItems;
+import com.haruhifanclub.haruhiism.common.item.base.HMArmorItem;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.IItemRenderProperties;
 
-public class MaidOutfitItem extends HCArmorItem {
+public class MaidOutfitItem extends HMArmorItem {
 
     public MaidOutfitItem() {
         super(
@@ -20,7 +20,7 @@ public class MaidOutfitItem extends HCArmorItem {
                 .setDefense(3)
                 .setEnchantmentValue(15)
                 .setRepairIngredient(() -> {
-                    return Ingredient.of(HCItems.REINFORCEMENT_STONE_ITEM.get());
+                    return Ingredient.of(HMItems.REINFORCEMENT_STONE_ITEM.get());
                 }),
             EquipmentSlot.CHEST
         );

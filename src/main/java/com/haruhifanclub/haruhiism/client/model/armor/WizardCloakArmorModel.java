@@ -1,7 +1,7 @@
 package com.haruhifanclub.haruhiism.client.model.armor;
 
 import com.google.common.collect.ImmutableList;
-import com.haruhifanclub.haruhiism.client.model.base.HCBaseModel;
+import com.haruhifanclub.haruhiism.client.model.base.HMBaseModel;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -16,9 +16,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class WizardCloakArmorModel extends HumanoidModel<LivingEntity> implements HCBaseModel {
+public class WizardCloakArmorModel extends HumanoidModel<LivingEntity> implements HMBaseModel {
 
-    public static final ModelLayerLocation LAYER_LOCATION = HCBaseModel.register("wizard_cloak_armor");
+    public static final ModelLayerLocation LAYER_LOCATION = HMBaseModel.register("wizard_cloak_armor");
     private final ModelPart cloak;
 
     public WizardCloakArmorModel(ModelPart root) {

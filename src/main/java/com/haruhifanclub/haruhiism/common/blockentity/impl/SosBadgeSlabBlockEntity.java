@@ -12,7 +12,7 @@ import org.auioc.mcmod.arnicalib.utils.game.ItemUtils;
 import org.auioc.mcmod.arnicalib.utils.game.PlayerUtils;
 import com.haruhifanclub.haruhiism.common.advancement.criterion.SosBadgeSlabTrigger;
 import com.haruhifanclub.haruhiism.common.block.impl.SosBadgeSlabBlock;
-import com.haruhifanclub.haruhiism.common.blockentity.HCBlockEntities;
+import com.haruhifanclub.haruhiism.common.blockentity.HMBlockEntities;
 import com.haruhifanclub.haruhiism.common.config.CommonConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -45,7 +45,7 @@ public class SosBadgeSlabBlockEntity extends BlockEntity {
     private static final Marker DOUBLE_MARKER = LogUtil.getMarker("DOUBLE").addParents(MARKER);
 
     public SosBadgeSlabBlockEntity(BlockPos pos, BlockState state) {
-        super(HCBlockEntities.SOS_BADGE_SLAB_BLOCK_ENTITY.get(), pos, state);
+        super(HMBlockEntities.SOS_BADGE_SLAB_BLOCK_ENTITY.get(), pos, state);
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, SosBadgeSlabBlockEntity tile) {

@@ -1,8 +1,8 @@
 package com.haruhifanclub.haruhiism.common.item.base;
 
 import org.auioc.mcmod.arnicalib.utils.game.MCTimeUtils;
-import com.haruhifanclub.haruhiism.api.item.IHCItem;
-import com.haruhifanclub.haruhiism.common.itemgroup.HCCreativeModeTabs;
+import com.haruhifanclub.haruhiism.api.item.IHMItem;
+import com.haruhifanclub.haruhiism.common.itemgroup.HMCreativeModeTabs;
 import net.minecraft.Util;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
@@ -17,12 +17,12 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-public class HCHourglassItem extends Item implements IHCItem {
+public class HMHourglassItem extends Item implements IHMItem {
 
-    public HCHourglassItem() {
+    public HMHourglassItem() {
         super(
             new Item.Properties()
-                .tab(HCCreativeModeTabs.TAB_MAIN)
+                .tab(HMCreativeModeTabs.TAB_MAIN)
                 .stacksTo(1)
         );
     }

@@ -1,7 +1,7 @@
 package com.haruhifanclub.haruhiism.common.item.base;
 
-import com.haruhifanclub.haruhiism.api.item.IHCItem;
-import com.haruhifanclub.haruhiism.common.itemgroup.HCCreativeModeTabs;
+import com.haruhifanclub.haruhiism.api.item.IHMItem;
+import com.haruhifanclub.haruhiism.common.itemgroup.HMCreativeModeTabs;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
@@ -11,13 +11,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class HCArmorItem extends ArmorItem implements IHCItem {
+public class HMArmorItem extends ArmorItem implements IHMItem {
 
-    public HCArmorItem(ArmorMaterial material, EquipmentSlot slotType) {
+    public HMArmorItem(ArmorMaterial material, EquipmentSlot slotType) {
         super(
             material,
             slotType,
-            new Item.Properties().tab(HCCreativeModeTabs.TAB_MAIN)
+            new Item.Properties().tab(HMCreativeModeTabs.TAB_MAIN)
         );
     }
 
