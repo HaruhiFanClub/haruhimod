@@ -3,6 +3,7 @@ package com.haruhifanclub.haruhiism.common.item.impl;
 import java.util.List;
 import java.util.function.Consumer;
 import org.auioc.mcmod.arnicalib.api.game.item.HArmorMaterial;
+import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
 import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
 import com.haruhifanclub.haruhiism.client.render.armor.MaidOutfitArmorRender;
 import com.haruhifanclub.haruhiism.common.config.CommonConfig;
@@ -44,34 +45,32 @@ public class MikurusMaidOutfitItem extends HMArmorItem implements IHMBlessedItem
 
     @Override
     public void inventoryTick(ItemStack stack, Level world, Entity entity, int index, boolean selected) {
-        if (world.isClientSide) {
-            return;
-        }
+        if (world.isClientSide) return;
 
         Player player = ((Player) entity);
 
-        ItemStack headItemStack = player.getItemBySlot(EquipmentSlot.CHEST);
-        if (!(headItemStack.getItem()).equals(this)) {
-            return;
-        }
+        if (!isEquipped(player)) return;
 
-        player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 4, MikurusContactItem.isEquipped(player) ? 1 : 0, true, true));
+        addEffect(player, MikurusContactItem.isEquipped(player) ? 1 : 0);
 
         AABB aabb = (new AABB(player.blockPosition())).inflate(effectRange).expandTowards(0.0D, effectRange, 0.0D);
-
         List<LivingEntity> list = player.level.getEntitiesOfClass(LivingEntity.class, aabb);
-        for (LivingEntity entity2 : list) {
-            if (entity2.equals(player)) {
-                continue;
-            }
+        for (var entity2 : list) {
+            if (entity2.equals(player)) continue;
 
             if (entity2 instanceof Player) {
                 if (forOtherPlayers) {
-                    entity2.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 4));
+                    addEffect(entity2, 0);
                 }
             } else if ((forFriendlyEntities) && (entity2.getType().getCategory().isFriendly())) {
-                entity2.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 4));
+                addEffect(entity2, 0);
             }
+        }
+    }
+
+    private static void addEffect(LivingEntity living, int amplifier) {
+        if (EffectUtils.getEffectLevel(living, MobEffects.REGENERATION) == 0) {
+            living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 300, amplifier, true, true));
         }
     }
 

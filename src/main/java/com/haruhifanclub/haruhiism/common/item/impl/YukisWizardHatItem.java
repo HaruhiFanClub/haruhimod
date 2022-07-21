@@ -2,10 +2,12 @@ package com.haruhifanclub.haruhiism.common.item.impl;
 
 import java.util.function.Consumer;
 import org.auioc.mcmod.arnicalib.api.game.item.HArmorMaterial;
+import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
 import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
 import com.haruhifanclub.haruhiism.client.render.armor.WizardHatArmorRender;
 import com.haruhifanclub.haruhiism.common.item.HMItems;
 import com.haruhifanclub.haruhiism.common.item.base.HMArmorItem;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -41,15 +43,21 @@ public class YukisWizardHatItem extends HMArmorItem implements IHMBlessedItem {
             return;
         }
 
-        LivingEntity livingEntity = ((LivingEntity) entity);
+        LivingEntity living = ((LivingEntity) entity);
 
-        ItemStack headItemStack = livingEntity.getItemBySlot(EquipmentSlot.HEAD);
+        ItemStack headItemStack = living.getItemBySlot(EquipmentSlot.HEAD);
         if ((headItemStack.getItem()).equals(this)) {
-            livingEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60));
-            livingEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60));
-            livingEntity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 60));
-            livingEntity.addEffect(new MobEffectInstance(MobEffects.LUCK, 60));
+            addEffect(living, MobEffects.DAMAGE_RESISTANCE);
+            addEffect(living, MobEffects.GLOWING);
+            addEffect(living, MobEffects.LUCK);
+            if (EffectUtils.getEffectLevel(living, MobEffects.REGENERATION) == 0) {
+                addEffect(living, MobEffects.REGENERATION);
+            }
         }
+    }
+
+    private static void addEffect(LivingEntity living, MobEffect effect) {
+        living.addEffect(new MobEffectInstance(effect, 50, 0, true, true));
     }
 
     public static boolean isEquipped(Player player) {
