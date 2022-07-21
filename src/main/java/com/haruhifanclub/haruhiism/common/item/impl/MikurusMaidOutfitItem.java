@@ -76,7 +76,7 @@ public class MikurusMaidOutfitItem extends HMArmorItem implements IHMBlessedItem
     }
 
     public static boolean isEquipped(Player player) {
-        return (player.getItemBySlot(EquipmentSlot.CHEST).getItem()).equals(HMItems.MIKURUS_MAID_OUTFIT_ITEM.get());
+        return player.getItemBySlot(EquipmentSlot.CHEST).is(HMItems.MIKURUS_MAID_OUTFIT_ITEM.get());
     }
 
     @Override

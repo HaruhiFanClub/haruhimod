@@ -20,7 +20,7 @@ public class DanchouConeBlockItem extends BlockItem implements IHMBlessedItem {
     }
 
     public static boolean isEquipped(Player player) {
-        return (player.getItemBySlot(EquipmentSlot.HEAD).getItem()).equals(HMItems.DANCHOU_CONE_BLOCK.get());
+        return player.getItemBySlot(EquipmentSlot.HEAD).is(HMItems.DANCHOU_CONE_BLOCK.get());
 
     }
 

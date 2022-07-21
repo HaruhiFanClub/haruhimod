@@ -56,7 +56,7 @@ public class YukisWizardCloakItem extends HMArmorItem implements IHMBlessedItem 
     }
 
     public static boolean isEquipped(Player player) {
-        return (player.getItemBySlot(EquipmentSlot.CHEST).getItem()).equals(HMItems.YUKIS_WIZARD_CLOAK_ITEM.get());
+        return player.getItemBySlot(EquipmentSlot.CHEST).is(HMItems.YUKIS_WIZARD_CLOAK_ITEM.get());
     }
 
     @Override

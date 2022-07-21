@@ -53,7 +53,7 @@ public class YukisWizardHatItem extends HMArmorItem implements IHMBlessedItem {
     }
 
     public static boolean isEquipped(Player player) {
-        return (player.getItemBySlot(EquipmentSlot.HEAD).getItem()).equals(HMItems.YUKIS_WIZARD_HAT_ITEM.get());
+        return player.getItemBySlot(EquipmentSlot.HEAD).is(HMItems.YUKIS_WIZARD_HAT_ITEM.get());
     }
 
     @Override

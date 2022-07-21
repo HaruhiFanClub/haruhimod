@@ -94,7 +94,7 @@ public class MikurusContactItem extends Item implements IHMBlessedItem {
     public static void renderMikuruBeam() {}
 
     public static boolean isEquipped(Player player) {
-        return (player.getItemBySlot(EquipmentSlot.HEAD).getItem()).equals(HMItems.MIKURUS_CONTACT_ITEM.get());
+        return player.getItemBySlot(EquipmentSlot.HEAD).is(HMItems.MIKURUS_CONTACT_ITEM.get());
     }
 
     public static boolean canEmitMikuruBeam(Player player) {
