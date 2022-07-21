@@ -55,7 +55,7 @@ public class MikurusMaidOutfitItem extends HMArmorItem implements IHMBlessedItem
             return;
         }
 
-        player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 4, 0, true, true));
+        player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 4, MikurusContactItem.isEquipped(player) ? 1 : 0, true, true));
 
         AABB aabb = (new AABB(player.blockPosition())).inflate(effectRange).expandTowards(0.0D, effectRange, 0.0D);
 
