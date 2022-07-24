@@ -7,12 +7,8 @@ import com.haruhifanclub.haruhiism.common.damagesource.MikuruBeamDamageSource;
 import com.haruhifanclub.haruhiism.common.item.HMItems;
 import com.haruhifanclub.haruhiism.common.itemgroup.HMCreativeModeTabs;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -21,12 +17,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class MikurusContactItem extends Item implements IHMBlessedItem {
-
-    private static final EquipmentSlot equipmentSlotType = EquipmentSlot.HEAD;
-    private static final double rayLength = CommonConfig.MikurusContactLaserLength.get();
-    private static final int cooldown = CommonConfig.MikurusContactLaserCooldown.get() * 20;
+public class MikurusContactItem extends Item implements IHMBlessedItem, ICurioItem {
 
     public MikurusContactItem() {
         super(
@@ -36,41 +31,27 @@ public class MikurusContactItem extends Item implements IHMBlessedItem {
         );
     }
 
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
-        ItemStack itemStack = player.getItemInHand(hand);
-        ItemStack headItemStack = player.getItemBySlot(equipmentSlotType);
-        if (headItemStack.isEmpty()) {
-            player.setItemSlot(equipmentSlotType, itemStack.copy());
-            itemStack.setCount(0);
-            return InteractionResultHolder.sidedSuccess(itemStack, world.isClientSide());
-        } else {
-            return InteractionResultHolder.fail(itemStack);
-        }
+    public static int getCooldown() {
+        return CommonConfig.MikurusContactLaserCooldown.get() * 20;
     }
 
-    @Override
-    public boolean canEquip(ItemStack itemStack, EquipmentSlot armorType, Entity entity) {
-        if (armorType.compareTo(equipmentSlotType) == 0) {
+    public static boolean isEquipped(Player player) {
+        return CuriosApi.getCuriosHelper().findCurios(player, HMItems.MIKURUS_CONTACT_ITEM.get()).size() > 0;
+    }
+
+    /* ============================================================================================================== */
+    // #region MikuruBeam
+
+    public static boolean canEmitMikuruBeam(Player player) {
+        if (isEquipped(player) && MikurusMaidOutfitItem.isEquipped(player)) {
             return true;
         }
         return false;
     }
 
-    @Override
-    public void onArmorTick(ItemStack stack, Level world, Player player) {
-        if (player.hasEffect(MobEffects.BLINDNESS)) {
-            player.removeEffect(MobEffects.BLINDNESS);
-        }
-
-        if (MikurusMaidOutfitItem.isEquipped(player)) {
-            player.addEffect(new MobEffectInstance(MobEffects.HERO_OF_THE_VILLAGE, 4, 0, true, true));
-        }
-    }
-
     public static int emitMikuruBeam(Player player) {
         return EntityUtils.rayHitLivingEntityOrBlock(
-            player, rayLength,
+            player, CommonConfig.MikurusContactLaserLength.get(),
             (e) -> {
                 LivingEntity target = (LivingEntity) e.getEntity();
                 if (target.hurt(MikuruBeamDamageSource.build(target, player), player.getHealth() * 0.3F)) {
@@ -93,19 +74,29 @@ public class MikurusContactItem extends Item implements IHMBlessedItem {
     @OnlyIn(Dist.CLIENT)
     public static void renderMikuruBeam() {}
 
-    public static boolean isEquipped(Player player) {
-        return player.getItemBySlot(EquipmentSlot.HEAD).is(HMItems.MIKURUS_CONTACT_ITEM.get());
-    }
+    // #endregion MikuruBeam
 
-    public static boolean canEmitMikuruBeam(Player player) {
-        if (isEquipped(player) && MikurusMaidOutfitItem.isEquipped(player)) {
-            return true;
+    /* ============================================================================================================== */
+    // #region Curios
+
+    @Override
+    public void curioTick(SlotContext slotCtx, ItemStack stack) {
+        if (slotCtx.entity() instanceof Player player) {
+            if (player.hasEffect(MobEffects.BLINDNESS)) {
+                player.removeEffect(MobEffects.BLINDNESS);
+            }
+
+            if (MikurusMaidOutfitItem.isEquipped(player)) {
+                player.addEffect(new MobEffectInstance(MobEffects.HERO_OF_THE_VILLAGE, 4, 0, true, true));
+            }
         }
-        return false;
     }
 
-    public static int getCooldown() {
-        return cooldown;
+    @Override
+    public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
+        return true;
     }
+
+    // #endregion Curios
 
 }

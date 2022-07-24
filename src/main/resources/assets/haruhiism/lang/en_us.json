@@ -50,5 +50,7 @@
     "item.haruhiism.hourglass.message.time_fmt": "Day %1$s %2$s:%3$s:%4$s",
 
     "item.haruhiism.tpdd": "Time Plane Destroy Device",
-    "item.haruhiism.tpdd.read.message": "Player %s has returned to %s."
+    "item.haruhiism.tpdd.read.message": "Player %s has returned to %s.",
+
+    "curios.identifier.face": "Face"
 }

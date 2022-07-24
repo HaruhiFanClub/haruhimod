@@ -29,6 +29,8 @@ minecraft {
             property 'file.encoding', 'UTF-8'
             property 'user.language', 'en'
             property 'log4j.configurationFile', 'log4j2.xml'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
             mods {
                 haruhiism {
                     source sourceSets.main
@@ -41,6 +43,8 @@ minecraft {
             property 'file.encoding', 'UTF-8'
             property 'user.language', 'en'
             property 'log4j.configurationFile', 'log4j2.xml'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
             mods {
                 haruhiism {
                     source sourceSets.main
@@ -66,6 +70,9 @@ repositories {
         }
     }
     maven {
+        url = "https://maven.theillusivec4.top/"
+    }
+    maven {
         url "https://maven.pkg.github.com/auioc/arnicalib-mcmod"
         credentials {
             username = System.getenv("GITHUB_ACTOR") ? System.getenv("GITHUB_ACTOR") : System.getenv("GITHUB_USERNAME")
@@ -77,6 +84,8 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
+
     if (local_debug.toBoolean()){
         implementation fileTree(dir: 'libs', include: ['*/*-forgelib.jar', '*/*-api.jar'])
     } else {
@@ -84,6 +93,7 @@ dependencies {
     }
 
     if (getVar('GITHUB_ACTOR') == null) {
+        runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
         runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
         runtimeOnly fg.deobf("curse.maven:jade-324717:${jade_version}")
     }

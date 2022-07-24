@@ -50,5 +50,7 @@
     "item.haruhiism.hourglass.message.time_fmt": "第%1$s天%2$s:%3$s:%4$s",
 
     "item.haruhiism.tpdd": "TPDD",
-    "item.haruhiism.tpdd.read.message": "%s已经回到了%s。"
+    "item.haruhiism.tpdd.read.message": "%s已经回到了%s。",
+
+    "curios.identifier.face": "面部"
 }

@@ -16,6 +16,8 @@ import com.haruhifanclub.haruhiism.common.entity.HMEntities;
 import com.haruhifanclub.haruhiism.common.item.HMItems;
 import com.haruhifanclub.haruhiism.common.network.HMPacketHandler;
 import com.haruhifanclub.haruhiism.common.sound.HMSoundEvents;
+import com.haruhifanclub.haruhiism.integ.curios.client.renderer.CuriosRenderers;
+import com.haruhifanclub.haruhiism.integ.curios.common.CuriosIMC;
 import com.haruhifanclub.haruhiism.server.event.HMServerEventHandler;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -41,6 +43,8 @@ public class Haruhiism {
     public Haruhiism() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.CONFIG);
 
+        handleIMC();
+
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         final IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
@@ -57,6 +61,10 @@ public class Haruhiism {
         MAIN_VERSION = version.getLeft();
         FULL_VERSION = version.getRight();
         LOGGER.info(CORE, "Version: " + MAIN_VERSION + " (" + FULL_VERSION + ")");
+    }
+
+    private static void handleIMC() {
+        CuriosIMC.send();
     }
 
     private void modSetup(final IEventBus modEventBus) {
@@ -86,6 +94,7 @@ public class Haruhiism {
         public void modSetup() {
             modEventBus.addListener((FMLClientSetupEvent event) -> {
                 HMKeyMappings.register();
+                CuriosRenderers.register();
             });
             modEventBus.addListener(LayerDefinitionRegistry::register);
         }

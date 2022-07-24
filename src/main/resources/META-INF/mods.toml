@@ -29,3 +29,9 @@ description='''
     versionRange="[5.3.5,)"
     ordering="NONE"
     side="BOTH"
+[[dependencies.haruhiism]]
+    modId="curios"
+    mandatory=true
+    versionRange="[1.18.2-5.0.0.0,)"
+    ordering="NONE"
+    side="BOTH"
