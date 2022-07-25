@@ -31,17 +31,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class TpddItem extends HMHourglassItem implements IHMBlessedItem {
 
-    private static final int readDuration = CommonConfig.TpddReadDuration.get() * 20;
-    private static final int readCooldown = CommonConfig.TpddReadCooldown.get() * 20;
-    private static final int writeCooldown = CommonConfig.TpddWriteCooldown.get() * 20;
-    private static final boolean broadcastOnWrite = CommonConfig.TpddBroadcastOnWrite.get();
-    private static final boolean broadcastOnRead = CommonConfig.TpddBroadcastOnRead.get();
-
     public TpddItem() {}
 
     @Override
     public int getUseDuration(ItemStack itemStack) {
-        return readDuration;
+        return CommonConfig.TpddReadDuration.get() * 20;
     }
 
     @Override
@@ -137,11 +131,11 @@ public class TpddItem extends HMHourglassItem implements IHMBlessedItem {
             }
         }
 
-        if (broadcastOnWrite && !level.isClientSide()) {
+        if ((CommonConfig.TpddBroadcastOnWrite.get()) && !level.isClientSide()) {
             super.broadcastTime(level, player);
         }
 
-        player.getCooldowns().addCooldown(this, writeCooldown);
+        player.getCooldowns().addCooldown(this, CommonConfig.TpddWriteCooldown.get() * 20);
 
         return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
     }
@@ -169,7 +163,7 @@ public class TpddItem extends HMHourglassItem implements IHMBlessedItem {
             itemStack.removeTagKey("tpdd");
         }
 
-        if (broadcastOnRead && !level.isClientSide()) {
+        if ((CommonConfig.TpddBroadcastOnRead.get()) && !level.isClientSide()) {
             super.broadcast(
                 level,
                 new TranslatableComponent(
@@ -180,7 +174,7 @@ public class TpddItem extends HMHourglassItem implements IHMBlessedItem {
             );
         }
 
-        player.getCooldowns().addCooldown(this, readCooldown);
+        player.getCooldowns().addCooldown(this, CommonConfig.TpddReadCooldown.get() * 20);
 
         return itemStack;
     }

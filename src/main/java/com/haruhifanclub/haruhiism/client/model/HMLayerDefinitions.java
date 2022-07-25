@@ -8,7 +8,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 
 @OnlyIn(Dist.CLIENT)
-public class LayerDefinitionRegistry {
+public class HMLayerDefinitions {
 
     public static void register(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(WizardHatArmorModel.LAYER_LOCATION, WizardHatArmorModel::create);

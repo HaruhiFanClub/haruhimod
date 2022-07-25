@@ -15,7 +15,7 @@ import net.minecraft.world.phys.EntityHitResult;
 
 public class YukisWizardWandItem extends HMWizardWandItem implements IHMBlessedItem {
 
-    private static final double depriveEffectLength = 6.0D;
+    private static final double DEPRIVE_EFFECT_LENGTH = 6.0D;
     private static final int DEPRIVE_EFFECT_COOLDOWN = 2 * 20;
     private static final float BASE_ATTACK_DAMAGE = 13.0F;
     private static final float BASIC_ATTACK_DAMAGE_BONUS = 2.718F;
@@ -37,7 +37,7 @@ public class YukisWizardWandItem extends HMWizardWandItem implements IHMBlessedI
     }
 
     private static InteractionResultHolder<ItemStack> depriveEffect(ItemStack wand, Player player) {
-        EntityHitResult rayHitEntity = EntityUtils.getEntityHitResult(player, depriveEffectLength);
+        EntityHitResult rayHitEntity = EntityUtils.getEntityHitResult(player, DEPRIVE_EFFECT_LENGTH);
         if ((rayHitEntity == null) || !(rayHitEntity.getEntity() instanceof LivingEntity)) {
             return InteractionResultHolder.pass(wand);
         }

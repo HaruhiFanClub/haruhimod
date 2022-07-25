@@ -5,7 +5,7 @@ import com.haruhifanclub.haruhiism.common.advancement.criterion.SosBadgeSlabTrig
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.CriterionTrigger;
 
-public class CriterionRegistry {
+public class HMCriterions {
 
     public static void register() {
         register(ItemReinforcedTrigger.INSTANCE);

@@ -31,10 +31,6 @@ import net.minecraftforge.common.Tags;
 
 public class GuidedBaseballBatItem extends HMBaseballBatItem implements IHMBlessedItem {
 
-    private static final double knockbackDamageMultiplier = CommonConfig.GuidedBaseballBatKnockbackDamageMultiplier.get();
-    private static final double hitProjectileRayLength = CommonConfig.GuidedBaseballBatHitProjectileRayTraceLength.get();
-    private static final double hitProjectileKnockbackSpeedMultiplier = CommonConfig.GuidedBaseballBatHitProjectileKnockbackSpeedMultiplier.get();
-
     public GuidedBaseballBatItem() {
         super(
             new ForgeTier(
@@ -77,7 +73,7 @@ public class GuidedBaseballBatItem extends HMBaseballBatItem implements IHMBless
                     new AttributeModifier(
                         BASE_ATTACK_DAMAGE_UUID,
                         "Weapon modifier",
-                        (double) (super.getDamage() + bonus * knockbackDamageMultiplier),
+                        (double) (super.getDamage() + bonus * CommonConfig.GuidedBaseballBatKnockbackDamageMultiplier.get()),
                         AttributeModifier.Operation.ADDITION
                     )
                 );
@@ -118,7 +114,12 @@ public class GuidedBaseballBatItem extends HMBaseballBatItem implements IHMBless
         }
 
         Projectile target;
-        EntityHitResult rayHitEntity = EntityUtils.getEntityHitResult(player, hitProjectileRayLength, (float) (0.45 - 0.2 * Math.pow(0.5, luckBonus)), false);
+        EntityHitResult rayHitEntity = EntityUtils.getEntityHitResult(
+            player,
+            CommonConfig.GuidedBaseballBatHitProjectileRayTraceLength.get(),
+            (float) (0.45 - 0.2 * Math.pow(0.5, luckBonus)),
+            false
+        );
         if (rayHitEntity == null || !(rayHitEntity.getEntity() instanceof Projectile) || (rayHitEntity.getEntity() instanceof Fireball)) {
             return false;
         }
@@ -127,7 +128,7 @@ public class GuidedBaseballBatItem extends HMBaseballBatItem implements IHMBless
         target.setDeltaMovement(
             player.getViewVector(0)
                 .scale(target.getDeltaMovement().length())
-                .scale(0.4D + knockbackBonus * hitProjectileKnockbackSpeedMultiplier)
+                .scale(0.4D + knockbackBonus * CommonConfig.GuidedBaseballBatHitProjectileKnockbackSpeedMultiplier.get())
         );
 
         return true;

@@ -23,7 +23,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public abstract class HMReinforcementStoneItem extends Item implements IHMItem {
 
-    private static final String messageKey = "item.haruhiism.reinforcement_stone.";
+    private static final String MESSAGE_KEY = "item.haruhiism.reinforcement_stone.";
 
     private final boolean isEpic;
 
@@ -119,15 +119,15 @@ public abstract class HMReinforcementStoneItem extends Item implements IHMItem {
         if (itemStackCheckResult > 0) {
             switch (itemStackCheckResult) {
                 case 1: {
-                    TextUtils.chat(player, TextUtils.getI18nText(messageKey + "empty_item"));
+                    TextUtils.chat(player, TextUtils.getI18nText(MESSAGE_KEY + "empty_item"));
                     break;
                 }
                 case 2: {
-                    TextUtils.chat(player, TextUtils.getI18nText(messageKey + "blacklist"));
+                    TextUtils.chat(player, TextUtils.getI18nText(MESSAGE_KEY + "blacklist"));
                     break;
                 }
                 case 3: {
-                    TextUtils.chat(player, TextUtils.getI18nText(messageKey + "empty_enchantments"));
+                    TextUtils.chat(player, TextUtils.getI18nText(MESSAGE_KEY + "empty_enchantments"));
                     break;
                 }
             }
@@ -136,7 +136,7 @@ public abstract class HMReinforcementStoneItem extends Item implements IHMItem {
 
         int experienceCost = getExperienceCost();
         if ((!player.isCreative()) && (player.totalExperience < experienceCost)) {
-            TextUtils.chat(player, TextUtils.getI18nText(messageKey + "xp_not_enough"));
+            TextUtils.chat(player, TextUtils.getI18nText(MESSAGE_KEY + "xp_not_enough"));
             return InteractionResult.FAIL;
         }
 

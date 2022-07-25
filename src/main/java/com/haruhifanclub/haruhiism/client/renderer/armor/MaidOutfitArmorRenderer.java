@@ -1,6 +1,6 @@
-package com.haruhifanclub.haruhiism.client.render.armor;
+package com.haruhifanclub.haruhiism.client.renderer.armor;
 
-import com.haruhifanclub.haruhiism.client.model.armor.WizardHatArmorModel;
+import com.haruhifanclub.haruhiism.client.model.armor.MaidOutfitArmorModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.EntityModelSet;
@@ -13,16 +13,16 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.IItemRenderProperties;
 
 @OnlyIn(Dist.CLIENT)
-public class WizardHatArmorRender implements IItemRenderProperties {
+public class MaidOutfitArmorRenderer implements IItemRenderProperties {
 
-    public static final WizardHatArmorRender INSTANCE = new WizardHatArmorRender();
+    public static final MaidOutfitArmorRenderer INSTANCE = new MaidOutfitArmorRenderer();
 
     @Override
     @OnlyIn(Dist.CLIENT)
     public HumanoidModel<?> getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> _default) {
         EntityModelSet models = Minecraft.getInstance().getEntityModels();
-        ModelPart root = models.bakeLayer(WizardHatArmorModel.LAYER_LOCATION);
-        return new WizardHatArmorModel(root);
+        ModelPart root = models.bakeLayer(MaidOutfitArmorModel.LAYER_LOCATION);
+        return new MaidOutfitArmorModel(root);
     }
 
 }

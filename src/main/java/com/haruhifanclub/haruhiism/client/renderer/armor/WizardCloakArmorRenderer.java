@@ -1,4 +1,4 @@
-package com.haruhifanclub.haruhiism.client.render.armor;
+package com.haruhifanclub.haruhiism.client.renderer.armor;
 
 import com.haruhifanclub.haruhiism.client.model.armor.WizardCloakArmorModel;
 import net.minecraft.client.Minecraft;
@@ -13,9 +13,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.IItemRenderProperties;
 
 @OnlyIn(Dist.CLIENT)
-public class WizardCloakArmorRender implements IItemRenderProperties {
+public class WizardCloakArmorRenderer implements IItemRenderProperties {
 
-    public static final WizardCloakArmorRender INSTANCE = new WizardCloakArmorRender();
+    public static final WizardCloakArmorRenderer INSTANCE = new WizardCloakArmorRenderer();
 
     @Override
     @OnlyIn(Dist.CLIENT)

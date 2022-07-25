@@ -7,7 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public interface HMBaseModel {
 
-    CubeDeformation cubeDeformationZero = new CubeDeformation(0.0F);
+    CubeDeformation CD_NONE = CubeDeformation.NONE;
 
     static ModelLayerLocation register(String model) {
         return register(model, "main");

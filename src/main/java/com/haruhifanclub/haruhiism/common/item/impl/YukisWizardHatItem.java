@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 import org.auioc.mcmod.arnicalib.api.game.item.HArmorMaterial;
 import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
 import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
-import com.haruhifanclub.haruhiism.client.render.armor.WizardHatArmorRender;
+import com.haruhifanclub.haruhiism.client.renderer.armor.WizardHatArmorRenderer;
 import com.haruhifanclub.haruhiism.common.item.HMItems;
 import com.haruhifanclub.haruhiism.common.item.base.HMArmorItem;
 import net.minecraft.world.effect.MobEffect;
@@ -67,7 +67,7 @@ public class YukisWizardHatItem extends HMArmorItem implements IHMBlessedItem {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void initializeClient(Consumer<IItemRenderProperties> consumer) {
-        consumer.accept(WizardHatArmorRender.INSTANCE);
+        consumer.accept(WizardHatArmorRenderer.INSTANCE);
     }
 
 }

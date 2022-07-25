@@ -2,7 +2,7 @@ package com.haruhifanclub.haruhiism.common.item.impl;
 
 import java.util.function.Consumer;
 import org.auioc.mcmod.arnicalib.api.game.item.HArmorMaterial;
-import com.haruhifanclub.haruhiism.client.render.armor.WizardCloakArmorRender;
+import com.haruhifanclub.haruhiism.client.renderer.armor.WizardCloakArmorRenderer;
 import com.haruhifanclub.haruhiism.common.item.HMItems;
 import com.haruhifanclub.haruhiism.common.item.base.HMArmorItem;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -29,7 +29,7 @@ public class WizardCloakItem extends HMArmorItem {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void initializeClient(Consumer<IItemRenderProperties> consumer) {
-        consumer.accept(WizardCloakArmorRender.INSTANCE);
+        consumer.accept(WizardCloakArmorRenderer.INSTANCE);
     }
 
 }

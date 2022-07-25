@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import org.auioc.mcmod.arnicalib.api.game.item.HArmorMaterial;
 import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
 import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
-import com.haruhifanclub.haruhiism.client.render.armor.MaidOutfitArmorRender;
+import com.haruhifanclub.haruhiism.client.renderer.armor.MaidOutfitArmorRenderer;
 import com.haruhifanclub.haruhiism.common.config.CommonConfig;
 import com.haruhifanclub.haruhiism.common.item.HMItems;
 import com.haruhifanclub.haruhiism.common.item.base.HMArmorItem;
@@ -24,10 +24,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.IItemRenderProperties;
 
 public class MikurusMaidOutfitItem extends HMArmorItem implements IHMBlessedItem {
-
-    private static final int effectRange = CommonConfig.MikurusMaidOutfitEffectRange.get();
-    private static final boolean forOtherPlayers = CommonConfig.MikurusMaidOutfitForOtherPlayers.get();
-    private static final boolean forFriendlyEntities = CommonConfig.MikurusMaidOutfitForFriendlyEntities.get();
 
     public MikurusMaidOutfitItem() {
         super(
@@ -53,16 +49,17 @@ public class MikurusMaidOutfitItem extends HMArmorItem implements IHMBlessedItem
 
         addEffect(player, MikurusContactItem.isEquipped(player) ? 1 : 0);
 
-        AABB aabb = (new AABB(player.blockPosition())).inflate(effectRange).expandTowards(0.0D, effectRange, 0.0D);
+        final int range = CommonConfig.MikurusMaidOutfitEffectRange.get();
+        AABB aabb = (new AABB(player.blockPosition())).inflate(range).expandTowards(0.0D, range, 0.0D);
         List<LivingEntity> list = player.level.getEntitiesOfClass(LivingEntity.class, aabb);
         for (var entity2 : list) {
             if (entity2.equals(player)) continue;
 
             if (entity2 instanceof Player) {
-                if (forOtherPlayers) {
+                if (CommonConfig.MikurusMaidOutfitForOtherPlayers.get()) {
                     addEffect(entity2, 0);
                 }
-            } else if ((forFriendlyEntities) && (entity2.getType().getCategory().isFriendly())) {
+            } else if ((CommonConfig.MikurusMaidOutfitForFriendlyEntities.get()) && (entity2.getType().getCategory().isFriendly())) {
                 addEffect(entity2, 0);
             }
         }
@@ -81,7 +78,7 @@ public class MikurusMaidOutfitItem extends HMArmorItem implements IHMBlessedItem
     @Override
     @OnlyIn(Dist.CLIENT)
     public void initializeClient(Consumer<IItemRenderProperties> consumer) {
-        consumer.accept(MaidOutfitArmorRender.INSTANCE);
+        consumer.accept(MaidOutfitArmorRenderer.INSTANCE);
     }
 
 }

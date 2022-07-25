@@ -5,6 +5,6 @@ import net.minecraft.world.item.CreativeModeTab;
 
 public class HMCreativeModeTabs {
 
-    public static CreativeModeTab TAB_MAIN = new TabHMMainItems();
+    public static final CreativeModeTab TAB_MAIN = new TabHMMainItems();
 
 }

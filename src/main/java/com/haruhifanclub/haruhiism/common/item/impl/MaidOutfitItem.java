@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import org.auioc.mcmod.arnicalib.api.game.item.HArmorMaterial;
 import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
 import org.auioc.mcmod.arnicalib.utils.game.EntityUtils;
-import com.haruhifanclub.haruhiism.client.render.armor.MaidOutfitArmorRender;
+import com.haruhifanclub.haruhiism.client.renderer.armor.MaidOutfitArmorRenderer;
 import com.haruhifanclub.haruhiism.common.item.HMItems;
 import com.haruhifanclub.haruhiism.common.item.base.HMArmorItem;
 import net.minecraft.server.level.ServerPlayer;
@@ -60,7 +60,7 @@ public class MaidOutfitItem extends HMArmorItem {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void initializeClient(Consumer<IItemRenderProperties> consumer) {
-        consumer.accept(MaidOutfitArmorRender.INSTANCE);
+        consumer.accept(MaidOutfitArmorRenderer.INSTANCE);
     }
 
 }

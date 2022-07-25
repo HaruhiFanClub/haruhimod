@@ -20,7 +20,7 @@ public class MikuruBeamDamageSource extends IndirectEntityDamageSource implement
 
     @Override
     public Component getLocalizedDeathMessage(LivingEntity target) {
-        return new TranslatableComponent(messageKey + this.msgId, target.getDisplayName(), this.getEntity().getDisplayName());
+        return new TranslatableComponent(MESSAGE_KEY + this.msgId, target.getDisplayName(), this.getEntity().getDisplayName());
     }
 
     @Override

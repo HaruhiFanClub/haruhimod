@@ -7,12 +7,11 @@ import org.auioc.mcmod.arnicalib.utils.LogUtil;
 import org.auioc.mcmod.arnicalib.utils.java.VersionUtils;
 import com.haruhifanclub.haruhiism.client.event.HMClientEventHandler;
 import com.haruhifanclub.haruhiism.client.keybinding.HMKeyMappings;
-import com.haruhifanclub.haruhiism.client.model.LayerDefinitionRegistry;
-import com.haruhifanclub.haruhiism.common.advancement.CriterionRegistry;
+import com.haruhifanclub.haruhiism.client.model.HMLayerDefinitions;
+import com.haruhifanclub.haruhiism.common.advancement.HMCriterions;
 import com.haruhifanclub.haruhiism.common.block.HMBlocks;
 import com.haruhifanclub.haruhiism.common.blockentity.HMBlockEntities;
 import com.haruhifanclub.haruhiism.common.config.CommonConfig;
-import com.haruhifanclub.haruhiism.common.entity.HMEntities;
 import com.haruhifanclub.haruhiism.common.item.HMItems;
 import com.haruhifanclub.haruhiism.common.network.HMPacketHandler;
 import com.haruhifanclub.haruhiism.common.sound.HMSoundEvents;
@@ -69,10 +68,9 @@ public class Haruhiism {
 
     private void modSetup(final IEventBus modEventBus) {
         HMPacketHandler.init();
-        CriterionRegistry.register();
+        HMCriterions.register();
         HMBlocks.BLOCKS.register(modEventBus);
         HMBlockEntities.BLOCK_ENTITIES.register(modEventBus);
-        HMEntities.ENTITIES.register(modEventBus);
         HMItems.ITEMS.register(modEventBus);
         HMSoundEvents.SOUND_EVENTS.register(modEventBus);
     }
@@ -96,7 +94,7 @@ public class Haruhiism {
                 HMKeyMappings.register();
                 CuriosRenderers.register();
             });
-            modEventBus.addListener(LayerDefinitionRegistry::register);
+            modEventBus.addListener(HMLayerDefinitions::register);
         }
 
         public void forgeSetup() {
