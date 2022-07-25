@@ -21,8 +21,10 @@ Minecraft mods for [HaruhiServer](https://github.com/HaruhiFanClub/MCHaruhiServe
 
 ## 感谢
 
-- [HaruhiFanClub](https://github.com/HaruhiFanClub)
-- [AUIOC](https://www.auioc.com)
+- [凉宫春日应援团](https://github.com/HaruhiFanClub)协调与提供了大量人力、美术和音乐资源
+- [AUIOC](https://www.auioc.com)提供了程序方面的支持
+- [@电波人粒子](https://space.bilibili.com/629042)、[@雲路](https://space.bilibili.com/7938426)负责了部分美术设计
+- @konata进行了测试<s>（以及担任吉祥物）</s>
 
 ## 参与贡献
 
@@ -33,5 +35,5 @@ Minecraft mods for [HaruhiServer](https://github.com/HaruhiFanClub/MCHaruhiServe
 
 ## 许可证
 
-HaruhiMod 采用 **GNU通用公共许可证 v3.0** 授权。
+Haruhiism 采用 **GNU通用公共许可证 v3.0** 授权。
 完整许可文件参见 [LICENSE](/LICENSE)。
