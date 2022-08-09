@@ -2,7 +2,6 @@ package com.haruhifanclub.haruhiism.common.item.impl;
 
 import org.auioc.mcmod.arnicalib.utils.game.EntityUtils;
 import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
-import com.haruhifanclub.haruhiism.common.config.CommonConfig;
 import com.haruhifanclub.haruhiism.common.damagesource.MikuruBeamDamageSource;
 import com.haruhifanclub.haruhiism.common.item.HMItems;
 import com.haruhifanclub.haruhiism.common.itemgroup.HMCreativeModeTabs;
@@ -17,6 +16,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
+import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
@@ -32,7 +34,7 @@ public class MikurusContactItem extends Item implements IHMBlessedItem, ICurioIt
     }
 
     public static int getCooldown() {
-        return CommonConfig.MikurusContactLaserCooldown.get() * 20;
+        return Config.laserCooldown.get() * 20;
     }
 
     public static boolean isEquipped(Player player) {
@@ -51,7 +53,7 @@ public class MikurusContactItem extends Item implements IHMBlessedItem, ICurioIt
 
     public static int emitMikuruBeam(Player player) {
         return EntityUtils.rayHitLivingEntityOrBlock(
-            player, CommonConfig.MikurusContactLaserLength.get(),
+            player, Config.laserLength.get(),
             (e) -> {
                 LivingEntity target = (LivingEntity) e.getEntity();
                 if (target.hurt(MikuruBeamDamageSource.build(target, player), player.getHealth() * 0.3F)) {
@@ -98,5 +100,22 @@ public class MikurusContactItem extends Item implements IHMBlessedItem, ICurioIt
     }
 
     // #endregion Curios
+
+    /* ============================================================================================================== */
+    // #region Config
+
+    public static class Config {
+
+        public static DoubleValue laserLength;
+        public static IntValue laserCooldown;
+
+        public static void build(final ForgeConfigSpec.Builder b) {
+            laserLength = b.defineInRange("laser_length", 27.0D, 0.0D, Double.MAX_VALUE);
+            laserCooldown = b.defineInRange("laser_cooldown", 1, 0, Integer.MAX_VALUE);
+        }
+
+    }
+
+    // #endregion Config
 
 }

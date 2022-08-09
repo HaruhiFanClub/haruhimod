@@ -4,12 +4,14 @@ import org.apache.commons.lang3.RandomUtils;
 import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
 import org.auioc.mcmod.arnicalib.utils.game.EnchUtils;
 import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
-import com.haruhifanclub.haruhiism.common.config.CommonConfig;
 import com.haruhifanclub.haruhiism.common.item.base.HMReinforcementStoneItem;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
+import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 
 public class GodBlessDanchouArmbandItem extends HMReinforcementStoneItem implements IHMBlessedItem {
 
@@ -19,14 +21,13 @@ public class GodBlessDanchouArmbandItem extends HMReinforcementStoneItem impleme
 
     @Override
     protected boolean isEnabled() {
-        return CommonConfig.EnableEpicReinforcementStone.get();
+        return Config.enable.get();
     }
 
     @Override
     protected int getExperienceCost() {
-        return CommonConfig.EpicReinforcingExperienceCost.get();
+        return Config.experienceCost.get();
     }
-
 
     @Override
     public ItemStack processEnchantment(ItemStack stack, Player player) {
@@ -74,19 +75,14 @@ public class GodBlessDanchouArmbandItem extends HMReinforcementStoneItem impleme
     }
 
 
-    @SuppressWarnings("unused")
-    private static void test() {
-        /*@formatter:off*/
-        int X=0,Y=0,Z=0,W=0;
-        float A=33.0F,B=66.0F,C=99.0F;
-        {int n=10;A-=0.6*n;B-=0.6*n;C-=0.6*n;} // Luck
-        {float n=100-C;A-=n;B-=n;C-=n;} // ×2
-        for(int i=0;i<10000;i++){
-            float P=(float) RandomUtils.nextInt(0,100);
-            if(P<A){X++;}else if(P<B){Y++;}else if(P<C){Z++;}else{W++;}
+    public static class Config {
+        public static BooleanValue enable;
+        public static IntValue experienceCost;
+
+        public static void build(final ForgeConfigSpec.Builder b) {
+            enable = b.define("enable", true);
+            experienceCost = b.defineInRange("experience_cost", 512, 0, Integer.MAX_VALUE);
         }
-        System.out.println(X+","+Y+","+Z+","+W);
-        /*@formatter:on*/
     }
 
 }

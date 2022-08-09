@@ -3,13 +3,15 @@ package com.haruhifanclub.haruhiism.common.item.impl;
 import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
 import org.auioc.mcmod.arnicalib.utils.game.EnchUtils;
 import org.auioc.mcmod.arnicalib.utils.game.VanillaPredicates;
-import com.haruhifanclub.haruhiism.common.config.CommonConfig;
 import com.haruhifanclub.haruhiism.common.item.base.HMReinforcementStoneItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
+import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 
 public class DanchouArmbandItem extends HMReinforcementStoneItem {
 
@@ -19,12 +21,12 @@ public class DanchouArmbandItem extends HMReinforcementStoneItem {
 
     @Override
     protected boolean isEnabled() {
-        return CommonConfig.EnableCommonReinforcementStone.get();
+        return Config.enable.get();
     }
 
     @Override
     protected int getExperienceCost() {
-        return CommonConfig.CommonReinforcingExperienceCost.get();
+        return Config.experienceCost.get();
     }
 
     @Override
@@ -45,12 +47,12 @@ public class DanchouArmbandItem extends HMReinforcementStoneItem {
             }
 
 
-            N += EffectUtils.getEffectLevel(player, MobEffects.LUCK) * CommonConfig.CommonReinforcingLuckEffectMultiplier.get();
+            N += EffectUtils.getEffectLevel(player, MobEffects.LUCK) * Config.luckEffectMultiplier.get();
 
-            N += (-1) * EffectUtils.getEffectLevel(player, MobEffects.UNLUCK) * CommonConfig.CommonReinforcingUnluckEffectMultiplier.get();
+            N += (-1) * EffectUtils.getEffectLevel(player, MobEffects.UNLUCK) * Config.unluckEffectMultiplier.get();
 
             if (DanchouConeBlockItem.isEquipped(player)) {
-                N += 1 * CommonConfig.CommonReinforcingDanchouConeMultiplier.get();
+                N += 1 * Config.danchouConeMultiplier.get();
             }
 
 
@@ -80,6 +82,23 @@ public class DanchouArmbandItem extends HMReinforcementStoneItem {
         stack.getTag().put("Enchantments", enchantments);
 
         return stack;
+    }
+
+
+    public static class Config {
+        public static BooleanValue enable;
+        public static IntValue experienceCost;
+        public static IntValue luckEffectMultiplier;
+        public static IntValue unluckEffectMultiplier;
+        public static IntValue danchouConeMultiplier;
+
+        public static void build(final ForgeConfigSpec.Builder b) {
+            enable = b.define("enable", true);
+            experienceCost = b.defineInRange("experience_cost", 256, 0, Integer.MAX_VALUE);
+            luckEffectMultiplier = b.defineInRange("luck_effect_multiplier", 1, 0, Integer.MAX_VALUE);
+            unluckEffectMultiplier = b.defineInRange("unluck_effect_multiplier", 1, 0, Integer.MAX_VALUE);
+            danchouConeMultiplier = b.defineInRange("danchou_cone_multiplier", 2, 0, Integer.MAX_VALUE);
+        }
     }
 
 }

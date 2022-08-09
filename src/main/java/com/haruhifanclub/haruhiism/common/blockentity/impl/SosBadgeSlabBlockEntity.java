@@ -1,6 +1,8 @@
 package com.haruhifanclub.haruhiism.common.blockentity.impl;
 
 import static com.haruhifanclub.haruhiism.Haruhiism.LOGGER;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -13,7 +15,6 @@ import org.auioc.mcmod.arnicalib.utils.game.PlayerUtils;
 import com.haruhifanclub.haruhiism.common.advancement.criterion.SosBadgeSlabTrigger;
 import com.haruhifanclub.haruhiism.common.block.impl.SosBadgeSlabBlock;
 import com.haruhifanclub.haruhiism.common.blockentity.HMBlockEntities;
-import com.haruhifanclub.haruhiism.common.config.CommonConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -32,6 +33,10 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
+import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
+import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 
 public class SosBadgeSlabBlockEntity extends BlockEntity {
 
@@ -81,13 +86,13 @@ public class SosBadgeSlabBlockEntity extends BlockEntity {
                     }
 
                     int effectCooldown;
-                    int lootColldown;
+                    int lootCooldown;
                     if (isDouble) {
-                        effectCooldown = CommonConfig.DoubleSosBadgeSlabEffectCooldown.get();
-                        lootColldown = CommonConfig.DoubleSosBadgeSlabLootCooldown.get();
+                        effectCooldown = Config.doubleEffectCooldown.get();
+                        lootCooldown = Config.doubleLootCooldown.get();
                     } else {
-                        effectCooldown = CommonConfig.SingleSosBadgeSlabEffectCooldown.get();
-                        lootColldown = CommonConfig.SingleSosBadgeSlabLootCooldown.get();
+                        effectCooldown = Config.singleEffectCooldown.get();
+                        lootCooldown = Config.singleLootCooldown.get();
                     }
 
                     if (count % effectCooldown == 0) {
@@ -95,7 +100,7 @@ public class SosBadgeSlabBlockEntity extends BlockEntity {
                     } else {
                     }
 
-                    if (count % lootColldown == 0) {
+                    if (count % lootCooldown == 0) {
                         lootItem(player, isDouble);
                     } else {
                     }
@@ -123,7 +128,7 @@ public class SosBadgeSlabBlockEntity extends BlockEntity {
     private static void addEffect(Player player, int duration, boolean isDouble) {
         int level = 0;
         if (isDouble) {
-            List<? extends Integer> levelRange = CommonConfig.DoubleSosBadgeSlabEffectLevelRange.get();
+            List<? extends Integer> levelRange = Config.doubleEffectAmplifierRange.get();
             level = Mth.nextInt(player.getRandom(), levelRange.get(0), levelRange.get(1));
         }
 
@@ -131,8 +136,8 @@ public class SosBadgeSlabBlockEntity extends BlockEntity {
     }
 
     private static void lootItem(Player player, boolean isDouble) {
-        String lootTableId = (isDouble) ? CommonConfig.DoubleSosBadgeSlabLootTable.get() : CommonConfig.SingleSosBadgeSlabLootTable.get();
-        boolean logDetail = CommonConfig.SosBadgeSlabLogLootDetail.get();
+        String lootTableId = (isDouble) ? Config.doubleLootTable.get() : Config.singleLootTable.get();
+        boolean logDetail = Config.logLootDetail.get();
 
         LootContext lootCtx = new LootContext.Builder((ServerLevel) player.level)
             .withParameter(LootContextParams.THIS_ENTITY, player)
@@ -158,6 +163,63 @@ public class SosBadgeSlabBlockEntity extends BlockEntity {
         SosBadgeSlabTrigger.INSTANCE.trigger(((ServerPlayer) player), isDouble);
 
         LOGGER.info(isDouble ? DOUBLE_MARKER : SINGLE_MARKER, logs);
+    }
+
+
+    public static class Config {
+        public static BooleanValue logLootDetail;
+
+        public static IntValue singleEffectCooldown;
+        public static IntValue singleLootCooldown;
+        public static ConfigValue<String> singleLootTable;
+
+        public static IntValue doubleEffectCooldown;
+        public static ConfigValue<List<? extends Integer>> doubleEffectAmplifierRange;
+        public static IntValue doubleLootCooldown;
+        public static ConfigValue<String> doubleLootTable;
+
+        public static void build(final ForgeConfigSpec.Builder b) {
+            b.push("sos_badge_slab");
+            logLootDetail = b.define("log_loot_detail", false);
+            {
+                b.push("single");
+                singleEffectCooldown = b.defineInRange("effect_cooldown", 6, 1, Integer.MAX_VALUE);
+                singleLootCooldown = b.defineInRange("loot_cooldown", 6, 1, Integer.MAX_VALUE);
+                singleLootTable = b.define("loot_table", "haruhiism:sos_badge_slab/single");
+                b.pop();
+            }
+            {
+                b.push("double");
+                doubleEffectCooldown = b.defineInRange("effect_cooldown", 3, 1, Integer.MAX_VALUE);
+                doubleLootCooldown = b.defineInRange("loot_cooldown", 3, 1, Integer.MAX_VALUE);
+                doubleLootTable = b.define("loot_table", "haruhiism:sos_badge_slab/double");
+                doubleEffectAmplifierRange = b
+                    .comment("Array: [min, max]", "Range: 0 ~ 255")
+                    .define(
+                        "effect_amplifier_range",
+                        new ArrayList<Integer>(Arrays.asList(0, 2)),
+                        (x) -> checkIntArray(x, 2)
+                    );
+                b.pop();
+            }
+            b.pop();
+        }
+
+        @SuppressWarnings("unchecked")
+        private static boolean checkIntArray(Object x, int size) {
+            if (!(x instanceof ArrayList)) {
+                return false;
+            }
+            if (((ArrayList<Object>) x).size() != size) {
+                return false;
+            }
+            for (Object o : (ArrayList<Object>) x) {
+                if (!(o instanceof Integer)) {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 
 }

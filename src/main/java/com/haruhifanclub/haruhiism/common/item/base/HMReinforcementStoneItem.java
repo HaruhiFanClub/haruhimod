@@ -1,11 +1,12 @@
 package com.haruhifanclub.haruhiism.common.item.base;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.auioc.mcmod.arnicalib.utils.game.SoundUtils;
 import org.auioc.mcmod.arnicalib.utils.game.TextUtils;
 import com.haruhifanclub.haruhiism.api.item.IHMItem;
 import com.haruhifanclub.haruhiism.common.advancement.criterion.ItemReinforcedTrigger;
-import com.haruhifanclub.haruhiism.common.config.CommonConfig;
 import com.haruhifanclub.haruhiism.common.itemgroup.HMCreativeModeTabs;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -19,6 +20,8 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public abstract class HMReinforcementStoneItem extends Item implements IHMItem {
@@ -52,7 +55,7 @@ public abstract class HMReinforcementStoneItem extends Item implements IHMItem {
 
 
     private static boolean checkTargetBlock(UseOnContext context) {
-        List<? extends String> blocks = CommonConfig.ReinforcementStoneUseOnBlock.get();
+        List<? extends String> blocks = Config.useOnBlock.get();
         ResourceLocation key =
             ForgeRegistries.BLOCKS.getKey(context.getLevel().getBlockState(context.getClickedPos()).getBlock());
         if (blocks.contains(key.toString())) {
@@ -66,7 +69,7 @@ public abstract class HMReinforcementStoneItem extends Item implements IHMItem {
             return 1; // Empty ItemStack
         }
 
-        List<? extends String> items = CommonConfig.ReinforcementStoneItemBlacklist.get();
+        List<? extends String> items = Config.itemBlacklist.get();
         ResourceLocation key = ForgeRegistries.ITEMS.getKey(targetItemStack.getItem());
         if (items.contains(key.toString())) {
             return 2; // Item is in the blacklist
@@ -148,10 +151,10 @@ public abstract class HMReinforcementStoneItem extends Item implements IHMItem {
         ItemStack reinforcedItemStack = processEnchantment(targetItemStack.copy(), player);
 
         if (reinforcedItemStack.equals(ItemStack.EMPTY)) { // Reinforcement failed
-            playSound(player, CommonConfig.ReinforcingFailedSound.get());
+            playSound(player, Config.failedSound.get());
             ItemReinforcedTrigger.INSTANCE.trigger(player, false, false, targetItemStack, reinforcedItemStack);
         } else {
-            playSound(player, CommonConfig.ReinforcingSuccessSound.get());
+            playSound(player, Config.succeedSound.get());
             ItemReinforcedTrigger.INSTANCE.trigger(player, isEpic(), true, targetItemStack, reinforcedItemStack);
         }
 
@@ -166,6 +169,21 @@ public abstract class HMReinforcementStoneItem extends Item implements IHMItem {
     private static void playSound(ServerPlayer player, String sound) {
         if (!sound.isEmpty()) {
             SoundUtils.play(player, sound);
+        }
+    }
+
+
+    public static class Config {
+        public static ConfigValue<List<? extends String>> itemBlacklist;
+        public static ConfigValue<List<? extends String>> useOnBlock;
+        public static ConfigValue<String> succeedSound;
+        public static ConfigValue<String> failedSound;
+
+        public static void build(final ForgeConfigSpec.Builder b) {
+            itemBlacklist = b.define("item_blacklist", new ArrayList<String>());
+            useOnBlock = b.define("use_on_block", new ArrayList<String>(Arrays.asList("minecraft:anvil", "minecraft:chipped_anvil", "minecraft:damaged_anvil")));
+            succeedSound = b.define("succeed_sound", "minecraft:block.anvil.use");
+            failedSound = b.define("failed_sound", "minecraft:block.glass.break");
         }
     }
 

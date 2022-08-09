@@ -6,7 +6,6 @@ import java.util.List;
 import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
 import org.auioc.mcmod.arnicalib.utils.game.MCTimeUtils;
 import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
-import com.haruhifanclub.haruhiism.common.config.CommonConfig;
 import com.haruhifanclub.haruhiism.common.item.base.HMHourglassItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
@@ -28,6 +27,9 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
+import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 
 public class TpddItem extends HMHourglassItem implements IHMBlessedItem {
 
@@ -35,7 +37,7 @@ public class TpddItem extends HMHourglassItem implements IHMBlessedItem {
 
     @Override
     public int getUseDuration(ItemStack itemStack) {
-        return CommonConfig.TpddReadDuration.get() * 20;
+        return Config.readDuration.get() * 20;
     }
 
     @Override
@@ -131,11 +133,11 @@ public class TpddItem extends HMHourglassItem implements IHMBlessedItem {
             }
         }
 
-        if ((CommonConfig.TpddBroadcastOnWrite.get()) && !level.isClientSide()) {
+        if (Config.broadcastOnWrite.get() && !level.isClientSide()) {
             super.broadcastTime(level, player);
         }
 
-        player.getCooldowns().addCooldown(this, CommonConfig.TpddWriteCooldown.get() * 20);
+        player.getCooldowns().addCooldown(this, (Config.writeCooldown.get() * 20));
 
         return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
     }
@@ -163,7 +165,7 @@ public class TpddItem extends HMHourglassItem implements IHMBlessedItem {
             itemStack.removeTagKey("tpdd");
         }
 
-        if ((CommonConfig.TpddBroadcastOnRead.get()) && !level.isClientSide()) {
+        if (Config.broadcastOnRead.get() && !level.isClientSide()) {
             super.broadcast(
                 level,
                 new TranslatableComponent(
@@ -174,7 +176,7 @@ public class TpddItem extends HMHourglassItem implements IHMBlessedItem {
             );
         }
 
-        player.getCooldowns().addCooldown(this, CommonConfig.TpddReadCooldown.get() * 20);
+        player.getCooldowns().addCooldown(this, (Config.readCooldown.get() * 20));
 
         return itemStack;
     }
@@ -212,6 +214,23 @@ public class TpddItem extends HMHourglassItem implements IHMBlessedItem {
                             .withColor(ChatFormatting.DARK_PURPLE)
                     )
             );
+        }
+    }
+
+
+    public static class Config {
+        public static BooleanValue broadcastOnWrite;
+        public static BooleanValue broadcastOnRead;
+        public static IntValue readCooldown;
+        public static IntValue writeCooldown;
+        public static IntValue readDuration;
+
+        public static void build(final ForgeConfigSpec.Builder b) {
+            broadcastOnWrite = b.define("broadcast_on_write", true);
+            broadcastOnRead = b.define("broadcast_on_read", true);
+            writeCooldown = b.defineInRange("write_cooldown", 3, 0, Integer.MAX_VALUE);
+            readCooldown = b.defineInRange("read_cooldown", 3, 0, Integer.MAX_VALUE);
+            readDuration = b.defineInRange("read_duration", 3, 0, Integer.MAX_VALUE);
         }
     }
 

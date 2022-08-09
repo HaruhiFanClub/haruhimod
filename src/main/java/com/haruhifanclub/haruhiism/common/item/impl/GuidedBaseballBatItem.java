@@ -7,7 +7,6 @@ import org.auioc.mcmod.arnicalib.utils.game.EntityUtils;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
-import com.haruhifanclub.haruhiism.common.config.CommonConfig;
 import com.haruhifanclub.haruhiism.common.item.HMItems;
 import com.haruhifanclub.haruhiism.common.item.base.HMBaseballBatItem;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -26,6 +25,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
 import net.minecraftforge.common.ForgeTier;
 import net.minecraftforge.common.Tags;
 
@@ -73,7 +74,7 @@ public class GuidedBaseballBatItem extends HMBaseballBatItem implements IHMBless
                     new AttributeModifier(
                         BASE_ATTACK_DAMAGE_UUID,
                         "Weapon modifier",
-                        (double) (super.getDamage() + bonus * CommonConfig.GuidedBaseballBatKnockbackDamageMultiplier.get()),
+                        (double) (super.getDamage() + bonus * Config.knockbackDamageMultiplier.get()),
                         AttributeModifier.Operation.ADDITION
                     )
                 );
@@ -116,7 +117,7 @@ public class GuidedBaseballBatItem extends HMBaseballBatItem implements IHMBless
         Projectile target;
         EntityHitResult rayHitEntity = EntityUtils.getEntityHitResult(
             player,
-            CommonConfig.GuidedBaseballBatHitProjectileRayTraceLength.get(),
+            Config.hitProjectileRayTraceLength.get(),
             (float) (0.45 - 0.2 * Math.pow(0.5, luckBonus)),
             false
         );
@@ -128,7 +129,7 @@ public class GuidedBaseballBatItem extends HMBaseballBatItem implements IHMBless
         target.setDeltaMovement(
             player.getViewVector(0)
                 .scale(target.getDeltaMovement().length())
-                .scale(0.4D + knockbackBonus * CommonConfig.GuidedBaseballBatHitProjectileKnockbackSpeedMultiplier.get())
+                .scale(0.4D + knockbackBonus * Config.hitProjectileKnockbackSpeedMultiplier.get())
         );
 
         return true;
@@ -140,6 +141,19 @@ public class GuidedBaseballBatItem extends HMBaseballBatItem implements IHMBless
             return 0;
         }
         return ench.get(Enchantments.KNOCKBACK);
+    }
+
+
+    public static class Config {
+        public static DoubleValue knockbackDamageMultiplier;
+        public static DoubleValue hitProjectileRayTraceLength;
+        public static DoubleValue hitProjectileKnockbackSpeedMultiplier;
+
+        public static void build(final ForgeConfigSpec.Builder b) {
+            knockbackDamageMultiplier = b.defineInRange("knockback_damage_multiplier", 1.5D, 0.0D, Double.MAX_VALUE);
+            hitProjectileRayTraceLength = b.defineInRange("hit_projectile_max_distance", 7.5D, 0.0D, Double.MAX_VALUE);
+            hitProjectileKnockbackSpeedMultiplier = b.defineInRange("hit_projectile_knockback_speed_multiplier", 0.05D, 0.0D, Double.MAX_VALUE);
+        }
     }
 
 }
