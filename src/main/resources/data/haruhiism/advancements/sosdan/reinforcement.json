@@ -1,0 +1,29 @@
+{
+    "parent": "haruhiism:sosdan/armband",
+    "display": {
+        "icon": {
+            "item": "minecraft:golden_sword",
+            "nbt": "{Enchantments:[{}]}"
+        },
+        "title": {
+            "translate": "advancements.haruhiism.sosdan.reinforcement.title"
+        },
+        "description": {
+            "translate": "advancements.haruhiism.sosdan.reinforcement.description"
+        },
+        "frame": "goal",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": true
+    },
+    "criteria": {
+        "successful": {
+            "trigger": "haruhiism:item_reinforced",
+            "conditions": {
+                "epic": false,
+                "successful": true
+            }
+        }
+    },
+    "requirements": [["successful"]]
+}

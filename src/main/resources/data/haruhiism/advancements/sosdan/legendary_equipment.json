@@ -1,0 +1,31 @@
+{
+    "parent": "haruhiism:sosdan/bless",
+    "display": {
+        "icon": {
+            "item": "haruhiism:danchou_cone"
+        },
+        "title": {
+            "translate": "advancements.haruhiism.sosdan.legendary_equipment.title"
+        },
+        "description": {
+            "translate": "advancements.haruhiism.sosdan.legendary_equipment.description"
+        },
+        "frame": "challenge",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": true
+    },
+    "criteria": {
+        "epic": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "enchantments": [{ "levels": { "min": 30 } }]
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [["epic"]]
+}

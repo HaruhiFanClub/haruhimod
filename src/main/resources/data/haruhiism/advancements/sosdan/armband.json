@@ -1,0 +1,31 @@
+{
+    "display": {
+        "icon": {
+            "item": "haruhiism:danchou_armband"
+        },
+        "title": {
+            "translate": "advancements.haruhiism.sosdan.armband.title"
+        },
+        "description": {
+            "translate": "advancements.haruhiism.sosdan.armband.description"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false,
+        "background": "haruhiism:textures/gui/advancements/backgrounds/background.png"
+    },
+    "criteria": {
+        "armband": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "haruhiism:danchou_armband"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [["armband"]]
+}

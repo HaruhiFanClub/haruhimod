@@ -1,0 +1,31 @@
+{
+    "parent": "haruhiism:sosdan/armband",
+    "display": {
+        "icon": {
+            "item": "haruhiism:god_bless_danchou_armband"
+        },
+        "title": {
+            "translate": "advancements.haruhiism.sosdan.bless.title"
+        },
+        "description": {
+            "translate": "advancements.haruhiism.sosdan.bless.description"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": true
+    },
+    "criteria": {
+        "bless": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "haruhiism:god_bless_danchou_armband"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [["bless"]]
+}

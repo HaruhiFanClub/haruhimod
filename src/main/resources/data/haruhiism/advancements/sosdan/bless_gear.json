@@ -1,0 +1,31 @@
+{
+    "parent": "haruhiism:sosdan/bless",
+    "display": {
+        "icon": {
+            "item": "haruhiism:music_disc_in_the_summertime"
+        },
+        "title": {
+            "translate": "advancements.haruhiism.sosdan.bless_gear.title"
+        },
+        "description": {
+            "translate": "advancements.haruhiism.sosdan.bless_gear.description"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": true
+    },
+    "criteria": {
+        "blessed_item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "haruhiism:blessed_items"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [["blessed_item"]]
+}

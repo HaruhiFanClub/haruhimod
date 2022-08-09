@@ -52,5 +52,18 @@
     "item.haruhiism.tpdd": "TPDD",
     "item.haruhiism.tpdd.read.message": "%s已经回到了%s。",
 
+    "advancements.haruhiism.sosdan.armband.title": "让世界变得更热闹的凉宫春日的团！",
+    "advancements.haruhiism.sosdan.armband.description": "获得团长身份的象征…之一。",
+    "advancements.haruhiism.sosdan.bless.title": "God bless",
+    "advancements.haruhiism.sosdan.bless.description": "获得眷顾。",
+    "advancements.haruhiism.sosdan.reinforcement.title": "这合理吗？",
+    "advancements.haruhiism.sosdan.reinforcement.description": "心想事成，强化成功。",
+    "advancements.haruhiism.sosdan.broken.title": "哎呦似乎出了点问题",
+    "advancements.haruhiism.sosdan.broken.description": "也许你还没得到团长的认可。",
+    "advancements.haruhiism.sosdan.legendary_equipment.title": "God knows",
+    "advancements.haruhiism.sosdan.legendary_equipment.description": "只要她所希望的事，什么都能实现。",
+    "advancements.haruhiism.sosdan.bless_gear.title": "眷顾护体",
+    "advancements.haruhiism.sosdan.bless_gear.description": "获得眷顾的力量。",
+
     "curios.identifier.face": "面部"
 }

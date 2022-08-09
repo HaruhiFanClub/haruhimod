@@ -1,0 +1,28 @@
+{
+    "parent": "haruhiism:sosdan/armband",
+    "display": {
+        "icon": {
+            "item": "minecraft:damaged_anvil"
+        },
+        "title": {
+            "translate": "advancements.haruhiism.sosdan.broken.title"
+        },
+        "description": {
+            "translate": "advancements.haruhiism.sosdan.broken.description"
+        },
+        "frame": "goal",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": true
+    },
+    "criteria": {
+        "failed": {
+            "trigger": "haruhiism:item_reinforced",
+            "conditions": {
+                "epic": false,
+                "successful": false
+            }
+        }
+    },
+    "requirements": [["failed"]]
+}
