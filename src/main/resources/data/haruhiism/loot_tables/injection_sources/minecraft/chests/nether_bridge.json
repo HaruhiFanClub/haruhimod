@@ -2,17 +2,17 @@
     "type": "minecraft:chest",
     "pools": [
         {
-            "rolls": 2,
+            "rolls": 1,
             "entries": [
                 {
                     "type": "minecraft:item",
                     "weight": 2,
-                    "quality": 2,
+                    "quality": 1,
                     "name": "haruhiism:god_bless_danchou_armband"
                 },
                 {
                     "type": "minecraft:empty",
-                    "weight": 96
+                    "weight": 48
                 }
             ]
         }
