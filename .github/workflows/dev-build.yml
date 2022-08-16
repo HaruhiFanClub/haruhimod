@@ -7,27 +7,16 @@ on:
     push:
         branches:
             - 1.18-forge
-            - 'wip-*'
-            - 'GH-*'
         tags-ignore:
             - 'v*'
 
 jobs:
     build:
+        name: Build
         runs-on: ubuntu-latest
 
         steps:
             - uses: actions/checkout@v2
-
-            - name: Set vars
-              run: |
-                  echo "CI_VERSION=`echo dev-rev.${GITHUB_SHA:0:7}-build.${{github.run_number}}`" >> $GITHUB_ENV
-                  config='./gradle.properties'
-                  function prop {
-                    [ -f "$config" ] && grep -P "^\s*[^#]?${1}=.*$" $config | cut -d'=' -f2
-                  }
-                  echo "HARUHIISM_VERSION=`echo $(prop "haruhiism_version")`" >> $GITHUB_ENV
-                  echo "MINECRAFT_VERSION=`echo $(prop "minecraft_version")`" >> $GITHUB_ENV
 
             - name: Set up JDK 17
               uses: actions/setup-java@v2
@@ -36,15 +25,22 @@ jobs:
                   distribution: 'temurin'
                   architecture: x64
 
+            - name: Set up Gradle
+              run: |
+                  chmod +x ./gradlew
+                  rm -rf tmp
+                  mkdir tmp
+
             - name: Build with Gradle
               env:
                   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-              run: |
-                  chmod +x ./gradlew
-                  ./gradlew clean build
+              run: ./gradlew clean build outputProjectFullname
+
+            - name: Read project full name
+              run: echo "PROJECT_FULL_NAME=`cat ./tmp/fullname.txt`" >> $GITHUB_ENV
 
             - name: Upload build artifacts
               uses: actions/upload-artifact@v1
               with:
-                  name: haruhiism-${{env.MINECRAFT_VERSION}}-${{env.HARUHIISM_VERSION}}-${{env.CI_VERSION}}
+                  name: ${{env.PROJECT_FULL_NAME}}
                   path: build/libs
