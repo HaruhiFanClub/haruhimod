@@ -1,0 +1,35 @@
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId project.group
+            artifactId project.archivesBaseName
+            version project.version
+            artifact jar
+            artifact deobfJar {
+                classifier 'deobf'
+            }
+            artifact sourcesJar {
+                classifier 'sources'
+            }
+            artifact forgelibJar {
+                classifier 'forgelib'
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = 'GitHubPackages'
+            url = uri("https://maven.pkg.github.com/${github_repo}")
+            credentials {
+                username = System.getenv('GITHUB_ACTOR')
+                password = System.getenv('GITHUB_TOKEN')
+            }
+        }
+        maven {
+            name = 'McmodsRepo'
+            url "file://${project.projectDir}/mcmodsrepo"
+        }
+    }
+}

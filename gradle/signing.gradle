@@ -1,0 +1,6 @@
+apply plugin: 'signing'
+
+signing {
+    useInMemoryPgpKeys(findProperty('signingKey'), findProperty('signingPassword'))
+    sign publishing.publications
+}

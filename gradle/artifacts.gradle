@@ -1,0 +1,40 @@
+def jarManifest = [
+        "Specification-Title": project.modId,
+        "Specification-Vendor": 'HaruhiFanClub',
+        "Specification-Version": '1',
+        "Implementation-Title": project.modName,
+        "Implementation-Version": project.modVersion,
+        "Implementation-Vendor" :'HaruhiFanClub',
+        "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+    ]
+jarManifest."${project.modName}-Version" = "${project.archivesBaseName}-${project.fullVersion}"
+
+jar {
+    manifest {attributes(jarManifest)}
+}
+jar.finalizedBy('reobfJar')
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+    manifest {attributes(jarManifest)}
+}
+task sourcesJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+    manifest {attributes(jarManifest)}
+}
+task forgelibJar(type: Jar) {
+    from sourceSets.main.output
+    from sourceSets.main.allJava
+    classifier = 'forgelib'
+    manifest {attributes(jarManifest)}
+}
+
+artifacts {
+    archives sourcesJar
+    archives deobfJar
+    archives forgelibJar
+}
+
+tasks.build.dependsOn('sourcesJar', 'deobfJar', 'forgelibJar')

@@ -5,6 +5,7 @@ bin
 .classpath
 .project
 .vscode
+tmp
 
 out
 *.ipr
