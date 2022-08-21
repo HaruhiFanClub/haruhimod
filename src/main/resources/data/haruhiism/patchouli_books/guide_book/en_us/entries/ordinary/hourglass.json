@@ -1,0 +1,16 @@
+{
+    "name": "沙漏",
+    "icon": "haruhiism:hourglass",
+    "category": "haruhiism:ordinary_item",
+    "sortnum": 7,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "手持沙漏潜行右键，会记录当前时间并发送到聊天栏，文字内容为：$(br)“$(playername)提醒：现在是Minecraft时间第?天??:??。”"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "haruhiism:hourglass"
+        }
+    ]
+}

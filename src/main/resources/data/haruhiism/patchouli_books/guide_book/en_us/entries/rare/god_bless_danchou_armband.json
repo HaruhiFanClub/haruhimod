@@ -1,0 +1,16 @@
+{
+    "name": "春日酱的眷顾",
+    "icon": "haruhiism:god_bless_danchou_armband",
+    "category": "haruhiism:rare_item",
+    "sortnum": 1,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "$(c)$(l)无法合成！$()$(br2)功能如下：$(li)合成本模组的多个高级物品；$(li)在锻造台上作为升级材料（这通常比使用工作台合成高级物品便宜）；$(li)对附魔物品进行$(l:https://www.mcmod.cn/item/612811.html)强化$()。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "$(br2)作为非常稀有的物品，通常只能通过以下方法获得：$(li)打开原版战利品箱子（村庄除外）；$(li)钓鱼；$(li)与猪灵进行“以物易物”。$(br2)$(c)注$()：如果安装了更多幸运模组，可以在向猪灵投掷喷溅型、滞留型$(#339900)幸运$()药水后进行以物易物，会根据该猪灵的$(#339900)幸运$()等级提高交换到春日酱的眷顾概率。"
+        }
+    ]
+}

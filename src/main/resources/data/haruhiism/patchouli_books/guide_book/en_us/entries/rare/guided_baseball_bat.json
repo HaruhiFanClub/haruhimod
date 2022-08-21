@@ -1,0 +1,22 @@
+{
+    "name": "制导模式棒球棍",
+    "icon": "haruhiism:guided_baseball_bat",
+    "category": "haruhiism:rare_item",
+    "sortnum": 2,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "作为$(l)武器$()使用，攻击造成3点伤害，攻击速度1.2（即攻击冷却0.83秒）。可获得原版附魔：击退、耐久、经验修补、消失诅咒。$(br2)特殊效果：$(li)每有1级$(5)击退$()等级，攻击造成的伤害+1.5点。$(li)攻击时，可使附近的弹射物方向偏离。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "title": "合成方式1——工作台合成",
+            "recipe": "haruhiism:guided_baseball_bat"
+        },
+        {
+            "type": "patchouli:smithing",
+            "title": "合成方式2——锻造台强化",
+            "recipe": "haruhiism:guided_baseball_bat_smithing"
+        }
+    ]
+}

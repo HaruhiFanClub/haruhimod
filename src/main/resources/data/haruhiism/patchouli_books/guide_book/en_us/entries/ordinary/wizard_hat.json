@@ -1,0 +1,16 @@
+{
+    "name": "魔法帽",
+    "icon": "haruhiism:wizard_hat",
+    "category": "haruhiism:ordinary_item",
+    "sortnum": 4,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "使用方法与原版头盔相同。提供2点护甲值，耐久：77点。（与原版金头盔相同）"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "haruhiism:wizard_hat"
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "name": "TPDD",
+    "icon": "haruhiism:tpdd",
+    "category": "haruhiism:rare_item",
+    "sortnum": 7,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "全称为“Time Plane Destroy Device”。$(br2)使用方法：$(li)主手持TPDD潜行右键，会记录下玩家当前的生命值、饥饿值和饱和度，以及当前的状态效果及其等级和剩余持续时间。然后聊天栏会发出：“$(playername)提醒：现在是Minecraft时间第?天??:??。”"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "$(li)在有记录的情况下，主手持TPDD长按右键3秒进行读取，玩家的上述属性和状态会全部改为记录的内容（当前已有的状态效果清除），同时清除TPDD的记录内容。然后聊天栏会发出：“$(playername)已经回到了第?天??:??。”读取后1096秒内，无法使用TPDD（包括记录和读取）。$(li)如果读取记录时，玩家装备了朝比奈实玖瑠的女仆装和朝比奈实玖瑠的隐形眼镜，那么玩家的生命值、饥饿度和饱和度将回满，并且读取到的状态效果等级+1。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "haruhiism:tpdd"
+        }
+    ]
+}

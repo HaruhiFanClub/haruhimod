@@ -1,0 +1,16 @@
+{
+    "name": "女仆装",
+    "icon": "haruhiism:maid_outfit",
+    "category": "haruhiism:ordinary_item",
+    "sortnum": 6,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "使用方法与原版胸甲相同。提供3点护甲值，耐久：1096点。$(br2)玩家装备时，受到伤害后会给予自己及5格内的其他玩家、被动型生物$(#cd5cab)生命恢复Ⅰ$()，持续5秒。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "haruhiism:maid_outfit"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "团长立锥",
+    "icon": "haruhiism:danchou_cone",
+    "category": "haruhiism:block",
+    "sortnum": 2,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "可以穿戴到头部的方块！$(br2)放置之后，空手状态下，潜行右击立锥，可以将其戴到头部（如果已经戴着头盔或其他装备，则同时会将头盔脱下）。$(br)戴着立锥时，会变相提高使用$(l:ordinary/danchou_armband)团长袖标$()进行强化时的成功概率，详情请见$(l:https://www.mcmod.cn/item/612811.html)强化$()。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "haruhiism:danchou_cone"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "SOS团徽台阶",
+    "icon": "haruhiism:sos_badge_slab",
+    "category": "haruhiism:block",
+    "sortnum": 1,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "$(l)单台阶（半砖）$()：$(br)能够用于装饰的功能性方块。站在其上时，每隔6秒获得一个持续6秒的随机状态效果，等级为1级。站满1096秒后，可以获得物品奖励。$(br2)$(l)双台阶（整砖）$()：$(br)能够用于装饰的功能性方块。站在其上时，每隔3秒获得一个持续3秒的随机状态效果，等级为1~3级。站满1096秒后，可以获得物品奖励。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "haruhiism:sos_badge_slab"
+        }
+    ]
+}

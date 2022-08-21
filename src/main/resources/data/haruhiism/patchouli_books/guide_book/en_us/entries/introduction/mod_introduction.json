@@ -1,0 +1,16 @@
+{
+    "name": "模组简介",
+    "icon": "minecraft:book",
+    "category": "haruhiism:introduction",
+    "sortnum": 1,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "本模组在$(l)凉宫春日应援团$()的大力支持下制作。$(br2)$(l)春日主义/Haruhiism$()的创作灵感来自于《凉宫春日系列》系列轻小说及其动画、二创同人作品。$(br)添加了大量与SOS团成员，包括凉宫春日、长门有希、朝比奈实玖瑠等人相关的物品，大部分物品设计直接来自于《凉宫春日的忧郁》动画，也有一部分是在参考原作品设定的基础上全新创作的。"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "$(br2)本模组目前还在持续更新中，手册内容可能会有一定程度的滞后。如果发现错漏或者有对模组的建议，请及时与我们联系。$(br)$(l)相关链接：$()$(li)$(l:https://space.bilibili.com/201296348)凉宫春日应援团B站账号$()$(li)$(l:https://www.mcmod.cn/class/7009.html)MCMOD百科$()$(li)$(l:https://github.com/HaruhiFanClub/haruhimod)GitHub仓库$()$(li)$(l:https://github.com/HaruhiFanClub/HaruhiismAdditionalMusicPack/releases)音乐包下载$()$(li)$(l:https://www.curseforge.com/minecraft/mc-mods/haruhiism)CurseForfe页面$()"
+        }
+    ]
+}

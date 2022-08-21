@@ -1,0 +1,22 @@
+{
+    "name": "长门有希的魔法帽",
+    "icon": "haruhiism:yukis_wizard_hat",
+    "category": "haruhiism:rare_item",
+    "sortnum": 3,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "使用方法与原版头盔相同。提供4点护甲值，4点盔甲韧性，耐久：708。$(br2)$(l)特殊效果$()：装备长门有希的魔法帽时，持续获得$(#f82423)饱和Ⅰ$()、$(#339900)幸运Ⅰ$()、$(#99453a)抗性提升Ⅰ$()、$(#94a061)发光Ⅰ$()。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "title": "合成方式1——工作台合成",
+            "recipe": "haruhiism:yukis_wizard_hat"
+        },
+        {
+            "type": "patchouli:smithing",
+            "title": "合成方式2——锻造台强化",
+            "recipe": "haruhiism:yukis_wizard_hat_smithing"
+        }
+    ]
+}

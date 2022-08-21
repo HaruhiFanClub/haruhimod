@@ -1,0 +1,16 @@
+{
+    "name": "团长袖标",
+    "icon": "haruhiism:danchou_armband",
+    "category": "haruhiism:ordinary_item",
+    "sortnum": 1,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "$(l)可以合成！$()$(br2)主手持有团长袖标，副手持物品。潜行右键铁砧，消耗256经验进行强化。如果成功，会听到“使用铁砧”的音效；否则是“破坏玻璃”的音效。$(br)具体概率规则请见$(l:https://www.mcmod.cn/item/612811.html)强化$()。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "haruhiism:danchou_armband"
+        }
+    ]
+}

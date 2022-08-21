@@ -1,0 +1,16 @@
+{
+    "name": "朝比奈实玖瑠的隐形眼镜",
+    "icon": "haruhiism:mikurus_contact",
+    "category": "haruhiism:rare_item",
+    "sortnum": 6,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "装备在饰品栏头饰部位生效。$(br2)$(l)特殊效果$()：$(li)免疫$(#1f1f23)失明$()效果；$(li)装备着$(l:rare/mikurus_maid_outfit)朝比奈实玖瑠的女仆装$()时，持续获得村庄英雄Ⅰ；$(li)装备着$(l:rare/mikurus_maid_outfit)朝比奈实玖瑠的女仆装$()时:按B键可以发射$(l)“具有高度指向性的不可见相干光”$()，造成等于自身当前生命值的30%的魔法伤害;如果命中方块，使其着火。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "haruhiism:mikurus_contact"
+        }
+    ]
+}

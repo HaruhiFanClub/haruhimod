@@ -1,0 +1,6 @@
+{
+    "name": "普通物品",
+    "sortnum": 3,
+    "description": "使用很容易获得的普通材料进行合成，它们都有对应的高级版本。",
+    "icon": "haruhiism:baseball_bat"
+}

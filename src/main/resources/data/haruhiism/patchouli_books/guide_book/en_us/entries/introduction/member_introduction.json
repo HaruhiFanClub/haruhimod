@@ -1,0 +1,12 @@
+{
+    "name": "工作人员介绍",
+    "icon": "minecraft:creeper_banner_pattern",
+    "category": "haruhiism:introduction",
+    "sortnum": 2,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "感谢以下人员对本模组制作工作的支持与付出。$(br2)$(l:https://zh.moegirl.org.cn/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5)凉宫春日$()：超策划$(br)$(l:https://space.bilibili.com/36309238)_libellule_$()：策划、美术$(br)$(l:https://github.com/WakelessSloth56)WakelessSloth56$()：程序$(br)$(l:https://github.com/lainio24)LainIO24$()：程序$(br)$(l:https://space.bilibili.com/7938426)雲路$()：服装建模$(br)$(l:https://space.bilibili.com/629042)电波人粒子$()：美术"
+        }
+    ]
+}

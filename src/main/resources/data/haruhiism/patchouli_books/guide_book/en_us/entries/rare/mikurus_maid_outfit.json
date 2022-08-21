@@ -1,0 +1,22 @@
+{
+    "name": "朝比奈实玖瑠的女仆装",
+    "icon": "haruhiism:mikurus_maid_outfit",
+    "category": "haruhiism:rare_item",
+    "sortnum": 5,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "使用方法与原版胸甲相同。提供8点护甲值、2点盔甲韧性，耐久：1096点。$(l)特殊效果$()：$(li)装备时，持续获得$(#cd5cab)生命恢复Ⅱ$()（如果同时装备了$(l:rare/mikurus_contact)朝比奈实玖瑠的隐形眼镜$()，则改为$(#cd5cab)生命恢复Ⅲ$()）；$(li)装备时，给予10格内的其他玩家、被动型生物$(#cd5cab)生命恢复Ⅱ$()。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "title": "合成方式1——工作台合成",
+            "recipe": "haruhiism:mikurus_maid_outfit"
+        },
+        {
+            "type": "patchouli:smithing",
+            "title": "合成方式2——锻造台强化",
+            "recipe": "haruhiism:mikurus_maid_outfit_smithing"
+        }
+    ]
+}

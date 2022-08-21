@@ -1,0 +1,22 @@
+{
+    "name": "长门有希的魔法斗篷",
+    "icon": "haruhiism:yukis_wizard_cloak",
+    "category": "haruhiism:rare_item",
+    "sortnum": 4,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "与原版胸甲使用方法相同。提供10点护甲值，4点盔甲韧性，耐久：708。$(br2)特殊效果$()：装备长门有希的魔法斗篷时，每42秒获得$(#2552a5)伤害吸收Ⅲ$()，持续42秒。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "title": "合成方式1——工作台合成",
+            "recipe": "haruhiism:yukis_wizard_cloak"
+        },
+        {
+            "type": "patchouli:smithing",
+            "title": "合成方式2——锻造台强化",
+            "recipe": "haruhiism:yukis_wizard_cloak_smithing"
+        }
+    ]
+}

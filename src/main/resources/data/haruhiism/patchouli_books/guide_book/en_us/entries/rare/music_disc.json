@@ -1,0 +1,22 @@
+{
+    "name": "音乐唱片",
+    "icon": "haruhiism:music_disc_in_the_summertime",
+    "category": "haruhiism:rare_item",
+    "sortnum": 8,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "本模组添加了四张$(l)可以合成$()的原创唱片，所含音乐 In the summertime、Someday in the rain、Vox in box 和 Halo，均由凉宫春日应援团创作，并收录在应援团出品同人专辑《春日繁星》中。$(br2)请下载音乐资源包$(l:https://github.com/HaruhiFanClub/HaruhiismAdditionalMusicPack/releases)HaruhiismAdditionalMusicPack.zip$()，然后放入resourcepacks文件夹并在游戏中启用即可。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "haruhiism:music_disc_in_the_summertime",
+            "recipe2": "haruhiism:music_disc_someday_in_the_rain"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "haruhiism:music_disc_vox_in_box",
+            "recipe2": "haruhiism:music_disc_halo"
+        }
+    ]
+}

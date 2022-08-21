@@ -1,0 +1,16 @@
+{
+    "name": "棒球棍",
+    "icon": "haruhiism:baseball_bat",
+    "category": "haruhiism:ordinary_item",
+    "sortnum": 2,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "普通的棒球棍，平平无奇，没有太多的作用：$(li)作为$(l)武器$()使用，攻击造成3点伤害，攻击速度为1.0（即攻击冷却为1秒）。$(li)可获得魔咒：击退、耐久、经验修补、消失诅咒。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "haruhiism:baseball_bat"
+        }
+    ]
+}

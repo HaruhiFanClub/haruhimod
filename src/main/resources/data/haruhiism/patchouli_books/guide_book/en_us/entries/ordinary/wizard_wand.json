@@ -1,0 +1,27 @@
+{
+    "name": "魔法杖",
+    "icon": "haruhiism:inferior_wizard_wand",
+    "category": "haruhiism:ordinary_item",
+    "sortnum": 3,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "玩家需要先制作魔法杖LV.1（有序合成），然后依次制作LV.2~5的魔法杖（无序合成）。$(br2)$(li)作为$(l)近战武器$()使用:根据魔法杖等级，造成2/3/5/7/11点魔法伤害，攻击速度：0.618（即攻击冷却1.618秒）。$(li)$(c)无法附魔$()。"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "haruhiism:inferior_wizard_wand",
+            "recipe2": "haruhiism:ordinary_wizard_wand"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "haruhiism:excellent_wizard_wand",
+            "recipe2": "haruhiism:rare_wizard_wand"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "haruhiism:epic_wizard_wand",
+            "recipe2": "haruhiism:yukis_wizard_wand"
+        }
+    ]
+}
