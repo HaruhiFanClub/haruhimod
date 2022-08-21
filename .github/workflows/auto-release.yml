@@ -19,9 +19,9 @@ jobs:
             - run: |
                   prop() { grep -P "^\s*[^#]?${1}=.*$" './gradle.properties' | cut -d'=' -f2; }
                   echo "GIT_TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-                  echo "HARUHIISM_VERSION=`echo $(prop "haruhiism_version")`" >> $GITHUB_ENV
+                  echo "MOD_VERSION=`echo $(prop "mod_version")`" >> $GITHUB_ENV
 
-            - run: if [ "${{env.GIT_TAG}}" != "v${{env.HARUHIISM_VERSION}}" ];then exit 1;fi
+            - run: if [ "${{env.GIT_TAG}}" != "v${{env.MOD_VERSION}}" ];then exit 1;fi
 
     second:
         name: Build and publish

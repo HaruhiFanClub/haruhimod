@@ -15,11 +15,11 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'org.spongepowered.mixin'
 
-group = 'com.haruhifanclub'
-archivesBaseName = "haruhiism"
-project.ext.modVersion= "${haruhiism_version}"
-project.ext.modName = 'Haruhiism'
-project.ext.modId = 'haruhiism'
+project.ext.modId = "${mod_id}"
+project.ext.modName = "${mod_name}"
+project.ext.modVersion= "${mod_version}"
+group = "${group}"
+archivesBaseName = "${project.modId}"
 apply from: 'gradle/version.gradle'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -61,20 +61,14 @@ minecraft {
 sourceSets.remove(sourceSets.test)
 
 repositories {
-    maven {
-        url "https://dvs1.progwml6.com/files/maven/"
-    }
-    maven {
-        url "https://maven.blamejared.com"
-    }
+    maven { url "https://dvs1.progwml6.com/files/maven/" }
+    maven { url "https://maven.blamejared.com" }
+    maven { url = "https://maven.theillusivec4.top/" }
     maven {
         url "https://www.cursemaven.com"
         content {
             includeGroup "curse.maven"
         }
-    }
-    maven {
-        url = "https://maven.theillusivec4.top/"
     }
     maven {
         url "https://maven.pkg.github.com/auioc/arnicalib-mcmod"
@@ -89,15 +83,13 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
 
-    if (local_debug.toBoolean()){
-        implementation fileTree(dir: 'libs', include: ['*/*-forgelib.jar', '*/*-api.jar'])
-    } else {
-        implementation "org.auioc.mcmod:arnicalib:${minecraft_version}-${arnicalib_version}:forgelib"
-    }
+    implementation "org.auioc.mcmod:arnicalib:${minecraft_version}-${arnicalib_version}:forgelib"
 
     if (System.getenv('GITHUB_ACTOR') == null) {
         runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+        runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
         runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
         runtimeOnly fg.deobf("curse.maven:jade-324717:${jade_version}")
     }
