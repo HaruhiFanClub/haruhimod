@@ -6,8 +6,8 @@ license="GNU GPLv3"
 modId="haruhiism"
 version="${file.jarVersion}"
 displayName="Haruhiism"
-credits="Haruhifanclub"
-authors="WakelssSloth56"
+credits="HaruhiFanClub, AUIOC"
+authors="WakelssSloth56, Libellule505"
 description='''
 '''
 
@@ -26,7 +26,7 @@ description='''
 [[dependencies.haruhiism]]
     modId="arnicalib"
     mandatory=true
-    versionRange="[5.3.5,)"
+    versionRange="[5.4.1,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.haruhiism]]

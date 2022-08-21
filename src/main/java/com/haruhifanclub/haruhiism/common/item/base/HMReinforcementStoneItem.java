@@ -3,8 +3,8 @@ package com.haruhifanclub.haruhiism.common.item.base;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.auioc.mcmod.arnicalib.utils.game.MessageHelper;
 import org.auioc.mcmod.arnicalib.utils.game.SoundUtils;
-import org.auioc.mcmod.arnicalib.utils.game.TextUtils;
 import com.haruhifanclub.haruhiism.api.item.IHMItem;
 import com.haruhifanclub.haruhiism.common.advancement.criterion.ItemReinforcedTrigger;
 import com.haruhifanclub.haruhiism.common.itemgroup.HMCreativeModeTabs;
@@ -26,7 +26,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public abstract class HMReinforcementStoneItem extends Item implements IHMItem {
 
-    private static final String MESSAGE_KEY = "item.haruhiism.reinforcement_stone.";
+    protected static final MessageHelper MSGH = new MessageHelper((key) -> "item.haruhiism.reinforcement_stone." + key);
 
     private final boolean isEpic;
 
@@ -91,55 +91,35 @@ public abstract class HMReinforcementStoneItem extends Item implements IHMItem {
 
     @Override
     public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
-        if (!isEnabled()) {
-            return InteractionResult.PASS;
-        }
+        if (!isEnabled()) return InteractionResult.PASS;
 
-        if (context.getLevel().isClientSide()) {
-            return InteractionResult.CONSUME;
-        }
+        if (context.getLevel().isClientSide()) return InteractionResult.CONSUME;
 
         ServerPlayer player = (ServerPlayer) context.getPlayer();
 
 
         Item stoneItem = player.getItemInHand(InteractionHand.MAIN_HAND).getItem();
         ItemCooldowns cooldownTracker = player.getCooldowns();
-        if (cooldownTracker.isOnCooldown(stoneItem)) {
-            return InteractionResult.PASS;
-        }
+        if (cooldownTracker.isOnCooldown(stoneItem)) return InteractionResult.PASS;
+        if (!player.isSteppingCarefully()) return InteractionResult.PASS;
+        if (!checkTargetBlock(context)) return InteractionResult.PASS;
 
-        if (!player.isSteppingCarefully()) {
-            return InteractionResult.PASS;
-        }
-
-        if (!checkTargetBlock(context)) {
-            return InteractionResult.PASS;
-        }
 
         ItemStack targetItemStack = player.getItemInHand(InteractionHand.OFF_HAND);
 
         int itemStackCheckResult = checkTargetItemStack(targetItemStack);
         if (itemStackCheckResult > 0) {
             switch (itemStackCheckResult) {
-                case 1: {
-                    TextUtils.chat(player, TextUtils.getI18nText(MESSAGE_KEY + "empty_item"));
-                    break;
-                }
-                case 2: {
-                    TextUtils.chat(player, TextUtils.getI18nText(MESSAGE_KEY + "blacklist"));
-                    break;
-                }
-                case 3: {
-                    TextUtils.chat(player, TextUtils.getI18nText(MESSAGE_KEY + "empty_enchantments"));
-                    break;
-                }
+                case 1 -> MSGH.sendSystemMessage(player, "empty_item");
+                case 2 -> MSGH.sendSystemMessage(player, "blacklist");
+                case 3 -> MSGH.sendSystemMessage(player, "empty_enchantments");
             }
             return InteractionResult.FAIL;
         }
 
         int experienceCost = getExperienceCost();
         if ((!player.isCreative()) && (player.totalExperience < experienceCost)) {
-            TextUtils.chat(player, TextUtils.getI18nText(MESSAGE_KEY + "xp_not_enough"));
+            MSGH.sendSystemMessage(player, "xp_not_enough");
             return InteractionResult.FAIL;
         }
 

@@ -1,7 +1,7 @@
 package com.haruhifanclub.haruhiism.common.item.impl;
 
 import java.util.Collection;
-import org.auioc.mcmod.arnicalib.utils.game.EntityUtils;
+import org.auioc.mcmod.arnicalib.utils.game.RayTraceUtils;
 import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
 import com.haruhifanclub.haruhiism.common.item.base.HMWizardWandItem;
 import net.minecraft.world.InteractionHand;
@@ -37,7 +37,7 @@ public class YukisWizardWandItem extends HMWizardWandItem implements IHMBlessedI
     }
 
     private static InteractionResultHolder<ItemStack> depriveEffect(ItemStack wand, Player player) {
-        EntityHitResult rayHitEntity = EntityUtils.getEntityHitResult(player, DEPRIVE_EFFECT_LENGTH);
+        EntityHitResult rayHitEntity = RayTraceUtils.getEntityHitResult(player, DEPRIVE_EFFECT_LENGTH);
         if ((rayHitEntity == null) || !(rayHitEntity.getEntity() instanceof LivingEntity)) {
             return InteractionResultHolder.pass(wand);
         }

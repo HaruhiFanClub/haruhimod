@@ -1,6 +1,6 @@
 package com.haruhifanclub.haruhiism.common.item.impl;
 
-import org.auioc.mcmod.arnicalib.utils.game.EntityUtils;
+import org.auioc.mcmod.arnicalib.utils.game.RayTraceUtils;
 import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
 import com.haruhifanclub.haruhiism.common.damagesource.MikuruBeamDamageSource;
 import com.haruhifanclub.haruhiism.common.item.HMItems;
@@ -52,7 +52,7 @@ public class MikurusContactItem extends Item implements IHMBlessedItem, ICurioIt
     }
 
     public static int emitMikuruBeam(Player player) {
-        return EntityUtils.rayHitLivingEntityOrBlock(
+        return RayTraceUtils.rayHitLivingEntityOrBlock(
             player, Config.laserLength.get(),
             (e) -> {
                 LivingEntity target = (LivingEntity) e.getEntity();

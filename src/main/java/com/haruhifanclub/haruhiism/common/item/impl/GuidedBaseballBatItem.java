@@ -3,7 +3,7 @@ package com.haruhifanclub.haruhiism.common.item.impl;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import org.auioc.mcmod.arnicalib.utils.game.EntityUtils;
+import org.auioc.mcmod.arnicalib.utils.game.RayTraceUtils;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
@@ -115,7 +115,7 @@ public class GuidedBaseballBatItem extends HMBaseballBatItem implements IHMBless
         }
 
         Projectile target;
-        EntityHitResult rayHitEntity = EntityUtils.getEntityHitResult(
+        EntityHitResult rayHitEntity = RayTraceUtils.getEntityHitResult(
             player,
             Config.hitProjectileRayTraceLength.get(),
             (float) (0.45 - 0.2 * Math.pow(0.5, luckBonus)),
