@@ -21,7 +21,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "haruhiism:god_bless_danchou_armband"
+                        "items": ["haruhiism:god_bless_danchou_armband"]
                     }
                 ]
             }
