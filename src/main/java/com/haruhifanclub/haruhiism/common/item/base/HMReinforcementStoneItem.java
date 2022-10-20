@@ -3,8 +3,8 @@ package com.haruhifanclub.haruhiism.common.item.base;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.auioc.mcmod.arnicalib.utils.game.MessageHelper;
-import org.auioc.mcmod.arnicalib.utils.game.SoundUtils;
+import org.auioc.mcmod.arnicalib.game.chat.MessageHelper;
+import org.auioc.mcmod.arnicalib.game.sound.SoundPlayer;
 import com.haruhifanclub.haruhiism.api.item.IHMItem;
 import com.haruhifanclub.haruhiism.common.advancement.criterion.ItemReinforcedTrigger;
 import com.haruhifanclub.haruhiism.common.itemgroup.HMCreativeModeTabs;
@@ -148,7 +148,7 @@ public abstract class HMReinforcementStoneItem extends Item implements IHMItem {
 
     private static void playSound(ServerPlayer player, String sound) {
         if (!sound.isEmpty()) {
-            SoundUtils.play(player, sound);
+            SoundPlayer.play(player, sound);
         }
     }
 

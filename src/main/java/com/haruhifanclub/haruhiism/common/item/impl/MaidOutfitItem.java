@@ -2,9 +2,9 @@ package com.haruhifanclub.haruhiism.common.item.impl;
 
 import java.util.List;
 import java.util.function.Consumer;
-import org.auioc.mcmod.arnicalib.api.game.item.HArmorMaterial;
-import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
-import org.auioc.mcmod.arnicalib.utils.game.EntityUtils;
+import org.auioc.mcmod.arnicalib.game.effect.MobEffectUtils;
+import org.auioc.mcmod.arnicalib.game.entity.EntityPredicates;
+import org.auioc.mcmod.hulsealib.game.item.HArmorMaterial;
 import com.haruhifanclub.haruhiism.client.renderer.armor.MaidOutfitArmorRenderer;
 import com.haruhifanclub.haruhiism.common.item.HMItems;
 import com.haruhifanclub.haruhiism.common.item.base.HMArmorItem;
@@ -38,12 +38,12 @@ public class MaidOutfitItem extends HMArmorItem {
     public static void applyEffect(ServerPlayer player) {
         if (!isEquipped(player)) return;
 
-        int effectLevel = EffectUtils.getEffectLevel(player, MobEffects.REGENERATION);
+        int effectLevel = MobEffectUtils.getLevel(player, MobEffects.REGENERATION);
         if (effectLevel == 0) {
             var aabb = (new AABB(player.blockPosition())).inflate(5.0D);
             List<LivingEntity> list = player.level.getEntitiesOfClass(LivingEntity.class, aabb);
             for (var living : list) {
-                if (living instanceof Player || (EntityUtils.IS_FRIENDLY.test(living))) {
+                if (living instanceof Player || (EntityPredicates.IS_FRIENDLY.test(living))) {
                     living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100));
                 }
             }

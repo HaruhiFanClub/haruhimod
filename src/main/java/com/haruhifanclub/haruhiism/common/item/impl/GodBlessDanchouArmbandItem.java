@@ -1,8 +1,8 @@
 package com.haruhifanclub.haruhiism.common.item.impl;
 
 import org.apache.commons.lang3.RandomUtils;
-import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
-import org.auioc.mcmod.arnicalib.utils.game.EnchUtils;
+import org.auioc.mcmod.arnicalib.game.effect.MobEffectUtils;
+import org.auioc.mcmod.arnicalib.game.enchantment.EnchUtils;
 import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
 import com.haruhifanclub.haruhiism.common.item.base.HMReinforcementStoneItem;
 import net.minecraft.nbt.ListTag;
@@ -13,6 +13,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 
+@SuppressWarnings("removal")
 public class GodBlessDanchouArmbandItem extends HMReinforcementStoneItem implements IHMBlessedItem {
 
     public GodBlessDanchouArmbandItem() {
@@ -33,13 +34,13 @@ public class GodBlessDanchouArmbandItem extends HMReinforcementStoneItem impleme
     public ItemStack processEnchantment(ItemStack stack, Player player) {
         float A = 33.0F, B = 66.0F, C = 99.0F;
 
-        int unluckLevel = EffectUtils.getEffectLevel(player, MobEffects.UNLUCK);
+        int unluckLevel = MobEffectUtils.getLevel(player, MobEffects.UNLUCK);
         if (unluckLevel > 0) {
             A -= 0.6 * unluckLevel;
             B -= 0.6 * unluckLevel;
             C -= 0.6 * unluckLevel;
         } else {
-            int luckLevel = EffectUtils.getEffectLevel(player, MobEffects.LUCK);
+            int luckLevel = MobEffectUtils.getLevel(player, MobEffects.LUCK);
             A -= 0.6 * luckLevel;
             B -= 0.6 * luckLevel;
             C -= 0.6 * luckLevel;

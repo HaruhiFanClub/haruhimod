@@ -1,7 +1,7 @@
 package com.haruhifanclub.haruhiism.common.item.impl;
 
 import java.util.Collection;
-import org.auioc.mcmod.arnicalib.utils.game.RayTraceUtils;
+import org.auioc.mcmod.arnicalib.game.world.phys.RayTraceUtils;
 import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
 import com.haruhifanclub.haruhiism.common.item.base.HMWizardWandItem;
 import net.minecraft.world.InteractionHand;

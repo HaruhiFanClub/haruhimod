@@ -1,8 +1,8 @@
 package com.haruhifanclub.haruhiism.server.command;
 
 import static net.minecraft.commands.Commands.literal;
-import org.auioc.mcmod.arnicalib.common.command.impl.VersionCommand;
-import org.auioc.mcmod.arnicalib.server.command.AHServerCommands;
+import org.auioc.mcmod.arnicalib.game.command.AHCommands;
+import org.auioc.mcmod.arnicalib.game.command.node.VersionCommand;
 import com.haruhifanclub.haruhiism.Haruhiism;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.tree.CommandNode;
@@ -16,7 +16,7 @@ public final class HMServerCommands {
         VersionCommand.addVersionNode(NODE, Haruhiism.class);
 
         dispatcher.register(literal(Haruhiism.MOD_ID).redirect(NODE));
-        AHServerCommands.getAHNode(dispatcher).addChild(NODE);
+        AHCommands.getServerNode(dispatcher).addChild(NODE);
     }
 
 }

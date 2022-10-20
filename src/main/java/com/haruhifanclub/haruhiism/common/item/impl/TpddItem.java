@@ -3,8 +3,8 @@ package com.haruhifanclub.haruhiism.common.item.impl;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
-import org.auioc.mcmod.arnicalib.utils.game.MCTimeUtils;
+import org.auioc.mcmod.arnicalib.game.effect.MobEffectRegistry;
+import org.auioc.mcmod.arnicalib.game.world.MCTimeUtils;
 import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
 import com.haruhifanclub.haruhiism.common.item.base.HMHourglassItem;
 import net.minecraft.ChatFormatting;
@@ -157,7 +157,13 @@ public class TpddItem extends HMHourglassItem implements IHMBlessedItem {
                 if (!effects_nbt.isEmpty()) {
                     for (int i = 0; i < effects_nbt.size(); i++) {
                         CompoundTag effect_nbt = effects_nbt.getCompound(i);
-                        player.addEffect(EffectUtils.createInstance(effect_nbt));
+                        player.addEffect(
+                            new MobEffectInstance(
+                                MobEffectRegistry.getOrElseThrow(effect_nbt.getString("id")),
+                                effect_nbt.getInt("duration"),
+                                effect_nbt.getInt("amplifier")
+                            )
+                        );
                     }
                 }
             }

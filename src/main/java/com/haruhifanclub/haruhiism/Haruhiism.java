@@ -3,8 +3,8 @@ package com.haruhifanclub.haruhiism;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
-import org.auioc.mcmod.arnicalib.utils.LogUtil;
-import org.auioc.mcmod.arnicalib.utils.java.VersionUtils;
+import org.auioc.mcmod.arnicalib.base.log.LogUtil;
+import org.auioc.mcmod.arnicalib.base.version.VersionUtils;
 import com.haruhifanclub.haruhiism.client.event.HMClientEventHandler;
 import com.haruhifanclub.haruhiism.client.keybinding.HMKeyMappings;
 import com.haruhifanclub.haruhiism.client.model.HMLayerDefinitions;
@@ -40,7 +40,7 @@ public class Haruhiism {
     private static final Marker CORE = LogUtil.getMarker("CORE");
 
     public Haruhiism() {
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.CONFIG);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
 
         handleIMC();
 

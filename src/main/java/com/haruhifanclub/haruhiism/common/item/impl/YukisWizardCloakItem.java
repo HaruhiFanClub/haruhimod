@@ -1,7 +1,7 @@
 package com.haruhifanclub.haruhiism.common.item.impl;
 
 import java.util.function.Consumer;
-import org.auioc.mcmod.arnicalib.api.game.item.HArmorMaterial;
+import org.auioc.mcmod.hulsealib.game.item.HArmorMaterial;
 import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
 import com.haruhifanclub.haruhiism.client.renderer.armor.WizardCloakArmorRenderer;
 import com.haruhifanclub.haruhiism.common.item.HMItems;

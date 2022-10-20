@@ -1,7 +1,7 @@
 package com.haruhifanclub.haruhiism.common.network;
 
-import org.auioc.mcmod.arnicalib.api.game.network.HPacketHandler;
-import org.auioc.mcmod.arnicalib.api.game.network.IHPacket;
+import org.auioc.mcmod.arnicalib.game.network.HPacketHandler;
+import org.auioc.mcmod.arnicalib.game.network.IHPacket;
 import com.haruhifanclub.haruhiism.Haruhiism;
 import com.haruhifanclub.haruhiism.server.network.EmitMikuruBeamPacket;
 import net.minecraft.server.level.ServerPlayer;

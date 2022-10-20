@@ -1,6 +1,6 @@
 package com.haruhifanclub.haruhiism.common.config;
 
-import java.util.function.Consumer;
+import org.auioc.mcmod.arnicalib.game.config.ConfigUtils;
 import com.haruhifanclub.haruhiism.common.blockentity.impl.SosBadgeSlabBlockEntity;
 import com.haruhifanclub.haruhiism.common.item.base.HMBaseballBatItem;
 import com.haruhifanclub.haruhiism.common.item.base.HMReinforcementStoneItem;
@@ -15,7 +15,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class CommonConfig {
 
-    public static final ForgeConfigSpec CONFIG;
+    public static final ForgeConfigSpec SPEC;
 
     static {
         final ForgeConfigSpec.Builder b = new ForgeConfigSpec.Builder();
@@ -24,27 +24,27 @@ public class CommonConfig {
             b.push("item");
 
             {
-                pushWithoutPop(b, "reinforcement_stone", HMReinforcementStoneItem.Config::build);
+                ConfigUtils.pushWithoutPop(b, "reinforcement_stone", HMReinforcementStoneItem.Config::build);
                 {
-                    push(b, "common", DanchouArmbandItem.Config::build);
-                    push(b, "epic", GodBlessDanchouArmbandItem.Config::build);
+                    ConfigUtils.push(b, "common", DanchouArmbandItem.Config::build);
+                    ConfigUtils.push(b, "epic", GodBlessDanchouArmbandItem.Config::build);
                 }
                 b.pop();
             }
 
             {
 
-                pushWithoutPop(b, "baseball_bat", HMBaseballBatItem.Config::build);
+                ConfigUtils.pushWithoutPop(b, "baseball_bat", HMBaseballBatItem.Config::build);
                 {
-                    push(b, "guided", GuidedBaseballBatItem.Config::build);
+                    ConfigUtils.push(b, "guided", GuidedBaseballBatItem.Config::build);
                 }
                 b.pop();
             }
 
-            push(b, "tpdd", TpddItem.Config::build);
-            push(b, "mikurus_maid_outfit", MikurusMaidOutfitItem.Config::build);
-            push(b, "mikurus_contact", MikurusContactItem.Config::build);
-            push(b, "yukis_wizard_cloak", YukisWizardCloakItem.Config::build);
+            ConfigUtils.push(b, "tpdd", TpddItem.Config::build);
+            ConfigUtils.push(b, "mikurus_maid_outfit", MikurusMaidOutfitItem.Config::build);
+            ConfigUtils.push(b, "mikurus_contact", MikurusContactItem.Config::build);
+            ConfigUtils.push(b, "yukis_wizard_cloak", YukisWizardCloakItem.Config::build);
 
             b.pop();
         }
@@ -53,24 +53,12 @@ public class CommonConfig {
         {
             b.push("block");
 
-            push(b, "sos_badge_slab", SosBadgeSlabBlockEntity.Config::build);
+            ConfigUtils.push(b, "sos_badge_slab", SosBadgeSlabBlockEntity.Config::build);
 
             b.pop();
         }
 
-        CONFIG = b.build();
-    }
-
-
-    private static void pushWithoutPop(ForgeConfigSpec.Builder builder, String path, Consumer<ForgeConfigSpec.Builder> subBuilder) {
-        builder.push(path);
-        subBuilder.accept(builder);
-    }
-
-    private static void push(ForgeConfigSpec.Builder builder, String path, Consumer<ForgeConfigSpec.Builder> subBuilder) {
-        builder.push(path);
-        subBuilder.accept(builder);
-        builder.pop();
+        SPEC = b.build();
     }
 
 }

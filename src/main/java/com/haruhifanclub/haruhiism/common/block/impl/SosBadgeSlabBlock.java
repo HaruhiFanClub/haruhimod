@@ -1,7 +1,7 @@
 package com.haruhifanclub.haruhiism.common.block.impl;
 
 import javax.annotation.Nullable;
-import org.auioc.mcmod.arnicalib.api.game.block.HBlockMaterial;
+import org.auioc.mcmod.hulsealib.game.block.HBlockMaterial;
 import com.haruhifanclub.haruhiism.common.blockentity.HMBlockEntities;
 import com.haruhifanclub.haruhiism.common.blockentity.impl.SosBadgeSlabBlockEntity;
 import net.minecraft.core.BlockPos;

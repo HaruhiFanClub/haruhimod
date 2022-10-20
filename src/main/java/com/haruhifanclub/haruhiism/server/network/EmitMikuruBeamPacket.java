@@ -1,7 +1,7 @@
 package com.haruhifanclub.haruhiism.server.network;
 
 import java.util.UUID;
-import org.auioc.mcmod.arnicalib.api.game.network.IHPacket;
+import org.auioc.mcmod.arnicalib.game.network.IHPacket;
 import com.haruhifanclub.haruhiism.common.item.HMItems;
 import com.haruhifanclub.haruhiism.common.item.impl.MikurusContactItem;
 import net.minecraft.network.FriendlyByteBuf;

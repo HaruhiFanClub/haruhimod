@@ -2,8 +2,8 @@ package com.haruhifanclub.haruhiism.common.item.impl;
 
 import java.util.List;
 import java.util.function.Consumer;
-import org.auioc.mcmod.arnicalib.api.game.item.HArmorMaterial;
-import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
+import org.auioc.mcmod.arnicalib.game.effect.MobEffectUtils;
+import org.auioc.mcmod.hulsealib.game.item.HArmorMaterial;
 import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;
 import com.haruhifanclub.haruhiism.client.renderer.armor.MaidOutfitArmorRenderer;
 import com.haruhifanclub.haruhiism.common.item.HMItems;
@@ -68,7 +68,7 @@ public class MikurusMaidOutfitItem extends HMArmorItem implements IHMBlessedItem
     }
 
     private static void addEffect(LivingEntity living, int amplifier) {
-        if (EffectUtils.getEffectLevel(living, MobEffects.REGENERATION) == 0) {
+        if (MobEffectUtils.getLevel(living, MobEffects.REGENERATION) == 0) {
             living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 300, amplifier, true, true));
         }
     }

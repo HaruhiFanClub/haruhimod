@@ -3,7 +3,7 @@ package com.haruhifanclub.haruhiism.common.item.impl;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import org.auioc.mcmod.arnicalib.utils.game.RayTraceUtils;
+import org.auioc.mcmod.arnicalib.game.world.phys.RayTraceUtils;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.haruhifanclub.haruhiism.api.item.IHMBlessedItem;

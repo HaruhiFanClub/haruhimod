@@ -1,8 +1,8 @@
 package com.haruhifanclub.haruhiism.common.item.impl;
 
-import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
-import org.auioc.mcmod.arnicalib.utils.game.EnchUtils;
-import org.auioc.mcmod.arnicalib.utils.game.VanillaPredicates;
+import org.auioc.mcmod.arnicalib.game.effect.MobEffectUtils;
+import org.auioc.mcmod.arnicalib.game.enchantment.EnchUtils;
+import org.auioc.mcmod.arnicalib.game.registry.VanillaPredicates;
 import com.haruhifanclub.haruhiism.common.item.base.HMReinforcementStoneItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -13,6 +13,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 
+@SuppressWarnings("removal")
 public class DanchouArmbandItem extends HMReinforcementStoneItem {
 
     public DanchouArmbandItem() {
@@ -47,9 +48,9 @@ public class DanchouArmbandItem extends HMReinforcementStoneItem {
             }
 
 
-            N += EffectUtils.getEffectLevel(player, MobEffects.LUCK) * Config.luckEffectMultiplier.get();
+            N += MobEffectUtils.getLevel(player, MobEffects.LUCK) * Config.luckEffectMultiplier.get();
 
-            N += (-1) * EffectUtils.getEffectLevel(player, MobEffects.UNLUCK) * Config.unluckEffectMultiplier.get();
+            N += (-1) * MobEffectUtils.getLevel(player, MobEffects.UNLUCK) * Config.unluckEffectMultiplier.get();
 
             if (DanchouConeBlockItem.isEquipped(player)) {
                 N += 1 * Config.danchouConeMultiplier.get();

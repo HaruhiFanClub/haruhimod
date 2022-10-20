@@ -1,6 +1,6 @@
 package com.haruhifanclub.haruhiism.common.item.base;
 
-import org.auioc.mcmod.arnicalib.utils.game.MCTimeUtils;
+import org.auioc.mcmod.arnicalib.game.world.MCTimeUtils;
 import com.haruhifanclub.haruhiism.api.item.IHMItem;
 import com.haruhifanclub.haruhiism.common.itemgroup.HMCreativeModeTabs;
 import net.minecraft.Util;

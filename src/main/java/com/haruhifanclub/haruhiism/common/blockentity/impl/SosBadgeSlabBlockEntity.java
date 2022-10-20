@@ -1,6 +1,5 @@
 package com.haruhifanclub.haruhiism.common.blockentity.impl;
 
-import static com.haruhifanclub.haruhiism.Haruhiism.LOGGER;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -8,10 +7,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 import org.apache.logging.log4j.Marker;
-import org.auioc.mcmod.arnicalib.utils.LogUtil;
-import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
-import org.auioc.mcmod.arnicalib.utils.game.ItemUtils;
-import org.auioc.mcmod.arnicalib.utils.game.PlayerUtils;
+import org.auioc.mcmod.arnicalib.base.log.LogUtil;
+import org.auioc.mcmod.arnicalib.game.effect.MobEffectRegistry;
+import org.auioc.mcmod.arnicalib.game.entity.player.PlayerUtils;
+import org.auioc.mcmod.arnicalib.game.item.ItemUtils;
+import com.haruhifanclub.haruhiism.Haruhiism;
 import com.haruhifanclub.haruhiism.common.advancement.criterion.SosBadgeSlabTrigger;
 import com.haruhifanclub.haruhiism.common.block.impl.SosBadgeSlabBlock;
 import com.haruhifanclub.haruhiism.common.blockentity.HMBlockEntities;
@@ -132,7 +132,7 @@ public class SosBadgeSlabBlockEntity extends BlockEntity {
             level = Mth.nextInt(player.getRandom(), levelRange.get(0), levelRange.get(1));
         }
 
-        player.addEffect(new MobEffectInstance(EffectUtils.getRandomEffect(true), duration * 20, level));
+        player.addEffect(new MobEffectInstance(MobEffectRegistry.getRandom(true), duration * 20, level));
     }
 
     private static void lootItem(Player player, boolean isDouble) {
@@ -162,7 +162,7 @@ public class SosBadgeSlabBlockEntity extends BlockEntity {
 
         SosBadgeSlabTrigger.INSTANCE.trigger(((ServerPlayer) player), isDouble);
 
-        LOGGER.info(isDouble ? DOUBLE_MARKER : SINGLE_MARKER, logs);
+        Haruhiism.LOGGER.info(isDouble ? DOUBLE_MARKER : SINGLE_MARKER, logs);
     }
 
 
