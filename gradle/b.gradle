@@ -1,0 +1,5 @@
+apply from: 'https://hi.auioc.org/gradle-scripts/minecraft/mixin.gradle'
+apply from: 'https://hi.auioc.org/gradle-scripts/minecraft/tasks.gradle'
+apply from: 'https://hi.auioc.org/gradle-scripts/minecraft/artifacts.gradle'
+apply from: 'https://hi.auioc.org/gradle-scripts/minecraft/publishing.gradle'
+apply from: 'https://hi.auioc.org/gradle-scripts/common/signing.gradle'

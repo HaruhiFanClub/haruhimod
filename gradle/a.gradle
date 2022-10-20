@@ -1,0 +1,4 @@
+apply from: 'https://hi.auioc.org/gradle-scripts/minecraft/mixin-plugin.gradle'
+apply from: 'https://hi.auioc.org/gradle-scripts/minecraft/project.gradle'
+apply from: 'https://hi.auioc.org/gradle-scripts/minecraft/version.gradle'
+apply from: 'https://hi.auioc.org/gradle-scripts/minecraft/minecraft.gradle'
