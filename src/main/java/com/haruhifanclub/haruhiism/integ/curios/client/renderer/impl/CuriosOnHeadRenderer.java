@@ -27,10 +27,12 @@ public class CuriosOnHeadRenderer implements ICurioRenderer {
         float ageInTicks, float netHeadYaw, float headPitch
     ) {
         if (!(renderLayerParent.getModel() instanceof HeadedModel headedModel)) return;
+        poseStack.pushPose();
         ICurioRenderer.followHeadRotations(slotContext.entity(), headedModel.getHead());
         headedModel.getHead().translateAndRotate(poseStack);
         CustomHeadLayer.translateToHead(poseStack, false);
         Minecraft.getInstance().getItemRenderer().renderStatic(itemStack, TransformType.HEAD, light, OverlayTexture.NO_OVERLAY, poseStack, bufferSource, 0);
+        poseStack.popPose();
     }
 
 }
